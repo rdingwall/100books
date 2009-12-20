@@ -1,0 +1,98 @@
+<mockup version="1.0" skin="sketch" measuredW="1186" measuredH="794">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="159" y="21" w="981" h="763" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1">
+      <controlProperties>
+        <text>Settings%20-%20100%20Books%0Ahttp%3A//100books.ws/account/settings</text>
+      </controlProperties>
+    </control>
+    <control controlID="98" controlTypeID="__group__" x="210" y="101" w="-1" h="-1" measuredW="231" measuredH="81" zOrder="4" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="93" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="231" h="81" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="98"/>
+        <control controlID="94" controlTypeID="com.balsamiq.mockups::Title" x="11" y="9" w="202" h="-1" measuredW="202" measuredH="62" zOrder="1" locked="false" isInGroup="98">
+          <controlProperties>
+            <text>100%20books</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="99" controlTypeID="com.balsamiq.mockups::Canvas" x="217" y="228" w="257" h="507" measuredW="100" measuredH="70" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>none</borderStyle>
+        <color>13158600</color>
+      </controlProperties>
+    </control>
+    <control controlID="100" controlTypeID="com.balsamiq.mockups::Title" x="489" y="153" w="-1" h="-1" measuredW="70" measuredH="29" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Settings</text>
+        <size>16</size>
+      </controlProperties>
+    </control>
+    <control controlID="127" controlTypeID="com.balsamiq.mockups::StickyNote" x="1067" y="462" w="-1" h="-1" measuredW="109" measuredH="123" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Leaving%20reason%20is%20mandatory</text>
+      </controlProperties>
+    </control>
+    <control controlID="128" controlTypeID="com.balsamiq.mockups::Paragraph" x="241" y="243" w="200" h="446" measuredW="200" measuredH="140" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Helpum%20contentsum%20dolor%20sit%20amet%2C%20consectetur%20adipisicing%20elit%2C%20sed%20do%20eiusmod%20tempor%20incididunt%20ut%20labore%20et%20dolore%20magna%20aliqua.%0A%20%0AUt%20enim%20ad%20minim%20veniam%2C%20quis%20nostrud%20exercitation%20ullamco%20laboris%20nisi%20ut%20aliquip%20ex%20ea%20commodo%20consequat.%20%0A%20%0ADuis%20aute%20irure%20dolor%20in%20reprehenderit%20in%20voluptate%20velit%20esse%20cillum%20dolore%20eu%20fugiat%20nulla%20pariatur.%20Excepteur%20sint%20occaecat%20cupidatat%20non%20proident%2C%20sunt%20in%20culpa%20qui%20officia%20deserunt%20mollit%20anim%20id%20est%20laborum.%0A%20%0A%5BMore%20%3E%5D</text>
+      </controlProperties>
+    </control>
+    <control controlID="91" controlTypeID="com.balsamiq.mockups::HRule" x="169" y="128" w="960" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="-1"/>
+    <control controlID="92" controlTypeID="com.balsamiq.mockups::Label" x="723" y="101" w="262" h="25" measuredW="257" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Welcome%2C%20%5Brdingwall%5D%20%7C%20%5BSettings%5D%20%7C%20%5BLog%20out%5D</text>
+        <align>right</align>
+      </controlProperties>
+    </control>
+    <control controlID="120" controlTypeID="com.balsamiq.mockups::Button" x="603" y="617" w="264" h="-1" measuredW="189" measuredH="28" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Delete%20my%20account%20forever</text>
+      </controlProperties>
+    </control>
+    <control controlID="121" controlTypeID="com.balsamiq.mockups::Title" x="504" y="241" w="-1" h="-1" measuredW="142" measuredH="34" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Are%20you%20sure%3F</text>
+        <size>20</size>
+      </controlProperties>
+    </control>
+    <control controlID="122" controlTypeID="com.balsamiq.mockups::Paragraph" x="508" y="289" w="445" h="116" measuredW="200" measuredH="140" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>This%20action%20is%20permanent%20-%20once%20you%20have%20deleted%20your%20account%2C%20it%20cannot%20be%20restored.%0A%20%0AIs%20there%20something%20you%27re%20not%20happy%20about%3F%20Please%20%5Btell%20us%5D%20so%20we%20can%20try%20and%20make%20100%20Books%20better.%20%0A%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="123" controlTypeID="com.balsamiq.mockups::Title" x="504" y="411" w="-1" h="-1" measuredW="203" measuredH="34" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Yes%2C%20I%27m%20really%20sure</text>
+        <size>20</size>
+      </controlProperties>
+    </control>
+    <control controlID="124" controlTypeID="com.balsamiq.mockups::TextArea" x="544" y="494" w="382" h="95" measuredW="200" measuredH="140" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>U%20suxk</text>
+      </controlProperties>
+    </control>
+    <control controlID="125" controlTypeID="com.balsamiq.mockups::Label" x="544" y="589" w="-1" h="-1" measuredW="217" measuredH="22" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Please%20tell%20us%20the%20reason%20you%27re%20leaving</text>
+        <size>11</size>
+        <color>8388608</color>
+      </controlProperties>
+    </control>
+    <control controlID="126" controlTypeID="com.balsamiq.mockups::Paragraph" x="511" y="449" w="436" h="64" measuredW="200" measuredH="140" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>100%25%20positive%3F%20We%27ll%20be%20sad%20to%20see%20you%20go.%20Please%20let%20us%20know%20why%20you%27re%20leaving%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::TabBar" x="489" y="197" w="493" h="538" measuredW="402" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>%2C%2C%2C%2C%2C</hrefs>
+        <value>68</value>
+        <verticalScrollbar>false</verticalScrollbar>
+        <tabVPosition>top</tabVPosition>
+        <text>Profile%2C%20Import%20Followers%2C%20Import/Export%20Data</text>
+        <backgroundAlpha>1</backgroundAlpha>
+        <selectedIndex>0</selectedIndex>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
