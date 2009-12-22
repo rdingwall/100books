@@ -1,2 +1,6 @@
 .DS_Store
 *.suo
+_Resharper.Web
+obj
+bin
+*.user
