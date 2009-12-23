@@ -225,6 +225,13 @@ body {
 a { text-decoration: none; color: #BF003D; }
 a:hover { text-decoration: underline; }
 
+a[rel=nofollow] {
+	background-image: url(external.png);
+	background-repeat: no-repeat;
+	padding-right: 12px;
+	background-position: right;
+}
+
 .big-rounded-corners {
 	@radius: 16px;
 	-moz-border-radius: @radius;
@@ -340,8 +347,120 @@ div.header {
 	div.sidebar {
 		.column;
 		.span-7;
+		
+		@padding: 1em;
+		
 		height: 500px;
-		background-color: blue;
+		background-color: #CCC;
+		padding-bottom: @padding;
+		
+		div.badge {
+			.column;
+			margin: @padding;
+			
+			div.icon {
+				.column;
+			}
+			
+			div.username {
+				.column;
+				
+				a {
+					color: black;
+					text-decoration: none;
+				}
+				
+				h1 { font-size: 175%; }
+				
+				div.one-liner {
+					font-size: 75%;
+					font-weight: bold;
+				}
+			}
+		}
+		
+		ul.meta {
+			.column;
+			margin-left: @padding + 0.25em;
+			font-size: 75%;
+			
+		}
+		
+		div.lists {
+			.column;
+			margin-top: @padding;
+			margin-left: @padding;
+			margin-bottom: @padding;
+			
+			h2 {
+				margin-bottom: 0.25em;
+				font-size: 110%;
+				margin-left: -0.25em;
+			}
+			
+			ul li.list {
+				.column;
+				
+				div.icon {
+					.column;
+					.span-1;
+				}
+				
+				div.details {
+					.column;
+					.span-5;
+					.last;
+					
+					a.name {
+						.column;
+						.span-5;
+						font-size: 85%;
+					}
+					
+					div.progress {
+						font-size: 65%;
+						display: block;
+					}
+				}
+				
+			}
+			
+			div.options {
+				.column;
+				margin-top: 0.5em;
+				font-size: 75%;
+				
+				a { margin-right: 0.5em; }
+			}
+		}
+		
+		div.followers {
+			.column;
+			margin-left: @padding;
+			
+			h2 {
+				margin-bottom: 0.25em;
+				font-size: 110%;
+				margin-left: -0.25em;
+			}
+			
+			table {
+				font-size: 0%;
+				tr {
+					height: 24px;
+					padding: 1px;
+					margin: 0;
+					td { padding: 1px; margin: 0; }
+				}
+			}
+			
+			div.options {
+				.column;
+				margin-top: 0.5em;
+				font-size: 75%;
+			}
+		}
+		
 	}
 
 	div.content {
@@ -408,7 +527,7 @@ div.header {
 					
 					padding-bottom: 0.8em;
 					padding-top: 0.8em;
-					border-bottom: solid 1px #ddd;
+					border-bottom: dotted 1px #ccc;
 					
 					a.icon {
 						.column;
@@ -452,7 +571,7 @@ div.header {
 div.footer {
 	.whole-width;
 	text-align: center;
-	color: #666;
+	color: #333;
 
 	ul {
 		li {
