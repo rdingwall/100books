@@ -162,17 +162,57 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 
 /* headings from blueprint typography.css */
 
-h1 {font-size:3em;line-height:1;margin-bottom:0.5em;}
-h2 {font-size:2em;margin-bottom:0.75em;}
-h3 {font-size:1.5em;line-height:1;margin-bottom:1em;}
-h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;}
-h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
-h6 {font-size:1em;font-weight:bold;}
-h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
+label {font-weight:bold;}
+fieldset {padding:1.4em;margin:0 0 1.5em 0;border:1px solid #ccc;}
+legend {font-weight:bold;font-size:1.2em;}
+input[type=text], input[type=password], input.text, input.title, textarea, select {background-color:#fff;border:1px solid #bbb;}
+input[type=text]:focus, input[type=password]:focus, input.text:focus, input.title:focus, textarea:focus, select:focus {border-color:#666;}
+input[type=text], input[type=password], input.text, input.title, textarea, select {margin:0.5em 0;}
+input.text, input.title {width:300px;padding:5px;}
+input.title {font-size:1.5em;}
+textarea {width:390px;height:250px;padding:5px;}
+input[type=checkbox], input[type=radio], input.checkbox, input.radio {position:relative;top:.25em;}
+form.inline {line-height:3;}
+form.inline p {margin-bottom:0;}
+.error, .notice, .success {padding:.8em;margin-bottom:1em;border:2px solid #ddd;}
+.error {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
+.notice {background:#FFF6BF;color:#514721;border-color:#FFD324;}
+.success {background:#E6EFC2;color:#264409;border-color:#C6D880;}
+.error a {color:#8a1f11;}
+.notice a {color:#514721;}
+.success a {color:#264409;}
+
+input.span-1, textarea.span-1, input.span-2, textarea.span-2, input.span-3, textarea.span-3, input.span-4, textarea.span-4, input.span-5, textarea.span-5, input.span-6, textarea.span-6, input.span-7, textarea.span-7, input.span-8, textarea.span-8, input.span-9, textarea.span-9, input.span-10, textarea.span-10, input.span-11, textarea.span-11, input.span-12, textarea.span-12, input.span-13, textarea.span-13, input.span-14, textarea.span-14, input.span-15, textarea.span-15, input.span-16, textarea.span-16, input.span-17, textarea.span-17, input.span-18, textarea.span-18, input.span-19, textarea.span-19, input.span-20, textarea.span-20, input.span-21, textarea.span-21, input.span-22, textarea.span-22, input.span-23, textarea.span-23, input.span-24, textarea.span-24 {border-left-width:1px!important;border-right-width:1px!important;padding-left:5px!important;padding-right:5px!important;}
+input.span-1, textarea.span-1 {width:18px!important;}
+input.span-2, textarea.span-2 {width:58px!important;}
+input.span-3, textarea.span-3 {width:98px!important;}
+input.span-4, textarea.span-4 {width:138px!important;}
+input.span-5, textarea.span-5 {width:178px!important;}
+input.span-6, textarea.span-6 {width:218px!important;}
+input.span-7, textarea.span-7 {width:258px!important;}
+input.span-8, textarea.span-8 {width:298px!important;}
+input.span-9, textarea.span-9 {width:338px!important;}
+input.span-10, textarea.span-10 {width:378px!important;}
+input.span-11, textarea.span-11 {width:418px!important;}
+input.span-12, textarea.span-12 {width:458px!important;}
+input.span-13, textarea.span-13 {width:498px!important;}
+input.span-14, textarea.span-14 {width:538px!important;}
+input.span-15, textarea.span-15 {width:578px!important;}
+input.span-16, textarea.span-16 {width:618px!important;}
+input.span-17, textarea.span-17 {width:658px!important;}
+input.span-18, textarea.span-18 {width:698px!important;}
+input.span-19, textarea.span-19 {width:738px!important;}
+input.span-20, textarea.span-20 {width:778px!important;}
+input.span-21, textarea.span-21 {width:818px!important;}
+input.span-22, textarea.span-22 {width:858px!important;}
+input.span-23, textarea.span-23 {width:898px!important;}
+input.span-24, textarea.span-24 {width:938px!important;}
 
 /* 100 Books stuff */
 
 h1, h2, h3, h4 { font-weight: bold; }
+
+@border_grey: #999;
 
 body {
 	/* Helvetica/Arial-based sans serif stack from http://articles.sitepoint.com/article/eight-definitive-font-stacks/2 */
@@ -182,27 +222,38 @@ body {
 	background-repeat: repeat-x;
 }
 
-.rounded_corners {
+a { text-decoration: none; color: #BF003D; }
+a:hover { text-decoration: underline; }
+
+.big-rounded-corners {
 	@radius: 16px;
 	-moz-border-radius: @radius;
 	-webkit-border-radius: @radius;
 	border-radius: @radius;
 }
 
-.fatal {
-	.rounded_corners;
+.whole-width {
+	.span-22;
+	.push-1;
+	.last;
+	.column;
+}
+
+/* whole-screen dialogs (404, down for maintenance, over capacity etc) */
+div.fatal {
+	.big-rounded-corners;
 	.push-4;
 	.span-16;
 	.column;
 	
 	background-color: #e5e5e5;
-	border: 3px solid #999;
+	border: 3px solid @border_grey;
 	
 	margin-top: 5em;
 	padding-top: 1em;
 	padding-bottom: 1em;
 	
-	.message {
+	div.message {
 		.column;
 		.prepend-1;
 		.last;
@@ -212,18 +263,208 @@ body {
 		h2 { color: #333; }
 	}
 	
-	.options {
+	div.options {
 		.column;
 		.prepend-1;
 		.span-8;
 	}
 	
-	.logo {
+	div.logo {
 		.column;
 		.span-6;
 		.last;
 		text-align: right;
 	}
-	
 }
 
+/* header for normal pages logo on left, brief menu (login/settings/logout) on right */
+div.header {
+	.whole-width;
+
+	div.logo {
+		.column;
+		.span-7;
+	}
+
+	div.menu {
+		.column;
+		.span-15;
+		.last;
+
+		color: #333;
+		text-align: right;
+		padding-top: 0.3em;
+	
+		ul {
+			li {
+				display: inline;
+				padding-left: 0.5em;
+				padding-right: 0.5em;
+				border-right: 1px solid #CCC;
+			}
+
+			li.last {
+				border-right: none;
+				padding-right: none;
+			}
+		}
+	}
+	
+	div.search {
+		.column;
+		.span-15;
+		.last;
+
+		margin-top: 2em;
+		padding-top: 0.2em;
+		padding-bottom: 0.2em;
+
+		background-color: #CCC;
+		@radius: 4px;
+		-moz-border-radius: @radius;
+		-webkit-border-radius: @radius;
+		border-radius: @radius;
+
+		input { font-size:1.2em; }
+
+		input[type=text] { .span-13; }
+
+		input[type=submit] { .span-2; }
+	}
+
+}
+
+.main {
+	.whole-width;
+	
+	div.sidebar {
+		.column;
+		.span-7;
+		height: 500px;
+		background-color: blue;
+	}
+
+	div.content {
+		.column;
+		.span-15;
+		.last;
+		
+		ul.tabs {
+			.span-15;
+			
+			li {
+				display: inline;
+				
+				/* links swell out to fill the tab, so the whole tab is clickable */
+				a {
+					@margin-top-bottom: 0.3em;
+					padding-top: @margin-top-bottom;
+					padding-bottom: @margin-top-bottom;
+					padding-left: 0.65em;
+					padding-right: 0.65em;
+					margin: 0;
+					border: 1px solid #CCC;
+					background-color: #e5e5e5;
+					
+					@radius: 5px;
+					
+					-moz-border-radius-topleft: @radius;
+					-webkit-border-top-left-radius: @radius;
+					border-top-left-radius: @radius;
+					
+					-moz-border-radius-topright: @radius;
+					-webkit-border-top-right-radius: @radius;
+					border-top-right-radius: @radius;
+				}
+				
+				a:hover { background-color: #CCC; }
+			}
+			
+			li.active {
+				a {
+					background-color: white;
+					border-bottom: solid 1px white;
+				}
+			}
+			
+		}
+		
+		div.tab-content {
+			.column;
+			.span-15;
+			
+			border: solid 1px #CCC;
+			margin-top: 0.3em;
+			
+			/* statuses */
+			
+			div.statuses {
+				.column;
+				.span-15;
+				
+				li.status {
+					.column;
+					.span-15;
+					
+					padding-bottom: 0.8em;
+					padding-top: 0.8em;
+					border-bottom: solid 1px #ddd;
+					
+					a.icon {
+						.column;
+						.span-2;
+						
+						img { margin-left: 17px; }
+					}
+					
+					div.message {
+						.span-13;
+						.prepend-2;
+						
+						vertical-align: middle;
+					
+						span.when {
+							margin-top: 0.2em;
+							color: #999;
+							font-size: 75%;
+							display: block;
+						}
+					}
+				}
+				
+				li.status.last { border-bottom: none; }
+				li.status:hover { background-color: #e5e5e5; }
+				
+				input.more {
+					
+					margin: 1em;
+					width: 94%;
+					
+					
+				}
+			}
+			
+			
+		}
+	}
+}
+
+div.footer {
+	.whole-width;
+	text-align: center;
+	color: #666;
+
+	ul {
+		li {
+			display: inline;
+			padding-left: 0.65em;
+			padding-right: 0.65em;
+			border-right: 1px solid #CCC;
+		}
+
+		li.last {
+			border-right: none;
+			padding-right: none;
+		}
+	}
+}

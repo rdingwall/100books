@@ -96,8 +96,8 @@
     </control>
     <control controlID="36" controlTypeID="com.balsamiq.mockups::Canvas" x="291" y="421" w="672" h="131" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
-        <borderStyle>none</borderStyle>
         <backgroundAlpha>1</backgroundAlpha>
+        <borderStyle>none</borderStyle>
         <color>11776947</color>
       </controlProperties>
     </control>
@@ -188,14 +188,19 @@
         <text>Links%20to%20in-depth%20feature%20pages</text>
       </controlProperties>
     </control>
-    <control controlID="55" controlTypeID="com.balsamiq.mockups::LinkBar" x="524" y="635" w="-1" h="-1" measuredW="242" measuredH="25" zOrder="36" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Home%2C%20Products%2C%20Company%2C%20Blog</text>
-      </controlProperties>
-    </control>
-    <control controlID="56" controlTypeID="com.balsamiq.mockups::StickyNote" x="598" y="675" w="131" h="125" measuredW="109" measuredH="123" zOrder="37" locked="false" isInGroup="-1">
+    <control controlID="56" controlTypeID="com.balsamiq.mockups::StickyNote" x="598" y="675" w="131" h="125" measuredW="109" measuredH="123" zOrder="36" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Lightweight%20footer</text>
+      </controlProperties>
+    </control>
+    <control controlID="57" controlTypeID="com.balsamiq.mockups::LinkBar" x="514" y="627" w="-1" h="-1" measuredW="352" measuredH="25" zOrder="37" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>About%2C%20Blog%2C%20API%2C%20Help%2C%20Terms%2C%20Contact%20Us</text>
+      </controlProperties>
+    </control>
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::Label" x="381" y="628" w="-1" h="-1" measuredW="127" measuredH="25" zOrder="38" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%28c%29%202010%20100%20Books</text>
       </controlProperties>
     </control>
   </controls>
