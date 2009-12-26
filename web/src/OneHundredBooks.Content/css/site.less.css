@@ -329,17 +329,20 @@ div.header {
 		padding-top: 0.2em;
 		padding-bottom: 0.2em;
 
-		background-color: #CCC;
-		@radius: 4px;
-		-moz-border-radius: @radius;
-		-webkit-border-radius: @radius;
-		border-radius: @radius;
-
-		input { font-size:1.2em; }
-
-		input[type=text] { .span-13; }
-
-		input[type=submit] { .span-2; }
+		input.text { 
+			
+			@radius: 5px;
+			
+			width: 590px - (@radius * 2); /* .span-15 less radius padding */
+			
+			-moz-border-radius: @radius;
+			-webkit-border-radius: @radius;
+			border-radius: @radius;
+			
+			background-image: url(search.png);
+			background-position: right;
+			background-repeat: no-repeat;
+		 }
 	}
 
 }

@@ -89,10 +89,9 @@
   <ItemGroup>
     <Content Include="css\external.png" />
     <Content Include="css\site.less.css" />
+    <Content Include="js\100books.js" />
+    <Content Include="js\jquery.watermark.js" />
     <Content Include="profile.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="js\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
