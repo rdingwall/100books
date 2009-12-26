@@ -87,6 +87,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\external.png" />
     <Content Include="css\site.less.css" />
     <Content Include="profile.html" />
   </ItemGroup>
