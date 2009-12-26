@@ -267,7 +267,10 @@ div.fatal {
 		
 		margin-bottom: 1em;
 		
-		h2 { color: #333; }
+		h1  {
+			color: #333;
+			font-size: 200%;
+		}
 	}
 	
 	div.options {
