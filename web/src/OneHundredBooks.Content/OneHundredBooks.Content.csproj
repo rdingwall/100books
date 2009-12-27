@@ -88,7 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="book.html" />
+    <Content Include="css\button-bg.png" />
+    <Content Include="css\cross.png" />
     <Content Include="css\external.png" />
+    <Content Include="css\list.png" />
     <Content Include="css\menu-down.png" />
     <Content Include="css\search.png" />
     <Content Include="css\site.less.css" />
