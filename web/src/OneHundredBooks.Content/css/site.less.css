@@ -1,4 +1,5 @@
-﻿
+﻿/* IE6 is not support */
+
 /* blueprint grid.css */
 .container {width:950px;margin:0 auto;}
 .showgrid {background:url(src/grid.png);}
@@ -162,7 +163,6 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 
 /* headings from blueprint typography.css */
 
-label {font-weight:bold;}
 fieldset {padding:1.4em;margin:0 0 1.5em 0;border:1px solid #ccc;}
 legend {font-weight:bold;font-size:1.2em;}
 input[type=text], input[type=password], input.text, input.title, textarea, select {background-color:#fff;border:1px solid #bbb;}
@@ -288,81 +288,32 @@ div.fatal {
 }
 
 /* header for normal pages logo on left, brief menu (login/settings/logout) on right */
-div.header {
-	.whole-width;
+div.left {
+	.span-7;
+	.column;
+
+	@sidebar-padding: 1em;
 
 	div.logo {
 		.column;
 		.span-7;
+		margin-bottom: @sidebar-padding * 2;
 	}
-
-	div.menu {
-		.column;
-		.span-15;
-		.last;
-
-		color: #333;
-		text-align: right;
-		padding-top: 0.3em;
-	
-		ul {
-			li {
-				display: inline;
-				padding-left: 0.5em;
-				padding-right: 0.5em;
-				border-right: 1px solid #CCC;
-			}
-
-			li.last {
-				border-right: none;
-				padding-right: none;
-			}
-		}
-	}
-	
-	div.search {
-		.column;
-		.span-15;
-		.last;
-
-		margin-top: 2em;
-		padding-top: 0.2em;
-		padding-bottom: 0.2em;
-
-		input.text { 
-			
-			@radius: 5px;
-			
-			width: 590px - (@radius * 2); /* .span-15 less radius padding */
-			
-			-moz-border-radius: @radius;
-			-webkit-border-radius: @radius;
-			border-radius: @radius;
-			
-			background-image: url(search.png);
-			background-position: right;
-			background-repeat: no-repeat;
-		 }
-	}
-
-}
-
-.main {
-	.whole-width;
 	
 	div.sidebar {
 		.column;
 		.span-7;
 		
-		@padding: 1em;
-		
 		height: 500px;
 		background-color: #CCC;
-		padding-bottom: @padding;
+		padding-bottom: @sidebar-padding;
+	}
+	
+	div.sidebar.user-profile {
 		
 		div.badge {
 			.column;
-			margin: @padding;
+			margin: @sidebar-padding;
 			
 			div.icon {
 				.column;
@@ -387,16 +338,15 @@ div.header {
 		
 		ul.meta {
 			.column;
-			margin-left: @padding + 0.25em;
+			margin-left: @sidebar-padding + 0.25em;
 			font-size: 75%;
-			
 		}
 		
 		div.lists {
 			.column;
-			margin-top: @padding;
-			margin-left: @padding;
-			margin-bottom: @padding;
+			margin-top: @sidebar-padding;
+			margin-left: @sidebar-padding;
+			margin-bottom: @sidebar-padding;
 			
 			h2 {
 				margin-bottom: 0.25em;
@@ -442,7 +392,7 @@ div.header {
 		
 		div.followers {
 			.column;
-			margin-left: @padding;
+			margin-left: @sidebar-padding;
 			
 			h2 {
 				margin-bottom: 0.25em;
@@ -466,13 +416,115 @@ div.header {
 				font-size: 75%;
 			}
 		}
-		
 	}
 
-	div.content {
+	div.sidebar.book {
+			
+		a.book-cover {
+			margin: @sidebar-padding;
+			background-color: #999;
+			display: block;
+			text-align: center;
+			padding-top: 2px;
+			padding-bottom: 2px;
+		}
+		
+		div.menu-container.read-or-not,
+		div.menu-container.add-to-list {
+			.span-6;
+			margin: @sidebar-padding;
+		}
+		
+		ul.book-details {
+			.span-6;
+			margin: @sidebar-padding + 0.25em;
+			font-size: 75%;
+		}
+		
+		div.buy-links {
+			.span-6;
+			margin-left: @sidebar-padding;
+			h2 {
+				margin-bottom: 0.25em;
+				font-size: 110%;
+				margin-left: -0.25em;
+			}
+		}
+	}
+}
+
+div.right {
+	
+	.span-15;
+	.column;
+	
+	div.menu {
 		.column;
 		.span-15;
 		.last;
+
+		color: #333;
+		text-align: right;
+		padding-top: 0.3em;
+		margin-bottom: 1.5em;
+	
+		ul {
+			li {
+				display: inline;
+				padding-left: 0.5em;
+				padding-right: 0.5em;
+				border-right: 1px solid #CCC;
+			}
+
+			li.last {
+				border-right: none;
+				padding-right: none;
+			}
+		}
+	}
+	
+	div.search {
+		.column;
+		.span-15;
+		.last;
+
+		padding-top: 0.2em;
+		padding-bottom: 0.2em;
+		
+		margin-bottom: 1em;
+
+		input.text { 
+			
+			@radius: 5px;
+			
+			width: 590px - (@radius * 2); /* .span-15 less radius padding */
+			
+			-moz-border-radius: @radius;
+			-webkit-border-radius: @radius;
+			border-radius: @radius;
+			
+			background-image: url(search.png);
+			background-position: right;
+			background-repeat: no-repeat;
+		 }
+	}
+	
+	
+	div.book-summary {
+			.span-15;
+			.column;
+			margin-bottom: 1.5em;
+			
+			a {
+				text-decoration: none;
+				
+				h1 {
+					font-size: 200%;
+					color: Black;
+					margin-bottom: 0.5em;
+				}
+			}
+		}
 		
 		ul.tabs {
 			.span-15;
@@ -523,11 +575,11 @@ div.header {
 			
 			/* statuses */
 			
-			div.statuses {
+			div.statuses, div.lists {
 				.column;
 				.span-15;
 				
-				li.status {
+				li.status, li.list {
 					.column;
 					.span-15;
 					
@@ -538,21 +590,32 @@ div.header {
 					a.icon {
 						.column;
 						.span-2;
+						display: block;
 						
 						img { margin-left: 17px; }
 					}
 					
-					div.message {
-						.span-13;
-						.prepend-2;
-						
-						vertical-align: middle;
+					div.status-message, 
+					div.list-details {
+						width: 495px; /* just slightly more than span-12 */
+						.column;
+					}
 					
+					div.status-message {
 						span.when {
 							margin-top: 0.2em;
 							color: #999;
 							font-size: 75%;
 							display: block;
+						}
+					}
+					
+					div.list-details {
+						line-height: 3em; /* vertically align to center (hacky) */
+						
+						div.list-progress {
+							float: right;
+							color: #999;
 						}
 					}
 				}
@@ -561,23 +624,77 @@ div.header {
 				li.status:hover { background-color: #e5e5e5; }
 				
 				input.more {
-					
 					margin: 1em;
 					width: 94%;
-					
-					
 				}
 			}
-			
-			
+		}
+}
+
+/* menu shite */
+div.menu-container {
+	
+	width: 160px;
+	font-size: 80%;
+	
+	-moz-border-radius:4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	background-color: white;
+	border: solid 1px #999;
+	
+	button {
+
+		padding: 3px;
+		width: 100%;
+		background-color: Transparent;
+		border: none;
+		text-align: left;
+		cursor: pointer;
+		
+		i {
+			width: 10px;
+			height: 10px;
+			display: block;
+			float: right;
+			background-image: url(menu-down.png);
+			background-position: 1px 5px;
+			background-repeat: no-repeat;
 		}
 	}
+	
+	ul.menu {
+		display: none; /* default state of course */
+				
+		li {
+			input { float: right; }
+			
+			label {
+				padding: 3px;
+				display: block;
+				cursor: pointer;
+			}
+			
+			a {
+				padding: 3px;
+				display: block;
+				color: Black;
+				text-decoration: none;
+			}
+		}
+		
+		li:hover { background-color: #AAA; }
+	}
+	
+	ul.menu.visible { display: block; }
 }
+
 
 div.footer {
 	.whole-width;
 	text-align: center;
 	color: #333;
+	margin-top: 1em;
 
 	ul {
 		li {

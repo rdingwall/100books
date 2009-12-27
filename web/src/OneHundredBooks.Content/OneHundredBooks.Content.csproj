@@ -87,7 +87,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="book.html" />
     <Content Include="css\external.png" />
+    <Content Include="css\menu-down.png" />
+    <Content Include="css\search.png" />
     <Content Include="css\site.less.css" />
     <Content Include="js\100books.js" />
     <Content Include="js\jquery.watermark.js" />
