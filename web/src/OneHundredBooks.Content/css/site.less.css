@@ -647,8 +647,8 @@ div.right {
 					}
 				}
 				
-				li.status.last { border-bottom: none; }
-				li.status:hover { background-color: #e5e5e5; }
+				li.status.last, li.list.last { border-bottom: none; }
+				li.status:hover, li.list:hover { background-color: #e5e5e5; }
 				
 				button.more {
 					margin: 1em;
