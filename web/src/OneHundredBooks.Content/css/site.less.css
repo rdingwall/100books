@@ -233,7 +233,7 @@ a[rel=nofollow] {
 }
 
 .big-rounded-corners {
-	@radius: 16px;
+	@radius: 12px;
 	-moz-border-radius: @radius;
 	-webkit-border-radius: @radius;
 	border-radius: @radius;
@@ -254,7 +254,7 @@ div.fatal {
 	.column;
 	
 	background-color: #e5e5e5;
-	border: 3px solid @border_grey;
+	border: solid 1px @border_grey;
 	
 	margin-top: 5em;
 	padding-top: 1em;
