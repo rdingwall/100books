@@ -305,7 +305,7 @@ div.left {
 		.span-7;
 		
 		height: 500px;
-		background-color: #CCC;
+		background-color: #DDD;
 		padding-bottom: @sidebar-padding;
 	}
 	
@@ -420,13 +420,22 @@ div.left {
 
 	div.sidebar.book {
 			
-		a.book-cover {
+		div.book-cover {
 			margin: @sidebar-padding;
-			background-color: #999;
-			display: block;
-			text-align: center;
-			padding-top: 2px;
-			padding-bottom: 2px;
+			
+			a {
+				background-color: #BBB;
+				width: 220px;
+				height: 260px;
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				
+				img {
+					margin-left: -3px;
+					margin-top: -3px;
+				}
+			}
 		}
 		
 		div.menu-container.read-or-not,
