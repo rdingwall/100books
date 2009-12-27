@@ -1,31 +1,24 @@
 ﻿$(document).ready(function() {
 
-    // Set up menu show/hide business
+    // Close menus whenever anyone clicks outside them
+    $("body").click(function(e) {
+        if ($(e.target).is("div.menu-container *"))
+            return; // Clicked inside menu, keep it open
+
+        $("ul.menu").removeClass("visible");
+    });
+
+    // Show/hide menus
     $("div.menu-container > button").click(function() {
-        var container = $(this).parents("div.menu-container");
         var menu = $(this).siblings("ul.menu");
 
-        if (menu.hasClass("visible")) {
+        if (menu.hasClass("visible"))
             menu.removeClass("visible");
-        }
         else {
+            // First close any other menu that might still be open :)
+            $("ul.menu").removeClass("visible"); 
             menu.addClass("visible");
-
-            function waitForClickOutside(container) {
-                $("body").one("mousedown", function(e) {
-                    var c = container;
-                    if ($(e.target).is("div.menu-container *")) {
-                        // Click was inside the menu. Ignore.
-                        waitForClickOutside(c);
-                        return;
-                    }
-
-                    c.children("ul.menu").removeClass("visible");
-                });
-            };
-            
-            waitForClickOutside(container);
         }
     });
-    
+
 });
