@@ -73,7 +73,7 @@
             watermark_label.css({
                 position: 'absolute',
                 fontFamily: $elem.css('font-family'),
-                fontSize: $elem.css('font-size'),
+                fontSize: "inherit" /*$elem.css('font-size') disabled due to issues with IE - font-size: 590px !!! (same as width?) - rich */,
                 color: css.color,
                 left: css.left,
                 right: 0,
