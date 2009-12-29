@@ -102,7 +102,7 @@
     <Content Include="css\forms.less.css" />
     <Content Include="css\plus.png" />
     <Content Include="css\search.png" />
-    <Content Include="css\site.less.css" />
+    <Content Include="css\100books.less.css" />
     <Content Include="css\tick.png" />
     <Content Include="js\100books.js" />
     <Content Include="js\jquery.watermark.js" />
