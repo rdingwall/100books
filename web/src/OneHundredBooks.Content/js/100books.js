@@ -5,19 +5,19 @@
         if ($(e.target).is("div.menu-container *"))
             return; // Clicked inside menu, keep it open
 
-        $("ul.menu").removeClass("visible");
+        $("div.menu-container").removeClass("open");
     });
 
     // Show/hide menus
     $("div.menu-container > button").click(function() {
-        var menu = $(this).siblings("ul.menu");
+        var container = $(this).parents("div.menu-container");
 
-        if (menu.hasClass("visible"))
-            menu.removeClass("visible");
+        if (container.hasClass("open"))
+            container.removeClass("open");
         else {
             // First close any other menu that might still be open :)
-            $("ul.menu").removeClass("visible"); 
-            menu.addClass("visible");
+            $("div.menu-container").removeClass("open");
+            container.addClass("open");
         }
     });
 

@@ -443,22 +443,7 @@ div.left {
 			margin: @sidebar-padding;
 			width: 240px;
 			
-			ul.menu, button { 
-				width: 240px;
-				
-				span.icon {
-					width: 17px;
-					height: 14px;
-					display: block;
-					float: left;
-					background-position: left 1px;
-					background-repeat: no-repeat;
-				}
-				
-				span.icon.tick { background-image: url(tick.png); }
-				span.icon.cross { background-image: url(cross.png); }
-				span.icon.list { background-image: url(list.png); }
-			}
+			ul.menu, button { width: 240px; }
 			
 		}
 		
@@ -479,6 +464,20 @@ div.left {
 		}
 	}
 }
+
+span.icon {
+		width: 17px;
+		height: 14px;
+		display: block;
+		float: left;
+		background-position: left 1px;
+		background-repeat: no-repeat;
+	}
+	
+span.icon.tick { background-image: url(tick.png); }
+span.icon.cross { background-image: url(cross.png); }
+span.icon.list { background-image: url(list.png); }
+span.icon.add { background-image: url(plus.png); }
 
 div.right {
 	
@@ -638,17 +637,37 @@ div.right {
 					}
 					
 					div.list-details {
-						line-height: 3em; /* vertically align to center (hacky) */
+						padding-top: 0.8em;
 						
 						div.list-progress {
 							float: right;
 							color: #999;
+							width: 3em;
+							text-align:right;
+						}
+						
+						div.menu-container 
+						{
+							float: right;
+							
+							/* push button back up to sit inline with the rest (approx) */
+							button { margin-top: -4px; }
+							
+							button.add { display: none; }
 						}
 					}
 				}
 				
 				li.status.last, li.list.last { border-bottom: none; }
-				li.status:hover, li.list:hover { background-color: #e5e5e5; }
+				
+				li.status:hover, li.list:hover  
+				{
+					background-color: #e5e5e5;
+					
+					div.list-details div.menu-container {
+					button.add { display: block; }
+					}
+				}
 				
 				button.more {
 					margin: 1em;
@@ -662,40 +681,39 @@ div.right {
 		}
 }
 
-button {
-	background-image: url(button-bg.png);
-	border: solid 1px #CCC;
-}
-
 button:active {
     background-position: bottom right;
 }
 
+button {
+	background-image: url(button-bg.png);
+	border: solid 1px #CCC;
+
+	padding: 5px;
+	-moz-border-radius:4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	border: solid 1px #aaa;
+	
+	i {
+		width: 10px;
+		height: 10px;
+		display: block;
+		float: right;
+		background-image: url(menu-down.png);
+		background-position: 1px 5px;
+		background-repeat: no-repeat;
+	}
+}
 
 /* menu shite */
 div.menu-container {
 	
 	font-size: 90%;
 	
-	button {
-
-		padding: 5px;
-		text-align: left;
-		-moz-border-radius:4px;
-		-webkit-border-radius: 4px;
-		border-radius: 4px;
-		border: solid 1px #aaa;
-		
-		i {
-			width: 10px;
-			height: 10px;
-			display: block;
-			float: right;
-			background-image: url(menu-down.png);
-			background-position: 1px 5px;
-			background-repeat: no-repeat;
-		}
-	}
+	line-height: 100%;
+	
+	button { text-align: left; }
 	
 	ul.menu {
 		display: none; /* default state */
@@ -711,6 +729,8 @@ div.menu-container {
 		
 		li {
 			input { float: right; }
+			
+			
 			
 			label {
 				padding: 5px;
@@ -728,9 +748,9 @@ div.menu-container {
 		
 		li:hover { background-color: #AAA; }
 	}
-	
-	ul.menu.visible { display: block; }
 }
+
+div.menu-container.open ul.menu { display: block; }
 
 
 div.footer {

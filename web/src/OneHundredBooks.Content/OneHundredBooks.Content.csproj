@@ -93,8 +93,10 @@
     <Content Include="css\external.png" />
     <Content Include="css\list.png" />
     <Content Include="css\menu-down.png" />
+    <Content Include="css\plus.png" />
     <Content Include="css\search.png" />
     <Content Include="css\site.less.css" />
+    <Content Include="css\tick.png" />
     <Content Include="js\100books.js" />
     <Content Include="js\jquery.watermark.js" />
     <Content Include="profile.html" />
