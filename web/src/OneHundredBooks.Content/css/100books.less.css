@@ -48,7 +48,6 @@ div.side {
 		.column;
 		.span-7;
 		
-		height: 500px;
 		background-color: #DDD;
 		padding-bottom: @sidebar-padding;
 		
@@ -178,11 +177,9 @@ div.side {
 			font-size: 75%;
 		}
 		
-		div.sidebar-section.menu-container,
 		div.sidebar-section.menu-container {
 			margin: @sidebar-padding;
 			width: 240px;
-			background-color: Blue;
 			
 			ul.menu, button { width: 240px; }
 		}
