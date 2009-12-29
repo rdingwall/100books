@@ -3,44 +3,46 @@
 <head>
     <title>Domain Driven Design: Tackling Complexity In The Heart Of Software - 100 Books</title>
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset/reset-min.css" />
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="css/blueprint/ie.min.css" type="text/css" media="screen, projection">
+    <![endif]-->
     <link rel="stylesheet" type="text/css" href="css/site.less.css" />
 </head>
 <body>
     <div class="container">
         
-        <div class="left">
-            <div class="logo">
+        <div class="side">
+            <div class="site-logo">
                 <img src="img/logo.png" width="270" height="104" alt="100 Books" />
             </div>
             
-            <div class="sidebar book">
-                <div class="book-cover">
+            <div class="sidebar">
+                <div class="sidebar-section book-cover">
                     <a href="#"><img src="http://www.herrodius.com/blog/wp-content/uploads/2008/02/domain-driven-design-book-cover.jpg" width="220" height="260" alt="Domain Driven Design: Tackling Complexity In The Heart Of Software" title="Domain Driven Design: Tackling Complexity In The Heart Of Software" /></a>
                 </div>
                 
-                <div class="menu-container read-or-not">
+                <div class="sidebar-section menu-container read-or-not">
                     <button><span class="icon tick">&nbsp;</span>You have read this book<i>&nbsp;</i></button>
                     <ul class="menu">
                         <li><a href="#"><span class="icon cross">&nbsp;</span>You haven't read this book yet</a></li>
                     </ul>
                 </div>
                 
-                <ul class="book-details">
+                <ul class="sidebar-section book-meta">
                     <li>Author: <a href="#">Eric Evans</a></li>
                     <li>ISBN: 1234-5678-9104</li>
                     <li>Number of pages: 432</li>
                 </ul>
                 
-                <div class="buy-links">
+                <div class="sidebar-section book-buy-links">
                     <h2>Buy this book</h2>
                      <ul>
                         <li><a href="#">Amazon</a></li>
                         <li><a href="#">Barnes & Noble</a></li>
                     </ul>
                 </div>
-               <!-- -->
                 
-                <div class="menu-container add-to-list">
+                <div class="sidebar-section menu-container add-book-to-list">
                     <button><span class="icon list">&nbsp;</span>Add this book to a list<i>&nbsp;</i></button>
                     <ul class="menu">
                         <li><label for="aa">DUX team books <input id="aa" type="checkbox" /></label></li>
@@ -53,8 +55,8 @@
               
         </div>
         
-        <div class="right">
-            <div class="menu">
+        <div class="main">
+            <div class="main-section account-menu">
                 <ul>
                     <li>Welcome, <a href="#">rdingwall</a></li>
                     <li><a href="#">Settings</a></li>
@@ -64,25 +66,27 @@
             </div>        
             
          
-            <div class="book-summary">
+            <div class="main-section book-summary">
                 <a href="#"><h1>Domain Driven Design: Tackling Complexity In The Heart Of Software</h1></a>
                 <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
             
-            <ul class="tabs">
-                <li class="active"><a href="#">Lists this book appears on</a></li>
-                <li><a href="#">Readers</a></li>
-                <li><a href="#">Planned readers</a></li>
-            </ul>
-                
-            <div class="tab-content">
-                <div class="lists">
+            <div class="main-section tabs">
+                <ul>
+                    <li class="active"><a href="#">Lists this book appears on</a></li>
+                    <li><a href="#">Readers</a></li>
+                    <li><a href="#">Planned readers</a></li>
+                </ul>
+            </div>
+            
+            <div class="main-section tab-content">
+                <div class="main-list reading-lists">
                     <ul>
-                        <li class="list">
-                            <a href="#" class="icon"><img src="http://www.gravatar.com/avatar/51d623f33f8b83095db84ff35e15dbe8?s=48&d=identicon&r=PG" width="48" height="48" alt="Jeff Atwood" title="codinghorror" /></a>
-                            <div class="list-details">
+                        <li class="list-item reading-list">
+                            <a href="#" class="item-icon"><img src="http://www.gravatar.com/avatar/51d623f33f8b83095db84ff35e15dbe8?s=48&d=identicon&r=PG" width="48" height="48" alt="Jeff Atwood" title="codinghorror" /></a>
+                            <div class="item-details">
                                 <a href="#">TheArtOfManliness.com 100 Must-Read Books</a>
-                                <div class="list-progress">6/100</div>
+                                <div class="reading-list-progress">6/100</div>
                                 <div class="menu-container">
                                     <button><span class="icon tick">&nbsp;</span>Added</button>
                                     <ul class="menu">
@@ -91,21 +95,21 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="list">
-                            <a href="#" class="icon"><img src="http://www.gravatar.com/avatar/cd501083459cbc21fccae78e2d03bee2?s=48&d=identicon&r=PG" width="48" height="48" alt="Seth Godin" title="thisisseth" /></a>
-                            <div class="list-details">
+                        <li class="list-item reading-list">
+                            <a href="#" class="item-icon"><img src="http://www.gravatar.com/avatar/cd501083459cbc21fccae78e2d03bee2?s=48&d=identicon&r=PG" width="48" height="48" alt="Seth Godin" title="thisisseth" /></a>
+                            <div class="item-details">
                                 <a href="#">Joel's Programmers Bookshelf</a>
-                                <div class="list-progress">6/21</div>
+                                <div class="reading-list-progress">6/21</div>
                                 <div class="menu-container">
                                     <button class="add"><span class="icon add">&nbsp;</span>Add</button>
                                 </div>
                             </div>
                         </li>
-                        <li class="list last">
-                            <a href="#" class="icon"><img src="http://www.gravatar.com/avatar/4b1028f68c9692d57a27dc7b8f64f310?s=48&d=identicon&r=PG" width="48" height="48" alt="Pablo Garcia" title="polg" /></a>
-                            <div class="list-details">
+                        <li class="list-item reading-list last">
+                            <a href="#" class="item-icon"><img src="http://www.gravatar.com/avatar/4b1028f68c9692d57a27dc7b8f64f310?s=48&d=identicon&r=PG" width="48" height="48" alt="Pablo Garcia" title="polg" /></a>
+                            <div class="item-details">
                                 <a href="#">UXBookClub.org Leave of popular books</a>
-                                <div class="list-progress">21/21</div>
+                                <div class="reading-list-progress">21/21</div>
                                 <div class="menu-container">
                                     <button class="add"><span class="icon add">&nbsp;</span>Add</button>
                                 </div>

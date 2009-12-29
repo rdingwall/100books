@@ -1,0 +1,82 @@
+﻿/* generic styles for 100books forms, drop down menus and buttons etc */
+
+button:active {
+    background-position: bottom right;
+}
+
+button {
+	background-image: url(button-bg.png);
+	border: solid 1px #CCC;
+
+	padding: 5px;
+	-moz-border-radius:4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	border: solid 1px #aaa;
+	
+	i {
+		width: 10px;
+		height: 10px;
+		display: block;
+		float: right;
+		background-image: url(menu-down.png);
+		background-position: 1px 5px;
+		background-repeat: no-repeat;
+	}
+}
+
+span.icon {
+	width: 17px;
+	height: 14px;
+	display: block;
+	float: left;
+	background-position: left 1px;
+	background-repeat: no-repeat;
+}
+	
+span.icon.tick { background-image: url(tick.png); }
+span.icon.cross { background-image: url(cross.png); }
+span.icon.list { background-image: url(list.png); }
+span.icon.add { background-image: url(plus.png); }
+
+/* menu shite */
+div.menu-container {
+	
+	font-size: 90%;
+	line-height: 100%;
+	
+	button { text-align: left; }
+	
+	ul.menu {
+		display: none; /* default state */
+		
+		background-color: White;
+		-moz-border-radius:4px;
+		-webkit-border-radius: 4px;
+		border-radius: 4px;
+		border: solid 1px #999;
+		z-index: 999999;
+		position: absolute;
+		
+		li {
+			input { float: right; }
+			
+			label {
+				padding: 5px;
+				display: block;
+				cursor: pointer;
+			}
+			
+			a {
+				padding: 5px;
+				display: block;
+				color: Black;
+				text-decoration: none;
+			}
+		}
+		
+		li:hover { background-color: #AAA; }
+	}
+}
+
+div.menu-container.open ul.menu { display: block; }

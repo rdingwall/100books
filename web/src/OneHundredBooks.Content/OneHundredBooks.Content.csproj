@@ -88,11 +88,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="book.html" />
+    <Content Include="css\blueprint\forms.css" />
+    <Content Include="css\blueprint\grid.css" />
+    <Content Include="css\blueprint\grid.png" />
+    <Content Include="css\blueprint\ie.min.css" />
+    <Content Include="css\blueprint\reset.css" />
     <Content Include="css\button-bg.png" />
     <Content Include="css\cross.png" />
     <Content Include="css\external.png" />
+    <Content Include="css\error-pages.less.css" />
     <Content Include="css\list.png" />
     <Content Include="css\menu-down.png" />
+    <Content Include="css\forms.less.css" />
     <Content Include="css\plus.png" />
     <Content Include="css\search.png" />
     <Content Include="css\site.less.css" />

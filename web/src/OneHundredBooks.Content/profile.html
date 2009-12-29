@@ -4,18 +4,21 @@
     <title>rdingwall - 100 Books</title>
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset/reset-min.css" />
     <link rel="stylesheet" type="text/css" href="css/site.less.css" />
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="css/blueprint/ie.min.css" type="text/css" media="screen, projection">
+    <![endif]-->
 </head>
 <body>
     <div class="container">
         
-        <div class="left">
-            <div class="logo">
+        <div class="side">
+            <div class="site-logo">
                 <img src="img/logo.png" width="270" height="104" alt="100 Books" />
             </div>
             
-            <div class="sidebar user-profile">
+            <div class="sidebar">
             
-                <div class="badge">
+                <div class="sidebar-section user-badge">
                     <div class="icon">
                         <a href="#"><img src="http://www.gravatar.com/avatar/87acbe2fc2f40edf8fa5a816515bff9f?s=80&d=identicon&r=PG" width="80" height="80" alt="That's you!" title="rdingwall" /></a>
                     </div>
@@ -27,14 +30,15 @@
                     </div>
                 </div>
                 
+                <div class="sidebar-section user-meta">
+                    <ul>
+                        <li>63 books read, 40 to go</li>
+                        <li>Wellington, New Zealand</li>
+                        <li><a rel="nofollow" href="http://richarddingwall.name">http://richarddingwall.name</a></li>
+                    </ul>
+                </div>
                 
-                <ul class="meta">
-                    <li>63 books read, 40 to go</li>
-                    <li>Wellington, New Zealand</li>
-                    <li><a rel="nofollow" href="http://richarddingwall.name">http://richarddingwall.name</a></li>
-                </ul>
-                
-                <div class="lists">
+                <div class="sidebar-section user-lists">
                     <h2>Lists</h2>
                     
                     <ul>
@@ -68,7 +72,7 @@
                     </div>
                 </div>
                 
-                <div class="followers">
+                <div class="sidebar-section user-followers">
                     <h2>Following</h2>
                     
                     <table>
@@ -110,9 +114,9 @@
             </div>
         </div>
         
-        <div class="right">
+        <div class="main">
         
-            <div class="menu">
+            <div class="main-section account-menu">
                 <ul>
                     <li>Welcome, <a href="#">rdingwall</a></li>
                     <li><a href="#">Settings</a></li>
@@ -121,53 +125,55 @@
                 </ul>
             </div>
             
-            <div class="search">
+            <div class="main-section search-bar">
                 <input type="text" name="q" title="Search for a book, list or user" class="text jq_watermark" />
             </div>
             
-            <ul class="tabs">
-                <li class="active"><a href="#">Status</a></li>
-                <li><a href="#">Lists</a></li>
-                <li><a href="#">All past books</a></li>
-                <li><a href="#">Books to read next</a></li>
-                <li><a href="#">Followers</a></li>
-                <li><a href="#">Following</a></li>
-            </ul>
+            <div class="main-section tabs">
+                <ul>
+                    <li class="active"><a href="#">Status</a></li>
+                    <li><a href="#">Lists</a></li>
+                    <li><a href="#">All past books</a></li>
+                    <li><a href="#">Books to read next</a></li>
+                    <li><a href="#">Followers</a></li>
+                    <li><a href="#">Following</a></li>
+                </ul>
+            </div>
             
-            <div class="tab-content">
-                <div class="statuses">
+            <div class="main-section tab-content">
+                <div class="main-list statuses">
                     <ul>
-                        <li class="status">
-                            <a href="#" class="icon"><img src="http://www.gravatar.com/avatar/51d623f33f8b83095db84ff35e15dbe8?s=48&d=identicon&r=PG" width="48" height="48" alt="Jeff Atwood" title="codinghorror" /></a>
-                            <div class="status-message">
+                        <li class="list-item status">
+                            <a href="#" class="item-icon"><img src="http://www.gravatar.com/avatar/51d623f33f8b83095db84ff35e15dbe8?s=48&d=identicon&r=PG" width="48" height="48" alt="Jeff Atwood" title="codinghorror" /></a>
+                            <div class="item-details">
                                 <a href="#">Jeff Atwood</a> just finished reading <a href="#">Code Complete 2</a>.
                                 <span class="when">today</span>
                             </div>
                         </li>
-                        <li class="status">
-                            <a href="#" class="icon"><img src="http://www.gravatar.com/avatar/cd501083459cbc21fccae78e2d03bee2?s=48&d=identicon&r=PG" width="48" height="48" alt="Seth Godin" title="thisisseth" /></a>
-                            <div class="status-message">
+                        <li class="list-item status">
+                            <a href="#" class="item-icon"><img src="http://www.gravatar.com/avatar/cd501083459cbc21fccae78e2d03bee2?s=48&d=identicon&r=PG" width="48" height="48" alt="Seth Godin" title="thisisseth" /></a>
+                            <div class="item-details">
                                 <a href="#">Seth Godin</a> added <a href="#">Top 100 Whitcoull's Bestsellers</a> to his lists.
                                 <span class="when">2 days ago</span>
                             </div>
                         </li>
-                        <li class="status">
-                            <a href="#" class="icon"><img src="http://www.gravatar.com/avatar/4b1028f68c9692d57a27dc7b8f64f310?s=48&d=identicon&r=PG" width="48" height="48" alt="Pablo Garcia" title="polg" /></a>
-                            <div class="status-message">
+                        <li class="list-item status">
+                            <a href="#" class="item-icon"><img src="http://www.gravatar.com/avatar/4b1028f68c9692d57a27dc7b8f64f310?s=48&d=identicon&r=PG" width="48" height="48" alt="Pablo Garcia" title="polg" /></a>
+                            <div class="item-details">
                                 <a href="#">Pablo Garcia</a> is following you.
                                 <span class="when">12 days ago</span>
                             </div>
                         </li>
-                        <li class="status">
-                            <a href="#" class="icon"><img src="http://www.gravatar.com/avatar/87acbe2fc2f40edf8fa5a816515bff9f?s=48&d=identicon&r=PG" width="48" height="48" alt="That's you!" title="rdingwall" /></a>
-                            <div class="status-message">
+                        <li class="list-item status">
+                            <a href="#" class="item-icon"><img src="http://www.gravatar.com/avatar/87acbe2fc2f40edf8fa5a816515bff9f?s=48&d=identicon&r=PG" width="48" height="48" alt="That's you!" title="rdingwall" /></a>
+                            <div class="item-details">
                                 You are halfway through reading <a href="#">Top 100 Whitcoull's Bestsellers</a>.
                                 <span class="when">3 months ago</span>
                             </div>
                         </li>
-                        <li class="status last">
-                            <a href="#" class="icon"><img src="http://www.gravatar.com/avatar/87acbe2fc2f40edf8fa5a816515bff9f?s=48&d=identicon&r=PG" width="48" height="48" alt="That's you!" title="rdingwall" /></a>
-                            <div class="status-message">
+                        <li class="list-item status last">
+                            <a href="#" class="item-icon"><img src="http://www.gravatar.com/avatar/87acbe2fc2f40edf8fa5a816515bff9f?s=48&d=identicon&r=PG" width="48" height="48" alt="That's you!" title="rdingwall" /></a>
+                            <div class="item-details">
                                 You added <a href="#">The Da Vinci Code</a>, <a href="#">Don't Make Me Think</a> and <a href="#">Domain Driven Design</a> to your <a href="#">to-read</a> list.
                                <span class="when">3 months ago</span>
                            </div>
