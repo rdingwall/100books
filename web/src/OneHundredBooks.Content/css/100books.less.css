@@ -372,13 +372,21 @@ div.main {
 				-webkit-border-radius: 5px;
 				border-radius: 5px;
 			}
+			
+			/* little grey text under list items e.g. "You are reading this list" */
+			div.item-notes {
+				color: #999;
+				font-size: 75%;
+				display: block;
+			}
 		}
 		
 		
 		div.main-list.reading-lists 
 		{
 			div.item-details {
-				padding-top: 0.8em;
+				
+				margin-top: 0.4em;
 				
 				div.reading-list-progress {
 					float: right;
@@ -387,35 +395,39 @@ div.main {
 					text-align:right;
 				}
 				
-				div.menu-container 
-				{
+				div.reading-list-details {
+					.span-9;
+					float: left;
+				}
+				
+				div.menu-container {
 					float: right;
 					
-					/* push button back up to sit inline with the rest (approx) */
-					button { margin-top: -4px; }
-					
 					/* buttons are hidden... */
-					button.add { display: none; }
+					button {
+						/* opacity according to http://www.quirksmode.org/css/opacity.html */
+						opacity: .5;
+						-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+						filter: alpha(opacity=50);
+					}
 				}
 			}
 			
 			li.list-item:hover {					
 				div.menu-container {
 					/* buttons are hidden... until you mouse over them */
-					button.add { display: block; }
+					button {
+						opacity: 1;
+						-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+						filter: alpha(opacity=100);
+					}
 				}
 			}
 		}
 		
-		div.main-list.statuses
-		{
+		div.main-list.statuses {
 			div.item-details {
-				span.when {
-					margin-top: 0.2em;
-					color: #999;
-					font-size: 75%;
-					display: block;
-				}
+				margin-top: 0.8em;
 			}
 		}
 	}

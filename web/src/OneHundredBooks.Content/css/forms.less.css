@@ -20,8 +20,9 @@ button {
 		display: block;
 		float: right;
 		background-image: url(menu-down.png);
-		background-position: 1px 5px;
+		background-position: left 5px;
 		background-repeat: no-repeat;
+		margin-left: 2px;
 	}
 }
 
@@ -38,6 +39,7 @@ span.icon.tick { background-image: url(tick.png); }
 span.icon.cross { background-image: url(cross.png); }
 span.icon.list { background-image: url(list.png); }
 span.icon.add { background-image: url(plus.png); }
+span.icon.gear { background-image: url(gear.png); }
 
 /* menu shite */
 div.menu-container {
@@ -45,7 +47,16 @@ div.menu-container {
 	font-size: 90%;
 	line-height: 100%;
 	
-	button { text-align: left; }
+	button {
+		text-align: left;
+		
+		span.label {
+			background-image: url(menu-down.png);
+			background-position: right center;
+			background-repeat: no-repeat;
+			padding-right: 12px;
+		}
+	}
 	
 	ul.menu {
 		display: none; /* default state */

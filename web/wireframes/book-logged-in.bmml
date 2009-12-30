@@ -91,14 +91,7 @@
         <align>center</align>
       </controlProperties>
     </control>
-    <control controlID="217" controlTypeID="com.balsamiq.mockups::Button" x="880" y="483" w="45" h="-1" measuredW="57" measuredH="32" zOrder="25" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%20</text>
-        <icon>GearIcon%7Csmall</icon>
-        <state>up</state>
-      </controlProperties>
-    </control>
-    <control controlID="218" controlTypeID="com.balsamiq.mockups::Paragraph" x="225" y="502" w="193" h="25" measuredW="200" measuredH="140" zOrder="26" locked="false" isInGroup="-1">
+    <control controlID="218" controlTypeID="com.balsamiq.mockups::Paragraph" x="225" y="502" w="193" h="25" measuredW="200" measuredH="140" zOrder="25" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Number%20of%20pages%3A%20499</text>
       </controlProperties>
@@ -110,23 +103,23 @@
         <align>right</align>
       </controlProperties>
     </control>
-    <control controlID="221" controlTypeID="com.balsamiq.mockups::ComboBox" x="225" y="627" w="216" h="-1" measuredW="175" measuredH="92" zOrder="28" locked="false" isInGroup="-1">
+    <control controlID="221" controlTypeID="com.balsamiq.mockups::ComboBox" x="225" y="627" w="216" h="-1" measuredW="175" measuredH="92" zOrder="27" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Add%20this%20book%20to%20a%20list%0ADUX%20team%20books%0ARich%27s%20top%20100%0ACreate%20new%20list...</text>
       </controlProperties>
     </control>
-    <control controlID="223" controlTypeID="com.balsamiq.mockups::Canvas" x="165" y="92" w="971" h="35" measuredW="100" measuredH="70" zOrder="29" locked="false" isInGroup="-1">
+    <control controlID="223" controlTypeID="com.balsamiq.mockups::Canvas" x="165" y="92" w="971" h="35" measuredW="100" measuredH="70" zOrder="28" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>none</borderStyle>
         <color>13434726</color>
       </controlProperties>
     </control>
-    <control controlID="224" controlTypeID="com.balsamiq.mockups::Label" x="465" y="96" w="-1" h="-1" measuredW="435" measuredH="25" zOrder="30" locked="false" isInGroup="-1">
+    <control controlID="224" controlTypeID="com.balsamiq.mockups::Label" x="465" y="96" w="-1" h="-1" measuredW="435" measuredH="25" zOrder="29" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Domain%20Driven%20Design...%20was%20added%20to%20the%20%5BRich%27s%20top%20100%5D%20list.%20%5Bundo%5D</text>
       </controlProperties>
     </control>
-    <control controlID="225" controlTypeID="com.balsamiq.mockups::Icon" x="1106" y="98" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="31" locked="false" isInGroup="-1">
+    <control controlID="225" controlTypeID="com.balsamiq.mockups::Icon" x="1106" y="98" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="30" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>CircledXIcon%7Csmall</icon>
       </controlProperties>
@@ -136,28 +129,14 @@
         <text>The%20Art%20of%20Manliness%20100%20Must-Read%20Books</text>
       </controlProperties>
     </control>
-    <control controlID="219" controlTypeID="com.balsamiq.mockups::Paragraph" x="225" y="480" w="193" h="25" measuredW="200" measuredH="140" zOrder="27" locked="false" isInGroup="-1">
+    <control controlID="219" controlTypeID="com.balsamiq.mockups::Paragraph" x="225" y="480" w="193" h="25" measuredW="200" measuredH="140" zOrder="26" locked="false" isInGroup="-1">
       <controlProperties>
         <text>ISBN%3A%201234-4534-2423</text>
       </controlProperties>
     </control>
-    <control controlID="228" controlTypeID="com.balsamiq.mockups::Icon" x="418" y="675" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="34" locked="false" isInGroup="-1">
+    <control controlID="228" controlTypeID="com.balsamiq.mockups::Icon" x="418" y="675" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="33" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>WriteIcon%7Cxsmall</icon>
-      </controlProperties>
-    </control>
-    <control controlID="229" controlTypeID="com.balsamiq.mockups::Button" x="880" y="560" w="45" h="-1" measuredW="57" measuredH="32" zOrder="35" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%20</text>
-        <icon>GearIcon%7Csmall</icon>
-        <state>disabled</state>
-      </controlProperties>
-    </control>
-    <control controlID="230" controlTypeID="com.balsamiq.mockups::Button" x="880" y="638" w="45" h="-1" measuredW="57" measuredH="32" zOrder="36" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%20</text>
-        <icon>GearIcon%7Csmall</icon>
-        <state>disabled</state>
       </controlProperties>
     </control>
     <control controlID="103" controlTypeID="com.balsamiq.mockups::Canvas" x="208" y="228" w="257" h="507" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1">
@@ -166,13 +145,13 @@
         <color>13158600</color>
       </controlProperties>
     </control>
-    <control controlID="232" controlTypeID="com.balsamiq.mockups::Icon" x="570" y="516" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="38" locked="false" isInGroup="-1">
+    <control controlID="232" controlTypeID="com.balsamiq.mockups::Icon" x="570" y="516" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="35" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>CheckMarkIcon%7Cxsmall</icon>
         <color>32768</color>
       </controlProperties>
     </control>
-    <control controlID="233" controlTypeID="com.balsamiq.mockups::StickyNote" x="1076" y="462" w="-1" h="-1" measuredW="109" measuredH="123" zOrder="39" locked="false" isInGroup="-1">
+    <control controlID="233" controlTypeID="com.balsamiq.mockups::StickyNote" x="1076" y="462" w="-1" h="-1" measuredW="109" measuredH="123" zOrder="36" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Rows%20active%20on%20hover</text>
       </controlProperties>
@@ -193,32 +172,49 @@
         <direction>center</direction>
       </controlProperties>
     </control>
-    <control controlID="236" controlTypeID="com.balsamiq.mockups::Icon" x="570" y="669" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="41" locked="false" isInGroup="-1">
+    <control controlID="236" controlTypeID="com.balsamiq.mockups::Icon" x="570" y="669" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="38" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>CheckMarkIcon%7Cxsmall</icon>
         <color>32768</color>
       </controlProperties>
     </control>
-    <control controlID="231" controlTypeID="com.balsamiq.mockups::Label" x="587" y="513" w="-1" h="-1" measuredW="136" measuredH="22" zOrder="37" locked="false" isInGroup="-1">
+    <control controlID="237" controlTypeID="com.balsamiq.mockups::ComboBox" x="865" y="490" w="-1" h="-1" measuredW="55" measuredH="25" zOrder="39" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>List</text>
+      </controlProperties>
+    </control>
+    <control controlID="238" controlTypeID="com.balsamiq.mockups::ComboBox" x="865" y="561" w="-1" h="-1" measuredW="55" measuredH="25" zOrder="40" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>List</text>
+        <state>disabled</state>
+      </controlProperties>
+    </control>
+    <control controlID="231" controlTypeID="com.balsamiq.mockups::Label" x="587" y="513" w="-1" h="-1" measuredW="136" measuredH="22" zOrder="34" locked="false" isInGroup="-1">
       <controlProperties>
         <text>You%20are%20reading%20this%20list</text>
         <size>11</size>
         <color>5000268</color>
       </controlProperties>
     </control>
-    <control controlID="235" controlTypeID="com.balsamiq.mockups::Label" x="587" y="666" w="-1" h="-1" measuredW="136" measuredH="22" zOrder="40" locked="false" isInGroup="-1">
+    <control controlID="235" controlTypeID="com.balsamiq.mockups::Label" x="587" y="666" w="-1" h="-1" measuredW="136" measuredH="22" zOrder="37" locked="false" isInGroup="-1">
       <controlProperties>
         <text>You%20are%20reading%20this%20list</text>
         <size>11</size>
         <color>5000268</color>
       </controlProperties>
     </control>
-    <control controlID="227" controlTypeID="com.balsamiq.mockups::Icon" x="417" y="655" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="33" locked="false" isInGroup="-1">
+    <control controlID="227" controlTypeID="com.balsamiq.mockups::Icon" x="417" y="655" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="32" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>StopIcon%7Cxsmall</icon>
       </controlProperties>
     </control>
-    <control controlID="185" controlTypeID="com.balsamiq.mockups::ComboBox" x="232" y="413" w="-1" h="-1" measuredW="201" measuredH="54" zOrder="32" locked="false" isInGroup="-1">
+    <control controlID="239" controlTypeID="com.balsamiq.mockups::ComboBox" x="865" y="641" w="-1" h="-1" measuredW="55" measuredH="25" zOrder="41" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>List</text>
+        <state>disabled</state>
+      </controlProperties>
+    </control>
+    <control controlID="185" controlTypeID="com.balsamiq.mockups::ComboBox" x="232" y="413" w="-1" h="-1" measuredW="201" measuredH="54" zOrder="31" locked="false" isInGroup="-1">
       <controlProperties>
         <text>You%20have%20read%20this%20book%0AI%20haven%27t%20read%20this%20book</text>
         <icon>CheckMarkIcon%7Cxsmall</icon>
