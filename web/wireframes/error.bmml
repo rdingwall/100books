@@ -19,7 +19,7 @@
     </control>
     <control controlID="255" controlTypeID="com.balsamiq.mockups::Paragraph" x="417" y="312" w="570" h="140" measuredW="200" measuredH="140" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>We%27re%20really%20sorry%20-%20something%20has%20gone%20a%20bit%20funny%20here.%20This%20error%20has%20been%20logged%20and%20we%27ll%20be%20taking%20a%20look%20at%20it%20as%20soon%20as%20we%20can.%0A%20%0A%5BHome%20%3E%5D</text>
+        <text>We%27re%20really%20sorry%20-%20something%20has%20gone%20a%20bit%20funny%20here.%20This%20error%20has%20been%20noted%20and%20we%27ll%20%20take%20a%20look%20at%20it%20as%20soon%20as%20we%20can.%0A%20%0A%5BHome%20%3E%5D</text>
       </controlProperties>
     </control>
   </controls>

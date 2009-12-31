@@ -88,6 +88,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="book.html" />
+    <Content Include="404-user.html" />
+    <Content Include="404-book.html" />
+    <Content Include="404-list.html" />
+    <Content Include="error.html" />
+    <Content Include="down-for-maintenance.html" />
     <Content Include="over-capacity.html" />
     <Content Include="profile-lists.html" />
     <Content Include="css\blueprint\forms.css" />
@@ -98,10 +103,8 @@
     <Content Include="css\button-bg.png" />
     <Content Include="css\cross.png" />
     <Content Include="css\external.png" />
-    <Content Include="css\error-pages.less.css" />
     <Content Include="css\list.png" />
     <Content Include="css\menu-down.png" />
-    <Content Include="css\forms.less.css" />
     <Content Include="css\plus.png" />
     <Content Include="css\search.png" />
     <Content Include="css\100books.less.css" />

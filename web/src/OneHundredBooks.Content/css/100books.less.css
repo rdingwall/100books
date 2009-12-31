@@ -4,6 +4,10 @@
 @import "blueprint\forms.css";
 @import "blueprint\grid.css";
 
+/****************************************************************************
+ * Site-wide OO stuff *
+ ****************************************************************************/
+
 h1, h2, h3, h4 { font-weight: bold; }
 
 body {
@@ -26,8 +30,118 @@ a[rel=nofollow] {
 	background-position: right;
 }
 
-@import "forms.less.css";
-@import "error-pages.less.css";
+/* generic styles for 100books forms, drop down menus and buttons etc */
+
+button:active {
+    background-position: bottom right;
+}
+
+button {
+	background-image: url(button-bg.png);
+	border: solid 1px #CCC;
+
+	padding: 5px;
+	-moz-border-radius:4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	border: solid 1px #aaa;
+	
+	i {
+		width: 10px;
+		height: 10px;
+		display: block;
+		float: right;
+		background-image: url(menu-down.png);
+		background-position: left 5px;
+		background-repeat: no-repeat;
+		margin-left: 2px;
+	}
+}
+
+span.icon {
+	width: 17px;
+	height: 14px;
+	display: block;
+	float: left;
+	background-position: left 1px;
+	background-repeat: no-repeat;
+}
+	
+span.icon.tick { background-image: url(tick.png); }
+span.icon.cross { background-image: url(cross.png); }
+span.icon.list { background-image: url(list.png); }
+span.icon.add { background-image: url(plus.png); }
+span.icon.gear { background-image: url(gear.png); }
+
+/* menu shite */
+div.menu-container {
+	
+	font-size: 90%;
+	line-height: 100%;
+	
+	button {
+		text-align: left;
+		
+		span.label {
+			background-image: url(menu-down.png);
+			background-position: right center;
+			background-repeat: no-repeat;
+			padding-right: 12px;
+		}
+	}
+	
+	ul.menu {
+		display: none; /* default state */
+		
+		background-color: White;
+		-moz-border-radius:4px;
+		-webkit-border-radius: 4px;
+		border-radius: 4px;
+		border: solid 1px #999;
+		z-index: 999999;
+		position: absolute;
+		
+		li {
+			input { float: right; }
+			
+			label {
+				padding: 5px;
+				display: block;
+				cursor: pointer;
+			}
+			
+			a {
+				padding: 5px;
+				display: block;
+				color: Black;
+				text-decoration: none;
+			}
+		}
+		
+		li:hover { background-color: #AAA; }
+	}
+}
+
+div.menu-container.open ul.menu { display: block; }
+
+/* search bar appears on 404 and profile pages */
+div.search-bar {
+	input.text { 
+		@radius: 5px;
+					
+		-moz-border-radius: @radius;
+		-webkit-border-radius: @radius;
+		border-radius: @radius;
+		
+		background-image: url(search.png);
+		background-position: right;
+		background-repeat: no-repeat;
+	 }
+}
+
+/****************************************************************************
+ * Page-specific stuff *
+ ****************************************************************************/
 
 /* header for normal pages logo on left, brief menu (login/settings/logout)
    on right */
@@ -202,6 +316,7 @@ div.side {
 	}
 }
 
+
 /* main bit down the middle */
 div.main {
 	.span-15;
@@ -239,18 +354,9 @@ div.main {
 		padding-top: 0.2em;
 		padding-bottom: 0.2em;
 		margin-bottom: 1em;
-
+		
 		input.text { 
-			@radius: 5px;
-						
-			-moz-border-radius: @radius;
-			-webkit-border-radius: @radius;
-			border-radius: @radius;
-			
-			width: 590px - (@radius * 2); /* .span-15 less radius padding */
-			background-image: url(search.png);
-			background-position: right;
-			background-repeat: no-repeat;
+			width: 590px - (5px * 2); /* .span-15 less radius padding */
 		 }
 	}
 	
@@ -455,5 +561,57 @@ div.footer {
 			border-right: none;
 			padding-right: none;
 		}
+	}
+}
+
+/* error pages (404, down for maintenance, over capacity etc) */
+div.error-page {
+	.push-4;
+	.span-16;
+	.column;
+	
+	background-color: #e5e5e5;
+	border: solid 1px #999;
+	
+	@radius: 12px;
+	-moz-border-radius: @radius;
+	-webkit-border-radius: @radius;
+	border-radius: @radius;
+	
+	margin-top: 5em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	
+	div.message {
+		.column;
+		.prepend-1;
+		.last;
+		.span-14;
+		
+		margin-bottom: 1em;
+		
+		h1  {
+			color: #333;
+			font-size: 200%;
+		}
+		
+		div.search-bar {
+			input.text {
+				width: 550px - (5px * 2); /* .span-15 less radius padding */
+			}
+		}
+	}
+	
+	div.options {
+		.column;
+		.prepend-1;
+		.span-8;
+	}
+	
+	div.logo {
+		.column;
+		.span-6;
+		.last;
+		float: right;
 	}
 }
