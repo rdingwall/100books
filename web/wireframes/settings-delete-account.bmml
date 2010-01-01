@@ -66,7 +66,7 @@
         <size>20</size>
       </controlProperties>
     </control>
-    <control controlID="124" controlTypeID="com.balsamiq.mockups::TextArea" x="544" y="494" w="382" h="95" measuredW="200" measuredH="140" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="124" controlTypeID="com.balsamiq.mockups::TextArea" x="511" y="494" w="436" h="95" measuredW="200" measuredH="140" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text>U%20suxk</text>
       </controlProperties>
@@ -85,13 +85,13 @@
     </control>
     <control controlID="31" controlTypeID="com.balsamiq.mockups::TabBar" x="489" y="197" w="493" h="538" measuredW="402" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
+        <selectedIndex>0</selectedIndex>
+        <backgroundAlpha>1</backgroundAlpha>
         <hrefs>%2C%2C%2C%2C%2C</hrefs>
         <value>68</value>
+        <text>Profile%2C%20Import%20Followers%2C%20Import/Export%20Data</text>
         <verticalScrollbar>false</verticalScrollbar>
         <tabVPosition>top</tabVPosition>
-        <text>Profile%2C%20Import%20Followers%2C%20Import/Export%20Data</text>
-        <backgroundAlpha>1</backgroundAlpha>
-        <selectedIndex>0</selectedIndex>
       </controlProperties>
     </control>
   </controls>

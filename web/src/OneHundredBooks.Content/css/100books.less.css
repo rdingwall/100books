@@ -60,6 +60,8 @@ button {
 
 button.next {
 	background-image: url(button-bg-green.png);
+	padding-left: 0.5em;
+	padding-right: 0.5em;
 }
 
 span.icon {
@@ -531,9 +533,7 @@ div.main {
 		button.next {
 			float: right;
 			margin-right: 25px;
-			padding-left: 0.5em;
-			padding-right: 0.5em;
-			
+		
 		}
 	}
 	
@@ -672,6 +672,41 @@ div.main {
 			div.item-details {
 				margin-top: 0.8em;
 			}
+		}
+		
+		div.settings {
+			margin: 1em;
+			margin-bottom: 1.5em;
+			
+			div.field {
+				margin-bottom: 1em;
+				
+				input, textarea {
+					width: 550px - (5px * 2);  /* .span-15 less radius padding */
+					display: block;
+				}
+				
+				span.readonly {
+					display: block;
+					a.twitter {
+						color: #333;
+						text-decoration: none;
+					}
+					a.change { font-size: 80%; }
+				}
+				
+				span.field-requirements {
+					font-size: 90%;
+					color: #666;
+				}
+			}
+			
+			a.delete-account { font-size: 90%; }
+			button.next {
+				float: right;
+				margin-right: 6px;
+			}
+			
 		}
 	}
 }

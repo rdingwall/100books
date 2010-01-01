@@ -117,6 +117,7 @@
     <Content Include="js\100books.js" />
     <Content Include="js\jquery.watermark.js" />
     <Content Include="profile.html" />
+    <Content Include="settings.html" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

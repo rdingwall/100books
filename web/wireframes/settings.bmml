@@ -14,13 +14,13 @@
     </control>
     <control controlID="31" controlTypeID="com.balsamiq.mockups::TabBar" x="489" y="197" w="493" h="538" measuredW="402" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
+        <selectedIndex>0</selectedIndex>
+        <verticalScrollbar>false</verticalScrollbar>
         <tabVPosition>top</tabVPosition>
         <hrefs>%2C%2C%2C%2C%2C</hrefs>
-        <value>68</value>
-        <backgroundAlpha>1</backgroundAlpha>
         <text>Profile%2C%20Import%20Followers%2C%20Import/Export%20Data</text>
-        <verticalScrollbar>false</verticalScrollbar>
-        <selectedIndex>0</selectedIndex>
+        <backgroundAlpha>1</backgroundAlpha>
+        <value>68</value>
       </controlProperties>
     </control>
     <control controlID="98" controlTypeID="__group__" x="210" y="131" w="-1" h="-1" measuredW="231" measuredH="81" zOrder="4" locked="false" isInGroup="-1">
@@ -39,103 +39,103 @@
         <color>13158600</color>
       </controlProperties>
     </control>
-    <control controlID="101" controlTypeID="com.balsamiq.mockups::TextInput" x="579" y="246" w="193" h="-1" measuredW="116" measuredH="29" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="101" controlTypeID="com.balsamiq.mockups::TextInput" x="502" y="265" w="193" h="-1" measuredW="116" measuredH="29" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Richard%20Dingwall</text>
       </controlProperties>
     </control>
-    <control controlID="103" controlTypeID="com.balsamiq.mockups::TextInput" x="579" y="338" w="374" h="-1" measuredW="172" measuredH="29" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="103" controlTypeID="com.balsamiq.mockups::TextInput" x="502" y="395" w="461" h="-1" measuredW="172" measuredH="29" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Wellington%2C%20New%20Zealand</text>
       </controlProperties>
     </control>
-    <control controlID="104" controlTypeID="com.balsamiq.mockups::TextInput" x="579" y="397" w="374" h="-1" measuredW="137" measuredH="29" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="104" controlTypeID="com.balsamiq.mockups::TextInput" x="502" y="469" w="461" h="-1" measuredW="137" measuredH="29" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <text>rdingwall@gmail.com</text>
       </controlProperties>
     </control>
-    <control controlID="105" controlTypeID="com.balsamiq.mockups::TextInput" x="574" y="516" w="374" h="-1" measuredW="89" measuredH="29" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="105" controlTypeID="com.balsamiq.mockups::TextInput" x="502" y="617" w="461" h="-1" measuredW="89" measuredH="29" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <text>dsfsdfsdfds</text>
       </controlProperties>
     </control>
-    <control controlID="106" controlTypeID="com.balsamiq.mockups::TextInput" x="579" y="286" w="374" h="-1" measuredW="123" measuredH="29" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="106" controlTypeID="com.balsamiq.mockups::TextInput" x="502" y="319" w="461" h="-1" measuredW="123" measuredH="29" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Maximum%20awesome</text>
       </controlProperties>
     </control>
-    <control controlID="107" controlTypeID="com.balsamiq.mockups::Label" x="502" y="247" w="-1" h="-1" measuredW="72" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="107" controlTypeID="com.balsamiq.mockups::Label" x="502" y="247" w="-1" h="-1" measuredW="66" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Real%20name%3A</text>
+        <text>Real%20name</text>
       </controlProperties>
     </control>
-    <control controlID="108" controlTypeID="com.balsamiq.mockups::Label" x="502" y="287" w="-1" h="-1" measuredW="73" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="108" controlTypeID="com.balsamiq.mockups::Label" x="502" y="300" w="-1" h="-1" measuredW="67" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>One-liner%3A</text>
+        <text>One-liner</text>
       </controlProperties>
     </control>
-    <control controlID="109" controlTypeID="com.balsamiq.mockups::Label" x="579" y="315" w="336" h="24" measuredW="210" measuredH="22" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="109" controlTypeID="com.balsamiq.mockups::Label" x="502" y="348" w="336" h="24" measuredW="251" measuredH="22" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>a%20short%20bio%20displayed%20under%20your%20name</text>
+        <text>A%20short%20bio%20that%27s%20displayed%20under%20your%20name</text>
         <size>11</size>
         <color>5000268</color>
       </controlProperties>
     </control>
-    <control controlID="110" controlTypeID="com.balsamiq.mockups::Label" x="514" y="339" w="-1" h="-1" measuredW="62" measuredH="25" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="110" controlTypeID="com.balsamiq.mockups::Label" x="502" y="371" w="-1" h="-1" measuredW="56" measuredH="25" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Location%3A</text>
+        <text>Location</text>
       </controlProperties>
     </control>
-    <control controlID="111" controlTypeID="com.balsamiq.mockups::Label" x="579" y="365" w="336" h="24" measuredW="163" measuredH="22" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="111" controlTypeID="com.balsamiq.mockups::Label" x="502" y="424" w="336" h="24" measuredW="164" measuredH="22" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>e.g.%20Wellington%2C%20New%20Zealand</text>
+        <text>E.g.%20Wellington%2C%20New%20Zealand</text>
         <size>11</size>
         <color>5000268</color>
       </controlProperties>
     </control>
-    <control controlID="112" controlTypeID="com.balsamiq.mockups::Label" x="519" y="398" w="-1" h="-1" measuredW="52" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="112" controlTypeID="com.balsamiq.mockups::Label" x="502" y="451" w="-1" h="-1" measuredW="46" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>E-mail%3A</text>
+        <text>E-mail</text>
       </controlProperties>
     </control>
-    <control controlID="113" controlTypeID="com.balsamiq.mockups::Label" x="579" y="426" w="392" h="24" measuredW="378" measuredH="22" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="113" controlTypeID="com.balsamiq.mockups::Label" x="502" y="498" w="392" h="24" measuredW="383" measuredH="22" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>used%20only%20to%20display%20your%20%5Bgravatar%5D%2C%20and%20to%20send%20the%20odd%20announcement</text>
+        <text>Used%20only%20to%20display%20your%20%5Bgravatar%5D%2C%20and%20to%20send%20the%20odd%20announcement</text>
         <size>11</size>
         <color>5000268</color>
       </controlProperties>
     </control>
-    <control controlID="114" controlTypeID="com.balsamiq.mockups::Label" x="533" y="517" w="-1" h="-1" measuredW="37" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="114" controlTypeID="com.balsamiq.mockups::Label" x="502" y="592" w="-1" h="-1" measuredW="30" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>URL%3A</text>
+        <text>URL</text>
       </controlProperties>
     </control>
-    <control controlID="115" controlTypeID="com.balsamiq.mockups::Label" x="573" y="544" w="-1" h="-1" measuredW="190" measuredH="22" zOrder="19" locked="false" isInGroup="-1">
+    <control controlID="115" controlTypeID="com.balsamiq.mockups::Label" x="502" y="646" w="-1" h="-1" measuredW="190" measuredH="22" zOrder="19" locked="false" isInGroup="-1">
       <controlProperties>
         <text>This%20doesn%27t%20look%20like%20a%20valid%20URL%21</text>
         <size>11</size>
         <color>8388608</color>
       </controlProperties>
     </control>
-    <control controlID="116" controlTypeID="com.balsamiq.mockups::Label" x="514" y="455" w="-1" h="-1" measuredW="58" measuredH="25" zOrder="20" locked="false" isInGroup="-1">
+    <control controlID="116" controlTypeID="com.balsamiq.mockups::Label" x="502" y="526" w="-1" h="-1" measuredW="58" measuredH="25" zOrder="20" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Twitter%3A</text>
       </controlProperties>
     </control>
-    <control controlID="117" controlTypeID="com.balsamiq.mockups::Label" x="577" y="455" w="-1" h="-1" measuredW="60" measuredH="25" zOrder="21" locked="false" isInGroup="-1">
+    <control controlID="117" controlTypeID="com.balsamiq.mockups::Label" x="558" y="527" w="-1" h="-1" measuredW="60" measuredH="25" zOrder="21" locked="false" isInGroup="-1">
       <controlProperties>
         <text>dingwallr</text>
         <color>0</color>
       </controlProperties>
     </control>
-    <control controlID="118" controlTypeID="com.balsamiq.mockups::Link" x="637" y="454" w="-1" h="-1" measuredW="47" measuredH="25" zOrder="22" locked="false" isInGroup="-1">
+    <control controlID="118" controlTypeID="com.balsamiq.mockups::Link" x="618" y="527" w="-1" h="-1" measuredW="47" measuredH="25" zOrder="22" locked="false" isInGroup="-1">
       <controlProperties>
         <text>change</text>
       </controlProperties>
     </control>
-    <control controlID="119" controlTypeID="com.balsamiq.mockups::Label" x="579" y="475" w="392" h="39" measuredW="488" measuredH="22" zOrder="23" locked="false" isInGroup="-1">
+    <control controlID="119" controlTypeID="com.balsamiq.mockups::Label" x="502" y="545" w="451" h="39" measuredW="494" measuredH="22" zOrder="23" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>linking%20your%20account%20with%20Twitter%20identifies%20you%20and%20lets%20you%20import%20followers.%5Bread%20more%20%3E%5D</text>
+        <text>linking%20your%20account%20with%20Twitter%20identifies%20you%20and%20lets%20you%20import%20followers.%20%5Bread%20more%20%3E%5D</text>
         <size>11</size>
         <color>5000268</color>
       </controlProperties>
@@ -145,7 +145,7 @@
         <text>Save</text>
       </controlProperties>
     </control>
-    <control controlID="121" controlTypeID="com.balsamiq.mockups::Link" x="524" y="694" w="-1" h="-1" measuredW="119" measuredH="25" zOrder="25" locked="false" isInGroup="-1">
+    <control controlID="121" controlTypeID="com.balsamiq.mockups::Link" x="504" y="693" w="-1" h="-1" measuredW="119" measuredH="25" zOrder="25" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Delete%20my%20account</text>
       </controlProperties>
