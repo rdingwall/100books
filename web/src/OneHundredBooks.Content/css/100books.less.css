@@ -58,6 +58,10 @@ button {
 	}
 }
 
+button.next {
+	background-image: url(button-bg-green.png);
+}
+
 span.icon {
 	width: 17px;
 	height: 14px;
@@ -125,7 +129,7 @@ div.menu-container {
 
 div.menu-container.open ul.menu { display: block; }
 
-input[type='text'] { 
+input[type='text'], textarea { 
 	@radius: 5px;
 				
 	-moz-border-radius: @radius;
@@ -529,8 +533,33 @@ div.main {
 			margin-right: 25px;
 			padding-left: 0.5em;
 			padding-right: 0.5em;
-			background-image: url(button-bg-green.png);
+			
 		}
+	}
+	
+	div.main-section.name-your-list {
+		input, textarea {
+			width: 590px - (5px * 2); /* .span-15 less radius padding */
+			display: block;
+			margin-bottom: 0.5em;
+		}
+		
+		h2 { font-size: 150%; display: inline; }
+		
+		ol {
+			margin-left: 1.75em;
+			li {
+				list-style-type: decimal;
+				display: list-item;
+			}
+		}
+		
+		span.field-requirements {
+			font-size: 90%;
+			color: #666;
+		}
+		
+		button.create-list { float: right; }
 	}
 	
 	/* content underneath the tabs */

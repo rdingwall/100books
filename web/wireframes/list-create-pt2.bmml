@@ -1,8 +1,8 @@
 <mockup version="1.0" skin="sketch" measuredW="1213" measuredH="796">
   <controls>
-    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="222" y="23" w="981" h="763" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1">
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="222" y="23" w="981" h="763" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>rdingwall%20-%20100%20Books%0Ahttp%3A//100books.ws/lists/create</text>
+        <text>Name%20Your%20List%20-%20100%20Books%0Ahttp%3A//100books.ws/lists/create</text>
       </controlProperties>
     </control>
     <control controlID="194" controlTypeID="com.balsamiq.mockups::Canvas" x="259" y="208" w="257" h="501" measuredW="100" measuredH="70" zOrder="1" locked="true" isInGroup="-1">
@@ -11,9 +11,9 @@
         <color>13158600</color>
       </controlProperties>
     </control>
-    <control controlID="166" controlTypeID="com.balsamiq.mockups::Title" x="540" y="150" w="-1" h="-1" measuredW="292" measuredH="62" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="166" controlTypeID="com.balsamiq.mockups::Title" x="540" y="150" w="-1" h="-1" measuredW="306" measuredH="62" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Name%20your%20list</text>
+        <text>Name%20Your%20List</text>
       </controlProperties>
     </control>
     <control controlID="98" controlTypeID="__group__" x="273" y="103" w="-1" h="-1" measuredW="231" measuredH="81" zOrder="4" locked="false" isInGroup="-1">
