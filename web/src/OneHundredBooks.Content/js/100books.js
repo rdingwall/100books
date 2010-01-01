@@ -1,4 +1,15 @@
-﻿$(document).ready(function() {
+﻿jQuery.fn.hasATooltip = function() {
+
+    $(this).tooltip({
+        position: "bottom center",
+        events: {
+            def: "mouseover, mouseout",
+            input: "mouseover, mouseout"
+        },
+    });
+};
+
+$(document).ready(function() {
 
     // Close menus whenever anyone clicks outside them
     $("body").click(function(e) {
@@ -21,4 +32,7 @@
         }
     });
 
+    $("div.blank-list input.title:first").hasATooltip();
+    $("div.blank-list div.search-results:first").hasATooltip();
 });
+

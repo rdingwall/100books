@@ -91,6 +91,10 @@
     <Content Include="404-user.html" />
     <Content Include="404-book.html" />
     <Content Include="404-list.html" />
+    <Content Include="create-list.html" />
+    <Content Include="css\ajax-loader.gif" />
+    <Content Include="css\button-bg-green.png" />
+    <Content Include="css\next.png" />
     <Content Include="error.html" />
     <Content Include="down-for-maintenance.html" />
     <Content Include="over-capacity.html" />

@@ -18,6 +18,7 @@ legend      { font-weight: bold; font-size:1.2em; }
 /* Form fields
 -------------------------------------------------------------- */
 
+/* no thx - rich
 input[type=text], input[type=password],
 input.text, input.title,
 textarea, select {
@@ -45,6 +46,7 @@ input[type=checkbox], input[type=radio],
 input.checkbox, input.radio {
   position:relative; top:.25em;
 }
+*/
 
 form.inline { line-height:3; }
 form.inline p { margin-bottom:0; }
