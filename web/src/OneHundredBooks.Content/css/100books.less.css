@@ -400,7 +400,12 @@ div.main {
 	}
 	
 	div.main-section.heading {
-		h1  {
+		h1 {
+			a {
+				color: #333;
+				text-decoration: none;
+			}
+			
 			color: #333;
 			font-size: 200%;
 			margin-bottom: 0.5em;
@@ -409,16 +414,6 @@ div.main {
 	
 	div.main-section.book-summary {
 		margin-bottom: 1.5em;
-		
-		a {
-			text-decoration: none;
-			
-			h1 {
-				font-size: 200%;
-				color: Black;
-				margin-bottom: 0.5em;
-			}
-		}
 	}
 	
 	@tab-border: solid 1px #CCC;
