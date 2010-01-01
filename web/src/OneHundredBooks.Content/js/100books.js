@@ -1,26 +1,25 @@
-﻿jQuery.fn.hasATooltip = function() {
-
+﻿jQuery.fn.hasTooltip = function() {
     $(this).tooltip({
         position: "bottom center",
         events: {
-            def: "mouseover, mouseout",
             input: "mouseover, mouseout"
-        },
+        }
     });
 };
 
-$(document).ready(function() {
-
-    // Close menus whenever anyone clicks outside them
-    $("body").click(function(e) {
+// Close menus whenever anyone clicks outside them
+jQuery.fn.closesMenusOnClick = function() {
+    $(this).click(function(e) {
         if ($(e.target).is("div.menu-container *"))
             return; // Clicked inside menu, keep it open
 
         $("div.menu-container").removeClass("open");
     });
+};
 
-    // Show/hide menus
-    $("div.menu-container > button").click(function() {
+// Show/hide menus
+jQuery.fn.opensMenu = function() {
+    $(this).click(function() {
         var container = $(this).parents("div.menu-container");
 
         if (container.hasClass("open"))
@@ -31,8 +30,11 @@ $(document).ready(function() {
             container.addClass("open");
         }
     });
+};
 
-    $("div.blank-list input.title:first").hasATooltip();
-    $("div.blank-list div.search-results:first").hasATooltip();
+$(document).ready(function() {
+    $("div.menu-container > button").opensMenu();
+    $("body").closesMenusOnClick();
+    $("div.blank-list input.title:first").hasTooltip();
+    $("div.blank-list div.search-results:first").hasTooltip();
 });
-
