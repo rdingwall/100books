@@ -323,7 +323,6 @@ div.side {
 		div.sidebar-section.add-book-to-list 
 		{
 			display: block;
-			background-color: blue;
 		}
 		
 		div.sidebar-section.book-buy-links {
