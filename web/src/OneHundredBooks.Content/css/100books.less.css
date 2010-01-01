@@ -125,19 +125,21 @@ div.menu-container {
 
 div.menu-container.open ul.menu { display: block; }
 
-/* search bar appears on 404 and profile pages */
-div.search-bar {
-	input.text { 
-		@radius: 5px;
-					
-		-moz-border-radius: @radius;
-		-webkit-border-radius: @radius;
-		border-radius: @radius;
-		
-		background-image: url(search.png);
-		background-position: right;
-		background-repeat: no-repeat;
-	 }
+input[type='text'] { 
+	@radius: 5px;
+				
+	-moz-border-radius: @radius;
+	-webkit-border-radius: @radius;
+	border-radius: @radius;
+
+	border:1px solid #bbb;
+	padding:5px;
+}
+ 
+input.search { 
+	background-image: url(search.png);
+	background-position: right;
+	background-repeat: no-repeat;
 }
 
 div.tooltip {
@@ -393,7 +395,7 @@ div.main {
 		padding-bottom: 0.2em;
 		margin-bottom: 1em;
 		
-		input.text { 
+		input.search { 
 			width: 590px - (5px * 2); /* .span-15 less radius padding */
 		 }
 	}
@@ -480,17 +482,13 @@ div.main {
 				display: list-item;
 				
 				input.title {
-				
+					width: 525px;
 					padding: 2px;
+					
 					@radius: 3px;
-					background-color:#fff;
-					border:1px solid #bbb;
-								
 					-moz-border-radius: @radius;
 					-webkit-border-radius: @radius;
 					border-radius: @radius;
-				
-					width: 525px;
 				}
 				
 				div.book-details {
@@ -712,7 +710,8 @@ div.error-page {
 		}
 		
 		div.search-bar {
-			input.text {
+			margin-top: 0.5em;
+			input.search {
 				width: 550px - (5px * 2); /* .span-15 less radius padding */
 			}
 		}
