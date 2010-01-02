@@ -34,6 +34,8 @@ a[rel=nofollow] {
 
 button:active {
     background-position: bottom right;
+    padding-top: 6px;
+    padding-bottom: 4px;
 }
 
 button {
@@ -62,6 +64,8 @@ button.next {
 	background-image: url(button-bg-green.png);
 	padding-left: 0.5em;
 	padding-right: 0.5em;
+	border-color: #91b03d;
+	color: #2d3d03;
 }
 
 span.icon {
@@ -707,6 +711,114 @@ div.main {
 				margin-right: 6px;
 			}
 			
+		}
+	}
+}
+
+div.signup-page {
+	.push-3;
+	.span-18;
+	.column;
+	/*background-color: grey;*/
+	
+	div.signup-form
+	{
+		.span-16;
+		.push-1;
+		.column;
+			
+		h1 {
+			font-size: 200%;
+		}
+		h2 {
+			font-size: 120%;
+			span.step-number {
+				margin-left: -1.2em;
+				width: 1.2em;
+				display: block;
+				float: left;
+				color: #666;
+				font-weight: normal;
+			}
+		  }
+		  
+		p { margin-bottom: 0.5em; }
+		
+		div.site-logo {
+			.span-7;
+		}
+		
+		button.next {
+			width: 10em;
+			display: block;
+			float: right;
+			margin-top: 1em;
+		}
+		
+		fieldset {
+			
+			background-color: #e5e5e5;
+			@radius: 5px;
+			-moz-border-radius: @radius;
+			-webkit-border-radius: @radius;
+			border-radius: @radius;
+			padding-top: 1em;
+			padding-bottom: 0;
+			margin-bottom: 0.5em;
+			
+			div.field {
+				clear: both;
+				margin-top: 0.5em;
+				margin-bottom: 1em;
+				min-height: 2em;
+				
+				label { 
+					width: 75px;
+					display: block;
+					float: left;
+					text-align: right;
+					padding-right: 0.5em;
+					padding-top: 5px;
+				}
+				
+				span.username-status.available {
+					margin-left: 0.5em;
+					display: block;
+					float: left;
+					padding-top: 5px;
+					color: #91b03d;
+					span.icon { margin-top: 4px; }
+				}
+				
+				input {
+					float: left;
+				    width: 30em;
+				}
+				
+				input#username { width: 12em; }
+				
+				div.field-requirements {
+					clear: both;
+					font-size: 90%;
+					color: #666;
+					margin-left: 85px;
+				}
+				
+				
+			}
+			
+			div.field.twitter {
+				label { 
+					padding-top: 0;
+				}
+				
+				a.twitter {
+					color: #333;
+					text-decoration: none;
+				}
+				
+				a.change { font-size: 80%; }
+			}
 		}
 	}
 }
