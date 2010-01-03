@@ -133,7 +133,7 @@ div.menu-container {
 	}
 }
 
-div.menu-container.open ul.menu { display: block; }
+div.menu-container.ui-state-active ul.menu { display: block; }
 
 input[type='text'], textarea { 
 	@radius: 5px;

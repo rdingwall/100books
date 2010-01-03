@@ -13,7 +13,7 @@ jQuery.fn.closesMenusOnClick = function() {
         if ($(e.target).is("div.menu-container *"))
             return; // Clicked inside menu, keep it open
 
-        $("div.menu-container").removeClass("open");
+        $("div.menu-container").removeClass("ui-state-active");
     });
 };
 
@@ -22,12 +22,12 @@ jQuery.fn.opensMenu = function() {
     $(this).click(function() {
         var container = $(this).parents("div.menu-container");
 
-        if (container.hasClass("open"))
-            container.removeClass("open");
+        if (container.hasClass("ui-state-active"))
+            container.removeClass("ui-state-active");
         else {
             // First close any other menu that might still be open :)
-            $("div.menu-container").removeClass("open");
-            container.addClass("open");
+            $("div.menu-container").removeClass("ui-state-active");
+            container.addClass("ui-state-active");
         }
     });
 };
