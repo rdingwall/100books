@@ -9,63 +9,61 @@
     <![endif]-->
 </head>
 <body>
-    <div class="container">
+    <div class="container signup-page">
         
-        <div class="signup-page">
-            <div class="site-logo">
-                <a href="home.html"><img src="img/logo.png" width="270" height="104" alt="100 Books" /></a>
-            </div>
+        <div class="site-logo">
+            <a href="home.html"><img src="img/logo.png" width="270" height="104" alt="100 Books" /></a>
+        </div>
+        
+        <div class="signup-form">
+            <h1>Hey there, new person!</h1>
+            <p>Welcome to 100 Books! Before you get started, there's a couple of details we need so we can set up your profile.</p>
             
-            <div class="signup-form">
-                <h1>Hey there, new person!</h1>
-                <p>Welcome to 100 Books! Before you get started, there's a couple of details we need so we can set up your profile.</p>
-                
-                <h2><span class="step-number">1.</span> Choose a Username</h2>
-                <p>Please choose a username that will identify you to other users.</p>
-                <fieldset>
-                    <div class="field">
-                        <label for="username">Username:</label>
-                        <input type="text" id="username" value="dingwallr" />
-                        <span class="username-status available"><span class="icon tick">&nbsp;</span> available!</span>
-                        <div class="field-requirements">Max 32 characters, e.g. http://100books.ws/users/dingwallr</div>
-                    </div>
-                </fieldset>
-                
-                <h2><span class="step-number">2.</span> Optional Details</h2>
-                <p>If you like, you can provide some more details about your wonderful self.</p>
-                <fieldset>
-                    <div class="field">
-                        <label for="username">Real name:</label>
-                        <input type="text" id="real-name" />
-                    </div>
-                    <div class="field">
-                        <label for="one-liner">One-liner:</label>
-                        <input type="text" id="one-liner" />
-                        <div class="field-requirements">A short bio that's displayed under your name</div>
-                    </div>
-                    <div class="field">
-                        <label for="location">Location:</label>
-                        <input type="text" id="location" />
-                        <div class="field-requirements">e.g. Wellington, New Zealand</div>
-                    </div>
-                    <div class="field">
-                        <label for="email">E-mail:</label>
-                        <input type="text" id="email" />
-                        <div class="field-requirements">Used only to display your <a href="http://gravatar.com/">gravatar</a>, and to send the odd announcement</div>
-                    </div>
-                    <div class="field twitter">
-                        <label for="twitter">Twitter:</label>
-                        <span class="readonly" id="user-twitter"><a href="http://twitter.com/dingwallr" class="twitter">@dingwallr</a> <a href="#" class="change">change</a></span>
-                        <div class="field-requirements">Linking your account with <a href="twitter">Twitter</a> identifies you and lets you import followers. <a href="#">read more ></a></div>
-                    </div>
-                    <div class="field">
-                        <label for="url">URL:</label>
-                        <input type="text" id="url" />
-                    </div>
-                </fieldset>
-                
-                <button class="next" onclick="document.location.href='http://localhost/100books/profile.html'">Continue</button>
-            </div>
+            <h2><span class="step-number">1.</span> Choose a Username</h2>
+            <p>Please choose a username that will identify you to other users.</p>
+            <fieldset>
+                <div class="field">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" value="dingwallr" />
+                    <span class="username-status available"><span class="icon tick">&nbsp;</span> available!</span>
+                    <div class="field-requirements">Max 32 characters, e.g. http://100books.ws/users/dingwallr</div>
+                </div>
+            </fieldset>
+            
+            <h2><span class="step-number">2.</span> Optional Details</h2>
+            <p>If you like, you can provide some more details about your wonderful self.</p>
+            <fieldset>
+                <div class="field">
+                    <label for="username">Real name:</label>
+                    <input type="text" id="real-name" />
+                </div>
+                <div class="field">
+                    <label for="one-liner">One-liner:</label>
+                    <input type="text" id="one-liner" />
+                    <div class="field-requirements">A short bio that's displayed under your name</div>
+                </div>
+                <div class="field">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" />
+                    <div class="field-requirements">e.g. Wellington, New Zealand</div>
+                </div>
+                <div class="field">
+                    <label for="email">E-mail:</label>
+                    <input type="text" id="email" />
+                    <div class="field-requirements">Used only to display your <a href="http://gravatar.com/">gravatar</a>, and to send the odd announcement</div>
+                </div>
+                <div class="field twitter">
+                    <label for="twitter">Twitter:</label>
+                    <span class="readonly" id="user-twitter"><a href="http://twitter.com/dingwallr" class="twitter">@dingwallr</a> <a href="#" class="change">change</a></span>
+                    <div class="field-requirements">Linking your account with <a href="twitter">Twitter</a> identifies you and lets you import followers. <a href="#">read more ></a></div>
+                </div>
+                <div class="field">
+                    <label for="url">URL:</label>
+                    <input type="text" id="url" />
+                </div>
+            </fieldset>
+            
+            <button class="next" onclick="document.location.href='http://localhost/100books/profile.html'">Continue</button>
         </div>
         
         <div class="footer">

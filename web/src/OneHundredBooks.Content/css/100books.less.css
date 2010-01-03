@@ -723,16 +723,17 @@ div.main {
 	}
 }
 
-div.signup-page {
-	.push-3;
-	.span-18;
-	.column;
-	/*background-color: grey;*/
+div.container.signup-page {
+	
+	div.site-logo {
+		.push-2;
+		.column;
+	}
 	
 	div.signup-form
 	{
 		.span-16;
-		.push-1;
+		.push-4;
 		.column;
 			
 		h1 {
@@ -961,7 +962,7 @@ div.container.homepage {
 }
 
 /* error pages (404, down for maintenance, over capacity etc) */
-div.error-page {
+div.error-dialog {
 	.push-4;
 	.span-16;
 	.column;
