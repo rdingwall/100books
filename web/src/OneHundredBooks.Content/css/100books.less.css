@@ -832,7 +832,7 @@ div.footer {
 	text-align: center;
 	color: #333;
 	margin-top: 1em;
-
+	
 	ul {
 		li {
 			display: inline;
@@ -845,6 +845,123 @@ div.footer {
 			border-right: none;
 			padding-right: none;
 		}
+	}
+}
+
+div.container.homepage {
+	@radius: 15px;
+	
+	
+	
+	div.splash {
+		.push-1;
+		.span-22;
+		.column;
+		margin-bottom: 0;
+		margin-top: 2em;
+		margin-bottom: 2em;
+		background-image: url(homepage/home-bg.png);
+		
+		-moz-border-radius: @radius;
+		-webkit-border-radius: @radius;
+		border-radius: @radius;
+		
+		height: 550px;
+		div.banner {
+			.column;
+			padding-top: 0;
+		
+			height: 370px;
+			padding-left: 450px;
+		
+			div.elevator-pitch {
+				
+				margin-top: 3em;
+				margin-right: 1em;
+				
+				ul {
+					margin-top: 1em;
+					margin-left: 1em;
+					
+					li {
+						background-image: url(homepage/star.png);
+						background-repeat: no-repeat;
+						background-position: left 5px;
+						padding-left: 1.5em;
+						margin-bottom: 0.5em;
+					}
+				}
+			}
+			
+			div.sign-in {
+				margin-top: 1em;
+			}
+		
+		}
+	
+		div.features {
+			color: White;
+			.column;
+			
+			border-top: solid 2px #333;
+			width: 870px;
+						
+			div.feature-set {
+				width: 33%;
+				float: left;
+				
+				dl {
+					padding-left: 1em;
+					padding-right: 0.8em;
+					margin-top: 1em;
+					margin-bottom: 1em;
+					min-height: 145px;
+					
+					background-position: 220px top;
+					background-repeat: no-repeat;
+					
+					dt { 
+						 font-size: 80%; 
+						 font-weight: bold;
+					}
+					
+					dd {
+						font-size: 80%;
+						margin-bottom: 1em;
+						color: #DDD;
+						float: left;
+					}
+					
+					dd.first { padding-right: 4em; }
+					
+					border-right: dotted 1px #666;
+				}
+			}
+			
+			div.feature-set.first {
+				dl {
+					background-image: url(homepage/paper.png);
+				}
+			}
+			
+			div.feature-set.second {
+				dl {
+					background-image: url(homepage/list.png);
+				}
+			}
+			
+			div.feature-set.third {
+				dl {
+					background-image: url(homepage/book.png);				
+					border-right: none;
+				}
+				
+			}
+		}
+	}
+	
+	div.footer {
+		a { color: #999; }
 	}
 }
 

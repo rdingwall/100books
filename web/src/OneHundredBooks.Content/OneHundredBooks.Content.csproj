@@ -91,6 +91,12 @@
     <Content Include="404-user.html" />
     <Content Include="404-book.html" />
     <Content Include="404-list.html" />
+    <Content Include="css\homepage\paper.png" />
+    <Content Include="css\homepage\home-bg.png" />
+    <Content Include="css\homepage\list.png" />
+    <Content Include="css\homepage\book.png" />
+    <Content Include="css\homepage\star.png" />
+    <Content Include="home.html" />
     <Content Include="signup.html" />
     <Content Include="create-list-pt2.html" />
     <Content Include="create-list.html" />
