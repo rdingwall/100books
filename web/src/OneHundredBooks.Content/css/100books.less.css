@@ -145,6 +145,31 @@ input[type='text'], textarea {
 	border:1px solid #bbb;
 	padding:5px;
 }
+
+div.field {
+	margin-bottom: 1em;
+	margin-top: 0.5em;
+	margin-bottom: 1em;
+	min-height: 2em;
+	
+	input, textarea {
+		display: block;
+	}
+	
+	span.readonly {
+		display: block;
+		a.twitter {
+			color: #333;
+			text-decoration: none;
+		}
+		a.change { font-size: 80%; }
+	}
+	
+	div.field-requirements {
+		font-size: 90%;
+		color: #666;
+	}
+}
  
 input.search { 
 	background-image: url(search.png);
@@ -558,7 +583,7 @@ div.main {
 			}
 		}
 		
-		span.field-requirements {
+		div.field-requirements {
 			font-size: 90%;
 			color: #666;
 		}
@@ -683,25 +708,8 @@ div.main {
 			margin-bottom: 1.5em;
 			
 			div.field {
-				margin-bottom: 1em;
-				
 				input, textarea {
 					width: 550px - (5px * 2);  /* .span-15 less radius padding */
-					display: block;
-				}
-				
-				span.readonly {
-					display: block;
-					a.twitter {
-						color: #333;
-						text-decoration: none;
-					}
-					a.change { font-size: 80%; }
-				}
-				
-				span.field-requirements {
-					font-size: 90%;
-					color: #666;
 				}
 			}
 			
@@ -798,26 +806,13 @@ div.signup-page {
 				input#username { width: 12em; }
 				
 				div.field-requirements {
-					clear: both;
-					font-size: 90%;
-					color: #666;
 					margin-left: 85px;
-				}
-				
-				
+					clear: both;
+				}		
 			}
 			
 			div.field.twitter {
-				label { 
-					padding-top: 0;
-				}
-				
-				a.twitter {
-					color: #333;
-					text-decoration: none;
-				}
-				
-				a.change { font-size: 80%; }
+				label { padding-top: 0; }
 			}
 		}
 	}

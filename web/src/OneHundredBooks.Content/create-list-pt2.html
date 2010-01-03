@@ -41,18 +41,27 @@
             </div>
             
             <div class="main-section name-your-list">
-                <label for="list-name">Name of your list</label>
-                <input type="text" id="list-name" />
+                <div class="field">
+                    <label for="list-name">Name of your list</label>
+                    <input type="text" id="list-name" />
+                </div>
                 
+                <div class="field">
+                    <label for="list-description">Description</label>
+                    <textarea id="description"></textarea>
+                </div>
                 
-                <label for="list-description">Description</label>
-                <textarea id="description"></textarea>
+                <div class="field">
+                    <label for="list-url">URL</label> 
+                    <input type="text" id="list-url" />
+                    <div class="field-requirements">Optional</div>
+                </div>
                 
-                <label for="list-url">URL</label> <span class="field-requirements">(optional)</span>
-                <input type="text" id="list-url" />
-                
-                <label for="list-image">Image</label> <span class="field-requirements">(optional, max 1MB, 1024x768)</span>
-                <input type="file" id="list-image" />
+                <div class="field">
+                    <label for="list-image">Image</label>
+                    <input type="file" id="list-image" />
+                    <div class="field-requirements">Optional, max 1MB, 1024x768</div>
+                </div>
                 
                 <h2>Books</h2>
                 <a href="create-list.html">Edit</a>
