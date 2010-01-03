@@ -859,7 +859,7 @@ div.container.homepage {
 		.column;
 		margin-bottom: 0;
 		margin-top: 2em;
-		margin-bottom: 2em;
+		margin-bottom: 1em;
 		background-image: url(homepage/home-bg.png);
 		
 		-moz-border-radius: @radius;
@@ -961,7 +961,7 @@ div.container.homepage {
 	}
 	
 	div.footer {
-		a { color: #999; }
+		a, li.copyright { color: #999; }
 	}
 }
 
