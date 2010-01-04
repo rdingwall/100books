@@ -143,7 +143,11 @@ div.menu-container {
 
 div.menu-container.ui-state-active ul.menu { display: block; }
 
-input[type='text'], input[type='search'], textarea { 
+input[type='text'], 
+input[type='search'],
+input[type='url'],
+input[type='email'],
+textarea { 
 	@radius: 5px;
 				
 	-moz-border-radius: @radius;
