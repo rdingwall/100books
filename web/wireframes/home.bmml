@@ -17,7 +17,7 @@
     </control>
     <control controlID="3" controlTypeID="com.balsamiq.mockups::Paragraph" x="583" y="191" w="355" h="104" measuredW="200" measuredH="140" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>100%20Books%20is%20a%20book%20site%20where%20you%20can%20create%2C%20follow%20and%20track%20progress%20through%20reading%20lists%20with%20your%20friends.%20For%20example%3A%0A-%20ArtOfManliness.com%20100%20Must-Read%20Books%3A%20The%20Essential%20Man%u2019s%20Library%0A-%20TIME%20Magazine%20All-Time%20100%20Best%20Novels%0A-%20Fog%20Creek%20Software%20Management%20Training%20Program%20Reading%20List</text>
+        <text>You%20know%20those%20lists%20like%20_X%20books%20you%20must%20read%20before%20you%20die_%3F%20100%20books%20is%20a%20site%20where%20you%20can%20create%20and%20share%20reading%20lists%20%u2013%20collections%20of%20books%20you%20want%20to%20read.%20You%20keep%20track%20of%20what%20you%27ve%20read%20by%20ticking%20off%20books%20as%20you%20finish%20them.%20For%20example%3A%0A-%20ArtOfManliness.com%20100%20Must-Read%20Books%3A%20The%20Essential%20Man%u2019s%20Library%0A-%20TIME%20Magazine%20All-Time%20100%20Best%20Novels%0A-%20Fog%20Creek%20Software%20Management%20Training%20Program%20Reading%20List</text>
         <size>10</size>
       </controlProperties>
     </control>
@@ -91,8 +91,8 @@
     </control>
     <control controlID="36" controlTypeID="com.balsamiq.mockups::Canvas" x="291" y="421" w="672" h="131" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
-        <borderStyle>none</borderStyle>
         <backgroundAlpha>1</backgroundAlpha>
+        <borderStyle>none</borderStyle>
         <color>11776947</color>
       </controlProperties>
     </control>

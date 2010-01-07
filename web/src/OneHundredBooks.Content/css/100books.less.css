@@ -9,6 +9,8 @@
  ****************************************************************************/
 
 h1, h2, h3, h4 { font-weight: bold; }
+em { font-style: italic; }
+strong { font-weight: bold; }
 
 body {
 	/* Helvetica/Arial-based sans serif stack from 
@@ -965,8 +967,10 @@ div.container.homepage {
 		
 			div.elevator-pitch {
 				
-				margin-top: 3em;
+				margin-top: 2em;
 				margin-right: 1em;
+				
+				p { margin-bottom: 0.5em; }
 				
 				ul {
 					margin-top: 1em;
