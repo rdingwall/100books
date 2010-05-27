@@ -5,3 +5,5 @@ obj
 bin
 *.user
 ~*
+UpgradeLog.XML
+_UpgradeReport_Files
