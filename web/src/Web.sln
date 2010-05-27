@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneHundredBooks.Web", "OneHundredBooks.Web\OneHundredBooks.Web.csproj", "{E90CCB54-EFEE-4DBD-BC32-E62381584C58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneHundredBooks.Content", "OneHundredBooks.Content\OneHundredBooks.Content.csproj", "{1B43A49E-C0E4-4C79-BDFC-EB4AA260C92C}"
