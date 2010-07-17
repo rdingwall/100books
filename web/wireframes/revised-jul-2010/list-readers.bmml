@@ -128,7 +128,7 @@
     </control>
     <control controlID="39" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="36" y="7" w="1563" h="722" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1">
       <controlProperties>
-        <text>A%20Web%20Page%0Ahttp%3A//100books.ws/whitcoulls-top-100-cook-books</text>
+        <text>Whitcoulls%20Top%20100%20Cook%20Books%20-%20readers%20-%20100%20books%0Ahttp%3A//100books.ws/whitcoulls-top-100-cook-books</text>
       </controlProperties>
     </control>
     <control controlID="40" controlTypeID="com.balsamiq.mockups::Paragraph" x="269" y="235" w="782" h="31" measuredW="200" measuredH="140" zOrder="3" locked="false" isInGroup="-1">
@@ -169,8 +169,8 @@
       <controlProperties>
         <text>%20%20%20%2061%20READERS</text>
         <hasHeader>false</hasHeader>
-        <selectedIndex>-1</selectedIndex>
         <borderStyle>none</borderStyle>
+        <selectedIndex>-1</selectedIndex>
       </controlProperties>
     </control>
     <control controlID="56" controlTypeID="com.balsamiq.mockups::Icon" x="1150" y="479" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="10" locked="false" isInGroup="-1">
