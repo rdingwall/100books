@@ -1,0 +1,166 @@
+<mockup version="1.0" skin="sketch" measuredW="1609" measuredH="739">
+  <controls>
+    <control controlID="64" controlTypeID="com.balsamiq.mockups::Label" x="1134" y="81" w="262" h="27" measuredW="257" measuredH="25" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Welcome%2C%20%5Brdingwall%5D%20%7C%20%5BSettings%5D%20%7C%20%5BLog%20out%5D</text>
+        <align>right</align>
+      </controlProperties>
+    </control>
+    <control controlID="65" controlTypeID="com.balsamiq.mockups::HRule" x="41" y="105" w="1552" h="-1" measuredW="100" measuredH="5" zOrder="5" locked="false" isInGroup="-1"/>
+    <control controlID="66" controlTypeID="com.balsamiq.mockups::Canvas" x="269" y="87" w="231" h="74" measuredW="100" measuredH="70" zOrder="6" locked="false" isInGroup="-1"/>
+    <control controlID="67" controlTypeID="com.balsamiq.mockups::Title" x="281" y="93" w="202" h="-1" measuredW="202" measuredH="62" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>100%20books</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::HRule" x="275" y="232" w="852" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>8421504</color>
+      </controlProperties>
+    </control>
+    <control controlID="73" controlTypeID="com.balsamiq.mockups::TextInput" x="281" y="265" w="193" h="-1" measuredW="116" measuredH="29" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Richard%20Dingwall</text>
+      </controlProperties>
+    </control>
+    <control controlID="74" controlTypeID="com.balsamiq.mockups::TextInput" x="281" y="395" w="833" h="-1" measuredW="172" measuredH="29" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Wellington%2C%20New%20Zealand</text>
+      </controlProperties>
+    </control>
+    <control controlID="75" controlTypeID="com.balsamiq.mockups::TextInput" x="281" y="469" w="833" h="-1" measuredW="137" measuredH="29" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>rdingwall@gmail.com</text>
+      </controlProperties>
+    </control>
+    <control controlID="76" controlTypeID="com.balsamiq.mockups::TextInput" x="281" y="617" w="833" h="-1" measuredW="89" measuredH="29" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>dsfsdfsdfds</text>
+      </controlProperties>
+    </control>
+    <control controlID="77" controlTypeID="com.balsamiq.mockups::TextInput" x="281" y="319" w="833" h="-1" measuredW="123" measuredH="29" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Maximum%20awesome</text>
+      </controlProperties>
+    </control>
+    <control controlID="78" controlTypeID="com.balsamiq.mockups::Label" x="281" y="247" w="-1" h="-1" measuredW="66" measuredH="25" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Real%20name</text>
+      </controlProperties>
+    </control>
+    <control controlID="79" controlTypeID="com.balsamiq.mockups::Label" x="281" y="300" w="-1" h="-1" measuredW="67" measuredH="25" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>One-liner</text>
+      </controlProperties>
+    </control>
+    <control controlID="80" controlTypeID="com.balsamiq.mockups::Label" x="281" y="348" w="336" h="24" measuredW="251" measuredH="22" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A%20short%20bio%20that%27s%20displayed%20under%20your%20name</text>
+        <size>11</size>
+        <color>5000268</color>
+      </controlProperties>
+    </control>
+    <control controlID="81" controlTypeID="com.balsamiq.mockups::Label" x="281" y="371" w="-1" h="-1" measuredW="56" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Location</text>
+      </controlProperties>
+    </control>
+    <control controlID="82" controlTypeID="com.balsamiq.mockups::Label" x="281" y="424" w="336" h="24" measuredW="164" measuredH="22" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>E.g.%20Wellington%2C%20New%20Zealand</text>
+        <size>11</size>
+        <color>5000268</color>
+      </controlProperties>
+    </control>
+    <control controlID="83" controlTypeID="com.balsamiq.mockups::Label" x="281" y="451" w="-1" h="-1" measuredW="46" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>E-mail</text>
+      </controlProperties>
+    </control>
+    <control controlID="84" controlTypeID="com.balsamiq.mockups::Label" x="281" y="498" w="392" h="24" measuredW="383" measuredH="22" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Used%20only%20to%20display%20your%20%5Bgravatar%5D%2C%20and%20to%20send%20the%20odd%20announcement</text>
+        <size>11</size>
+        <color>5000268</color>
+      </controlProperties>
+    </control>
+    <control controlID="85" controlTypeID="com.balsamiq.mockups::Label" x="281" y="592" w="-1" h="-1" measuredW="30" measuredH="25" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>URL</text>
+      </controlProperties>
+    </control>
+    <control controlID="86" controlTypeID="com.balsamiq.mockups::Label" x="281" y="646" w="-1" h="-1" measuredW="190" measuredH="22" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>This%20doesn%27t%20look%20like%20a%20valid%20URL%21</text>
+        <size>11</size>
+        <color>8388608</color>
+      </controlProperties>
+    </control>
+    <control controlID="87" controlTypeID="com.balsamiq.mockups::Label" x="281" y="526" w="-1" h="-1" measuredW="58" measuredH="25" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Twitter%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="88" controlTypeID="com.balsamiq.mockups::Label" x="337" y="527" w="-1" h="-1" measuredW="60" measuredH="25" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>dingwallr</text>
+        <color>0</color>
+      </controlProperties>
+    </control>
+    <control controlID="89" controlTypeID="com.balsamiq.mockups::Link" x="397" y="527" w="-1" h="-1" measuredW="47" measuredH="25" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>change</text>
+      </controlProperties>
+    </control>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::Title" x="277" y="183" w="917" h="-1" measuredW="117" measuredH="46" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Settings</text>
+        <size>28</size>
+        <align>left</align>
+      </controlProperties>
+    </control>
+    <control controlID="91" controlTypeID="com.balsamiq.mockups::Button" x="1008" y="665" w="106" h="-1" measuredW="54" measuredH="28" zOrder="26" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Save</text>
+      </controlProperties>
+    </control>
+    <control controlID="92" controlTypeID="com.balsamiq.mockups::Link" x="281" y="671" w="-1" h="-1" measuredW="119" measuredH="25" zOrder="27" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Delete%20my%20account</text>
+      </controlProperties>
+    </control>
+    <control controlID="94" controlTypeID="com.balsamiq.mockups::Paragraph" x="1146" y="367" w="200" h="257" measuredW="200" measuredH="140" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Helpum%20contentsum%20dolor%20sit%20amet%2C%20consectetur%20adipisicing%20elit%2C%20sed%20do%20eiusmod%20tempor%20incididunt%20ut%20labore%20et%20dolore%20magna%20aliqua.%0A%20%0AUt%20enim%20ad%20minim%20veniam%2C%20quis%20nostrud%20exercitation%20ullamco%20laboris%20nisi%20ut%20aliquip%20ex%20ea%20commodo%20consequat.%20%0A%20%0A%5BMore%20%3E%5D</text>
+      </controlProperties>
+    </control>
+    <control controlID="95" controlTypeID="com.balsamiq.mockups::HRule" x="1142" y="353" w="209" h="-1" measuredW="100" measuredH="5" zOrder="28" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>8421504</color>
+      </controlProperties>
+    </control>
+    <control controlID="96" controlTypeID="com.balsamiq.mockups::iPhoneMenu" x="1146" y="247" w="213" h="-1" measuredW="215" measuredH="97" zOrder="29" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Profile%0AImport%20Followers%0AImport/Export%20Data</text>
+        <borderStyle>square</borderStyle>
+      </controlProperties>
+    </control>
+    <control controlID="97" controlTypeID="com.balsamiq.mockups::HRule" x="1146" y="233" w="209" h="-1" measuredW="100" measuredH="5" zOrder="30" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>8421504</color>
+      </controlProperties>
+    </control>
+    <control controlID="90" controlTypeID="com.balsamiq.mockups::Label" x="281" y="545" w="451" h="39" measuredW="493" measuredH="22" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>linking%20your%20account%20with%20Twitter%20identifies%20you%20and%20lets%20you%20import%20followers.%20%5Bread%20more%20%3E%5D</text>
+        <size>11</size>
+        <color>5000268</color>
+      </controlProperties>
+    </control>
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="36" y="7" w="1563" h="722" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1">
+      <controlProperties>
+        <text>Settings%20-%20100%20Books%0Ahttp%3A//100books.ws/settings</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
