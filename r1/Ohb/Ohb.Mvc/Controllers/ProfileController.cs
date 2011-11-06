@@ -1,4 +1,6 @@
 using System.Web.Mvc;
+using System.Web.Security;
+using Facebook;
 using Facebook.Web;
 using Facebook.Web.Mvc;
 using System.Linq;
@@ -24,6 +26,17 @@ namespace Ohb.Mvc.Controllers
                                          Request.QueryString["success"] == "True";
 
             return View();
+        }
+
+        [FacebookAuthorize(LoginUrl = "/?ReturnUrl=~/Profile")]
+        [HttpPost]
+        public ActionResult LogOut()
+        {
+            var fbWebContext = new FacebookWebContext(FacebookApplication.Current, ControllerContext.HttpContext); // or FacebookWebContext.Current;
+
+            fbWebContext.DeleteAuthCookie();
+
+            return RedirectToAction("Index", "Profile");
         }
     }
 }
