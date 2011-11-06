@@ -1,0 +1,4 @@
+<Modules>
+  <Module PersistentId="C02C41AB-D325-4A12-B3D1-880A6E3C6108" ModuleId="Web" />
+  <Module PersistentId="424D7C77-45BD-4632-AA06-C2B6985F44A0" ModuleId="Ohb.Mvc" />
+</Modules>
