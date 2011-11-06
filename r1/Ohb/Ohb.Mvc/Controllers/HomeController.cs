@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Facebook;
+using Facebook.Web;
 
 namespace Ohb.Mvc.Controllers
 {
@@ -17,6 +19,26 @@ namespace Ohb.Mvc.Controllers
 
         public ActionResult About()
         {
+            return View();
+        }
+
+        public ActionResult LogOn(string returnUrl)
+        {
+            var fbWebContext = new FacebookWebContext(FacebookApplication.Current, ControllerContext.HttpContext); // or FacebookWebContext.Current;
+            
+            if (fbWebContext.IsAuthorized())
+            {
+                if (!string.IsNullOrWhiteSpace(returnUrl))
+                {
+                    if (Url.IsLocalUrl(returnUrl))
+                    {
+                        return new RedirectResult(returnUrl);
+                    }
+                }
+
+                return RedirectToAction("Index", "Profile");
+            }
+
             return View();
         }
     }

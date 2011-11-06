@@ -6,3 +6,38 @@
 <p>
     To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
 </p>
+
+<input type="button" id="fblogin" value="Login to Facebook" disabled="disabled"/>
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '@Facebook.FacebookApplication.Current.AppId',
+            cookie: true,
+            xfbml: true,
+            oauth: true
+        });
+
+        function facebooklogin() {
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    // user authorized
+                    window.location = '/Profile';
+                } else {
+                    // user cancelled
+                }
+            }, { scope: '@ViewBag.ExtendedPermissions' });
+        };
+
+        $(function () {
+            // make the button is only enabled after the facebook js sdk has been loaded.
+            $('#fblogin').attr('disabled', false).click(facebooklogin);
+        });
+    };
+    (function () {
+        var e = document.createElement('script'); e.async = true;
+        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+        document.getElementById('fb-root').appendChild(e);
+    } ());
+</script>
+

@@ -10,8 +10,9 @@ namespace Ohb.Mvc.Startup
         public void Register(IWindsorContainer container)
         {
             container.Register(
-                Component.For<HomeController>(),
-                Component.For<AccountController>());
+                Component.For<HomeController>().LifeStyle.Transient,
+                Component.For<AccountController>().LifeStyle.Transient,
+                Component.For<ProfileController>().LifeStyle.Transient);
         }
     }
 }
