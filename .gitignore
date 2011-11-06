@@ -7,3 +7,5 @@ bin
 ~*
 UpgradeLog.XML
 _UpgradeReport_Files
+PdbInfo
+DecompilerCache

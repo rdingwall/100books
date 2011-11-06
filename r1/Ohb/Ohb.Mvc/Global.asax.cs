@@ -4,6 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.SessionState;
+using Bootstrap;
+using Bootstrap.Windsor;
+using Castle.Windsor;
+using CommonServiceLocator.WindsorAdapter;
+using Ohb.Mvc.Startup;
 
 namespace Ohb.Mvc
 {
@@ -31,6 +37,10 @@ namespace Ohb.Mvc
 
         protected void Application_Start()
         {
+            Bootstrapper.With.Windsor().Start();
+
+            DependencyResolver.SetResolver(new WindsorDependencyResolver((IWindsorContainer)Bootstrapper.Container));
+
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
