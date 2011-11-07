@@ -17,6 +17,7 @@ namespace CS_AspNetMvc3_JsSdk.Controllers
         public ActionResult Index()
         {
             var fb = new FacebookWebClient();
+            
             dynamic me = fb.Get("me");
 
             ViewBag.ProfilePictureUrl = string.Format("http://graph.facebok.com/{0}/picture", me.id);

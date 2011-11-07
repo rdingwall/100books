@@ -95,6 +95,9 @@
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
     <Compile Include="Controllers\FacebookController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Services\User.cs" />
+    <Compile Include="Services\UserFactory.cs" />
+    <Compile Include="Services\UserRepository.cs" />
     <Compile Include="Startup\WindsorDependencyResolver.cs" />
     <Compile Include="Startup\WindsorRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />

@@ -2,4 +2,8 @@
   <Module PersistentId="C02C41AB-D325-4A12-B3D1-880A6E3C6108" ModuleId="Web" />
   <Module PersistentId="424D7C77-45BD-4632-AA06-C2B6985F44A0" ModuleId="Ohb.Mvc" />
   <Module PersistentId="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" ModuleId="System.Web.Mvc" />
+  <Module PersistentId="Facebook.Web, Version=5.2.1.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de" ModuleId="Facebook.Web" />
+  <Module PersistentId="Castle.Windsor, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc" ModuleId="Castle.Windsor" />
+  <Module PersistentId="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="mscorlib" />
+  <Module PersistentId="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" ModuleId="System.Web" />
 </Modules>
