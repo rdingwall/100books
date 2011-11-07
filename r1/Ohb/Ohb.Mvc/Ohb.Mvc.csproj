@@ -177,7 +177,18 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="less\bootstrap.less" />
+    <None Include="less\forms.less" />
+    <None Include="less\mixins.less" />
+    <None Include="less\patterns.less" />
+    <None Include="less\reset.less" />
+    <None Include="less\scaffolding.less" />
+    <None Include="less\tables.less" />
+    <None Include="less\type.less" />
+    <None Include="less\variables.less" />
+    <Content Include="Views\Shared\_LoggedInMenuPartial.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

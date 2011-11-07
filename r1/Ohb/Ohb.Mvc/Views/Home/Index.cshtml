@@ -1,13 +1,31 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "100 Books";
 }
 
-<h2>@ViewBag.Message</h2>
-<p>
-    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-</p>
+<div class="hero-unit">
+    <h1>@ViewBag.Title</h1>
+    <p>You know those lists like _X books you must read before you die_? 100 Books helps you keep track what books you've read, what books you want to read next, and what your friends are reading.</p>
+    <p><input type="button" id="fblogin" class="btn large primary pull-right" value="Login using Facebook" disabled="disabled"/></p>
+</div>
+<div class="row">
+    <div class="span-one-third">
+        <h4>Get inspired</h4>        <p>Follow artists, writers and industry leaders to see what they're reading.</p>    </div>
+    <div class="span-one-third">
+        <h4>Keep up</h4>        <p>Follow your friends and see what they've been reading.</p>    </div>
+    <div class="span-one-third">
+        <h4>Not sure what to read next?</h4>        <p>Stick to reading lists and people you follow.</p>    </div>
+</div>
+<div class="row">
+    <div class="span-one-third">
+        <h4>Track what you've read</h4>        <p>Show the world how well-read you are with your public profile.</p>
+    </div>
+    <div class="span-one-third">        <h4>Master the classics</h4>        <p>Where's that quote from? Work your way through the classics with specialised reading lists.</p>
+    </div>
+    <div class="span-one-third">        <h4>Expand your repertoire</h4>        <p>There's some books everyone should read in a lifetime. Find them with 100 Books.</p>
+    </div>
+</div>
 
-<input type="button" id="fblogin" value="Login to Facebook" disabled="disabled"/>
+
 <div id="fb-root"></div>
 <script>
     window.fbAsyncInit = function () {
