@@ -34,14 +34,13 @@ namespace Ohb.Mvc.Controllers
         }
 
         [FacebookAuthorize(LoginUrl = "/?ReturnUrl=~/Profile")]
-        [HttpPost]
         public ActionResult LogOut()
         {
             var fbWebContext = new FacebookWebContext(FacebookApplication.Current, ControllerContext.HttpContext); // or FacebookWebContext.Current;
 
             fbWebContext.DeleteAuthCookie();
 
-            return RedirectToAction("Index", "Profile");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
