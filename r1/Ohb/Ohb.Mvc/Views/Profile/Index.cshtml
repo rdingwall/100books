@@ -1,24 +1,10 @@
 ﻿@{
     ViewBag.Title = "Logged in!";
 }
+<div class="row">
+    <div class="span16">
+        <img src="@ViewBag.ProfilePictureUrl" alt="ViewBag.Name" class="pull-left" />
 
-<h2>Hi @ViewBag.Name</h2>
-
-<img src="@ViewBag.ProfilePictureUrl"/>
-
-<table>
-    <tr>
-        <td>First Name:</td>
-        <td>@ViewBag.FirstName</td>
-    </tr>
-    <tr>
-        <td>Last Name:</td>
-        <td>@ViewBag.LastName</td>
-    </tr>
-</table>
-
-<br/>
-
-<form action="/Profile/LogOut" method="post" />
-    <input type="submit" name="Log out" value="Log out" />
-</form>
+        <h1 style="line-height: 50px; margin-left: 60px;">@ViewBag.Name</h1>
+    </div>
+</div>
