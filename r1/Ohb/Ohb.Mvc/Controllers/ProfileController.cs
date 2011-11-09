@@ -19,6 +19,11 @@ namespace Ohb.Mvc.Controllers
             this.context = context;
         }
 
+        public ActionResult Redirect()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
         //
         // GET: /Profile/
         [FacebookAuthorize(LoginUrl = "/?ReturnUrl=~/Profile")]
