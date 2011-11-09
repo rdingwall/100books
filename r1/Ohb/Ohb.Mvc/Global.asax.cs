@@ -25,18 +25,19 @@ namespace Ohb.Mvc
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("Search",
+                            "Search/{query}", // URL with parameters
+                            new { controller = "Search", action = "Search" });
+
             routes.MapRoute("Redirect", "Profile",
                             new { controller = "Profile", action = "Redirect" });
 
             routes.Add(new LoggedInHomeRoute(
                            "{controller}/{action}/{id}", // URL with parameters
                            new RouteValueDictionary( // Parameter defaults
-                               new {controller = "Home", action = "Index", id = UrlParameter.Optional}),
+                               new { controller = "Home", action = "Index", id = UrlParameter.Optional }),
                            new MvcRouteHandler(),
-                           container.Resolve<IUserContextFactory>()
-                           ));
-
-            
+                           container.Resolve<IUserContextFactory>()));
         }
 
         protected void Application_Start()

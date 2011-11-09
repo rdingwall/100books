@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ohb.Mvc", "Ohb.Mvc\Ohb.Mvc.csproj", "{424D7C77-45BD-4632-AA06-C2B6985F44A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ohb.Mvc.Specs", "Ohb.Mvc.Specs\Ohb.Mvc.Specs.csproj", "{441DD254-AD81-46D2-B2BC-34BAEFACAE00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{424D7C77-45BD-4632-AA06-C2B6985F44A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{424D7C77-45BD-4632-AA06-C2B6985F44A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{424D7C77-45BD-4632-AA06-C2B6985F44A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{441DD254-AD81-46D2-B2BC-34BAEFACAE00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{441DD254-AD81-46D2-B2BC-34BAEFACAE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{441DD254-AD81-46D2-B2BC-34BAEFACAE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{441DD254-AD81-46D2-B2BC-34BAEFACAE00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

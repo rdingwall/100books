@@ -1,0 +1,25 @@
+﻿@model Ohb.Mvc.Models.SearchResultsModel
+@{
+    ViewBag.Title = Model.Terms;
+    ViewBag.SearchQuery = Model.Terms;
+}
+<div class="row">
+    <div class="span16">
+        <h1>Search results for "@Model.Terms"</h1>
+    </div>
+</div>
+
+@foreach (Ohb.Mvc.Amazon.IBook book in Model.Results)
+{
+    <text>
+    <div class="row">
+        <div class="span2">
+            <img src="@book.CoverImageUrl" alt="@book.Title" />
+        </div>
+        <div class="span14">
+            <h3>@book.Title</h3>
+            <p>@book.Author (@book.Asin)</p>
+        </div>
+    </div>
+    </text>
+}

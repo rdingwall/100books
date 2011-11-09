@@ -1,10 +1,10 @@
 ﻿@if (Facebook.Web.FacebookWebContext.Current.IsAuthenticated())
 {
     <ul class="nav">
-        <li><a href="#">Profile</a></li>
+        <li><a href="/">Profile</a></li>
     </ul>
-    <form action="" class="pull-left">
-    <input class="input-xlarge" type="text" placeholder="Search to add books">
+    <form onsubmit="return false">
+    <input class="input-xlarge" id="header-search-input" type="text" placeholder="Search to add books" value="@ViewBag.SearchQuery" />
     </form>
     <ul class="nav secondary-nav">
         <li>@Html.ActionLink("Sign Out", "LogOut", "Profile")</li>
