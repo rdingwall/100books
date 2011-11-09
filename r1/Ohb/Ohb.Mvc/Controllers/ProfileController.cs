@@ -11,12 +11,12 @@ namespace Ohb.Mvc.Controllers
 {
     public class ProfileController : Controller
     {
-        private readonly IUser user;
+        private readonly IUserContext context;
 
-        public ProfileController(IUser user)
+        public ProfileController(IUserContext context)
         {
-            if (user == null) throw new ArgumentNullException("user");
-            this.user = user;
+            if (context == null) throw new ArgumentNullException("context");
+            this.context = context;
         }
 
         //
@@ -24,8 +24,8 @@ namespace Ohb.Mvc.Controllers
         [FacebookAuthorize(LoginUrl = "/?ReturnUrl=~/Profile")]
         public ActionResult Index()
         {
-            ViewBag.ProfilePictureUrl = user.ProfilePictureUrl;
-            ViewBag.Name = user.Name;
+            ViewBag.ProfilePictureUrl = context.User.ProfilePictureUrl;
+            ViewBag.Name = context.User.Name;
 
             ViewBag.MessagePostSuccess = Request.QueryString.AllKeys.Contains("success") &&
                                          Request.QueryString["success"] == "True";

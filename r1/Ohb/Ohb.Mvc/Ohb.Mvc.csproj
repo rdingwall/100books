@@ -96,6 +96,8 @@
     <Compile Include="Controllers\FacebookController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Services\User.cs" />
+    <Compile Include="Services\UserContext.cs" />
+    <Compile Include="Services\UserContextFactory.cs" />
     <Compile Include="Services\UserFactory.cs" />
     <Compile Include="Services\UserRepository.cs" />
     <Compile Include="Startup\WindsorDependencyResolver.cs" />

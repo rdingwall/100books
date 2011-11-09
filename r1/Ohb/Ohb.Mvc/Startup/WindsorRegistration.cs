@@ -19,11 +19,12 @@ namespace Ohb.Mvc.Startup
                 Component.For<ProfileController>().LifeStyle.Transient);
 
             container.Register(Component.For<IUserFactory>().ImplementedBy<UserFactory>(),
-                Component.For<IUserRepository>().ImplementedBy<UserRepository>());
+                Component.For<IUserRepository>().ImplementedBy<UserRepository>(),
+                Component.For<IUserContextFactory>().ImplementedBy<UserContextFactory>());
 
             container.Register(
-                Component.For<IUser>()
-                    .UsingFactoryMethod(k => k.Resolve<IUserFactory>().GetOrCreateUser())
+                Component.For<IUserContext>()
+                    .UsingFactoryMethod(k => k.Resolve<IUserContextFactory>().GetCurrentContext())
                     .LifeStyle.PerWebRequest);
         }
     }
