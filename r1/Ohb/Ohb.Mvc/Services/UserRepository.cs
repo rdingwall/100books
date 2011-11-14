@@ -12,6 +12,7 @@ namespace Ohb.Mvc.Services
 
     public class UserRepository : IUserRepository
     {
+        static readonly object syncRoot = new object();
         private readonly IDictionary<long, IUser> users = new Dictionary<long, IUser>();
 
         public IUser GetUser(long id)
@@ -25,7 +26,15 @@ namespace Ohb.Mvc.Services
         public void AddUser(IUser user)
         {
             if (user == null) throw new ArgumentNullException("user");
-            users.Add(user.Id, user);
+
+            lock (syncRoot)
+            {
+                if (users.ContainsKey(user.Id))
+                    return;
+
+                users.Add(user.Id, user);
+            }
+            
         }
     }
 }
