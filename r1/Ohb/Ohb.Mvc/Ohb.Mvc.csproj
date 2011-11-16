@@ -98,11 +98,12 @@
     <Compile Include="Amazon\AmazonQueryFailedException.cs" />
     <Compile Include="Amazon\AmazonSigningEndpointBehavior.cs" />
     <Compile Include="Amazon\AmazonSigningMessageInspector.cs" />
+    <Compile Include="IBookSearchService.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
     <Compile Include="Controllers\FacebookController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Amazon\Book.cs" />
+    <Compile Include="Book.cs" />
     <Compile Include="Controllers\SearchController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -299,6 +300,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\Amazon\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

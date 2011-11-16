@@ -1,6 +1,6 @@
 using System;
 
-namespace Ohb.Mvc.Amazon
+namespace Ohb.Mvc
 {
     public interface IBook
     {

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Machine.Specifications;
 using Ohb.Mvc.Amazon;
 
@@ -27,7 +25,7 @@ namespace Ohb.Mvc.Specs
             It should_not_include_kindle_editions = () => results.FirstOrDefault(b => b.Asin == "B002RI9ZQ8").ShouldBeNull();
 
             static IEnumerable<IBook> results;
-            static IAmazonBookSearchService service;
+            static IBookSearchService service;
         }
     }
 }

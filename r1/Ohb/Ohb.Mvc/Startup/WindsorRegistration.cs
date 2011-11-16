@@ -4,7 +4,6 @@ using Castle.Windsor;
 using Ohb.Mvc.Amazon;
 using Ohb.Mvc.Controllers;
 using Ohb.Mvc.Services;
-using Property = Castle.MicroKernel.Registration.Property;
 
 namespace Ohb.Mvc.Startup
 {
@@ -21,7 +20,7 @@ namespace Ohb.Mvc.Startup
             container.Register(Component.For<IUserFactory>().ImplementedBy<UserFactory>(),
                                Component.For<IUserRepository>().ImplementedBy<UserRepository>(),
                                Component.For<IUserContextFactory>().ImplementedBy<UserContextFactory>(),
-                               Component.For<IAmazonBookSearchService>().ImplementedBy<AmazonBookSearchService>()
+                               Component.For<IBookSearchService>().ImplementedBy<AmazonBookSearchService>()
                                    .DependsOn(new
                                    {
                                        accessKeyId = "AKIAJ3XQI6KPX6JBP7SA",

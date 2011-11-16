@@ -7,12 +7,7 @@ using System.Web;
 
 namespace Ohb.Mvc.Amazon
 {
-    public interface IAmazonBookSearchService
-    {
-        Task<IEnumerable<IBook>> Search(string terms);
-    }
-
-    public class AmazonBookSearchService : IAmazonBookSearchService
+    public class AmazonBookSearchService : IBookSearchService
     {
         readonly string accessKeyId;
         readonly string secretKey;

@@ -1,15 +1,14 @@
 using System;
 using System.Web.Mvc;
-using Ohb.Mvc.Amazon;
 using Ohb.Mvc.Models;
 
 namespace Ohb.Mvc.Controllers
 {
     public class SearchController : Controller
     {
-        readonly IAmazonBookSearchService searchService;
+        readonly IBookSearchService searchService;
 
-        public SearchController(IAmazonBookSearchService searchService)
+        public SearchController(IBookSearchService searchService)
         {
             if (searchService == null) throw new ArgumentNullException("searchService");
             this.searchService = searchService;
