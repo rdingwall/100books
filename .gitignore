@@ -10,3 +10,7 @@ _UpgradeReport_Files
 PdbInfo
 DecompilerCache
 packages
+_ReSharper.*
+_ReSharper.*/*
+_ReSharper.Ohb
+_*

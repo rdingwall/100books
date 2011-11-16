@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Ohb.Mvc.Amazon
 {
@@ -30,7 +31,8 @@ namespace Ohb.Mvc.Amazon
         {
             var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport)
                               {
-                                  MaxReceivedMessageSize = int.MaxValue
+                                  MaxReceivedMessageSize = int.MaxValue,
+                                  ReaderQuotas = { MaxStringContentLength = 2 * 1024 * 1024 }
                               };
 
             var client = new AWSECommerceServicePortTypeClient(
@@ -87,8 +89,12 @@ namespace Ohb.Mvc.Amazon
             var request = new ItemSearchRequest
                               {
                                   SearchIndex = "Books",
-                                  Title = terms,
-                                  ResponseGroup = new[] { "Small", "Images" },
+                                  //Power = String.Format("keywords: {0} and binding: Hardcover or Mass Market Paperback or Paperback or Perfect Paperback or Textbook Binding", terms),
+                                  Power = String.Format("binding: Hardcover or Paperback or Textbook"),
+                                  Keywords = HttpUtility.UrlEncode(terms),
+                                  MerchantId = "ATVPDKIKX0DER",
+                                  ResponseGroup = new[] { "Large", "Images" },
+                                  //Sort = "reviewrank"
                                   //Power = "binding:Hardcover or Mass Market Paperback or Perfect Paperback or Paperback or Tankobon Hardcover"
                               };
 
