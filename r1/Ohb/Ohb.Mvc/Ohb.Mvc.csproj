@@ -63,9 +63,15 @@
     <Reference Include="Facebook.Web.Mvc">
       <HintPath>..\packages\FacebookWebMvc.5.2.1.0\lib\net40\Facebook.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="JsonFx">
+      <HintPath>..\packages\JsonFx.2.0.1106.2610\lib\net40\JsonFx.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -98,6 +104,8 @@
     <Compile Include="Amazon\AmazonQueryFailedException.cs" />
     <Compile Include="Amazon\AmazonSigningEndpointBehavior.cs" />
     <Compile Include="Amazon\AmazonSigningMessageInspector.cs" />
+    <Compile Include="Services\BookTitleComparer.cs" />
+    <Compile Include="Google\GoogleBookSearchService.cs" />
     <Compile Include="IBookSearchService.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
@@ -113,6 +121,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Services\IgnoreList.cs" />
     <Compile Include="Services\User.cs" />
     <Compile Include="Services\UserContext.cs" />
     <Compile Include="Services\UserContextFactory.cs" />
