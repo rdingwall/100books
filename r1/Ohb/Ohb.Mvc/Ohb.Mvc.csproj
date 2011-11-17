@@ -63,6 +63,9 @@
     <Reference Include="Facebook.Web.Mvc">
       <HintPath>..\packages\FacebookWebMvc.5.2.1.0\lib\net40\Facebook.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.3\lib\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="JsonFx">
       <HintPath>..\packages\JsonFx.2.0.1106.2610\lib\net40\JsonFx.dll</HintPath>
     </Reference>
@@ -105,6 +108,7 @@
     <Compile Include="Amazon\AmazonSigningEndpointBehavior.cs" />
     <Compile Include="Amazon\AmazonSigningMessageInspector.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Google\GoogleVolume.cs" />
     <Compile Include="Models\BigBook.cs" />
     <Compile Include="Services\BookTitleComparer.cs" />
@@ -286,6 +290,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\Books\Get.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="less\bootstrap.less" />

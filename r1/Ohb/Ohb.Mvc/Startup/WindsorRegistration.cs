@@ -16,7 +16,8 @@ namespace Ohb.Mvc.Startup
                 Component.For<HomeController>().LifeStyle.Transient,
                 Component.For<AccountController>().LifeStyle.Transient,
                 Component.For<ProfileController>().LifeStyle.Transient,
-                Component.For<SearchController>().LifeStyle.Transient);
+                Component.For<SearchController>().LifeStyle.Transient,
+                Component.For<BooksController>().LifeStyle.Transient);
 
             container.Register(Component.For<IUserFactory>().ImplementedBy<UserFactory>(),
                                Component.For<IUserRepository>().ImplementedBy<UserRepository>(),

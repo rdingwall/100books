@@ -29,6 +29,10 @@ namespace Ohb.Mvc
                             "Search/{query}", // URL with parameters
                             new { controller = "Search", action = "Search" });
 
+            routes.MapRoute("Books",
+                            "Books/{id}", // URL with parameters
+                            new { controller = "Books", action = "Get" });
+
             routes.MapRoute("Redirect", "Profile",
                             new { controller = "Profile", action = "Redirect" });
 

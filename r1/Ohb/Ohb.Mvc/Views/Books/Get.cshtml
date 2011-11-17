@@ -1,0 +1,21 @@
+﻿@model Ohb.Mvc.Models.BigBook
+@{
+    ViewBag.Title = Model.Title;
+}
+<div class="row">
+    <div class="span16" style="border-bottom: 1px solid #ccc">
+        <h1>@Model.Title</h1>
+        
+    </div>
+</div>
+
+<div class="row">
+    <div class="span3">
+        <img src="@Model.ThumbnailUrl" alt="@Model.Title" />
+    </div>
+    <div class="span10">
+    <h5>@Model.Authors, @Model.PublishedYear</h5>
+        <p>@Html.Raw(@Model.Description)</p>
+    </div>
+</div>
+

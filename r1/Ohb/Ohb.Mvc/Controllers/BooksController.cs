@@ -1,12 +1,22 @@
+using System;
 using System.Web.Mvc;
 
 namespace Ohb.Mvc.Controllers
 {
     public class BooksController : Controller
     {
-        public ActionResult Get(string volumeId)
+        readonly IBookSearchService books;
+
+        public BooksController(IBookSearchService books)
         {
-            return null;
+            if (books == null) throw new ArgumentNullException("books");
+            this.books = books;
+        }
+
+        public ActionResult Get(string id)
+        {
+            var book = books.GetBook(id);
+            return View(book);
         }
     }
 }
