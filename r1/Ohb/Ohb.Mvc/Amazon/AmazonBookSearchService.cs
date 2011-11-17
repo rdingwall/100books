@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Web;
+using Ohb.Mvc.Models;
 
 namespace Ohb.Mvc.Amazon
 {
@@ -50,6 +51,11 @@ namespace Ohb.Mvc.Amazon
                 (cb, o) => client.BeginItemSearch(itemSearch, cb, null),
                 r => GetResults(client.EndItemSearch(r)),
                 null);
+        }
+
+        public BigBook GetBook(string id)
+        {
+            throw new NotImplementedException();
         }
 
         static IEnumerable<IBook> GetResults(ItemSearchResponse response)

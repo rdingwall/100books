@@ -104,6 +104,9 @@
     <Compile Include="Amazon\AmazonQueryFailedException.cs" />
     <Compile Include="Amazon\AmazonSigningEndpointBehavior.cs" />
     <Compile Include="Amazon\AmazonSigningMessageInspector.cs" />
+    <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Google\GoogleVolume.cs" />
+    <Compile Include="Models\BigBook.cs" />
     <Compile Include="Services\BookTitleComparer.cs" />
     <Compile Include="Google\GoogleBookSearchService.cs" />
     <Compile Include="IBookSearchService.cs" />

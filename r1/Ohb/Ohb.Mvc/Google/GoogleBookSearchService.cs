@@ -7,6 +7,7 @@ using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using Ohb.Mvc.Models;
 using Ohb.Mvc.Services;
 
 namespace Ohb.Mvc.Google
@@ -42,6 +43,33 @@ namespace Ohb.Mvc.Google
                 request.BeginGetResponse,
                 r => GetResults(request.EndGetResponse(r)),
                 null);
+        }
+
+        public BigBook GetBook(string id)
+        {
+            if (id == null) throw new ArgumentNullException("id");
+
+            var url = new Uri(String.Format("https://www.googleapis.com/books/v1/volumes/{0}", id));
+            
+            var request = WebRequest.Create(url);
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
+            using (var reader = new StreamReader(stream))
+            {
+                var volume = JsonConvert.DeserializeObject<GoogleVolume>(reader.ReadToEnd());
+
+                return new BigBook
+                           {
+                               Id = volume.Id,
+                               Title = volume.VolumeInfo.Title,
+                               PublishedDate = volume.VolumeInfo.PublishedDate,
+                               Publisher = volume.VolumeInfo.Publisher,
+                               ThumbnailUrl = volume.VolumeInfo.ImageLinks.Thumbnail,
+                               SmallThumbnailUrl = volume.VolumeInfo.ImageLinks.SmallThumbnail,
+                               Authors = String.Join(", ", volume.VolumeInfo.Authors),
+                               Description = volume.VolumeInfo.Description.Trim('"')
+                           };
+            }
         }
 
         static IEnumerable<IBook> GetResults(WebResponse response)
