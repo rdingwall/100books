@@ -110,7 +110,7 @@
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Google\GoogleVolume.cs" />
-    <Compile Include="Models\BigBook.cs" />
+    <Compile Include="Models\BookDetails.cs" />
     <Compile Include="Services\BookTitleComparer.cs" />
     <Compile Include="Google\GoogleBookSearchService.cs" />
     <Compile Include="IBookSearchService.cs" />

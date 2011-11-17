@@ -1,8 +1,6 @@
-using System;
-
 namespace Ohb.Mvc.Models
 {
-    public class BigBook
+    public class BookDetails
     {
         public string Publisher { get; set; }
         public string Id { get; set; }

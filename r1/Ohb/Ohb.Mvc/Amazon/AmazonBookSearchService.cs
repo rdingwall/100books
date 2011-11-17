@@ -53,7 +53,7 @@ namespace Ohb.Mvc.Amazon
                 null);
         }
 
-        public BigBook GetBook(string id)
+        public BookDetails GetBook(string id)
         {
             throw new NotImplementedException();
         }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
@@ -45,20 +46,17 @@ namespace Ohb.Mvc.Google
                 null);
         }
 
-        public BigBook GetBook(string id)
+        public BookDetails GetBook(string id)
         {
             if (id == null) throw new ArgumentNullException("id");
 
-            var url = new Uri(String.Format("https://www.googleapis.com/books/v1/volumes/{0}", id));
-            
-            var request = WebRequest.Create(url);
-            using (var response = request.GetResponse())
-            using (var stream = response.GetResponseStream())
-            using (var reader = new StreamReader(stream))
+            using (var client = new WebClient() { Encoding = Encoding.UTF8 })
             {
-                var volume = JsonConvert.DeserializeObject<GoogleVolume>(reader.ReadToEnd());
+                var json = client.DownloadString(String.Format("https://www.googleapis.com/books/v1/volumes/{0}", id));
 
-                return new BigBook
+                var volume = JsonConvert.DeserializeObject<GoogleVolume>(json);
+
+                return new BookDetails
                            {
                                Id = volume.Id,
                                Title = volume.VolumeInfo.Title,
