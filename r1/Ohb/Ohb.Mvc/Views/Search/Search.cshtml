@@ -9,16 +9,16 @@
     </div>
 </div>
 
-@foreach (Ohb.Mvc.IBook book in Model.Results)
+@foreach (Ohb.Mvc.Models.BookSearchResult book in Model.Results)
 {
     <text>
     <div class="row">
         <div class="span2">
-            <img src="@book.CoverImageUrl" alt="@book.Title" />
+            <img src="@book.SmallThumbnailUrl" alt="@book.Title" />
         </div>
         <div class="span14">
-            <h3>@book.Title</h3>
-            <p>@book.Author (@book.Asin)</p>
+            <h3>@Html.ActionLink(@book.Title, "Get", "Books", new { id = @book.Id }, null)</h3>
+            <p>@book.Author (@book.Id)</p>
         </div>
     </div>
     </text>

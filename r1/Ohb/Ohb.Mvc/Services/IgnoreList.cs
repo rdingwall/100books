@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Ohb.Mvc.Models;
 
 namespace Ohb.Mvc.Services
 {
@@ -10,11 +11,11 @@ namespace Ohb.Mvc.Services
                                                    "bundle"
                                                };
 
-        public static bool IsOkay(IBook book)
+        public static bool IsOkay(BookSearchResult bookSearchResult)
         {
-            if (book == null) throw new ArgumentNullException("book");
+            if (bookSearchResult == null) throw new ArgumentNullException("bookSearchResult");
 
-            return !ignoreList.Any(s => book.Title.IndexOf(s, 0, StringComparison.CurrentCultureIgnoreCase) > -1);
+            return !ignoreList.Any(s => bookSearchResult.Title.IndexOf(s, 0, StringComparison.CurrentCultureIgnoreCase) > -1);
         }
     }
 }

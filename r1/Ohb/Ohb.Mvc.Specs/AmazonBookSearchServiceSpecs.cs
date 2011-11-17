@@ -2,6 +2,7 @@
 using System.Linq;
 using Machine.Specifications;
 using Ohb.Mvc.Amazon;
+using Ohb.Mvc.Models;
 
 namespace Ohb.Mvc.Specs
 {
@@ -18,13 +19,13 @@ namespace Ohb.Mvc.Specs
 
             It should_return_some_results = () => results.ShouldNotBeEmpty();
 
-            It should_find_the_book = () => results.Single(b => b.Asin == "");
+            It should_find_the_book = () => results.Single(b => b.Id == "");
 
-            It should_not_include_dvds = () => results.FirstOrDefault(b => b.Asin == "B00361GC7A").ShouldBeNull();
+            It should_not_include_dvds = () => results.FirstOrDefault(b => b.Id == "B00361GC7A").ShouldBeNull();
 
-            It should_not_include_kindle_editions = () => results.FirstOrDefault(b => b.Asin == "B002RI9ZQ8").ShouldBeNull();
+            It should_not_include_kindle_editions = () => results.FirstOrDefault(b => b.Id == "B002RI9ZQ8").ShouldBeNull();
 
-            static IEnumerable<IBook> results;
+            static IEnumerable<BookSearchResult> results;
             static IBookSearchService service;
         }
     }

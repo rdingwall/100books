@@ -23,7 +23,7 @@ namespace Ohb.Mvc.Google
             this.apiKey = apiKey;
         }
 
-        public Task<IEnumerable<IBook>> Search(string terms)
+        public Task<IEnumerable<BookSearchResult>> Search(string terms)
         {
             if (terms == null) throw new ArgumentNullException("terms");
 
@@ -60,7 +60,7 @@ namespace Ohb.Mvc.Google
                            {
                                Id = volume.Id,
                                Title = volume.VolumeInfo.Title,
-                               PublishedYear = volume.VolumeInfo.PublishedDate.ToString("yyyy"),
+                               PublishedYear = (volume.VolumeInfo.PublishedDate ?? "").Substring(0, 4),
                                Publisher = volume.VolumeInfo.Publisher,
                                ThumbnailUrl = volume.VolumeInfo.ImageLinks.Thumbnail,
                                SmallThumbnailUrl = volume.VolumeInfo.ImageLinks.SmallThumbnail,
@@ -70,37 +70,25 @@ namespace Ohb.Mvc.Google
             }
         }
 
-        static IEnumerable<IBook> GetResults(WebResponse response)
+        static IEnumerable<BookSearchResult> GetResults(WebResponse response)
         {
             using (response)
             using (var stream = response.GetResponseStream())
             using (var reader = new StreamReader(stream))
             {
-                var result = JsonConvert.DeserializeObject<JObject>(reader.ReadToEnd());
+                var result = JsonConvert.DeserializeObject<GoogleVolumesCollection>(reader.ReadToEnd());
 
-                IList<IBook> results = new List<IBook>();
-
-                foreach (var item in result["items"])
-                {
-                    var volumeInfo = item["volumeInfo"];
-                    var title = volumeInfo["title"].Value<string>();
-
-                    if (volumeInfo["subtitle"] != null)
-                        title = String.Concat(title, ": ", volumeInfo["subtitle"].Value<string>());
-
-                    var authors = "";
-                    if (volumeInfo["authors"] != null)
-                        authors = String.Join(", ", volumeInfo["authors"].Values<string>());
-
-                    var thumbnail = "";
-                    if (volumeInfo["imageLinks"] != null)
-                        thumbnail = volumeInfo["imageLinks"]["thumbnail"].Value<string>();
-
-                    results.Add(new Book(item["id"].Value<string>(),
-                        title, authors, thumbnail));
-                }
-
-                return results.Where(IgnoreList.IsOkay).Distinct(new BookTitleComparer());
+                return result.Items
+                    .Select(volume => new BookSearchResult
+                                          {
+                                              Id = volume.Id,
+                                              Title = volume.VolumeInfo.Title,
+                                              Author = String.Join(", ", volume.VolumeInfo.Authors),
+                                              SmallThumbnailUrl = volume.VolumeInfo.ImageLinks.SmallThumbnail
+                                          })
+                    .ToList()
+                    .Where(IgnoreList.IsOkay)
+                    .Distinct(new BookTitleComparer());
             }
         }
     }

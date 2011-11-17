@@ -118,7 +118,7 @@
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
     <Compile Include="Controllers\FacebookController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Book.cs" />
+    <Compile Include="Models\BookSearchResult.cs" />
     <Compile Include="Controllers\SearchController.cs">
       <SubType>Code</SubType>
     </Compile>

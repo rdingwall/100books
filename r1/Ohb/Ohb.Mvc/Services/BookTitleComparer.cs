@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Ohb.Mvc.Models;
 
 namespace Ohb.Mvc.Services
 {
-    class BookTitleComparer : IEqualityComparer<IBook>
+    class BookTitleComparer : IEqualityComparer<BookSearchResult>
     {
-        public bool Equals(IBook x, IBook y)
+        public bool Equals(BookSearchResult x, BookSearchResult y)
         {
             if (x == null) return false;
             if (y == null) return false;
@@ -13,7 +14,7 @@ namespace Ohb.Mvc.Services
             return String.Equals(x.Title, y.Title, StringComparison.CurrentCultureIgnoreCase);
         }
 
-        public int GetHashCode(IBook obj)
+        public int GetHashCode(BookSearchResult obj)
         {
             if (obj == null) return 0;
 

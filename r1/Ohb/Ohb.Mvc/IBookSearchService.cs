@@ -6,7 +6,7 @@ namespace Ohb.Mvc
 {
     public interface IBookSearchService
     {
-        Task<IEnumerable<IBook>> Search(string terms);
+        Task<IEnumerable<BookSearchResult>> Search(string terms);
         BookDetails GetBook(string id);
     }
 }

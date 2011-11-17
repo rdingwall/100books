@@ -5,7 +5,7 @@ namespace Ohb.Mvc.Models
 {
     public class SearchResultsModel
     {
-        public IEnumerable<IBook> Results { get; set; }
+        public IEnumerable<BookSearchResult> Results { get; set; }
         public string Terms { get; set; }
     }
 }

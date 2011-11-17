@@ -5,6 +5,16 @@ using Newtonsoft.Json;
 namespace Ohb.Mvc.Google
 {
     [JsonObject(MemberSerialization.OptIn)]
+    public class GoogleVolumesCollection
+    {
+        [JsonProperty("totalItems")]
+        public int TotalItems { get; set; }
+
+        [JsonProperty("items")]
+        public List<GoogleVolume> Items { get; set; }
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
     public class GoogleVolume
     {
         [JsonProperty("id")]
@@ -20,6 +30,8 @@ namespace Ohb.Mvc.Google
         public GoogleVolumeInfo()
         {
             Authors = new List<string>();
+            ImageLinks = new GoogleImageLinks();
+            Title = Publisher = PublishedDate = Description = "";
         }
 
         [JsonProperty("title")]
@@ -35,7 +47,7 @@ namespace Ohb.Mvc.Google
         public string Publisher { get; set; }
 
         [JsonProperty("publishedDate")]
-        public DateTime PublishedDate { get; set; }
+        public string PublishedDate { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }
@@ -47,6 +59,12 @@ namespace Ohb.Mvc.Google
     [JsonObject(MemberSerialization.OptIn)]
     public class GoogleImageLinks
     {
+        public GoogleImageLinks()
+        {
+            Thumbnail = "";
+            SmallThumbnail = "";
+        }
+
         [JsonProperty("thumbnail")]
         public string Thumbnail { get; set; }
 

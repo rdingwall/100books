@@ -41,7 +41,7 @@ namespace Ohb.Mvc.Amazon
             return client;
         }
 
-        public Task<IEnumerable<IBook>> Search(string terms)
+        public Task<IEnumerable<BookSearchResult>> Search(string terms)
         {
             if (terms == null) throw new ArgumentNullException("terms");
 
@@ -58,7 +58,7 @@ namespace Ohb.Mvc.Amazon
             throw new NotImplementedException();
         }
 
-        static IEnumerable<IBook> GetResults(ItemSearchResponse response)
+        static IEnumerable<BookSearchResult> GetResults(ItemSearchResponse response)
         {
             ThrowIfContainsError(response);
 
@@ -68,10 +68,13 @@ namespace Ohb.Mvc.Amazon
                 if (item.ImageSets != null)
                     coverImageUrl = item.ImageSets[0].ImageSet[0].ThumbnailImage.URL;
 
-                yield return new Book(title: item.ItemAttributes.Title,
-                                      asin: item.ASIN,
-                                      author: String.Join(", ", item.ItemAttributes.Author.OrEmpty()),
-                                      coverImageUrl: coverImageUrl);
+                yield return new BookSearchResult
+                                 {
+                                     Title = item.ItemAttributes.Title,
+                                     Id = item.ASIN,
+                                     Author = String.Join(", ", item.ItemAttributes.Author.OrEmpty()),
+                                     SmallThumbnailUrl = coverImageUrl
+                                 };
             }
         }
 
