@@ -110,6 +110,7 @@
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Google\GoogleVolume.cs" />
+    <Compile Include="HandleErrorAndLogWithElmahAttribute.cs" />
     <Compile Include="Models\BookDetails.cs" />
     <Compile Include="Services\BookTitleComparer.cs" />
     <Compile Include="Google\GoogleBookSearchService.cs" />
@@ -293,15 +294,15 @@
     <Content Include="Views\Books\Get.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="less\bootstrap.less" />
-    <None Include="less\forms.less" />
-    <None Include="less\mixins.less" />
-    <None Include="less\patterns.less" />
-    <None Include="less\reset.less" />
-    <None Include="less\scaffolding.less" />
-    <None Include="less\tables.less" />
-    <None Include="less\type.less" />
-    <None Include="less\variables.less" />
+    <Content Include="Content\less\bootstrap.less" />
+    <Content Include="Content\less\forms.less" />
+    <Content Include="Content\less\mixins.less" />
+    <Content Include="Content\less\patterns.less" />
+    <Content Include="Content\less\reset.less" />
+    <Content Include="Content\less\scaffolding.less" />
+    <Content Include="Content\less\tables.less" />
+    <Content Include="Content\less\type.less" />
+    <Content Include="Content\less\variables.less" />
     <Content Include="Views\Shared\_LoggedInMenuPartial.cshtml" />
     <None Include="Service References\Amazon\AWSECommerceService.wsdl" />
   </ItemGroup>

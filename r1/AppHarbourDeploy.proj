@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Deploy" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <WebProjectDir>Ohb</WebProjectDir>
+    <TempDir>C:\tmp\deploy\$(WebProjectDir)</TempDir>
+    <AppHarbourGitUrl>https://rdingwall:w3stw00d@appharbor.com/100books.git</AppHarbourGitUrl>
+  </PropertyGroup>
+    
+  <Target Name="Deploy">
+    <Message Text="Preparing files..." />
+    
+    <Exec WorkingDirectory="$(TempDir)" Command="git pull appharbor master" />
+    
+    <Exec Command="xcopy.exe  $(WebProjectDir) $(TempDir) /E /I /Y" />
+
+    <ItemGroup>
+      <FilesToClean Include="$(TempDir)\*\bin\**" />
+      <FilesToClean Include="$(TempDir)\*\obj\**" />
+      <FilesToClean Include="$(TempDir)\*\*.user" />
+    </ItemGroup>
+
+    <Delete Files="@(FilesToClean)" />
+
+    <Message Text="Deploying to AppHarbor" />
+
+    <Exec WorkingDirectory="$(TempDir)" Command="git add ." />
+    <Exec WorkingDirectory="$(TempDir)" Command="git commit -m 'deploying...'" />
+    <Exec WorkingDirectory="$(TempDir)" Command="git push appharbor master" />
+    
+  </Target>
+</Project>
