@@ -32,6 +32,9 @@ namespace Ohb.Mvc.Google
             queryString["q"] = terms;
             queryString["printType"] = "books";
             queryString["maxResults"] = "20";
+            
+            if (HttpContext.Current != null)
+                queryString["userIp"] = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
 
             var builder = new UriBuilder("https://www.googleapis.com/books/v1/volumes")
                               {

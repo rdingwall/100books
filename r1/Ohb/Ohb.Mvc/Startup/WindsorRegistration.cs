@@ -25,7 +25,7 @@ namespace Ohb.Mvc.Startup
                                Component.For<IBookSearchService>().ImplementedBy<GoogleBookSearchService>()
                                    .DependsOn(new
                                    {
-                                       apiKey = "AIzaSyAwesvnG7yP5wCqiNv21l8g7mo-ehkcVJs"
+                                       apiKey = "AIzaSyDQsH0G4o3l9FjHUocTO_edha6Pv8N3NXo"
                                    }),
                                Component.For<IBookSearchService>().Named("AmazonBookSearchService").ImplementedBy<AmazonBookSearchService>()
                                    .DependsOn(new
