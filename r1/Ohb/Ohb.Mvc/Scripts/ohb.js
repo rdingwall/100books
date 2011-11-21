@@ -40,7 +40,8 @@
     SearchResult = Backbone.Model.extend({
         title: null,
         authors: null,
-        smallThumbnailUrl: null
+        smallThumbnailUrl: null,
+        id: null
     });
 
     SearchResult.fromGoogle = function (volume) {
@@ -58,7 +59,8 @@
         return new SearchResult({
             title: title,
             authors: authors,
-            smallThumbnailUrl: smallThumbnailUrl
+            smallThumbnailUrl: smallThumbnailUrl,
+            id: volume.id
         });
     }
 
