@@ -223,8 +223,26 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Scripts\ohb.js" />
+    <Content Include="Scripts\lib\backbone\backbone.js" />
+    <Content Include="Scripts\lib\requires-1.0.2\require-jquery.js" />
+    <Content Include="Scripts\lib\underscore\underscore.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\lib\backbone\backbone-min.js" />
+    <Content Include="Scripts\lib\underscore\underscore-min.js" />
+    <Content Include="Scripts\order.js" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\collections\searchresultcollection.js" />
+    <Content Include="Scripts\newtests.html" />
+    <Content Include="Scripts\eventbus.js" />
+    <Content Include="Scripts\models\searchresult.js" />
+    <Content Include="Scripts\router.js" />
     <Content Include="Scripts\tests.html" />
+    <Content Include="Scripts\tests.js" />
+    <Content Include="Scripts\views\menuBar\menubarView.js" />
+    <Content Include="Scripts\views\searchResult\searchResultView.js" />
+    <Content Include="Scripts\views\searchResult\searchResultCollectionView.js" />
+    <Content Include="templates\searchResult\searchResult.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
