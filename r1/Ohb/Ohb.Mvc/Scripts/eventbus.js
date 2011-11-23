@@ -6,5 +6,8 @@ define([
     function (_, Backbone) {
         var eventBus = {};
         _.extend(eventBus, Backbone.Events);
+        eventBus.bind("all", function (eventName) {
+            console.log(eventName);
+        });
         return eventBus;
     });

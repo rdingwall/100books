@@ -9,32 +9,69 @@ require([
     'main',
     'eventbus',
     'jquery',
-    'underscore', 
+    'underscore',
     'backbone',
-    'http://code.jquery.com/qunit/git/qunit.js'
+    'views/menubar/menubarview',
+    'http://code.jquery.com/qunit/git/qunit.js',
+    'lib/jsmockito/jsmockito.js'
 ],
-    function (main, eventBus, $, _, Backbone, dummy) {
+    function (main, eventBus, $, _, Backbone, MenuBarView, dummy) {
 
-        module("When registering modules");
+        console.log("hiya");
 
-        test("It should inject the event bus", function () {
-            ok(eventBus);
+        $(function () {
+
+
+
+            module("When registering modules");
+
+            test("It should inject the event bus", function () {
+                ok(eventBus);
+            });
+
+            test("The event bus should be extended with Backbone events", function () {
+                ok(eventBus.bind);
+            });
+
+            test("It should inject jQuery", function () {
+                ok($);
+            });
+
+            test("It should inject underscore", function () {
+                ok(_);
+            });
+
+            test("It should inject backbone", function () {
+                ok(Backbone);
+            });
+
+
+            module('when pressing enter in the search box');
+
+            test('It should raise the searchRequested event', function () {
+                var view = new MenuBarView({ el: $("#qunit-fixture") });
+                var expected = 'test search';
+                expect(1);
+
+                eventBus.bind('searchRequested', function (q) {
+                    equals(q, expected);
+                });
+
+                $("#menubar-search-input").val(expected);
+                e = $.Event('keyup');
+                e.which = 13;
+                $("#menubar-search-input").trigger(e);
+
+
+            });
+
+            test('It should raise the search:requested event with the search string as the event args', function () {
+
+            });
+
+            test('It shouldn\'t raise any event if the search box is empty', function () {
+
+            });
+
         });
-
-        test("The event bus should be extended with Backbone events", function () {
-            ok(eventBus.bind);
-        });
-
-        test("It should inject jQuery", function () {
-            ok($);
-        });
-
-        test("It should inject underscore", function () {
-            ok(_);
-        });
-
-        test("It should inject backbone", function () {
-            ok(Backbone);
-        });
-
     });

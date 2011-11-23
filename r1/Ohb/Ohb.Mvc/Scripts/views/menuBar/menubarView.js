@@ -1,7 +1,7 @@
 ﻿define([
     'jquery',
     'backbone',
-    'eventBus'
+    'eventbus'
 ], function ($, Backbone, eventBus) {
     var menuBarView = Backbone.View.extend({
         el: $('#menubar'),
@@ -15,7 +15,7 @@
                 return;
 
             var q = $("#menubar-search-input").val();
-            eventBus.trigger("search:requested", q);
+            eventBus.trigger("searchRequested", q);
         }
 
     });
