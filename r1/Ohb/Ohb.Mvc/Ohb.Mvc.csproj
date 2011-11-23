@@ -224,7 +224,16 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Scripts\lib\backbone\backbone.js" />
-    <Content Include="Scripts\lib\requires-1.0.2\require-jquery.js" />
+    <Content Include="Scripts\lib\jsmockito\jsmockito.js" />
+    <Content Include="Scripts\lib\requires\require-jquery.js" />
+    <Content Include="Scripts\lib\screw\jquery-1.2.6.js" />
+    <Content Include="Scripts\lib\screw\jquery.fn.js" />
+    <Content Include="Scripts\lib\screw\jquery.print.js" />
+    <Content Include="Scripts\lib\screw\screw.behaviors.js" />
+    <Content Include="Scripts\lib\screw\screw.builder.js" />
+    <Content Include="Scripts\lib\screw\screw.css" />
+    <Content Include="Scripts\lib\screw\screw.events.js" />
+    <Content Include="Scripts\lib\screw\screw.matchers.js" />
     <Content Include="Scripts\lib\underscore\underscore.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\lib\backbone\backbone-min.js" />

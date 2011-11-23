@@ -49,6 +49,8 @@ require([
             module('when pressing enter in the search box');
 
             test('It should raise the searchRequested event', function () {
+                eventBus.unbind();
+
                 var view = new MenuBarView({ el: $("#qunit-fixture") });
                 var expected = 'test search';
                 expect(1);
@@ -65,12 +67,19 @@ require([
 
             });
 
-            test('It should raise the search:requested event with the search string as the event args', function () {
-
-            });
-
             test('It shouldn\'t raise any event if the search box is empty', function () {
+                eventBus.unbind();
+                var view = new MenuBarView({ el: $("#qunit-fixture") });
 
+                $("#menubar-search-input").val('');
+                e = $.Event('keyup');
+                e.which = 13;
+
+                eventBus.bind('searchRequested', function (q) {
+                    ok(false, "should not have been raised!");
+                });
+
+                $("#menubar-search-input").trigger(e);
             });
 
         });

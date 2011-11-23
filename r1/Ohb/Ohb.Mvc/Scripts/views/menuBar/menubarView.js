@@ -15,6 +15,10 @@
                 return;
 
             var q = $("#menubar-search-input").val();
+
+            if (q.replace(/\s/g, "") == "")
+                return;
+
             eventBus.trigger("searchRequested", q);
         }
 
