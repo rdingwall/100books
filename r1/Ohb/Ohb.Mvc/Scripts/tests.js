@@ -103,6 +103,34 @@ require([
                     setTimeout(start, 2000);
                 });
 
+            asyncTest('It should raise a searchBegan event', 2,
+                function () {
+                    eventBus.reset();
+                    router.initialize();
+
+                    eventBus.bind('searchBegan', function (q) {
+                        ok(true);
+                        equal(q, "harry potter");
+                    });
+
+                    eventBus.trigger("searchRequested", "harry potter");
+
+                    setTimeout(start, 1000);
+                });
+
+            asyncTest('It should raise a searchCompleted event', 1,
+                function () {
+                    eventBus.reset();
+                    router.initialize();
+
+                    eventBus.bind('searchCompleted', function (q) {
+                        ok(true);
+                    });
+
+                    eventBus.trigger("searchRequested", "harry potter");
+
+                    setTimeout(start, 2000);
+                });
 
             asyncTest('When the test fails, it should raise a searchFailed event', 1,
                 function () {

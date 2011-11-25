@@ -29,6 +29,8 @@ define([
         search: function (q) {
             console.log("Searching for " + q + "...");
 
+            eventBus.trigger("searchBegan", q);
+
             $.getJSON("https://www.googleapis.com/books/v1/volumes?callback=?",
                   {
                       q: decodeURIComponent(q),
@@ -55,6 +57,7 @@ define([
                       {
                           eventBus.trigger("searchFailed");
                       }
+                      eventBus.trigger("searchCompleted");
                   }).error(function(jqXHR, textStatus, errorThrown) {
                       console.log("Search error: " + textStatus);
                       eventBus.trigger("searchFailed");
