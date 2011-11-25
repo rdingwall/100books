@@ -5,7 +5,7 @@ define([
     'backbone',
     'models/searchresult',
     'collections/searchresultcollection',
-    'eventBus'
+    'eventbus'
 ], function (
     $,
     Backbone,
@@ -13,41 +13,63 @@ define([
     SearchResultCollection,
     eventBus
 ) {
-    var AppRouter = Backbone.Router.extend({
+    var instance = null;
+
+    AppRouter = Backbone.Router.extend({
 
         routes: {
             "search/:q": "search"
         },
 
         initialize: function () {
-            eventBus.bind('search:requested', 'search');
+            console.log("initializing router...");
+            eventBus.bind('searchRequested', this.search);
         },
 
         search: function (q) {
+            console.log("Searching for " + q + "...");
+
             $.getJSON("https://www.googleapis.com/books/v1/volumes?callback=?",
-                {
-                    q: decodeURIComponent(q),
-                    projection: "lite"
-                },
-                function (data) {
+                  {
+                      q: decodeURIComponent(q),
+                      projection: "lite"
+                  },
+                  function (json) {
+                      try
+                      {
+                          var results = new SearchResultCollection();
 
-                    var results = new SearchResultCollection();
+                          if (!json.items)
+                          {
+                              eventBus.trigger("searchReturnedNoResults");
+                              return;
+                          }
 
-                    $(data.items).each(function () {
-                        results.add(SearchResult.fromGoogle($(this)[0]));
-                    });
+                          $(json.items).each(function () {
+                              results.add(SearchResult.fromGoogle($(this)[0]));
+                          });
 
-                    eventBus.trigger("search:resultsArrived", results);
-                });
+                          eventBus.trigger("searchResultsArrived", results);
+                      }
+                      catch (e)
+                      {
+                          eventBus.trigger("searchFailed");
+                      }
+                  }).error(function(jqXHR, textStatus, errorThrown) {
+                      console.log("Search error: " + textStatus);
+                      eventBus.trigger("searchFailed");
+                  });
         }
     });
 
-    var initialize = function () {
-        var router = new AppRouter();
-        Backbone.history.start();
-        return router;
-    };
-    return {
-        initialize: initialize
-    };
+    AppRouter.getInstance = function(){
+        // summary:
+        //      Gets an instance of the singleton. It is better to use
+        if(instance === null){
+            instance = new AppRouter();
+        }
+        return instance;
+    }
+
+    return AppRouter.getInstance();
 });

@@ -1,27 +1,26 @@
 ﻿require.config({
-    paths: {
-        underscore: 'lib/underscore/underscore',
-        backbone: 'lib/backbone/backbone'
+    paths:{
+        underscore:'lib/underscore/underscore',
+        backbone:'lib/backbone/backbone'
     }
 });
 
 require([
     'main',
+    'router',
     'eventbus',
     'jquery',
     'underscore',
     'backbone',
     'views/menubar/menubarview',
-    'http://code.jquery.com/qunit/git/qunit.js',
+    'lib/qunit/qunit.js',
     'lib/jsmockito/jsmockito.js'
 ],
-    function (main, eventBus, $, _, Backbone, MenuBarView, dummy) {
+    function (main, router, eventBus, $, _, Backbone, MenuBarView) {
 
         console.log("hiya");
 
         $(function () {
-
-
 
             module("When registering modules");
 
@@ -45,13 +44,12 @@ require([
                 ok(Backbone);
             });
 
-
             module('when pressing enter in the search box');
 
             test('It should raise the searchRequested event', function () {
-                eventBus.unbind();
+                eventBus.reset();
 
-                var view = new MenuBarView({ el: $("#qunit-fixture") });
+                var view = new MenuBarView({ el:$("#qunit-fixture") });
                 var expected = 'test search';
                 expect(1);
 
@@ -63,13 +61,11 @@ require([
                 e = $.Event('keyup');
                 e.which = 13;
                 $("#menubar-search-input").trigger(e);
-
-
             });
 
             test('It shouldn\'t raise any event if the search box is empty', function () {
-                eventBus.unbind();
-                var view = new MenuBarView({ el: $("#qunit-fixture") });
+                eventBus.reset();
+                var view = new MenuBarView({ el:$("#qunit-fixture") });
 
                 $("#menubar-search-input").val('');
                 e = $.Event('keyup');
@@ -80,7 +76,73 @@ require([
                 });
 
                 $("#menubar-search-input").trigger(e);
+                expect(0);
             });
 
+
+            module("When a searchRequested event is raised");
+
+            asyncTest('It should perform a search and raise a resultsArrived event with the results', 2,
+                function () {
+                    eventBus.reset();
+                    router.initialize();
+
+                    var wasRaised = false;
+                    eventBus.bind('searchResultsArrived', function (results) {
+                        wasRaised = true;
+                        ok(results);
+                        equal(results.length, 10);
+                    });
+
+                    eventBus.bind('searchFailed', function (results) {
+                        ok(false, "search failed!");
+                    });
+
+                    eventBus.trigger("searchRequested", "harry potter");
+
+                    setTimeout(start, 2000);
+                });
+
+
+            asyncTest('When the test fails, it should raise a searchFailed event', 1,
+                function () {
+                    eventBus.reset();
+                    router.initialize();
+
+                    eventBus.bind('searchFailed', function (results) {
+                        ok(true);
+                    });
+
+                    eventBus.bind('searchResultsArrived', function (results) {
+                        ok(false, "should not have been raised!");
+                    });
+
+                    eventBus.trigger("searchRequested", "3894h9f893jhf934jf92ht8");
+
+                    setTimeout(start, 2000);
+                });
+
+            asyncTest('When there are no results, it should raise a no results event', 1,
+                function () {
+                    eventBus.reset();
+                    router.initialize();
+
+                    eventBus.bind('searchFailed', function (results) {
+                        ok(false, "searchFailed was raised");
+                    });
+
+                    eventBus.bind('searchReturnedNoResults', function (results) {
+                        ok(true);
+                    });
+
+                    eventBus.bind('searchResultsArrived', function (results) {
+                        equal(results.length, 0);
+                        ok(false, "searchResultsArrived was raised");
+                    });
+
+                    eventBus.trigger("searchRequested", "3894h9f893jhf934jf92ht8");
+
+                    setTimeout(start, 5000);
+                });
         });
     });
