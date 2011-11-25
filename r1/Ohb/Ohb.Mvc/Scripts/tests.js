@@ -58,7 +58,7 @@ require([
                 });
 
                 $("#menubar-search-input").val(expected);
-                e = $.Event('keyup');
+                var e = $.Event('keyup');
                 e.which = 13;
                 $("#menubar-search-input").trigger(e);
             });
@@ -170,7 +170,7 @@ require([
 
                     eventBus.trigger("searchRequested", "3894h9f893jhf934jf92ht8");
 
-                    setTimeout(start, 5000);
+                    setTimeout(start, 2000);
                 });
         });
     });
