@@ -5,7 +5,8 @@ define([
     'backbone',
     'models/searchresult',
     'collections/searchresultcollection',
-    'eventbus'
+    'eventbus',
+    'lib/bootstrap/bootstrap-modal.js'
 ], function (
     $,
     Backbone,
@@ -24,6 +25,7 @@ define([
         initialize: function () {
             console.log("initializing router...");
             eventBus.bind('searchRequested', this.search);
+            eventBus.bind('searchFailed', this.onSearchFailed);
         },
 
         search: function (q) {
@@ -62,6 +64,11 @@ define([
                       console.log("Search error: " + textStatus);
                       eventBus.trigger("searchFailed");
                   });
+        },
+
+        onSearchFailed: function() {
+            console.log('showing search failed modal...');
+            $("#search-failed-modal").modal({ keyboard: true });
         }
     });
 

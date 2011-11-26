@@ -172,5 +172,21 @@ require([
 
                     setTimeout(start, 2000);
                 });
+
+
+            module("when a search fails");
+
+            asyncTest('It should render the error modal', 2, function() {
+                eventBus.reset();
+                router.initialize();
+
+                ok(!($("#search-failed-modal").is(":visible")), "was visible to start with");
+
+                eventBus.trigger("searchFailed");
+
+                setTimeout(start, 1000);
+
+                ok($("#search-failed-modal").is(":visible"));
+            });
         });
     });

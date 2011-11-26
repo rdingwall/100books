@@ -14,6 +14,7 @@
     <AssemblyName>Ohb.Mvc</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
+    <JSLintSkip>\Scripts\lib\|\Scripts\jquery.qtip-1.0.0-rc3.min.js|\Scripts\jquery.mockjax.js|\Scripts\sinon-1.2.0.js</JSLintSkip>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -147,7 +148,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\Site.css" />
     <Content Include="Global.asax" />
+    <None Include="css\less\bootstrap.less" />
+    <None Include="css\less\forms.less" />
+    <None Include="css\less\mixins.less" />
+    <None Include="css\less\patterns.less" />
+    <None Include="css\less\reset.less" />
+    <None Include="css\less\scaffolding.less" />
+    <None Include="css\less\tables.less" />
+    <None Include="css\less\type.less" />
+    <None Include="css\less\variables.less" />
     <None Include="Service References\Amazon\configuration91.svcinfo" />
     <None Include="Service References\Amazon\configuration.svcinfo" />
     <None Include="Service References\Amazon\Ohb.Mvc.Amazon.BrowseNodeLookupResponse.datasource">
@@ -315,12 +326,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>17303</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
