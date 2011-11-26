@@ -3,11 +3,17 @@
     'backbone',
     'eventbus'
 ], function ($, Backbone, eventBus) {
-    var menuBarView = Backbone.View.extend({
+    var MenuBarView = Backbone.View.extend({
         el: $('#menubar'),
 
         events: {
             "keyup #menubar-search-input": "searchRequested"
+        },
+
+        initialize: function() {
+            console.log("initializing menubarview...");
+            eventBus.bind('searchBegan', this.onSearchBegan);
+            eventBus.bind('searchCompleted', this.onSearchCompleted);
         },
 
         searchRequested: function (e) {
@@ -20,9 +26,16 @@
                 return;
 
             eventBus.trigger("searchRequested", q);
-        }
+        },
 
+        onSearchBegan: function() {
+            $("#search-loader-spinner").show();
+        },
+
+        onSearchCompleted: function() {
+            $("#search-loader-spinner").hide();
+        }
     });
 
-    return menuBarView;
+    return MenuBarView;
 });

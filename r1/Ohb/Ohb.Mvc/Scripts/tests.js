@@ -51,7 +51,6 @@ require([
 
                 var view = new MenuBarView({ el:$("#qunit-fixture") });
                 var expected = 'test search';
-                expect(1);
 
                 eventBus.bind('searchRequested', function (q) {
                     equals(q, expected);
@@ -76,7 +75,7 @@ require([
                 });
 
                 $("#menubar-search-input").trigger(e);
-                expect(0);
+
             });
 
 
@@ -176,17 +175,50 @@ require([
 
             module("when a search fails");
 
-            asyncTest('It should render the error modal', 2, function() {
+            test('It should render the error modal', 2, function() {
                 eventBus.reset();
                 router.initialize();
 
-                ok(!($("#search-failed-modal").is(":visible")), "was visible to start with");
+                ok(!($("#search-failed-modal").is(":visible")), "should be hidden to start with");
 
                 eventBus.trigger("searchFailed");
 
-                setTimeout(start, 1000);
-
                 ok($("#search-failed-modal").is(":visible"));
+
+                $("#search-failed-modal").hide();
             });
+
+            module("when a search begins");
+
+            test("It should show the ajax loader gif", 2, function() {
+                eventBus.reset();
+                var view = new MenuBarView({ el:$("#qunit-fixture") });
+                view.initialize();
+
+                ok(!($("#search-loader-spinner").is(":visible")), "should be hidden to start with");
+
+                eventBus.trigger("searchBegan");
+
+               ok($("#search-loader-spinner").is(":visible"));
+
+               $("#search-loader-spinner").hide();
+            });
+
+            module("when a search completes");
+
+            test("The ajax loader gif should dissappear", 2, function() {
+                eventBus.reset();
+                var view = new MenuBarView({ el:$("#qunit-fixture") });
+                view.initialize();
+
+                $("#search-loader-spinner").show();
+
+                ok(($("#search-loader-spinner").is(":visible")), "should be visible to start with");
+
+                eventBus.trigger("searchCompleted");
+
+               ok(!($("#search-loader-spinner").is(":visible")));
+            });
+
         });
     });
