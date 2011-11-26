@@ -68,7 +68,7 @@ define([
 
         onSearchFailed: function() {
             console.log('showing search failed modal...');
-            $("#search-failed-modal").modal({ keyboard: true });
+            $("#search-failed-modal").modal({ keyboard: true, show: true });
         }
     });
 
