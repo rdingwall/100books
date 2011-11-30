@@ -257,7 +257,6 @@
     <Content Include="Scripts\eventbus.js" />
     <Content Include="Scripts\models\searchresult.js" />
     <Content Include="Scripts\router.js" />
-    <Content Include="Scripts\tests.html" />
     <Content Include="Scripts\tests.js" />
     <Content Include="Scripts\views\menuBar\menubarView.js" />
     <Content Include="Scripts\views\searchResult\searchResultView.js" />

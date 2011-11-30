@@ -46,6 +46,59 @@ require([
                 ok(Backbone);
             });
 
+
+            module("When mapping google book search results");
+
+            var assertBookMapping = function(googleBookId, title, authors, smallThumbnailUrl) {
+                $.getJSON('https://www.googleapis.com/books/v1/volumes/' + googleBookId + '?callback=?',
+                    function (data) {
+                        var searchResult = SearchResult.fromGoogle(data);
+
+                        equal(searchResult.get('title'), title);
+                        equal(searchResult.get('authors'), authors);
+                        equal(searchResult.get('smallThumbnailUrl'), smallThumbnailUrl);
+                    })
+                    .error(function () {
+                        throw "failed";
+                    });
+            };
+
+            asyncTest("It should include the book's subtitle", 3, function () {
+                assertBookMapping('abYKXvCwEToC',
+                "Harry Potter: the story of a global business phenomenon",
+                "Susan Gunelius",
+                "http://bks6.books.google.co.uk/books?id=abYKXvCwEToC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api");
+
+                setTimeout(start, 1000);
+            });
+
+            asyncTest("It should list multiple authors", 3, function () {
+                assertBookMapping('GGpXN9SMELMC',
+                "Head First design patterns",
+                "Eric Freeman, Elisabeth Freeman, Kathy Sierra, Bert Bates",
+                "http://bks9.books.google.co.uk/books?id=GGpXN9SMELMC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api");
+
+                setTimeout(start, 1000);
+            });
+
+            asyncTest("It should handle books without thumbnails", 3, function () {
+                assertBookMapping('_XDFAAAACAAJ',
+                "Design Patterns: Elements of Reusable Object-Oriented Software with Applying Uml and Patterns:An Introduction to Object-Oriented Analysis and Design and the Unified Process",
+                "Gamma, Larman",
+                null);
+
+                setTimeout(start, 1000);
+            });
+
+            asyncTest("It should handle books with no authors", 3, function () {
+                assertBookMapping('3zgFSQAACAAJ',
+                "The Girl With the Dragon Tattoo",
+                null,
+                "http://bks1.books.google.co.uk/books?id=3zgFSQAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api");
+
+                setTimeout(start, 1000);
+            });
+
             module('when pressing enter in the search box');
 
             test('It should raise the searchRequested event', function () {
