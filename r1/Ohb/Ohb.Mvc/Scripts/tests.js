@@ -13,10 +13,12 @@ require([
     'underscore',
     'backbone',
     'views/menubar/menubarview',
+    'views/searchresult/searchresultview',
+    'models/searchresult',
     'lib/qunit/qunit.js',
     'lib/jsmockito/jsmockito.js'
 ],
-    function (main, router, eventBus, $, _, Backbone, MenuBarView) {
+    function (main, router, eventBus, $, _, Backbone, MenuBarView, SearchResultView, SearchResult) {
 
         console.log("hiya");
 
@@ -217,7 +219,45 @@ require([
 
                 eventBus.trigger("searchCompleted");
 
-               ok(!($("#search-loader-spinner").is(":visible")));
+                ok(!($("#search-loader-spinner").is(":visible")));
+            });
+
+            module("when search results become available");
+
+            test("they should be rendered", function() {
+                eventBus.reset();
+                var view = new SearchResultsView({ el:$("#searchresults") });
+                view.initialize();
+
+                ok(!($("#searchresults").is(":visible")), "should be hidden to start with");
+
+                var results = new SearchResultCollection();
+                results.add(new SearchResult({ title: "test book" }));
+
+                eventBus.trigger("searchResultsArrived", results);
+
+                ok($("#searchresults").is(":visible"));
+            });
+
+            module("when rendering a single search result");
+
+            test("it should be rendered", 2, function() {
+
+                var el = $("#test-search-results");
+
+                var view = new SearchResultView({
+                    el: el[0],
+                    model: new SearchResult({
+                        title: "Harry Potter",
+                        authors: "JK Rowling",
+                        smallThumbnailUrl: "http://2.gravatar.com/avatar/87acbe2fc2f40edf8fa5a816515bff9f",
+                        id: "42"
+                    })
+                });
+                view.render();
+
+                equals(el.find(".searchresult-title").text(), "Harry Potter");
+                equals(el.find("p.searchresult-authors").text(), "JK Rowling");
             });
 
         });

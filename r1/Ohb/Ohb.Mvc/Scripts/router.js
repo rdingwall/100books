@@ -6,6 +6,7 @@ define([
     'models/searchresult',
     'collections/searchresultcollection',
     'eventbus',
+    'views/searchresult/searchresultview',
     'lib/bootstrap/bootstrap-modal.js'
 ], function (
     $,
@@ -26,6 +27,7 @@ define([
             console.log("initializing router...");
             eventBus.bind('searchRequested', this.search);
             eventBus.bind('searchFailed', this.onSearchFailed);
+            eventBus.bind('searchResultsArrived', this.onSearchResultsArrived);
         },
 
         search: function (q) {
@@ -57,6 +59,7 @@ define([
                       }
                       catch (e)
                       {
+                          console.log("Search error: " + e.message);
                           eventBus.trigger("searchFailed");
                       }
                       eventBus.trigger("searchCompleted");
@@ -69,6 +72,12 @@ define([
         onSearchFailed: function() {
             console.log('showing search failed modal...');
             $("#search-failed-modal").modal({ keyboard: true, show: true });
+        },
+
+        onSearchResultsArrived: function() {
+            console.log('showing search results...');
+
+            // todo
         }
     });
 
