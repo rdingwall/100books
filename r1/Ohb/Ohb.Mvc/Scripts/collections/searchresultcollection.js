@@ -1,6 +1,6 @@
 ﻿define([
   'backbone',
-   'models/searchResult'
+   'models/searchresult'
 ], function (Backbone, SearchResult) {
 
     SearchResultCollection = Backbone.Collection.extend({

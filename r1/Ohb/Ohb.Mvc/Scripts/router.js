@@ -27,7 +27,6 @@ define([
             console.log("initializing router...");
             eventBus.bind('searchRequested', this.search);
             eventBus.bind('searchFailed', this.onSearchFailed);
-            eventBus.bind('searchResultsArrived', this.onSearchResultsArrived);
         },
 
         search: function (q) {
@@ -72,12 +71,6 @@ define([
         onSearchFailed: function() {
             console.log('showing search failed modal...');
             $("#search-failed-modal").modal({ keyboard: true, show: true });
-        },
-
-        onSearchResultsArrived: function() {
-            console.log('showing search results...');
-
-            // todo
         }
     });
 

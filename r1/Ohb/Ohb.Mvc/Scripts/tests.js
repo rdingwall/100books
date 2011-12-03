@@ -15,10 +15,20 @@ require([
     'views/menubar/menubarview',
     'views/searchresult/searchresultview',
     'models/searchresult',
+    'views/searchresult/searchresultcollectionview',
     'lib/qunit/qunit.js',
     'lib/jsmockito/jsmockito.js'
 ],
-    function (main, router, eventBus, $, _, Backbone, MenuBarView, SearchResultView, SearchResult) {
+    function (main,
+              router,
+              eventBus,
+              $,
+              _,
+              Backbone,
+              MenuBarView,
+              SearchResultView,
+              SearchResult,
+              SearchResultCollectionView) {
 
         console.log("hiya");
 
@@ -277,26 +287,27 @@ require([
 
             module("when search results become available");
 
-            test("they should be rendered", function() {
+            test("they should be rendered", 3, function() {
                 eventBus.reset();
-                var view = new SearchResultsView({ el:$("#searchresults") });
-                view.initialize();
+                var view = new SearchResultCollectionView({ el:$("#test-search-results") });
 
-                ok(!($("#searchresults").is(":visible")), "should be hidden to start with");
+                ok(!($("#test-search-results").is(":visible")), "should be hidden to start with");
 
                 var results = new SearchResultCollection();
                 results.add(new SearchResult({ title: "test book" }));
+                results.add(new SearchResult({ title: "test book 2" }));
 
                 eventBus.trigger("searchResultsArrived", results);
 
-                ok($("#searchresults").is(":visible"));
+                ok($("#test-search-results").is(":visible"), "should be visible");
+                equal($("#test-search-results").children().length, 2);
             });
 
             module("when rendering a single search result");
 
             test("it should be rendered", 2, function() {
 
-                var el = $("#test-search-results");
+                var el = $("#test-search-result");
 
                 var view = new SearchResultView({
                     el: el[0],
