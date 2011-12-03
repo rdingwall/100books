@@ -436,34 +436,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/tests.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="13" selection-start="4947" selection-end="4947" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/jquery.qtip-1.0.0-rc3.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="3" selection-start="321" selection-end="321" vertical-scroll-proportion="0.375">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="296" selection-end="296" vertical-scroll-proportion="0.60215056">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ohb.Mvc.csproj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="67" selection-start="966" selection-end="966" vertical-scroll-proportion="0.044036698">
           <folding />
         </state>
       </provider>
@@ -471,6 +446,29 @@
     <entry file="file://$PROJECT_DIR$/Scripts/Ohb.jstd">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="480" selection-end="480" vertical-scroll-proportion="0.34408602">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="9" selection-start="205" selection-end="205" vertical-scroll-proportion="0.38709676">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/tests.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="156" column="16" selection-start="5074" selection-end="5074" vertical-scroll-proportion="6.3412843">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ohb.Mvc.csproj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="29" selection-start="928" selection-end="928" vertical-scroll-proportion="0.70458716">
           <folding />
         </state>
       </provider>
