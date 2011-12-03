@@ -24,48 +24,7 @@
     <favorites_list name="Ohb.Mvc" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="noSearchResultsAvailableView.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/views/searchResult/noSearchResultsAvailableView.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="18" selection-start="120" selection-end="120" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="searchResultView.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/views/searchResult/searchResultView.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="14" selection-start="275" selection-end="275" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tests.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/tests.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="150" column="13" selection-start="4947" selection-end="4947" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Scripts/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="3" selection-start="194" selection-end="194" vertical-scroll-proportion="0.30107528">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -89,13 +48,13 @@
         <option value="$PROJECT_DIR$/Scripts/views/searchResult/noSearchResultsView.js" />
         <option value="$PROJECT_DIR$/Scripts/views/searchResult/searchResultCollectionView.js" />
         <option value="$PROJECT_DIR$/templates/searchResult/noSearchResultsAvailable.html" />
-        <option value="$PROJECT_DIR$/Ohb.Mvc.csproj" />
         <option value="$PROJECT_DIR$/Scripts/lib/backbone/backbone.js" />
         <option value="$PROJECT_DIR$/Scripts/lib/underscore/underscore.js" />
         <option value="$PROJECT_DIR$/Scripts/views/searchResult/noSearchResultsAvailableView.js" />
         <option value="$PROJECT_DIR$/Scripts/views/searchResult/searchResultView.js" />
         <option value="$PROJECT_DIR$/Scripts/tests.js" />
         <option value="$PROJECT_DIR$/Scripts/main.js" />
+        <option value="$PROJECT_DIR$/Ohb.Mvc.csproj" />
       </list>
     </option>
   </component>
@@ -325,13 +284,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988507" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32988507" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1894991" sideWeight="0.34367815" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1894991" sideWeight="0.67011493" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1894991" sideWeight="0.67011493" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1894991" sideWeight="0.3275862" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988507" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -398,20 +357,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Scripts/views/menuBar/menubarView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="4" selection-start="78" selection-end="78" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/eventbus.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="10" selection-start="1160" selection-end="1160" vertical-scroll-proportion="0.68757397">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/router.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="41" column="73" selection-start="1401" selection-end="1424" vertical-scroll-proportion="0.37818182">
@@ -443,13 +388,6 @@
     <entry file="file://$PROJECT_DIR$/Scripts/views/searchResult/searchResultCollectionView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="93" column="55" selection-start="2535" selection-end="2536" vertical-scroll-proportion="0.45443788">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ohb.Mvc.csproj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="251" column="42" selection-start="13056" selection-end="13056" vertical-scroll-proportion="0.33211008">
           <folding />
         </state>
       </provider>
@@ -507,9 +445,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/jquery.qtip-1.0.0-rc3.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="3" selection-start="321" selection-end="321" vertical-scroll-proportion="0.375">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="3" selection-start="194" selection-end="194" vertical-scroll-proportion="0.30107528">
+        <state line="14" column="0" selection-start="296" selection-end="296" vertical-scroll-proportion="0.60215056">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ohb.Mvc.csproj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="67" selection-start="966" selection-end="966" vertical-scroll-proportion="0.044036698">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/Ohb.jstd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="480" selection-end="480" vertical-scroll-proportion="0.34408602">
           <folding />
         </state>
       </provider>
