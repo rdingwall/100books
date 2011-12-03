@@ -19,14 +19,19 @@
  */
 
 require.config({
+    baseUrl: "../js",
     paths: {
         underscore: 'lib/underscore/underscore',
-        backbone: 'lib/backbone/backbone'
+        backbone: 'lib/backbone/backbone',
+        qunit: 'lib/qunit/qunit',
+        jsmockito: 'lib/jsmockito/jsmockito',
+        mustache: 'lib/mustache/mustache',
+        bootstrapModal: 'lib/bootstrap/bootstrap-modal'
     }
 });
 
 require([
-    'main',
+    'lib/requires/order!main',
     'router',
     'eventbus',
     'jquery',
@@ -37,8 +42,8 @@ require([
     'models/searchresult',
     'collections/searchresultcollection',
     'views/searchresult/searchresultcollectionview',
-    'lib/qunit/qunit.js',
-    'lib/jsmockito/jsmockito.js'
+    'qunit',
+    'jsmockito'
 ], function (
     main,
     router,

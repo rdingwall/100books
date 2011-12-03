@@ -7,7 +7,7 @@ define([
     'collections/searchresultcollection',
     'eventbus',
     'views/searchresult/searchresultview',
-    'lib/bootstrap/bootstrap-modal.js'
+    'bootstrapModal'
 ], function ($, Backbone, SearchResult, SearchResultCollection, eventBus) {
     "use strict";
 

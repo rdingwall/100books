@@ -3,7 +3,8 @@ require.config({
     paths: {
         underscore: 'lib/underscore/underscore',
         backbone: 'lib/backbone/backbone',
-        mustache: 'lib/mustache/mustache'
+        mustache: 'lib/mustache/mustache',
+        bootstrapModal: 'lib/bootstrap/bootstrap-modal'
     }
 });
 
@@ -11,13 +12,7 @@ require([
 
 // Load our app module and pass it to our definition function
     'app',
-    'backbone',
-
-// Some plugins have to be loaded in order due to there non AMD compliance
-// Because these scripts are not "modules" they do not pass any values to the definition function below
-    'lib/requires/order!lib/underscore/underscore-min',
-    'lib/requires/order!lib/backbone/backbone-min',
-    'lib/requires/order!lib/mustache/mustache.js'
+    'backbone'
 ], function (App, Backbone) {
     "use strict";
 
