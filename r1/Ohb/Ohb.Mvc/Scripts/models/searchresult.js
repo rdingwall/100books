@@ -4,6 +4,8 @@ define([
     'backbone'
 ],
     function (Backbone) {
+        "use strict";
+
         var SearchResult = Backbone.Model.extend({
             title: null,
             authors: null,

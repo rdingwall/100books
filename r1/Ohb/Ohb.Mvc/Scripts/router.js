@@ -15,9 +15,11 @@ define([
     SearchResultCollection,
     eventBus
 ) {
+    "use strict";
+
     var instance = null;
 
-    AppRouter = Backbone.Router.extend({
+    var AppRouter = Backbone.Router.extend({
 
         routes: {
             "search/:q": "search"

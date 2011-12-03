@@ -4,6 +4,7 @@ define([
     'backbone'
 ],
     function (_, Backbone) {
+        "use strict";
 
         var instance = null;
 

@@ -6,24 +6,28 @@
   'collections/searchresultcollection',
     'eventbus'
 ], function (Backbone, $, _, SearchResultView, SearchResultCollection, eventBus) {
+    "use strict";
+
     // todo: generic version http://liquidmedia.ca/blog/2011/02/backbone-js-part-3/
-    var SearchResultCollectionView = Backbone.View.extend({
+    return Backbone.View.extend({
 
-        searchResultViews: [],
+        searchResultViews:[],
 
-        initialize: function () {
+        initialize:function () {
             var that = this;
 
             $("html").click("click", $.proxy(this.tryClose, this));
 
-            $(this.el).click("click", function(e) { e.stopPropagation(); });
+            $(this.el).click("click", function (e) {
+                e.stopPropagation();
+            });
             eventBus.bind('searchResultsArrived', this.onSearchResultsArrived, this);
         },
 
-        add: function(searchResult) {
+        add:function (searchResult) {
             var view = new SearchResultView({
-                model: searchResult,
-                tagName: 'div'
+                model:searchResult,
+                tagName:'div'
             });
 
             this.searchResultViews.push(view);
@@ -33,8 +37,8 @@
             }
         },
 
-        remove: function(searchResult) {
-            var viewToRemove = _(this.searchResultViews).select(function(cv) {
+        remove:function (searchResult) {
+            var viewToRemove = _(this.searchResultViews).select(function (cv) {
                 return cv.model === model;
             })[0];
 
@@ -43,7 +47,7 @@
             if (this._rendered) $(viewToRemove.el).remove();
         },
 
-        render: function() {
+        render:function () {
             // We keep track of the rendered state of the view
             this._rendered = true;
 
@@ -52,7 +56,7 @@
             var that = this;
 
             // Render each Donut View and append them.
-            _(this.searchResultViews).each(function(view) {
+            _(this.searchResultViews).each(function (view) {
                 $(that.el).append(view.render().el);
             });
 
@@ -61,7 +65,7 @@
             return this;
         },
 
-        onSearchResultsArrived: function(results) {
+        onSearchResultsArrived:function (results) {
             console.log('showing search results...');
 
             results.each($.proxy(this.add, this));
@@ -69,7 +73,7 @@
             this.render();
         },
 
-        tryClose: function() {
+        tryClose:function () {
 
             if (!this._rendered) {
                 return;
@@ -83,6 +87,4 @@
             this._rendered = false;
         }
     });
-
-    return SearchResultCollectionView;
 });

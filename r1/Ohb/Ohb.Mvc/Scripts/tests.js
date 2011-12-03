@@ -15,6 +15,7 @@ require([
     'views/menubar/menubarview',
     'views/searchresult/searchresultview',
     'models/searchresult',
+    'collections/searchresultcollection',
     'views/searchresult/searchresultcollectionview',
     'lib/qunit/qunit.js',
     'lib/jsmockito/jsmockito.js'
@@ -28,8 +29,9 @@ require([
               MenuBarView,
               SearchResultView,
               SearchResult,
+              SearchResultCollection,
               SearchResultCollectionView) {
-
+        "use strict";
         console.log("hiya");
 
         $(function () {
@@ -132,7 +134,7 @@ require([
                 var view = new MenuBarView({ el:$("#qunit-fixture") });
 
                 $("#menubar-search-input").val('');
-                e = $.Event('keyup');
+                var e = $.Event('keyup');
                 e.which = 13;
 
                 eventBus.bind('searchRequested', function (q) {
