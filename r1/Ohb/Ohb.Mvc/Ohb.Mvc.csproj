@@ -240,7 +240,6 @@
     <Content Include="js\app.js" />
     <Content Include="js\collections\searchresultcollection.js" />
     <Content Include="js\eventbus.js" />
-    <Content Include="js\lib\backbone\backbone-min.js" />
     <Content Include="js\lib\backbone\backbone.js" />
     <Content Include="js\lib\bootstrap\bootstrap-modal.js" />
     <Content Include="js\lib\jsmockito\jsmockito.js" />
