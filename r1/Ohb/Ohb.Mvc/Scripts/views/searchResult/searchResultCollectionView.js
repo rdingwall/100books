@@ -5,8 +5,17 @@ define([
     'underscore',
     'views/searchresult/searchresultview',
     'collections/searchresultcollection',
+    'views/searchresult/nosearchresultsavailableview',
     'eventbus'
-], function (Backbone, $, _, SearchResultView, SearchResultCollection, eventBus) {
+], function (
+    Backbone,
+    $,
+    _,
+    SearchResultView,
+    SearchResultCollection,
+    NoSearchResultsAvailableView,
+    eventBus
+) {
     "use strict";
 
     // todo: generic version http://liquidmedia.ca/blog/2011/02/backbone-js-part-3/
@@ -23,14 +32,19 @@ define([
                 e.stopPropagation();
             });
             eventBus.bind('searchResultsArrived', this.onSearchResultsArrived, this);
+            eventBus.bind('searchReturnedNoResults', this.onSearchReturnedNoResults, this);
         },
 
-        add: function (searchResult) {
+        addResult: function (searchResult) {
             var view = new SearchResultView({
                 model: searchResult,
                 tagName: 'div'
             });
 
+            this.addView(view);
+        },
+
+        addView: function (view) {
             this.searchResultViews.push(view);
 
             if (this._rendered) {
@@ -38,7 +52,7 @@ define([
             }
         },
 
-        remove: function (searchResult) {
+        removeResult: function (searchResult) {
             var viewToRemove = _(this.searchResultViews).select(function (cv) {
                 return cv.model === searchResult;
             })[0];
@@ -71,8 +85,14 @@ define([
         onSearchResultsArrived: function (results) {
             console.log('showing search results...');
 
-            results.each($.proxy(this.add, this));
+            results.each($.proxy(this.addResult, this));
 
+            this.render();
+        },
+
+        onSearchReturnedNoResults: function () {
+            console.log("showing 'no results' msg...");
+            this.addView(new NoSearchResultsAvailableView());
             this.render();
         },
 

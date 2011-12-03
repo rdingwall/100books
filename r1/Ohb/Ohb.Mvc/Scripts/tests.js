@@ -277,7 +277,7 @@ require([
 
             eventBus.trigger("searchResultsArrived", results);
 
-            ok($("#test-search-results").is(":visible"), "should be visible");
+            ok($("#test-search-results").is(":visible"), "should become visible");
             equal($("#test-search-results").children().length, 2);
         });
 
@@ -309,7 +309,7 @@ require([
             var view = new SearchResultCollectionView({ el: el[0] });
             view.render();
 
-            ok(el.is(":visible"), "should be visible");
+            ok(el.is(":visible"), "should become visible");
 
             $("body").trigger("click");
 
@@ -318,5 +318,18 @@ require([
             equal(view.searchResultViews.length, 0, "should clear the items");
         });
 
+        module("when there are no search results available");
+
+        test("It should display a no search results message", 3, function () {
+            eventBus.reset();
+            var view = new SearchResultCollectionView({ el: $("#test-search-results") });
+
+            ok(!($("#test-search-results").is(":visible")), "should be hidden to start with");
+
+            eventBus.trigger("searchReturnedNoResults");
+
+            ok($("#test-search-results").is(":visible"), "should become visible");
+            ok($(".searchresult-no-results-available").is(":visible"));
+        });
     });
 });
