@@ -8,8 +8,8 @@ bin
 UpgradeLog.XML
 _UpgradeReport_Files
 PdbInfo
-DecompilerCache
 packages
+DecompilerCache
 _ReSharper.*
 _ReSharper.*/*
 _ReSharper.Ohb
