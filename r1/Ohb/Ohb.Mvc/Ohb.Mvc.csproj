@@ -15,6 +15,9 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <JSLintSkip>\Scripts\lib\</JSLintSkip>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <BuildPackage>true</BuildPackage>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -234,32 +237,36 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Scripts\lib\backbone\backbone.js" />
-    <Content Include="Scripts\lib\jsmockito\jsmockito.js" />
-    <Content Include="Scripts\lib\requires\require-jquery.js" />
-    <Content Include="Scripts\lib\screw\jquery-1.2.6.js" />
-    <Content Include="Scripts\lib\screw\jquery.fn.js" />
-    <Content Include="Scripts\lib\screw\jquery.print.js" />
-    <Content Include="Scripts\lib\screw\screw.behaviors.js" />
-    <Content Include="Scripts\lib\screw\screw.builder.js" />
-    <Content Include="Scripts\lib\screw\screw.css" />
-    <Content Include="Scripts\lib\screw\screw.events.js" />
-    <Content Include="Scripts\lib\screw\screw.matchers.js" />
-    <Content Include="Scripts\lib\underscore\underscore.js" />
-    <Content Include="Scripts\main.js" />
-    <Content Include="Scripts\lib\backbone\backbone-min.js" />
-    <Content Include="Scripts\lib\underscore\underscore-min.js" />
-    <Content Include="Scripts\order.js" />
-    <Content Include="Scripts\app.js" />
-    <Content Include="Scripts\collections\searchresultcollection.js" />
-    <Content Include="Scripts\newtests.html" />
-    <Content Include="Scripts\eventbus.js" />
-    <Content Include="Scripts\models\searchresult.js" />
-    <Content Include="Scripts\router.js" />
-    <Content Include="Scripts\tests.js" />
-    <Content Include="Scripts\views\menuBar\menubarView.js" />
-    <Content Include="Scripts\views\searchResult\searchResultView.js" />
-    <Content Include="Scripts\views\searchResult\searchResultCollectionView.js" />
+    <Content Include="js\app.js" />
+    <Content Include="js\collections\searchresultcollection.js" />
+    <Content Include="js\eventbus.js" />
+    <Content Include="js\lib\backbone\backbone-min.js" />
+    <Content Include="js\lib\backbone\backbone.js" />
+    <Content Include="js\lib\bootstrap\bootstrap-modal.js" />
+    <Content Include="js\lib\jsmockito\jsmockito.js" />
+    <Content Include="js\lib\modernizr\modernizr.js" />
+    <Content Include="js\lib\mustache\mustache.js" />
+    <Content Include="js\lib\qunit\qunit.js" />
+    <Content Include="js\lib\requires\order.js" />
+    <Content Include="js\lib\requires\require-jquery.js" />
+    <Content Include="js\lib\requires\text.js" />
+    <Content Include="js\lib\screw\jquery-1.2.6.js" />
+    <Content Include="js\lib\screw\jquery.fn.js" />
+    <Content Include="js\lib\screw\jquery.print.js" />
+    <Content Include="js\lib\screw\screw.behaviors.js" />
+    <Content Include="js\lib\screw\screw.builder.js" />
+    <Content Include="js\lib\screw\screw.css" />
+    <Content Include="js\lib\screw\screw.events.js" />
+    <Content Include="js\lib\screw\screw.matchers.js" />
+    <Content Include="js\lib\underscore\underscore-min.js" />
+    <Content Include="js\lib\underscore\underscore.js" />
+    <Content Include="js\main.js" />
+    <Content Include="js\models\searchresult.js" />
+    <Content Include="js\router.js" />
+    <Content Include="js\views\menuBar\menubarView.js" />
+    <Content Include="js\views\searchResult\noSearchResultsAvailableView.js" />
+    <Content Include="js\views\searchResult\searchResultCollectionView.js" />
+    <Content Include="js\views\searchResult\searchResultView.js" />
     <Content Include="templates\searchResult\searchResult.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -338,4 +345,5 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
 </Project>
