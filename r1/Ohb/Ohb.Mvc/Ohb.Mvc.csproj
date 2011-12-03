@@ -250,7 +250,6 @@
     <Content Include="Scripts\lib\backbone\backbone-min.js" />
     <Content Include="Scripts\lib\underscore\underscore-min.js" />
     <Content Include="Scripts\order.js" />
-    <Content Include="Scripts\require.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\collections\searchresultcollection.js" />
     <Content Include="Scripts\newtests.html" />

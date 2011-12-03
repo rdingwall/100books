@@ -15,9 +15,9 @@ require([
 
 // Some plugins have to be loaded in order due to there non AMD compliance
 // Because these scripts are not "modules" they do not pass any values to the definition function below
-    'order!lib/underscore/underscore-min',
-    'order!lib/backbone/backbone-min',
-    'order!lib/mustache/mustache.js'
+    'lib/requires/order!lib/underscore/underscore-min',
+    'lib/requires/order!lib/backbone/backbone-min',
+    'lib/requires/order!lib/mustache/mustache.js'
 ], function (App, Backbone) {
     "use strict";
 

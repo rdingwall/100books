@@ -26,8 +26,32 @@ require.config({
 });
 
 require([
-    'main', 'router', 'eventbus', 'jquery', 'underscore', 'backbone', 'views/menubar/menubarview', 'views/searchresult/searchresultview', 'models/searchresult', 'collections/searchresultcollection', 'views/searchresult/searchresultcollectionview', 'lib/qunit/qunit.js', 'lib/jsmockito/jsmockito.js'
-], function (main, router, eventBus, $, _, Backbone, MenuBarView, SearchResultView, SearchResult, SearchResultCollection, SearchResultCollectionView) {
+    'main',
+    'router',
+    'eventbus',
+    'jquery',
+    'underscore',
+    'backbone',
+    'views/menubar/menubarview',
+    'views/searchresult/searchresultview',
+    'models/searchresult',
+    'collections/searchresultcollection',
+    'views/searchresult/searchresultcollectionview',
+    'lib/qunit/qunit.js',
+    'lib/jsmockito/jsmockito.js'
+], function (
+    main,
+    router,
+    eventBus,
+    $,
+    _,
+    Backbone,
+    MenuBarView,
+    SearchResultView,
+    SearchResult,
+    SearchResultCollection,
+    SearchResultCollectionView
+) {
     "use strict";
     console.log("hiya");
 

@@ -4,7 +4,7 @@ define([
     'mustache',
     'jquery',
     'models/searchresult',
-    'text!/templates/searchresult/noSearchResultsAvailable.html'
+    'lib/requires/text!/templates/searchresult/noSearchResultsAvailable.html'
 ], function (Backbone, Mustache, $, SearchResult, noSearchResultsAvailableTemplate) {
     "use strict";
 
