@@ -21,6 +21,8 @@ define([
     // todo: generic version http://liquidmedia.ca/blog/2011/02/backbone-js-part-3/
     return Backbone.View.extend({
 
+        el: $('#search-results'),
+
         searchResultViews: [],
 
         initialize: function () {

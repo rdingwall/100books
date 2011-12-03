@@ -4,15 +4,27 @@ define([
     'underscore',
     'backbone',
     'router',
-    'eventbus'
-],
-    function ($, _, Backbone, AppRouter, eventBus) {
-        "use strict";
+    'eventbus',
+    'views/menubar/menubarview',
+    'views/searchresult/searchresultcollectionview'
+], function (
+    $,
+    _,
+    Backbone,
+    AppRouter,
+    eventBus,
+    MenuBarView,
+    SearchResultCollectionView
+) {
+    "use strict";
 
-        return {
-            initialize: function () {
-                // Pass in our Router module and call it's initialize function
-                AppRouter.initialize();
-            }
-        };
-    });
+    var menuBarView = new MenuBarView(),
+        searchResultCollectionView = new SearchResultCollectionView();
+
+    return {
+        initialize: function () {
+            // Pass in our Router module and call it's initialize function
+            AppRouter.initialize();
+        }
+    };
+});
