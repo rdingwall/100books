@@ -25,13 +25,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tests.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="tests.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scripts/tests.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="310" column="0" selection-start="10897" selection-end="10897" vertical-scroll-proportion="0.50961536">
+            <state line="316" column="0" selection-start="11060" selection-end="11060" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="router.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Scripts/router.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="61" column="14" selection-start="2271" selection-end="2271" vertical-scroll-proportion="1.704142">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -129,16 +138,16 @@
         <option value="$PROJECT_DIR$/Scripts/tests.html" />
         <option value="$PROJECT_DIR$/Scripts/newtests.html" />
         <option value="$PROJECT_DIR$/Scripts/Ohb.jstd" />
-        <option value="$PROJECT_DIR$/Scripts/router.js" />
         <option value="$PROJECT_DIR$/Scripts/views/searchResult/searchResultCollectionView.js" />
         <option value="$PROJECT_DIR$/Scripts/views/searchResult/searchResultView.js" />
-        <option value="$PROJECT_DIR$/Scripts/tests.js" />
         <option value="$PROJECT_DIR$/Scripts/collections/searchresultcollection.js" />
         <option value="$PROJECT_DIR$/Scripts/models/searchresult.js" />
         <option value="$PROJECT_DIR$/Scripts/views/menuBar/menubarView.js" />
         <option value="$PROJECT_DIR$/Scripts/app.js" />
         <option value="$PROJECT_DIR$/Scripts/eventbus.js" />
         <option value="$PROJECT_DIR$/Scripts/main.js" />
+        <option value="$PROJECT_DIR$/Scripts/tests.js" />
+        <option value="$PROJECT_DIR$/Scripts/router.js" />
       </list>
     </option>
   </component>
@@ -348,8 +357,9 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="reference.settings.ide.settings.file-colors" />
+    <property name="options.lastSelected" value="preferences.sourceCode.JavaScript" />
     <property name="DefaultHtmlFileTemplate" value="Html" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
@@ -465,12 +475,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988507" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1894991" sideWeight="0.34367815" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1894991" sideWeight="0.6643678" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1894991" sideWeight="0.6643678" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1894991" sideWeight="0.3275862" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988507" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -553,11 +563,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="498" selection-end="498" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/jquery.mockjax.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -637,10 +642,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/tests.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="310" column="0" selection-start="10897" selection-end="10897" vertical-scroll-proportion="0.50961536">
+        <state line="316" column="0" selection-start="11060" selection-end="11060" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="14" selection-start="2271" selection-end="2271" vertical-scroll-proportion="1.704142">
+          <folding />
         </state>
       </provider>
     </entry>
