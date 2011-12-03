@@ -324,5 +324,23 @@ require([
                 equals(el.find("p.searchresult-authors").text(), "JK Rowling");
             });
 
+            module("when the search result box is open");
+
+            test("clicking anywhere outside should hide it", 4, function () {
+                var el = $("#test-search-results");
+                ok(!(el.is(":visible")), "should be hidden to start with");
+
+                var view = new SearchResultCollectionView({ el: el[0] });
+                view.render();
+
+                ok(el.is(":visible"), "should be visible");
+
+                $("body").trigger("click");
+
+                ok(!(el.is(":visible")), "should be hidden again");
+
+                equals(view.searchResultViews.length, 0, "should clear the items");
+            });
+
         });
     });

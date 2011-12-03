@@ -14,6 +14,9 @@
         initialize: function () {
             var that = this;
 
+            $("html").click("click", $.proxy(this.tryClose, this));
+
+            $(this.el).click("click", function(e) { e.stopPropagation(); });
             eventBus.bind('searchResultsArrived', this.onSearchResultsArrived, this);
         },
 
@@ -40,7 +43,7 @@
             if (this._rendered) $(viewToRemove.el).remove();
         },
 
-        render : function() {
+        render: function() {
             // We keep track of the rendered state of the view
             this._rendered = true;
 
@@ -64,6 +67,20 @@
             results.each($.proxy(this.add, this));
 
             this.render();
+        },
+
+        tryClose: function() {
+
+            if (!this._rendered) {
+                return;
+            }
+
+            console.log("closing search results...");
+
+            $(this.el).hide();
+            $(this.el).empty();
+            this.searchResultViews.length = 0;
+            this._rendered = false;
         }
     });
 
