@@ -1,4 +1,5 @@
-﻿define([
+﻿/*globals define */
+define([
     'jquery',
     'backbone',
     'eventbus'
@@ -6,35 +7,37 @@
     "use strict";
 
     return Backbone.View.extend({
-        el:$('#menubar'),
+        el: $('#menubar'),
 
-        events:{
-            "keyup #menubar-search-input":"searchRequested"
+        events: {
+            "keyup #menubar-search-input": "searchRequested"
         },
 
-        initialize:function () {
+        initialize: function () {
             console.log("initializing menubarview...");
             eventBus.bind('searchBegan', this.onSearchBegan);
             eventBus.bind('searchCompleted', this.onSearchCompleted);
         },
 
-        searchRequested:function (e) {
-            if (e.which != 13)
+        searchRequested: function (e) {
+            if (e.which !== 13) {
                 return;
+            }
 
             var q = $("#menubar-search-input").val();
 
-            if (q.replace(/\s/g, "") == "")
+            if (q.replace(/\s/g, "") === "") {
                 return;
+            }
 
             eventBus.trigger("searchRequested", q);
         },
 
-        onSearchBegan:function () {
+        onSearchBegan: function () {
             $("#search-loader-spinner").show();
         },
 
-        onSearchCompleted:function () {
+        onSearchCompleted: function () {
             $("#search-loader-spinner").hide();
         }
     });

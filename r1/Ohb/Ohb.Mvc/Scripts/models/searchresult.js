@@ -21,10 +21,9 @@ define([
                 title += ": " + info.subtitle;
             }
 
-            var imageLinks = info.imageLinks;
-            var smallThumbnailUrl = imageLinks ? imageLinks.smallThumbnail : null;
-
-            var authors = info.authors ? info.authors.join(", ") : null;
+            var imageLinks = info.imageLinks,
+                smallThumbnailUrl = imageLinks ? imageLinks.smallThumbnail : null,
+                authors = info.authors ? info.authors.join(", ") : null;
 
             return new SearchResult({
                 title: title,

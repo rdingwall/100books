@@ -1,4 +1,5 @@
-﻿require.config({
+﻿/*globals require */
+require.config({
     paths: {
         underscore: 'lib/underscore/underscore',
         backbone: 'lib/backbone/backbone',
@@ -9,14 +10,14 @@
 require([
 
 // Load our app module and pass it to our definition function
-  'app',
-  'backbone',
+    'app',
+    'backbone',
 
 // Some plugins have to be loaded in order due to there non AMD compliance
 // Because these scripts are not "modules" they do not pass any values to the definition function below
-  'order!lib/underscore/underscore-min',
-  'order!lib/backbone/backbone-min',
-  'order!lib/mustache/mustache.js'
+    'order!lib/underscore/underscore-min',
+    'order!lib/backbone/backbone-min',
+    'order!lib/mustache/mustache.js'
 ], function (App, Backbone) {
     "use strict";
 

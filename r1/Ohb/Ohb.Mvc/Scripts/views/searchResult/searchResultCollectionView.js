@@ -1,9 +1,10 @@
-﻿define([
-  'backbone',
-  'jquery',
-  'underscore',
-  'views/searchresult/searchresultview',
-  'collections/searchresultcollection',
+﻿/*globals define */
+define([
+    'backbone',
+    'jquery',
+    'underscore',
+    'views/searchresult/searchresultview',
+    'collections/searchresultcollection',
     'eventbus'
 ], function (Backbone, $, _, SearchResultView, SearchResultCollection, eventBus) {
     "use strict";
@@ -11,9 +12,9 @@
     // todo: generic version http://liquidmedia.ca/blog/2011/02/backbone-js-part-3/
     return Backbone.View.extend({
 
-        searchResultViews:[],
+        searchResultViews: [],
 
-        initialize:function () {
+        initialize: function () {
             var that = this;
 
             $("html").click("click", $.proxy(this.tryClose, this));
@@ -24,10 +25,10 @@
             eventBus.bind('searchResultsArrived', this.onSearchResultsArrived, this);
         },
 
-        add:function (searchResult) {
+        add: function (searchResult) {
             var view = new SearchResultView({
-                model:searchResult,
-                tagName:'div'
+                model: searchResult,
+                tagName: 'div'
             });
 
             this.searchResultViews.push(view);
@@ -37,17 +38,19 @@
             }
         },
 
-        remove:function (searchResult) {
+        remove: function (searchResult) {
             var viewToRemove = _(this.searchResultViews).select(function (cv) {
-                return cv.model === model;
+                return cv.model === searchResult;
             })[0];
 
             this.searchResultViews = _(this.searchResultViews).without(viewToRemove);
 
-            if (this._rendered) $(viewToRemove.el).remove();
+            if (this._rendered) {
+                $(viewToRemove.el).remove();
+            }
         },
 
-        render:function () {
+        render: function () {
             // We keep track of the rendered state of the view
             this._rendered = true;
 
@@ -65,7 +68,7 @@
             return this;
         },
 
-        onSearchResultsArrived:function (results) {
+        onSearchResultsArrived: function (results) {
             console.log('showing search results...');
 
             results.each($.proxy(this.add, this));
@@ -73,7 +76,7 @@
             this.render();
         },
 
-        tryClose:function () {
+        tryClose: function () {
 
             if (!this._rendered) {
                 return;

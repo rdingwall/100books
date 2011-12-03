@@ -6,26 +6,25 @@ define([
     function (_, Backbone) {
         "use strict";
 
-        var instance = null;
+        var instance = null,
+            EventBus = function () {
 
-        function EventBus() {
+                if (instance !== null) {
+                    throw new Error("Cannot instantiate more than one EventBus, use EventBus.getInstance()");
+                }
 
-            if (instance !== null) {
-                throw new Error("Cannot instantiate more than one EventBus, use EventBus.getInstance()");
-            }
-
-            this.initialize();
-        }
+                this.initialize();
+            };
 
         EventBus.prototype = {
-            initialize: function() {
+            initialize: function () {
                 console.log("EventBus ctor");
 
                 _.extend(this, Backbone.Events);
                 this.reset();
             },
 
-            reset: function() {
+            reset: function () {
                 console.log("eventBus.reset");
                 this.unbind();
                 this.bind("all", function (eventName) {
@@ -34,15 +33,14 @@ define([
             }
         };
 
-        EventBus.getInstance = function(){
+        EventBus.getInstance = function () {
             // summary:
             //      Gets an instance of the singleton. It is better to use
-            if(instance === null){
+            if (instance === null) {
                 instance = new EventBus();
             }
             return instance;
         };
-
 
         console.log("returning eventBus...");
         return EventBus.getInstance();
