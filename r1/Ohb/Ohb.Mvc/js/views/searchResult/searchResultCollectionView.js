@@ -6,7 +6,8 @@ define([
     'views/searchresult/searchresultview',
     'collections/searchresultcollection',
     'views/searchresult/nosearchresultsavailableview',
-    'eventbus'
+    'eventbus',
+    'lib/jog'
 ], function (
     Backbone,
     $,
@@ -17,6 +18,8 @@ define([
     eventBus
 ) {
     "use strict";
+
+    var log = $.jog("SearchResultCollectionView");
 
     // todo: generic version http://liquidmedia.ca/blog/2011/02/backbone-js-part-3/
     return Backbone.View.extend({
@@ -89,7 +92,7 @@ define([
         },
 
         onSearchResultsArrived: function (results) {
-            console.log('showing search results...');
+            log.info('showing search results...');
             this.clearResults();
 
             results.each($.proxy(this.addResult, this));
@@ -98,7 +101,7 @@ define([
         },
 
         onSearchReturnedNoResults: function () {
-            console.log("showing 'no results' msg...");
+            log.info("showing 'no results' msg...");
             this.clearResults();
             this.addView(new NoSearchResultsAvailableView());
             this.render();
@@ -115,7 +118,7 @@ define([
                 return;
             }
 
-            console.log("closing search results...");
+            log.info("closing search results...");
 
             $(this.el).hide();
             this.clearResults();

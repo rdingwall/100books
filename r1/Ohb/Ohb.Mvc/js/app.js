@@ -1,4 +1,4 @@
-﻿/*globals require, define, Router */
+﻿/*globals require, define, Router, console */
 define([
     'jquery',
     'underscore',
@@ -6,7 +6,8 @@ define([
     'router',
     'eventbus',
     'views/menubar/menubarview',
-    'views/searchresult/searchresultcollectionview'
+    'views/searchresult/searchresultcollectionview',
+    'lib/jog'
 ], function (
     $,
     _,
@@ -17,6 +18,7 @@ define([
     SearchResultCollectionView
 ) {
     "use strict";
+
 
     var menuBarView = new MenuBarView(),
         searchResultCollectionView = new SearchResultCollectionView();

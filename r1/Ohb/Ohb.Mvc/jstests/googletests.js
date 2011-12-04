@@ -36,7 +36,8 @@ require([
     'models/searchresult',
     'eventbus',
     'router',
-    'qunit'
+    'qunit',
+    'lib/jog'
 ], function (
     main,
     $,
@@ -45,7 +46,10 @@ require([
     router
 ) {
     "use strict";
-    console.log("hiya");
+
+    var log = $.jog("GoogleTests");
+
+    log.info("hiya");
 
     $(function () {
 

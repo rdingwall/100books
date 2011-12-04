@@ -43,7 +43,8 @@ require([
     'collections/searchresultcollection',
     'views/searchresult/searchresultcollectionview',
     'qunit',
-    'jsmockito'
+    'jsmockito',
+    'lib/jog'
 ], function (
     main,
     router,
@@ -58,7 +59,10 @@ require([
     SearchResultCollectionView
 ) {
     "use strict";
-    console.log("hiya");
+
+    var log = $.jog("Tests");
+
+    log.info("hiya");
 
     $(function () {
 
@@ -285,7 +289,7 @@ require([
         });
 
         test("It should replace any previous results", 6, function () {
-            console.log("starting the test");
+            log.info("starting the test");
             eventBus.reset();
             var el = $("#test-search-results");
             el.empty();

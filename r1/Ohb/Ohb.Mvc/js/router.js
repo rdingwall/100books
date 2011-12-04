@@ -7,11 +7,13 @@ define([
     'collections/searchresultcollection',
     'eventbus',
     'views/searchresult/searchresultview',
-    'bootstrapModal'
+    'bootstrapModal',
+    'lib/jog'
 ], function ($, Backbone, SearchResult, SearchResultCollection, eventBus) {
     "use strict";
 
-    var instance = null,
+    var log = $.jog("Router"),
+        instance = null,
         AppRouter = Backbone.Router.extend({
 
             routes: {
@@ -19,13 +21,13 @@ define([
             },
 
             initialize: function () {
-                console.log("initializing router...");
+                log.info("initializing router...");
                 eventBus.bind('searchRequested', this.search);
                 eventBus.bind('searchFailed', this.onSearchFailed);
             },
 
             search: function (q) {
-                console.log("Searching for " + q + "...");
+                log.info("Searching for " + q + "...");
 
                 eventBus.trigger("searchBegan", q);
 
@@ -50,7 +52,7 @@ define([
 
                             eventBus.trigger("searchResultsArrived", results);
                         } catch (e) {
-                            console.log("Search error: " + e.message);
+                            log.error("Search error: " + e.message);
                             eventBus.trigger("searchCompleted");
                             eventBus.trigger("searchFailed");
                         }
@@ -58,14 +60,14 @@ define([
                         eventBus.trigger("searchCompleted");
                     })
                     .error(function (jqXHR, textStatus, errorThrown) {
-                        console.log("Search error: " + textStatus);
+                        log.warning("Search error: " + textStatus);
                         eventBus.trigger("searchCompleted");
                         eventBus.trigger("searchFailed");
                     });
             },
 
             onSearchFailed: function () {
-                console.log('showing search failed modal...');
+                log.info('showing search failed modal...');
                 $("#search-failed-modal").modal({ keyboard: true, show: true });
             }
         });

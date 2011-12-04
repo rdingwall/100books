@@ -2,9 +2,12 @@
 define([
     'jquery',
     'backbone',
-    'eventbus'
+    'eventbus',
+    'lib/jog'
 ], function ($, Backbone, eventBus) {
     "use strict";
+
+    var log = $.jog("MenuBarView");
 
     return Backbone.View.extend({
         el: $('#menubar'),
@@ -14,7 +17,7 @@ define([
         },
 
         initialize: function () {
-            console.log("initializing menubarview...");
+            log.info("initializing menubarview...");
             eventBus.bind('searchBegan', this.onSearchBegan);
             eventBus.bind('searchCompleted', this.onSearchCompleted);
         },

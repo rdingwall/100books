@@ -1,12 +1,15 @@
 ﻿/*globals define, Backbone */
 define([
+    'jquery',
     'underscore',
-    'backbone'
+    'backbone',
+    'lib/jog'
 ],
-    function (_, Backbone) {
+    function ($, _, Backbone) {
         "use strict";
 
-        var instance = null,
+        var log = $.jog("EventBus"),
+            instance = null,
             EventBus = function () {
 
                 if (instance !== null) {
@@ -17,18 +20,19 @@ define([
             };
 
         EventBus.prototype = {
+
             initialize: function () {
-                console.log("EventBus ctor");
+                log.info("EventBus ctor");
 
                 _.extend(this, Backbone.Events);
                 this.reset();
             },
 
             reset: function () {
-                console.log("eventBus.reset");
+                log.info("eventBus.reset");
                 this.unbind();
                 this.bind("all", function (eventName) {
-                    console.log(eventName);
+                    log.info("Received event: " + eventName);
                 });
             }
         };
@@ -42,7 +46,7 @@ define([
             return instance;
         };
 
-        console.log("returning eventBus...");
+        log.info("returning eventBus...");
         return EventBus.getInstance();
 
     });
