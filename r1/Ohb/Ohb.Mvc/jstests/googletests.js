@@ -156,7 +156,26 @@ require([
             setTimeout(start, 2000);
         });
 
-        asyncTest('When there are no results, it should raise a no results event', 1, function () {
+        asyncTest('When the test fails, it should raise a searchCompleted event', 1, function () {
+            eventBus.reset();
+            router.initialize();
+
+            eventBus.bind('searchCompleted', function (results) {
+                ok(true);
+            });
+
+            eventBus.bind('searchResultsArrived', function (results) {
+                ok(false, "should not have been raised!");
+            });
+
+            eventBus.trigger("searchRequested", "3894h9f893jhf934jf92ht8");
+
+            setTimeout(start, 2000);
+        });
+
+        module("When requesting a search and there was no results");
+
+        asyncTest('It should raise a no results event', 1, function () {
             eventBus.reset();
             router.initialize();
 
@@ -165,6 +184,28 @@ require([
             });
 
             eventBus.bind('searchReturnedNoResults', function (results) {
+                ok(true);
+            });
+
+            eventBus.bind('searchResultsArrived', function (results) {
+                equal(results.length, 0);
+                ok(false, "searchResultsArrived was raised");
+            });
+
+            eventBus.trigger("searchRequested", "3894h9f893jhf934jf92ht8");
+
+            setTimeout(start, 2000);
+        });
+
+        asyncTest('It should raise a searchCompleted event', 1, function () {
+            eventBus.reset();
+            router.initialize();
+
+            eventBus.bind('searchFailed', function (results) {
+                ok(false, "searchFailed was raised");
+            });
+
+            eventBus.bind('searchCompleted', function (results) {
                 ok(true);
             });
 

@@ -39,6 +39,7 @@ define([
                             var results = new SearchResultCollection();
 
                             if (!json.items) {
+                                eventBus.trigger("searchCompleted");
                                 eventBus.trigger("searchReturnedNoResults");
                                 return;
                             }
@@ -50,6 +51,7 @@ define([
                             eventBus.trigger("searchResultsArrived", results);
                         } catch (e) {
                             console.log("Search error: " + e.message);
+                            eventBus.trigger("searchCompleted");
                             eventBus.trigger("searchFailed");
                         }
 
@@ -57,6 +59,7 @@ define([
                     })
                     .error(function (jqXHR, textStatus, errorThrown) {
                         console.log("Search error: " + textStatus);
+                        eventBus.trigger("searchCompleted");
                         eventBus.trigger("searchFailed");
                     });
             },
