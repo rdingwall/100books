@@ -62,9 +62,9 @@ require([
 
     var log = $.jog("Tests");
 
-    log.info("hiya");
-
     $(function () {
+
+        log.info("document loaded, running tests");
 
         module("When registering modules");
 

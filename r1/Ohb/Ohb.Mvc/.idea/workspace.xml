@@ -22,10 +22,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tests.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="tests.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jstests/tests.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="26" selection-start="1459" selection-end="1459" vertical-scroll-proportion="0.0">
+            <state line="62" column="29" selection-start="1462" selection-end="1462" vertical-scroll-proportion="0.41142857">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -33,10 +33,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="googletests.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="googletests.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jstests/googletests.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="12" selection-start="992" selection-end="992" vertical-scroll-proportion="0.668">
+            <state line="33" column="30" selection-start="895" selection-end="895" vertical-scroll-proportion="-7.6">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -157,10 +157,10 @@
         <option value="$PROJECT_DIR$/js/app.js" />
         <option value="$PROJECT_DIR$/js/views/searchResult/searchResultCollectionView.js" />
         <option value="$PROJECT_DIR$/js/eventbus.js" />
-        <option value="$PROJECT_DIR$/jstests/tests.js" />
         <option value="$PROJECT_DIR$/js/views/menuBar/menubarView.js" />
         <option value="$PROJECT_DIR$/js/router.js" />
         <option value="$PROJECT_DIR$/jstests/googletests.js" />
+        <option value="$PROJECT_DIR$/jstests/tests.js" />
       </list>
     </option>
   </component>
@@ -625,15 +625,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jstests/tests.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="26" selection-start="1459" selection-end="1459" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/views/menuBar/menubarView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="32" selection-start="178" selection-end="178" vertical-scroll-proportion="0.0">
@@ -652,7 +643,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jstests/googletests.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="12" selection-start="992" selection-end="992" vertical-scroll-proportion="0.668">
+        <state line="33" column="30" selection-start="895" selection-end="895" vertical-scroll-proportion="-7.6">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jstests/tests.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="29" selection-start="1462" selection-end="1462" vertical-scroll-proportion="0.41142857">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
