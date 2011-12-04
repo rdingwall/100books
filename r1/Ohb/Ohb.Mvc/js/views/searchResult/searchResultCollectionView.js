@@ -86,6 +86,7 @@ define([
 
         onSearchResultsArrived: function (results) {
             console.log('showing search results...');
+            this.clearResults();
 
             results.each($.proxy(this.addResult, this));
 
@@ -94,8 +95,14 @@ define([
 
         onSearchReturnedNoResults: function () {
             console.log("showing 'no results' msg...");
+            this.clearResults();
             this.addView(new NoSearchResultsAvailableView());
             this.render();
+        },
+
+        clearResults: function () {
+            $(this.el).empty();
+            this.searchResultViews.length = 0;
         },
 
         tryClose: function () {
@@ -107,8 +114,7 @@ define([
             console.log("closing search results...");
 
             $(this.el).hide();
-            $(this.el).empty();
-            this.searchResultViews.length = 0;
+            this.clearResults();
             this._rendered = false;
         }
     });

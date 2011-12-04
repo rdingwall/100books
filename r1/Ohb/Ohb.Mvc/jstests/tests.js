@@ -87,7 +87,7 @@ require([
         module("When mapping google book search results");
 
         var assertBookMapping = function (googleBookId, title, authors, smallThumbnailUrl) {
-            $.getJSON('https://www.googleapis.com/books/v1/volumes/' + googleBookId + '?callback=?',
+            $.getJSON('https://www.googleapis.com/books/v1/volumes/' + googleBookId + '?&key=AIzaSyAwesvnG7yP5wCqiNv21l8g7mo-ehkcVJs&callback=?',
                 function (data) {
                     var searchResult = SearchResult.fromGoogle(data);
 
@@ -347,6 +347,30 @@ require([
             equal(view.searchResultViews.length, 0, "should clear the items");
         });
 
+        test("New results should replace old ones", 4, function () {
+            eventBus.reset();
+            var el = $("#test-search-results");
+            el.empty();
+            ok(!(el.is(":visible")), "should be hidden to start with");
+
+            var view = new SearchResultCollectionView({ el: el[0] });
+            view.addResult(new SearchResult({ title: "test book" }));
+            view.addResult(new SearchResult({ title: "test book 2" }));
+            view.render();
+
+            equal($("#test-search-results").children().length, 2, "started with 2 results");
+
+            var results = new SearchResultCollection();
+            results.add(new SearchResult({ title: "test book" }));
+            results.add(new SearchResult({ title: "test book 2" }));
+            results.add(new SearchResult({ title: "test book 3" }));
+
+            eventBus.trigger("searchResultsArrived", results);
+
+            ok($("#test-search-results").is(":visible"), "should become visible");
+            equal($("#test-search-results").children().length, 3, "should replace existing results");
+        });
+
         module("when there are no search results available");
 
         test("It should display a no search results message", 3, function () {
@@ -359,6 +383,26 @@ require([
 
             ok($("#test-search-results").is(":visible"), "should become visible");
             ok($(".searchresult-no-results-available").is(":visible"));
+        });
+
+        test("It should replace any previous results", 5, function () {
+            eventBus.reset();
+            var el = $("#test-search-results");
+            el.empty();
+            ok(!(el.is(":visible")), "should be hidden to start with");
+
+            var view = new SearchResultCollectionView({ el: el[0] });
+            view.addResult(new SearchResult({ title: "test book" }));
+            view.addResult(new SearchResult({ title: "test book 2" }));
+            view.render();
+
+            equal($("#test-search-results").children().length, 2, "started with 2 results");
+
+            eventBus.trigger("searchReturnedNoResults");
+
+            ok($("#test-search-results").is(":visible"), "should become visible");
+            ok($(".searchresult-no-results-available").is(":visible"));
+            equal($("#test-search-results").children().length, 1, "should replace existing results");
         });
     });
 });
