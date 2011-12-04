@@ -23,16 +23,21 @@ define([
 
         el: $('#search-results'),
 
-        searchResultViews: [],
-
         initialize: function () {
             var that = this;
 
+            this.searchResultViews = [];
+
             $("html").click("click", $.proxy(this.tryClose, this));
 
-            $(this.el).click("click", function (e) {
+            $(this.el).click(function (e) {
                 e.stopPropagation();
             });
+
+            $("#menubar").click(function (e) {
+                e.stopPropagation();
+            });
+
             eventBus.bind('searchResultsArrived', this.onSearchResultsArrived, this);
             eventBus.bind('searchReturnedNoResults', this.onSearchReturnedNoResults, this);
         },
@@ -74,7 +79,6 @@ define([
 
             var that = this;
 
-            // Render each Donut View and append them.
             _(this.searchResultViews).each(function (view) {
                 $(that.el).append(view.render().el);
             });

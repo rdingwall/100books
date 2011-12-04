@@ -347,6 +347,34 @@ require([
             equal(view.searchResultViews.length, 0, "should clear the items");
         });
 
+        test("clicking inside the search results should not hide the results", 3, function () {
+            var el = $("#test-search-results");
+            ok(!(el.is(":visible")), "should be hidden to start with");
+
+            var view = new SearchResultCollectionView({ el: el[0] });
+            view.render();
+
+            ok(el.is(":visible"), "should become visible");
+
+            $("#test-search-results").trigger("click");
+
+            ok(el.is(":visible"), "should stay visible");
+        });
+
+        test("clicking in the menu bar should not hide the results", 3, function () {
+            var el = $("#test-search-results");
+            ok(!(el.is(":visible")), "should be hidden to start with");
+
+            var view = new SearchResultCollectionView({ el: el[0] });
+            view.render();
+
+            ok(el.is(":visible"), "should become visible");
+
+            $("#menubar").trigger("click");
+
+            ok(el.is(":visible"), "should stay visible");
+        });
+
         test("New results should replace old ones", 4, function () {
             eventBus.reset();
             var el = $("#test-search-results");
@@ -385,10 +413,12 @@ require([
             ok($(".searchresult-no-results-available").is(":visible"));
         });
 
-        test("It should replace any previous results", 5, function () {
+        test("It should replace any previous results", 6, function () {
+            console.log("starting the test");
             eventBus.reset();
             var el = $("#test-search-results");
             el.empty();
+            equal(el.children().length, 0, "should be empty to start with");
             ok(!(el.is(":visible")), "should be hidden to start with");
 
             var view = new SearchResultCollectionView({ el: el[0] });
@@ -396,13 +426,13 @@ require([
             view.addResult(new SearchResult({ title: "test book 2" }));
             view.render();
 
-            equal($("#test-search-results").children().length, 2, "started with 2 results");
+            equal(el.children().length, 2, "started with 2 results");
 
             eventBus.trigger("searchReturnedNoResults");
 
-            ok($("#test-search-results").is(":visible"), "should become visible");
+            ok(el.is(":visible"), "should become visible");
             ok($(".searchresult-no-results-available").is(":visible"));
-            equal($("#test-search-results").children().length, 1, "should replace existing results");
+            equal(el.children().length, 1, "should replace existing results");
         });
     });
 });
