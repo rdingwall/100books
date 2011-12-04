@@ -151,6 +151,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="css\less\ohb.less" />
+    <Content Include="img\menubar\ajax-loader.gif" />
     <Content Include="css\Site.css" />
     <Content Include="Global.asax" />
     <None Include="css\less\bootstrap.less" />

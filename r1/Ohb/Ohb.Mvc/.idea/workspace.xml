@@ -44,10 +44,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jstests/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="36" selection-start="1887" selection-end="1906" vertical-scroll-proportion="-17.848484">
+            <state line="43" column="64" selection-start="1812" selection-end="1868" vertical-scroll-proportion="0.6944801">
               <folding />
             </state>
           </provider>
@@ -64,10 +64,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="searchResultCollectionView.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="searchResultCollectionView.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/views/searchResult/searchResultCollectionView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="14" selection-start="91" selection-end="91" vertical-scroll-proportion="0.14545454">
+            <state line="5" column="14" selection-start="91" selection-end="91" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -653,13 +653,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jstests/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="36" selection-start="1887" selection-end="1906" vertical-scroll-proportion="-17.848484">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/views/searchResult/noSearchResultsAvailableView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -689,10 +682,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/views/searchResult/searchResultCollectionView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="14" selection-start="91" selection-end="91" vertical-scroll-proportion="0.14545454">
+        <state line="5" column="14" selection-start="91" selection-end="91" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jstests/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="64" selection-start="1812" selection-end="1868" vertical-scroll-proportion="0.6944801">
+          <folding />
         </state>
       </provider>
     </entry>

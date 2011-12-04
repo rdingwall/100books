@@ -4,7 +4,8 @@
         <li><a href="/">Profile</a></li>
     </ul>
     <form onsubmit="return false">
-    <input class="input-xlarge" id="menubar-search-input" type="text" placeholder="Search to add books" />
+        <input class="input-xlarge" id="menubar-search-input" type="text" placeholder="Search to add books" />
+        <img id="search-loader-spinner" class="hide" src="@Url.Content("~/img/menubar/ajax-loader.gif")" />
     </form>
     <ul class="nav secondary-nav">
         <li>@Html.ActionLink("Sign Out", "LogOut", "Profile")</li>
