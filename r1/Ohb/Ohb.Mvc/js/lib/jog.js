@@ -109,7 +109,7 @@
   // companion logPopup.html file. The following code is borrowed from
   // http://stackoverflow.com/questions/984510/what-is-my-script-src-url/3865126#3865126
   var scriptDir = (function() {
-    var scripts = document.getElementsByTagName('script'),
+    var scripts = $("script[src]"),
         script = scripts[scripts.length - 1];
 
     return script.getAttribute('src', 2).replace(/\/+[^/]*\/*$/, '/');
