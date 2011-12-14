@@ -40,14 +40,15 @@
 <div id="fb-root"></div>
 <script>
     window.fbAsyncInit = function () {
-        FB.init({
-            appId: '@Facebook.FacebookApplication.Current.AppId',
-            cookie: true,
-            xfbml: true,
-            oauth: true
-        });
 
         function facebooklogin() {
+            FB.init({
+                appId: '@Facebook.FacebookApplication.Current.AppId',
+                cookie: true,
+                xfbml: true,
+                oauth: true
+            });
+
             FB.login(function (response) {
                 if (response.authResponse) {
                     // user authorized
