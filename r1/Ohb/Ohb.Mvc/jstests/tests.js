@@ -309,5 +309,21 @@ require([
             ok($(".searchresult-no-results-available").is(":visible"));
             equal(el.children().length, 1, "should replace existing results");
         });
+
+        module("When clicking on a search result");
+
+        test("It should raise a search result selected event", 1, function () {
+            eventBus.reset();
+
+            var el = $("#test-search-result");
+            var model = new SearchResult({ title: "foo" });
+            var view = new SearchResultView({ el: el, model: model });
+
+            eventBus.bind('searchResultSelected', function (sr) {
+                equal(sr, model);
+            });
+
+            el.trigger('click');
+        });
     });
 });
