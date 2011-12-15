@@ -129,7 +129,6 @@
     <Compile Include="IBookSearchService.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
-    <Compile Include="Controllers\FacebookController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Models\BookSearchResult.cs" />
     <Compile Include="Controllers\SearchController.cs">
@@ -149,6 +148,7 @@
     <Compile Include="Services\UserRepository.cs" />
     <Compile Include="Startup\LoggedInHomeRoute.cs" />
     <Compile Include="Startup\WindsorDependencyResolver.cs" />
+    <Compile Include="Startup\WindsorExtensions.cs" />
     <Compile Include="Startup\WindsorRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
