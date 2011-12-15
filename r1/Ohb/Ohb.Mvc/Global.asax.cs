@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using Bootstrap;
+using Bootstrap.AutoMapper;
 using Bootstrap.Windsor;
 using Castle.Windsor;
 using Ohb.Mvc.Services;
@@ -46,8 +47,8 @@ namespace Ohb.Mvc
 
         protected void Application_Start()
         {
-            Bootstrapper.With.Windsor().Start();
-
+            Bootstrapper.With.Windsor().And.AutoMapper().Start();
+            
             container = (IWindsorContainer)Bootstrapper.Container;
 
             DependencyResolver.SetResolver(new WindsorDependencyResolver(container));

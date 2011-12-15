@@ -1,6 +1,6 @@
-namespace Ohb.Mvc.Models
+namespace Ohb.Mvc.Api.Models
 {
-    public class BookDetails
+    public class BookStaticInfo
     {
         public string Publisher { get; set; }
         public string Id { get; set; }

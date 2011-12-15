@@ -34,7 +34,7 @@
       <file leaf-file-name="eventbus.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/eventbus.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="17" selection-start="450" selection-end="450" vertical-scroll-proportion="0.0">
+            <state line="15" column="17" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -47,17 +47,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state line="31" column="4" selection-start="739" selection-end="739" vertical-scroll-proportion="0.0">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jog.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/lib/jog.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="11" selection-start="3187" selection-end="3187" vertical-scroll-proportion="0.3804878">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -95,6 +84,33 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="_LoggedInMenuPartial.cshtml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Views/Shared/_LoggedInMenuPartial.cshtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Index.cshtml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Views/Profile/Index.cshtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="32" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Index.cshtml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Views/Home/Index.cshtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="47" column="28" selection-start="1725" selection-end="1725" vertical-scroll-proportion="0.22115384">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="router.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/router.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -102,24 +118,6 @@
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scaffolding.less" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/less/scaffolding.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="patterns.less" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/less/patterns.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="12" selection-start="254" selection-end="256" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -139,7 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Ohb.Mvc.csproj" />
         <option value="$PROJECT_DIR$/js/lib/bootstrap/bootstrap-modal.js" />
         <option value="$PROJECT_DIR$/js/app.js" />
         <option value="$PROJECT_DIR$/js/views/searchResult/searchResultCollectionView.js" />
@@ -155,6 +152,7 @@
         <option value="$PROJECT_DIR$/css/less/ohb.less" />
         <option value="$PROJECT_DIR$/js/eventbus.js" />
         <option value="$PROJECT_DIR$/js/lib/jog.js" />
+        <option value="$PROJECT_DIR$/Views/Home/Index.cshtml" />
       </list>
     </option>
   </component>
@@ -297,6 +295,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Profile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ohb.Mvc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ohb.Mvc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -609,20 +625,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/css/less/bootstrap.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="392" selection-end="414" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/less/variables.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="17" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/less/scaffolding.less">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -658,13 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Views/Profile/Index.cshtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="32" selection-start="276" selection-end="276" vertical-scroll-proportion="0.2556213">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/router.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -677,6 +672,38 @@
     <entry file="file://$PROJECT_DIR$/jstests/googletests.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="5" selection-start="870" selection-end="889" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/less/mixins.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="25" selection-start="1728" selection-end="1728" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/lib/jog.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="257" column="7" selection-start="8647" selection-end="8647" vertical-scroll-proportion="0.35609755">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/views/menuBar/menubarView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="4" selection-start="739" selection-end="739" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/eventbus.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="17" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -701,35 +728,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/less/mixins.less">
+    <entry file="file://$PROJECT_DIR$/Views/Shared/_LoggedInMenuPartial.cshtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="25" selection-start="1728" selection-end="1728" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/eventbus.js">
+    <entry file="file://$PROJECT_DIR$/Views/Profile/Index.cshtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="17" selection-start="450" selection-end="450" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/views/menuBar/menubarView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="4" selection-start="739" selection-end="739" vertical-scroll-proportion="0.0">
+        <state line="9" column="32" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/lib/jog.js">
+    <entry file="file://$PROJECT_DIR$/Views/Home/Index.cshtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="11" selection-start="3187" selection-end="3187" vertical-scroll-proportion="0.3804878">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state line="47" column="28" selection-start="1725" selection-end="1725" vertical-scroll-proportion="0.22115384">
+          <folding />
         </state>
       </provider>
     </entry>

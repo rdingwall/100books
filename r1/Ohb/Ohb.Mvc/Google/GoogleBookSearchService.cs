@@ -8,6 +8,7 @@ using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Models;
 using Ohb.Mvc.Services;
 
@@ -49,17 +50,17 @@ namespace Ohb.Mvc.Google
                 null);
         }
 
-        public BookDetails GetBook(string id)
+        public BookStaticInfo GetBook(string id)
         {
             if (id == null) throw new ArgumentNullException("id");
 
-            using (var client = new WebClient() { Encoding = Encoding.UTF8 })
+            using (var client = new WebClient { Encoding = Encoding.UTF8 })
             {
                 var json = client.DownloadString(String.Format("https://www.googleapis.com/books/v1/volumes/{0}", id));
 
                 var volume = JsonConvert.DeserializeObject<GoogleVolume>(json);
 
-                return new BookDetails
+                return new BookStaticInfo
                            {
                                Id = volume.Id,
                                Title = volume.VolumeInfo.Title,

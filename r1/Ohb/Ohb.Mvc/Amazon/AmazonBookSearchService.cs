@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Web;
+using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Models;
 
 namespace Ohb.Mvc.Amazon
@@ -53,7 +54,7 @@ namespace Ohb.Mvc.Amazon
                 null);
         }
 
-        public BookDetails GetBook(string id)
+        public BookStaticInfo GetBook(string id)
         {
             throw new NotImplementedException();
         }

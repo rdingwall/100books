@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Machine.Specifications;
+using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Google;
 using Ohb.Mvc.Models;
 
@@ -55,7 +56,7 @@ namespace Ohb.Mvc.Specs
             It should_get_the_books_small_thumbnail_url = () => book.SmallThumbnailUrl.ShouldEqual("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=5&source=gbs_api");
 
             static IBookSearchService service;
-            static BookDetails book;
+            static BookStaticInfo book;
         }
     }
 }

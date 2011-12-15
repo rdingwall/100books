@@ -37,8 +37,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.0.0\lib\net40-client\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Bootstrapper">
       <HintPath>..\packages\Bootstrapper.2.0.2.0\lib\Bootstrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Bootstrapper.AutoMapper">
+      <HintPath>..\packages\Bootstrapper.AutoMapper.2.0.2.0\lib\Bootstrapper.AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Bootstrapper.WindsorExtension">
       <HintPath>..\packages\Bootstrapper.Windsor.2.0.2.0\lib\Bootstrapper.WindsorExtension.dll</HintPath>
@@ -111,11 +117,13 @@
     <Compile Include="Amazon\AmazonQueryFailedException.cs" />
     <Compile Include="Amazon\AmazonSigningEndpointBehavior.cs" />
     <Compile Include="Amazon\AmazonSigningMessageInspector.cs" />
+    <Compile Include="Api\Controllers\BooksApiController.cs" />
+    <Compile Include="Api\Models\BookFullDetailsApiModel.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Google\GoogleVolume.cs" />
     <Compile Include="HandleErrorAndLogWithElmahAttribute.cs" />
-    <Compile Include="Models\BookDetails.cs" />
+    <Compile Include="Api\Models\BookStaticInfo.cs" />
     <Compile Include="Services\BookTitleComparer.cs" />
     <Compile Include="Google\GoogleBookSearchService.cs" />
     <Compile Include="IBookSearchService.cs" />
