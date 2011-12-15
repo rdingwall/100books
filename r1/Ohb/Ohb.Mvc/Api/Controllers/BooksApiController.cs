@@ -14,16 +14,16 @@ namespace Ohb.Mvc.Api.Controllers
             this.searchService = searchService;
         }
 
-        public ActionResult GetBook(string googleVolumeId)
+        public ActionResult GetBook(string id)
         {
-            if (String.IsNullOrWhiteSpace(googleVolumeId))
+            if (String.IsNullOrWhiteSpace(id))
                 return new HttpStatusCodeResult(400, "Must provide book volume ID.");
 
-            var staticInfo = searchService.GetBook(googleVolumeId);
+            var staticInfo = searchService.GetBook(id);
             if (staticInfo == null)
                 return new HttpStatusCodeResult(404, "Book not found.");
 
-            return Json(new BookInfo {StaticInfo = staticInfo});
+            return Json(new BookInfo { StaticInfo = staticInfo }, JsonRequestBehavior.AllowGet);
         }
     }
 }

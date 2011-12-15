@@ -37,6 +37,9 @@ namespace Ohb.Mvc.Specs.Api.Controllers
 
             Because of = () => result = (JsonResult)controller.GetBook(googleVolumeId);
 
+            It should_allow_get =
+                () => result.JsonRequestBehavior.ShouldEqual(JsonRequestBehavior.AllowGet);
+
             It should_return_the_book = 
                 () => result.Data.ShouldBe(typeof(BookInfo));
 
