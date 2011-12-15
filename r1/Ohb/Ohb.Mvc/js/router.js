@@ -17,13 +17,14 @@ define([
         AppRouter = Backbone.Router.extend({
 
             routes: {
-                "search/:q": "search"
+                "book/:id/:dummy": "openBook"
             },
 
             initialize: function () {
                 log.info("initializing router...");
                 eventBus.bind('searchRequested', this.search);
                 eventBus.bind('searchFailed', this.onSearchFailed);
+                eventBus.bind('searchResultSelected', this.onSearchResultSelected);
             },
 
             search: function (q) {
@@ -69,12 +70,18 @@ define([
             onSearchFailed: function () {
                 log.info('showing search failed modal...');
                 $("#search-failed-modal").modal({ keyboard: true, show: true });
+            },
+
+            onSearchResultSelected: function (searchResult) {
+                log.info('navigating to show book ' + searchResult.id);
+
+                // this = that. Bit of a hack.
+                AppRouter.getInstance().navigate("books/" + searchResult.id);
             }
         });
 
     AppRouter.getInstance = function () {
-        // summary:
-        //      Gets an instance of the singleton. It is better to use
+        // singleton
         if (instance === null) {
             instance = new AppRouter();
         }

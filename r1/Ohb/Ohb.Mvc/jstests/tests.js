@@ -325,5 +325,16 @@ require([
 
             el.trigger('click');
         });
+
+        module("when a searchResultSelected event is raised");
+
+        test("It should raise a search result selected event", 1, function () {
+            eventBus.reset();
+            router.initialize();
+            var model = new SearchResult({ id: "foo" });
+            eventBus.trigger('searchResultSelected', model);
+
+            equal(window.location.hash, '#books/foo');
+        });
     });
 });

@@ -22,19 +22,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="apitests.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jstests/apitests.js">
+      <file leaf-file-name="tests.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/jstests/tests.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="336" column="42" selection-start="11158" selection-end="11158" vertical-scroll-proportion="0.8425481">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tests.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jstests/tests.js">
+      <file leaf-file-name="router.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="314" column="26" selection-start="10363" selection-end="10363" vertical-scroll-proportion="0.0">
+            <state line="83" column="20" selection-start="3128" selection-end="3128" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -62,10 +86,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="searchResultView.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="searchResultView.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/views/searchResult/searchResultView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="10" selection-start="500" selection-end="500" vertical-scroll-proportion="0.51715976">
+            <state line="28" column="31" selection-start="563" selection-end="563" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -118,7 +142,6 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/js/views/menuBar/menubarView.js" />
-        <option value="$PROJECT_DIR$/js/router.js" />
         <option value="$PROJECT_DIR$/jstests/googletests.js" />
         <option value="$PROJECT_DIR$/jstests/index.html" />
         <option value="$PROJECT_DIR$/jstests/googletests.html" />
@@ -131,8 +154,9 @@
         <option value="$PROJECT_DIR$/Views/Home/Index.cshtml" />
         <option value="$PROJECT_DIR$/jstests/apitests.html" />
         <option value="$PROJECT_DIR$/jstests/apitests.js" />
-        <option value="$PROJECT_DIR$/jstests/tests.js" />
         <option value="$PROJECT_DIR$/js/views/searchResult/searchResultView.js" />
+        <option value="$PROJECT_DIR$/js/router.js" />
+        <option value="$PROJECT_DIR$/jstests/tests.js" />
       </list>
     </option>
   </component>
@@ -649,33 +673,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/eventbus.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="17" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Views/Shared/_LoggedInMenuPartial.cshtml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -752,9 +749,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jstests/tests.js">
+    <entry file="file://$PROJECT_DIR$/js/views/searchResult/searchResultView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="314" column="26" selection-start="10363" selection-end="10363" vertical-scroll-proportion="0.0">
+        <state line="28" column="31" selection-start="563" selection-end="563" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -770,9 +776,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/views/searchResult/searchResultView.js">
+    <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="10" selection-start="500" selection-end="500" vertical-scroll-proportion="0.51715976">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="20" selection-start="3128" selection-end="3128" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jstests/tests.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="336" column="42" selection-start="11158" selection-end="11158" vertical-scroll-proportion="0.8425481">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
