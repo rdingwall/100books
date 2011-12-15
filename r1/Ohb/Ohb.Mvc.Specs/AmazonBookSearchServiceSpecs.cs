@@ -9,6 +9,7 @@ namespace Ohb.Mvc.Specs
     [Subject(typeof(AmazonBookSearchService))]
     public class AmazonBookSearchServiceSpecs
     {
+        [Ignore("Not using amazon atm")]
         public class when_searching_for_books
         {
             Establish context = () => service = new AmazonBookSearchService(
