@@ -15,3 +15,4 @@ _ReSharper.*/*
 _ReSharper.Ohb
 _*
 *.exe
+.idea
