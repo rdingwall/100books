@@ -82,7 +82,7 @@ require([
         });
 
         asyncTest("It should handle books without thumbnails", 3, function () {
-            assertBookMapping('_XDFAAAACAAJ', "Design Patterns: Elements of Reusable Object-Oriented Software with Applying Uml and Patterns:An Introduction to Object-Oriented Analysis and Design and the Unified Process", "Gamma, Larman", null);
+            assertBookMapping('DAAAAAAACAAJ', "Harry Potter: 5 Years of Magic, Adventure, and Mystery at Hogwarts", "J. K. Rowling", null);
 
             setTimeout(start, 1000);
         });
