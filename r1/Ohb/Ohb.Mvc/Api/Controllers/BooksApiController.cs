@@ -17,11 +17,11 @@ namespace Ohb.Mvc.Api.Controllers
         public ActionResult GetBook(string id)
         {
             if (String.IsNullOrWhiteSpace(id))
-                return new HttpStatusCodeResult(400, "Must provide book volume ID.");
+                return new HttpStatusCodeResult(400, "Missing parameter: Google Book Volume ID");
 
             var staticInfo = searchService.GetBook(id);
             if (staticInfo == null)
-                return new HttpStatusCodeResult(404, "Book not found.");
+                return new HttpNotFoundResult("Book not found (bad Google Book Volume ID?)");
 
             return Json(new BookInfo { StaticInfo = staticInfo }, JsonRequestBehavior.AllowGet);
         }

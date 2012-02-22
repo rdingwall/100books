@@ -34,6 +34,10 @@ namespace Ohb.Mvc
                             "api/books/{id}", // URL with parameters
                             new { controller = "BooksApi", action = "GetBook" });
 
+            routes.MapRoute("BooksApi2",
+                            "api/books", // URL with parameters
+                            new { controller = "BooksApi", action = "GetBook" });
+
             routes.MapRoute("Books",
                             "Books/{id}", // URL with parameters
                             new { controller = "Books", action = "Get" });

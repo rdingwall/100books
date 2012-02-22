@@ -56,8 +56,23 @@ namespace Ohb.Mvc.Google
 
             using (var client = new WebClient { Encoding = Encoding.UTF8 })
             {
-                var json = client.DownloadString(String.Format("https://www.googleapis.com/books/v1/volumes/{0}", id));
+                string json = null;
+                try
+                {
+                    json = client.DownloadString(String.Format("https://www.googleapis.com/books/v1/volumes/{0}", id));
 
+                }
+                catch (WebException e)
+                {
+                    if (!(e.Response is HttpWebResponse))
+                        throw;
+
+                    var response = e.Response as HttpWebResponse;
+
+                    if (response.StatusCode == HttpStatusCode.NotFound)
+                        return null;
+                }
+                
                 var volume = JsonConvert.DeserializeObject<GoogleVolume>(json);
 
                 return new BookStaticInfo
