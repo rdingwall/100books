@@ -5,7 +5,7 @@ using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Google;
 using Ohb.Mvc.Models;
 
-namespace Ohb.Mvc.Specs
+namespace Ohb.Mvc.Specs.IntegrationTests
 {
     [Subject(typeof(GoogleBookSearchService))]
     public class GoogleBookSearchServiceSpecs

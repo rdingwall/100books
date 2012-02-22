@@ -4,7 +4,7 @@ using Machine.Specifications;
 using Ohb.Mvc.Amazon;
 using Ohb.Mvc.Models;
 
-namespace Ohb.Mvc.Specs
+namespace Ohb.Mvc.Specs.IntegrationTests
 {
     [Subject(typeof(AmazonBookSearchService))]
     public class AmazonBookSearchServiceSpecs
