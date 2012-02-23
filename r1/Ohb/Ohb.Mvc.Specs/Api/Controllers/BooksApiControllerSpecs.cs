@@ -36,7 +36,7 @@ namespace Ohb.Mvc.Specs.Api.Controllers
             Establish context =
                 () => searchService.Stub(s => s.GetVolume(googleVolumeId)).Return(bookStaticInfo);
 
-            Because of = () => result = (JsonResult)controller.GetBook(googleVolumeId);
+            Because of = () => result = (JsonResult)controller.Get(googleVolumeId);
 
             It should_allow_get =
                 () => result.JsonRequestBehavior.ShouldEqual(JsonRequestBehavior.AllowGet);
@@ -53,7 +53,7 @@ namespace Ohb.Mvc.Specs.Api.Controllers
 
         public class when_the_book_doesnt_exist : scenario
         {
-            Because of = () => result = (HttpStatusCodeResult)controller.GetBook("non-existent-id");
+            Because of = () => result = (HttpStatusCodeResult)controller.Get("non-existent-id");
 
             It should_return_404 = () => result.StatusCode.ShouldEqual(404);
 
@@ -62,7 +62,7 @@ namespace Ohb.Mvc.Specs.Api.Controllers
 
         public class when_no_book_id_is_provided : scenario
         {
-            Because of = () => result = (HttpStatusCodeResult)controller.GetBook("");
+            Because of = () => result = (HttpStatusCodeResult)controller.Get("");
 
             It should_return_400 = () => result.StatusCode.ShouldEqual(400);
 

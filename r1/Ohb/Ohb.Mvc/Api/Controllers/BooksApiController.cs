@@ -9,13 +9,19 @@ namespace Ohb.Mvc.Api.Controllers
     {
         readonly IGoogleBooksClient searchService;
 
+        protected override IActionInvoker CreateActionInvoker()
+        {
+            return new MethodNotAllowedActionInvoker();
+        }
+
         public BooksApiController(IGoogleBooksClient searchService)
         {
             if (searchService == null) throw new ArgumentNullException("searchService");
             this.searchService = searchService;
         }
 
-        public ActionResult GetBook(string id)
+        [HttpGet]
+        public ActionResult Get(string id)
         {
             if (String.IsNullOrWhiteSpace(id))
                 return new HttpStatusCodeResult(400, "Missing parameter: Google Book Volume ID");

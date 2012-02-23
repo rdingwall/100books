@@ -94,5 +94,38 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             static RestRequest request;
             static RestResponse<dynamic> response;
         }
+
+        public class when_an_http_post_is_sent
+        {
+            Because of =
+                () => statusCode = RestHelper.GetStatusCode("books/4YydO00I9JYC", Method.POST);
+
+            It should_return_http_405_method_not_allowed =
+                () => statusCode.ShouldEqual(HttpStatusCode.MethodNotAllowed);
+
+            static HttpStatusCode statusCode;
+        }
+
+        public class when_an_http_put_is_sent
+        {
+            Because of =
+                () => statusCode = RestHelper.GetStatusCode("books/4YydO00I9JYC", Method.PUT);
+
+            It should_return_http_405_method_not_allowed =
+                () => statusCode.ShouldEqual(HttpStatusCode.MethodNotAllowed);
+
+            static HttpStatusCode statusCode;
+        }
+
+        public class when_an_http_delete_is_sent
+        {
+            Because of =
+                () => statusCode = RestHelper.GetStatusCode("books/4YydO00I9JYC", Method.DELETE);
+
+            It should_return_http_405_method_not_allowed =
+                () => statusCode.ShouldEqual(HttpStatusCode.MethodNotAllowed);
+
+            static HttpStatusCode statusCode;
+        }
     }
 }

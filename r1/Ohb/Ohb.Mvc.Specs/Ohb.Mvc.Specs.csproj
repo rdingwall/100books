@@ -74,6 +74,7 @@
     <Compile Include="IntegrationTests\GoogleBookSearchServiceSpecs.cs" />
     <Compile Include="IntegrationTests\Http\BooksHttpApiSpecs.cs" />
     <Compile Include="IntegrationTests\Http\DynamicJsonDeserializer.cs" />
+    <Compile Include="IntegrationTests\Http\RestHelper.cs" />
     <Compile Include="IntegrationTests\WindsorRegistrationSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
