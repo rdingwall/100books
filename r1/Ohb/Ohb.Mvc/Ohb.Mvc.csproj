@@ -113,7 +113,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Controllers\ApiControllerBase.cs" />
     <Compile Include="Api\Controllers\BooksApiController.cs" />
+    <Compile Include="Api\Controllers\PreviousReadsApiController.cs" />
     <Compile Include="MethodNotAllowedActionInvoker.cs" />
     <Compile Include="Api\Models\BookFullDetailsApiModel.cs" />
     <Compile Include="Controllers\BooksController.cs" />
@@ -311,7 +313,9 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\Amazon\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Storage\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

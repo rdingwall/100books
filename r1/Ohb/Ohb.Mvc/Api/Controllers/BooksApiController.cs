@@ -5,14 +5,9 @@ using Ohb.Mvc.Google;
 
 namespace Ohb.Mvc.Api.Controllers
 {
-    public class BooksApiController : Controller
+    public class BooksApiController : ApiControllerBase
     {
         readonly IGoogleBooksClient searchService;
-
-        protected override IActionInvoker CreateActionInvoker()
-        {
-            return new MethodNotAllowedActionInvoker();
-        }
 
         public BooksApiController(IGoogleBooksClient searchService)
         {
