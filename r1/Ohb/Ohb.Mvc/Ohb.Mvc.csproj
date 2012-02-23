@@ -113,11 +113,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Amazon\AmazonHeader.cs" />
-    <Compile Include="Amazon\AmazonBookSearchService.cs" />
-    <Compile Include="Amazon\AmazonQueryFailedException.cs" />
-    <Compile Include="Amazon\AmazonSigningEndpointBehavior.cs" />
-    <Compile Include="Amazon\AmazonSigningMessageInspector.cs" />
     <Compile Include="Api\Controllers\BooksApiController.cs" />
     <Compile Include="Api\Models\BookFullDetailsApiModel.cs" />
     <Compile Include="Controllers\BooksController.cs" />

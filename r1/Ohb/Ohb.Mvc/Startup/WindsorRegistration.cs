@@ -28,12 +28,6 @@ namespace Ohb.Mvc.Startup
                                    .DependsOn(new
                                    {
                                        apiKey = "AIzaSyDQsH0G4o3l9FjHUocTO_edha6Pv8N3NXo"
-                                   }),
-                               Component.For<IBookSearchService>().Named("AmazonBookSearchService").ImplementedBy<AmazonBookSearchService>()
-                                   .DependsOn(new
-                                   {
-                                       accessKeyId = "AKIAJ3XQI6KPX6JBP7SA",
-                                       secretKey = "Rowkj/jkta9LOer/c6PIinMEfYe/Rt8p5SfAY/jQ"
                                    }));
 
             // Depends on HttpContext.Current. In tests we will inject a fake one.
