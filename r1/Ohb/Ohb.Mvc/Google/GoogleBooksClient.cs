@@ -14,11 +14,11 @@ using Ohb.Mvc.Services;
 
 namespace Ohb.Mvc.Google
 {
-    public class GoogleBookSearchService : IBookSearchService
+    public class GoogleBooksClient : IGoogleBooksClient
     {
         readonly string apiKey;
 
-        public GoogleBookSearchService(string apiKey)
+        public GoogleBooksClient(string apiKey)
         {
             if (apiKey == null) throw new ArgumentNullException("apiKey");
             this.apiKey = apiKey;
@@ -50,7 +50,7 @@ namespace Ohb.Mvc.Google
                 null);
         }
 
-        public BookStaticInfo GetBook(string id)
+        public BookStaticInfo GetVolume(string id)
         {
             if (id == null) throw new ArgumentNullException("id");
 

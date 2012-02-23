@@ -7,13 +7,13 @@ using Ohb.Mvc.Models;
 
 namespace Ohb.Mvc.Specs.IntegrationTests
 {
-    [Subject(typeof(GoogleBookSearchService))]
+    [Subject(typeof(GoogleBooksClient))]
     public class GoogleBookSearchServiceSpecs
     {
         public class when_searching_for_books
         {
             Establish context = 
-                () => service = new GoogleBookSearchService(apiKey: "AIzaSyAwesvnG7yP5wCqiNv21l8g7mo-ehkcVJs");
+                () => service = new GoogleBooksClient(apiKey: "AIzaSyAwesvnG7yP5wCqiNv21l8g7mo-ehkcVJs");
 
             Because of = () => results = service.Search("girl with the dragon tattoo").Result.ToList();
 
@@ -34,15 +34,15 @@ namespace Ohb.Mvc.Specs.IntegrationTests
                 .ShouldEqual("http://bks3.books.google.co.uk/books?id=VgAg70looxkC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api");
 
             static IEnumerable<BookSearchResult> results;
-            static IBookSearchService service;
+            static IGoogleBooksClient service;
         }
 
         public class when_looking_up_a_book_by_id
         {
             Establish context =
-                () => service = new GoogleBookSearchService(apiKey: "AIzaSyAwesvnG7yP5wCqiNv21l8g7mo-ehkcVJs");
+                () => service = new GoogleBooksClient(apiKey: "AIzaSyAwesvnG7yP5wCqiNv21l8g7mo-ehkcVJs");
 
-            Because of = () => book = service.GetBook("4YydO00I9JYC");
+            Because of = () => book = service.GetVolume("4YydO00I9JYC");
 
             It should_return_some_results = () => book.ShouldNotBeNull();
 
@@ -55,7 +55,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests
             It should_get_the_books_thumbnail_url = () => book.ThumbnailUrl.ShouldEqual("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=1&source=gbs_api");
             It should_get_the_books_small_thumbnail_url = () => book.SmallThumbnailUrl.ShouldEqual("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=5&source=gbs_api");
 
-            static IBookSearchService service;
+            static IGoogleBooksClient service;
             static BookStaticInfo book;
         }
     }

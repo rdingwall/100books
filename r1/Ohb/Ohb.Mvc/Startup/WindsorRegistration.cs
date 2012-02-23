@@ -24,7 +24,7 @@ namespace Ohb.Mvc.Startup
             container.Register(Component.For<IUserFactory>().ImplementedBy<UserFactory>(),
                                Component.For<IUserRepository>().ImplementedBy<UserRepository>(),
                                Component.For<IUserContextFactory>().ImplementedBy<UserContextFactory>(),
-                               Component.For<IBookSearchService>().ImplementedBy<GoogleBookSearchService>()
+                               Component.For<IGoogleBooksClient>().ImplementedBy<GoogleBooksClient>()
                                    .DependsOn(new
                                    {
                                        apiKey = "AIzaSyDQsH0G4o3l9FjHUocTO_edha6Pv8N3NXo"

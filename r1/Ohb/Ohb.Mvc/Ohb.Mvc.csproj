@@ -118,11 +118,11 @@
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Google\GoogleVolume.cs" />
+    <Compile Include="Google\IGoogleBooksClient.cs" />
     <Compile Include="HandleErrorAndLogWithElmahAttribute.cs" />
     <Compile Include="Api\Models\BookStaticInfo.cs" />
     <Compile Include="Services\BookTitleComparer.cs" />
-    <Compile Include="Google\GoogleBookSearchService.cs" />
-    <Compile Include="IBookSearchService.cs" />
+    <Compile Include="Google\GoogleBooksClient.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />

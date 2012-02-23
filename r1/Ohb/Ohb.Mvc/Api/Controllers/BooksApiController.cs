@@ -1,14 +1,15 @@
 using System;
 using System.Web.Mvc;
 using Ohb.Mvc.Api.Models;
+using Ohb.Mvc.Google;
 
 namespace Ohb.Mvc.Api.Controllers
 {
     public class BooksApiController : Controller
     {
-        readonly IBookSearchService searchService;
+        readonly IGoogleBooksClient searchService;
 
-        public BooksApiController(IBookSearchService searchService)
+        public BooksApiController(IGoogleBooksClient searchService)
         {
             if (searchService == null) throw new ArgumentNullException("searchService");
             this.searchService = searchService;
@@ -19,7 +20,7 @@ namespace Ohb.Mvc.Api.Controllers
             if (String.IsNullOrWhiteSpace(id))
                 return new HttpStatusCodeResult(400, "Missing parameter: Google Book Volume ID");
 
-            var staticInfo = searchService.GetBook(id);
+            var staticInfo = searchService.GetVolume(id);
             if (staticInfo == null)
                 return new HttpNotFoundResult("Book not found (bad Google Book Volume ID?)");
 

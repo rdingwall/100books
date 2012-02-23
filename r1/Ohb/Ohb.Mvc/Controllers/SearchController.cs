@@ -1,14 +1,15 @@
 using System;
 using System.Web.Mvc;
+using Ohb.Mvc.Google;
 using Ohb.Mvc.Models;
 
 namespace Ohb.Mvc.Controllers
 {
     public class SearchController : Controller
     {
-        readonly IBookSearchService searchService;
+        readonly IGoogleBooksClient searchService;
 
-        public SearchController(IBookSearchService searchService)
+        public SearchController(IGoogleBooksClient searchService)
         {
             if (searchService == null) throw new ArgumentNullException("searchService");
             this.searchService = searchService;

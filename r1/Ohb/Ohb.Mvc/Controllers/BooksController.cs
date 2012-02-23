@@ -1,13 +1,14 @@
 using System;
 using System.Web.Mvc;
+using Ohb.Mvc.Google;
 
 namespace Ohb.Mvc.Controllers
 {
     public class BooksController : Controller
     {
-        readonly IBookSearchService books;
+        readonly IGoogleBooksClient books;
 
-        public BooksController(IBookSearchService books)
+        public BooksController(IGoogleBooksClient books)
         {
             if (books == null) throw new ArgumentNullException("books");
             this.books = books;
@@ -15,7 +16,7 @@ namespace Ohb.Mvc.Controllers
 
         public ActionResult Get(string id)
         {
-            var book = books.GetBook(id);
+            var book = books.GetVolume(id);
             return View(book);
         }
     }

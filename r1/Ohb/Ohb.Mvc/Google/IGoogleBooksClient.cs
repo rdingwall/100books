@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Models;
 
-namespace Ohb.Mvc
+namespace Ohb.Mvc.Google
 {
-    public interface IBookSearchService
+    public interface IGoogleBooksClient
     {
         Task<IEnumerable<BookSearchResult>> Search(string terms);
-        BookStaticInfo GetBook(string id);
+        BookStaticInfo GetVolume(string id);
     }
 }
