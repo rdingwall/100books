@@ -20,6 +20,7 @@ namespace Ohb.Mvc
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new OhbHandleErrorAttribute());
+            filters.Add(new RavenDbAttribute());
         }
 
         public void RegisterRoutes(RouteCollection routes)

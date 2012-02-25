@@ -1,18 +1,20 @@
 using System;
 using System.Web.Mvc;
 using Ohb.Mvc.Api.Models;
-using Ohb.Mvc.Google;
+using Ohb.Mvc.Storage;
+using Raven.Client;
 
 namespace Ohb.Mvc.Api.Controllers
 {
     public class BooksApiController : ApiControllerBase
     {
-        readonly IGoogleBooksClient searchService;
+        readonly IBookImporter importer;
 
-        public BooksApiController(IGoogleBooksClient searchService)
+        public BooksApiController(IBookImporter importer, IDocumentSession documentSession) : 
+            base(documentSession)
         {
-            if (searchService == null) throw new ArgumentNullException("searchService");
-            this.searchService = searchService;
+            if (importer == null) throw new ArgumentNullException("importer");
+            this.importer = importer;
         }
 
         [HttpGet]
@@ -21,7 +23,7 @@ namespace Ohb.Mvc.Api.Controllers
             if (String.IsNullOrWhiteSpace(id))
                 return new HttpStatusCodeResult(400, "Missing parameter: Google Book Volume ID");
 
-            var staticInfo = searchService.GetVolume(id);
+            var staticInfo = importer.GetBook(DocumentSession, id);
             if (staticInfo == null)
                 return new HttpNotFoundResult("Book not found (bad Google Book Volume ID?)");
 

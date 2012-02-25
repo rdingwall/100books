@@ -31,6 +31,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests
 
                         controllers = typeof (BooksApiController).Assembly.GetTypes()
                             .Where(t => typeof (Controller).IsAssignableFrom(t))
+                            .Where(t => !t.IsAbstract)
                             .Except(new[] {typeof(ElmahController)});
                     };
 

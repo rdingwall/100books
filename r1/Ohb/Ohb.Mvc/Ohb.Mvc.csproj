@@ -132,8 +132,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\ApiInstaller.cs" />
     <Compile Include="Api\Controllers\ApiControllerBase.cs" />
     <Compile Include="Api\Controllers\BooksApiController.cs" />
+    <Compile Include="Api\Controllers\OhbControllerBase.cs" />
     <Compile Include="Api\Controllers\PreviousReadsApiController.cs" />
     <Compile Include="MethodNotAllowedActionInvoker.cs" />
     <Compile Include="Api\Models\BookFullDetailsApiModel.cs" />
@@ -141,8 +143,9 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Google\GoogleVolume.cs" />
     <Compile Include="Google\IGoogleBooksClient.cs" />
-    <Compile Include="HandleErrorAndLogWithElmahAttribute.cs" />
+    <Compile Include="OhbHandleErrorAttribute.cs" />
     <Compile Include="Api\Models\BookStaticInfo.cs" />
+    <Compile Include="RavenDbAttribute.cs" />
     <Compile Include="Services\BookTitleComparer.cs" />
     <Compile Include="Google\GoogleBooksClient.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />

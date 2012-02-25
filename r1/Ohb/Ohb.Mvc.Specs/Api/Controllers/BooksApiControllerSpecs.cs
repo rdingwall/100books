@@ -2,7 +2,8 @@ using System.Web.Mvc;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Controllers;
 using Ohb.Mvc.Api.Models;
-using Ohb.Mvc.Google;
+using Ohb.Mvc.Storage;
+using Raven.Client;
 using Rhino.Mocks;
 
 namespace Ohb.Mvc.Specs.Api.Controllers
@@ -17,16 +18,18 @@ namespace Ohb.Mvc.Specs.Api.Controllers
                 {
                     googleVolumeId = "test";
 
-                    searchService = MockRepository.GenerateStub<IGoogleBooksClient>();
+                    importer = MockRepository.GenerateStub<IBookImporter>();
+                    documentSession = MockRepository.GenerateStub<IDocumentSession>();
                     bookStaticInfo = new BookStaticInfo();
 
-                    controller = new BooksApiController(searchService);
+                    controller = new BooksApiController(importer, documentSession);
                 };
 
             protected static BooksApiController controller;
             protected static string googleVolumeId;
-            protected static IGoogleBooksClient searchService;
+            protected static IBookImporter importer;
             protected static BookStaticInfo bookStaticInfo;
+            protected static IDocumentSession documentSession;
         }
 
         public class when_getting_a_book : scenario
@@ -34,7 +37,7 @@ namespace Ohb.Mvc.Specs.Api.Controllers
             static JsonResult result;
 
             Establish context =
-                () => searchService.Stub(s => s.GetVolume(googleVolumeId)).Return(bookStaticInfo);
+                () => importer.Stub(s => s.GetBook(documentSession, googleVolumeId)).Return(bookStaticInfo);
 
             Because of = () => result = (JsonResult)controller.Get(googleVolumeId);
 

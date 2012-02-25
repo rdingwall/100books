@@ -31,10 +31,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                 () =>
                 {
                     using (var session = TestRavenDb.OpenSession())
-                    {
                         book = importer.GetBook(session, "4YydO00I9JYC");
-                        session.SaveChanges();
-                    }
                 };
 
             It should_return_the_existing_book =
@@ -57,10 +54,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                 () =>
                     {
                         using (var session = TestRavenDb.OpenSession())
-                        {
                             book = importer.GetBook(session, "4YydO00I9JYC");
-                            session.SaveChanges();
-                        }
                     };
 
             It should_return_the_book_from_google = 

@@ -1,11 +1,15 @@
 using Bootstrap.Windsor;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using Ohb.Mvc.Amazon;
+using Ohb.Mvc.Api;
 using Ohb.Mvc.Api.Controllers;
 using Ohb.Mvc.Controllers;
 using Ohb.Mvc.Google;
 using Ohb.Mvc.Services;
+using Ohb.Mvc.Storage;
+using Raven.Client;
+using Raven.Client.Document;
+using Raven.Client.Extensions;
 
 namespace Ohb.Mvc.Startup
 {
@@ -18,17 +22,18 @@ namespace Ohb.Mvc.Startup
                 Component.For<AccountController>().LifeStyle.Transient,
                 Component.For<ProfileController>().LifeStyle.Transient,
                 Component.For<SearchController>().LifeStyle.Transient,
-                Component.For<BooksController>().LifeStyle.Transient,
-                Component.For<BooksApiController>().LifeStyle.Transient);
+                Component.For<BooksController>().LifeStyle.Transient);
 
             container.Register(Component.For<IUserFactory>().ImplementedBy<UserFactory>(),
                                Component.For<IUserRepository>().ImplementedBy<UserRepository>(),
                                Component.For<IUserContextFactory>().ImplementedBy<UserContextFactory>(),
+                               Component.For<IBookImporter>().ImplementedBy<BookImporter>(),
                                Component.For<IGoogleBooksClient>().ImplementedBy<GoogleBooksClient>()
                                    .DependsOn(new
-                                   {
-                                       apiKey = "AIzaSyDQsH0G4o3l9FjHUocTO_edha6Pv8N3NXo"
-                                   }));
+                                                  {
+                                                      apiKey = "AIzaSyDQsH0G4o3l9FjHUocTO_edha6Pv8N3NXo"
+                                                  }),
+                               Component.For<IDocumentStore>().UsingFactoryMethod(GetDocumentStore));
 
             // Depends on HttpContext.Current. In tests we will inject a fake one.
             if (!container.Kernel.HasComponent(typeof(IUserContext)))
@@ -38,6 +43,20 @@ namespace Ohb.Mvc.Startup
                         .UsingFactoryMethod(k => k.Resolve<IUserContextFactory>().GetCurrentContext())
                         .LifeStyle.PerWebRequestIfPossible());
             }
+
+            container.Register(
+                Component.For<IDocumentSession>()
+                    .UsingFactoryMethod(k => k.Resolve<IDocumentStore>().OpenSession())
+                    .LifeStyle.PerWebRequestIfPossible());
+
+            container.Install(new ApiInstaller());
+        }
+
+        static DocumentStore GetDocumentStore()
+        {
+            var store = new DocumentStore {ConnectionStringName = "RavenDB"};
+            store.Initialize();
+            return store;
         }
     }
 }

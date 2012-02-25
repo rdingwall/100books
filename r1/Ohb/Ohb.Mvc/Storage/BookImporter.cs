@@ -12,9 +12,9 @@ namespace Ohb.Mvc.Storage
 
     public class BookImporter : IBookImporter
     {
-        readonly GoogleBooksClient googleBooksClient;
+        readonly IGoogleBooksClient googleBooksClient;
 
-        public BookImporter(GoogleBooksClient googleBooksClient)
+        public BookImporter(IGoogleBooksClient googleBooksClient)
         {
             if (googleBooksClient == null) throw new ArgumentNullException("googleBooksClient");
             this.googleBooksClient = googleBooksClient;
@@ -40,6 +40,8 @@ namespace Ohb.Mvc.Storage
                            };
 
             session.Store(book);
+            session.SaveChanges();
+
             return staticInfo;
         }
     }
