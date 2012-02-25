@@ -6,6 +6,7 @@ using RestSharp.Deserializers;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.Http
 {
+    [Subject("api/previousreads")]
     class PreviousReadsHttpApiSpecs
     {
         public class when_marking_a_book_as_previously_read

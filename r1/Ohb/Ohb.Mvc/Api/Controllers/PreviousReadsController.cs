@@ -1,15 +1,10 @@
 ﻿using System.Web.Mvc;
 using Ohb.Mvc.Api.Models;
-using Raven.Client;
 
 namespace Ohb.Mvc.Api.Controllers
 {
-    public class PreviousReadsApiController : ApiControllerBase
+    public class PreviousReadsController : OhbApiController
     {
-        public PreviousReadsApiController(IDocumentSession documentSession) : base(documentSession)
-        {
-        }
-
         [ActionName("previousreads"), HttpGet]
         public ActionResult Get()
         {

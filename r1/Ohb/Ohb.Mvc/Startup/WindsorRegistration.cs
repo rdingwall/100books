@@ -10,6 +10,7 @@ using Ohb.Mvc.Storage;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Extensions;
+using BooksController = Ohb.Mvc.Controllers.BooksController;
 
 namespace Ohb.Mvc.Startup
 {
@@ -43,11 +44,6 @@ namespace Ohb.Mvc.Startup
                         .UsingFactoryMethod(k => k.Resolve<IUserContextFactory>().GetCurrentContext())
                         .LifeStyle.PerWebRequestIfPossible());
             }
-
-            container.Register(
-                Component.For<IDocumentSession>()
-                    .UsingFactoryMethod(k => k.Resolve<IDocumentStore>().OpenSession())
-                    .LifeStyle.PerWebRequestIfPossible());
 
             container.Install(new ApiInstaller());
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Http;
 using System.Web.Mvc;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
@@ -16,26 +17,37 @@ namespace Ohb.Mvc.Specs.IntegrationTests
     [Subject(typeof(WindsorRegistration))]
     public class WindsorRegistrationSpecs
     {
-        public class when_resolving_controllers
+        public abstract class scenario
+        {
+            Establish context =
+                () =>
+                {
+                    container = new WindsorContainer();
+
+                    // Fake one (doesn't depend on HttpContext.Current)
+                    container.Register(Component.For<IUserContext>().Instance(
+                        MockRepository.GenerateStub<IUserContext>()));
+
+                    new WindsorRegistration().Register(container);
+                };
+
+            Cleanup after = () => container.Dispose();
+
+            protected static WindsorContainer container;
+
+            protected static IEnumerable<Type> controllers;
+        }
+
+        public class when_resolving_controllers : scenario
         {
             Establish context =
                 () =>
                     {
-                        container = new WindsorContainer();
-                        
-                        // Fake one (doesn't depend on HttpContext.Current)
-                        container.Register(Component.For<IUserContext>().Instance(
-                            MockRepository.GenerateStub<IUserContext>()));
-
-                        new WindsorRegistration().Register(container);
-
-                        controllers = typeof (BooksApiController).Assembly.GetTypes()
+                        controllers = typeof (BooksController).Assembly.GetTypes()
                             .Where(t => typeof (Controller).IsAssignableFrom(t))
                             .Where(t => !t.IsAbstract)
                             .Except(new[] {typeof(ElmahController)});
                     };
-
-            Cleanup after = () => container.Dispose();
 
             It should_be_able_to_resolve_all_controllers =
                 () =>
@@ -43,9 +55,24 @@ namespace Ohb.Mvc.Specs.IntegrationTests
                         foreach (var controller in controllers)
                             container.Resolve(controller).ShouldNotBeNull();
                     };
+        }
 
-            static WindsorContainer container;
-            static IEnumerable<Type> controllers;
+        public class when_resolving_api_controllers : scenario
+        {
+            Establish context =
+                () =>
+                {
+                    controllers = typeof(BooksController).Assembly.GetTypes()
+                        .Where(t => typeof(ApiController).IsAssignableFrom(t))
+                        .Where(t => !t.IsAbstract);
+                };
+
+            It should_be_able_to_resolve_all_api_controllers =
+                () =>
+                {
+                    foreach (var controller in controllers)
+                        container.Resolve(controller).ShouldNotBeNull();
+                };
         }
     }
 }

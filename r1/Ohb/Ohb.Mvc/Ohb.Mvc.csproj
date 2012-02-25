@@ -107,8 +107,29 @@
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Json">
+      <HintPath>..\packages\System.Json.4.0.20126.16343\lib\net40\System.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\System.Net.Http.Formatting.4.0.20126.16343\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\AspNetWebApi.Core.4.0.20126.16343\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Common">
+      <HintPath>..\packages\System.Web.Http.Common.4.0.20126.16343\lib\net40\System.Web.Http.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\AspNetWebApi.4.0.20126.16343\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -133,11 +154,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ApiInstaller.cs" />
-    <Compile Include="Api\Controllers\ApiControllerBase.cs" />
-    <Compile Include="Api\Controllers\BooksApiController.cs" />
-    <Compile Include="Api\Controllers\OhbControllerBase.cs" />
-    <Compile Include="Api\Controllers\PreviousReadsApiController.cs" />
+    <Compile Include="Api\Controllers\BooksController.cs" />
+    <Compile Include="Api\Controllers\OhbApiController.cs" />
+    <Compile Include="Api\Controllers\PreviousReadsController.cs" />
     <Compile Include="Api\Models\VolumeIdModel.cs" />
+    <Compile Include="HttpRequestMessageExtensions.cs" />
     <Compile Include="MethodNotAllowedActionInvoker.cs" />
     <Compile Include="Api\Models\BookFullDetailsApiModel.cs" />
     <Compile Include="Controllers\BooksController.cs" />
@@ -146,7 +167,7 @@
     <Compile Include="Google\IGoogleBooksClient.cs" />
     <Compile Include="OhbHandleErrorAttribute.cs" />
     <Compile Include="Api\Models\BookStaticInfo.cs" />
-    <Compile Include="RavenDbAttribute.cs" />
+    <Compile Include="RavenDbHandler.cs" />
     <Compile Include="Services\BookTitleComparer.cs" />
     <Compile Include="Google\GoogleBooksClient.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
@@ -169,7 +190,7 @@
     <Compile Include="Services\UserFactory.cs" />
     <Compile Include="Services\UserRepository.cs" />
     <Compile Include="Startup\LoggedInHomeRoute.cs" />
-    <Compile Include="Startup\WindsorDependencyResolver.cs" />
+    <Compile Include="Startup\WindsorResolver.cs" />
     <Compile Include="Startup\WindsorExtensions.cs" />
     <Compile Include="Startup\WindsorRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />

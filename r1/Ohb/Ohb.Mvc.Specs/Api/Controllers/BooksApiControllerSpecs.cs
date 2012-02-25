@@ -1,4 +1,7 @@
-using System.Web.Mvc;
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Controllers;
 using Ohb.Mvc.Api.Models;
@@ -8,7 +11,7 @@ using Rhino.Mocks;
 
 namespace Ohb.Mvc.Specs.Api.Controllers
 {
-    [Subject(typeof(BooksApiController))]
+    [Subject(typeof(BooksController))]
     public class BooksApiControllerSpecs
     {
         public abstract class scenario
@@ -22,10 +25,14 @@ namespace Ohb.Mvc.Specs.Api.Controllers
                     documentSession = MockRepository.GenerateStub<IDocumentSession>();
                     bookStaticInfo = new BookStaticInfo();
 
-                    controller = new BooksApiController(importer, documentSession);
+                    controller = new BooksController(importer)
+                                     {
+                                         Request = TestHelper.RequestWith(documentSession)
+                                     };
+                    ;
                 };
 
-            protected static BooksApiController controller;
+            protected static BooksController controller;
             protected static string googleVolumeId;
             protected static IBookImporter importer;
             protected static BookStaticInfo bookStaticInfo;
@@ -34,42 +41,40 @@ namespace Ohb.Mvc.Specs.Api.Controllers
 
         public class when_getting_a_book : scenario
         {
-            static JsonResult result;
+            static BookInfo result;
 
             Establish context =
                 () => importer.Stub(s => s.GetBook(documentSession, googleVolumeId)).Return(bookStaticInfo);
 
-            Because of = () => result = (JsonResult)controller.Get(googleVolumeId);
-
-            It should_allow_get =
-                () => result.JsonRequestBehavior.ShouldEqual(JsonRequestBehavior.AllowGet);
-
-            It should_return_the_book = 
-                () => result.Data.ShouldBe(typeof(BookInfo));
+            Because of = () => result = controller.Get(googleVolumeId);
 
             It should_return_the_book_static_data = 
-                () => ((BookInfo) result.Data).StaticInfo.ShouldEqual(bookStaticInfo);
+                () => result.StaticInfo.ShouldEqual(bookStaticInfo);
 
             It should_be_unread =
-                () => ((BookInfo) result.Data).HasPreviouslyRead.ShouldBeFalse();
+                () => result.HasPreviouslyRead.ShouldBeFalse();
         }
 
         public class when_the_book_doesnt_exist : scenario
         {
-            Because of = () => result = (HttpStatusCodeResult)controller.Get("non-existent-id");
+            Because of = () => exception = Catch.Exception(() => controller.Get("non-existent-id"));
 
-            It should_return_404 = () => result.StatusCode.ShouldEqual(404);
+            It should_throw_an_http_exception = () => exception.ShouldBe(typeof(HttpResponseException));
 
-            static HttpStatusCodeResult result;
+            It should_return_404_not_found = () => ((HttpResponseException)exception).Response.StatusCode.ShouldEqual(HttpStatusCode.NotFound);
+
+            static Exception exception;
         }
 
         public class when_no_book_id_is_provided : scenario
         {
-            Because of = () => result = (HttpStatusCodeResult)controller.Get("");
+            Because of = () => exception = Catch.Exception(() => controller.Get(""));
 
-            It should_return_400 = () => result.StatusCode.ShouldEqual(400);
+            It should_throw_an_http_exception = () => exception.ShouldBe(typeof(HttpResponseException));
 
-            static HttpStatusCodeResult result;
+            It should_return_404_not_found = () => ((HttpResponseException)exception).Response.StatusCode.ShouldEqual(HttpStatusCode.BadRequest);
+
+            static Exception exception;
         }
     }
 }

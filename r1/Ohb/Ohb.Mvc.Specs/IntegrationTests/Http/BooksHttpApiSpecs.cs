@@ -5,6 +5,7 @@ using RestSharp.Deserializers;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.Http
 {
+    [Subject("api/books")]
     class BooksHttpApiSpecs
     {
         public class when_looking_up_a_book_by_id

@@ -11,8 +11,8 @@ namespace Ohb.Mvc.Api
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<BooksApiController>().LifeStyle.Transient,
-                Component.For<PreviousReadsApiController>().LifeStyle.Transient);
+                Component.For<BooksController>().LifeStyle.Transient,
+                Component.For<PreviousReadsController>().LifeStyle.Transient);
         }
     }
 }

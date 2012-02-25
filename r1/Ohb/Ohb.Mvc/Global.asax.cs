@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Bootstrap;
@@ -21,7 +22,6 @@ namespace Ohb.Mvc
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new OhbHandleErrorAttribute());
-            filters.Add(new RavenDbAttribute());
         }
 
         public void RegisterRoutes(RouteCollection routes)
@@ -51,21 +51,9 @@ namespace Ohb.Mvc
 
         static void RegisterApiRoutes(RouteCollection routes)
         {
-            routes.MapRoute("BooksApi",
-                            "api/books/{id}", // URL with parameters
-                            new { controller = "BooksApi", action = "Get" });
-
-            routes.MapRoute("BooksApi2",
-                            "api/books", // URL with parameters
-                            new { controller = "BooksApi", action = "Get" });
-
-            routes.MapRoute("PreviousReadsApi",
-                            "api/previousreads", // URL with parameters
-                            new { controller = "PreviousReadsApi" });
-
-            routes.MapRoute("PreviousReadsApi2",
-                            "api/previousreads", // URL with parameters
-                            new { controller = "PreviousReadsApi" });
+            routes.MapHttpRoute("DefaultApi",
+                                routeTemplate: "api/{controller}/{id}", // URL with parameters
+                                defaults: new {id = RouteParameter.Optional});
         }
 
         protected void Application_Start()
@@ -74,7 +62,11 @@ namespace Ohb.Mvc
             
             container = (IWindsorContainer)Bootstrapper.Container;
 
-            DependencyResolver.SetResolver(new WindsorDependencyResolver(container));
+            var resolver = new WindsorResolver(container);
+            GlobalConfiguration.Configuration.ServiceResolver.SetResolver(resolver);
+            GlobalConfiguration.Configuration.MessageHandlers.Add(new RavenDbHandler(container));
+
+            DependencyResolver.SetResolver(resolver);
 
             AreaRegistration.RegisterAllAreas();
 
