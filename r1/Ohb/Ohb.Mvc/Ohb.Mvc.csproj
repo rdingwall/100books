@@ -137,6 +137,7 @@
     <Compile Include="Api\Controllers\BooksApiController.cs" />
     <Compile Include="Api\Controllers\OhbControllerBase.cs" />
     <Compile Include="Api\Controllers\PreviousReadsApiController.cs" />
+    <Compile Include="Api\Models\VolumeIdModel.cs" />
     <Compile Include="MethodNotAllowedActionInvoker.cs" />
     <Compile Include="Api\Models\BookFullDetailsApiModel.cs" />
     <Compile Include="Controllers\BooksController.cs" />

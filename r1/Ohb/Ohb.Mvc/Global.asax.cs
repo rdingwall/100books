@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Bootstrap;
@@ -31,13 +32,7 @@ namespace Ohb.Mvc
                             "Search/{query}", // URL with parameters
                             new { controller = "Search", action = "Search" });
 
-            routes.MapRoute("BooksApi",
-                            "api/books/{id}", // URL with parameters
-                            new { controller = "BooksApi", action = "Get" });
-
-            routes.MapRoute("BooksApi2",
-                            "api/books", // URL with parameters
-                            new { controller = "BooksApi", action = "Get" });
+            RegisterApiRoutes(routes);
 
             routes.MapRoute("Books",
                             "Books/{id}", // URL with parameters
@@ -52,6 +47,25 @@ namespace Ohb.Mvc
                                new { controller = "Home", action = "Index", id = UrlParameter.Optional }),
                            new MvcRouteHandler(),
                            container.Resolve<IUserContextFactory>()));
+        }
+
+        static void RegisterApiRoutes(RouteCollection routes)
+        {
+            routes.MapRoute("BooksApi",
+                            "api/books/{id}", // URL with parameters
+                            new { controller = "BooksApi", action = "Get" });
+
+            routes.MapRoute("BooksApi2",
+                            "api/books", // URL with parameters
+                            new { controller = "BooksApi", action = "Get" });
+
+            routes.MapRoute("PreviousReadsApi",
+                            "api/previousreads", // URL with parameters
+                            new { controller = "PreviousReadsApi" });
+
+            routes.MapRoute("PreviousReadsApi2",
+                            "api/previousreads", // URL with parameters
+                            new { controller = "PreviousReadsApi" });
         }
 
         protected void Application_Start()
