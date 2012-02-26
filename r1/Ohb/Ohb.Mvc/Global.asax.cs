@@ -63,8 +63,12 @@ namespace Ohb.Mvc
             container = (IWindsorContainer)Bootstrapper.Container;
 
             var resolver = new WindsorResolver(container);
-            GlobalConfiguration.Configuration.ServiceResolver.SetResolver(resolver);
-            GlobalConfiguration.Configuration.MessageHandlers.Add(new RavenDbHandler(container));
+
+            // Web API
+            var config = GlobalConfiguration.Configuration;
+            config.ServiceResolver.SetResolver(resolver);
+            config.MessageHandlers.Add(new RavenDbHandler(container));
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
 
             DependencyResolver.SetResolver(resolver);
 
