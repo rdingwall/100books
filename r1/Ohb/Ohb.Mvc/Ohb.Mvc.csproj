@@ -202,6 +202,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\Book.cs" />
     <Compile Include="Storage\BookImporter.cs" />
+    <Compile Include="Storage\PreviousRead.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="css\less\ohb.less" />

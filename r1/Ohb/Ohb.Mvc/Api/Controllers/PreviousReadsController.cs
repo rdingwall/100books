@@ -1,20 +1,50 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web.Http;
+using System.Web.Mvc;
 using Ohb.Mvc.Api.Models;
+using Ohb.Mvc.Storage;
 
 namespace Ohb.Mvc.Api.Controllers
 {
     public class PreviousReadsController : OhbApiController
     {
-        [ActionName("previousreads"), HttpGet]
-        public ActionResult Get()
+        readonly IBookImporter importer;
+
+        public PreviousReadsController(IBookImporter importer)
         {
-            return new EmptyResult();
+            if (importer == null) throw new ArgumentNullException("importer");
+            this.importer = importer;
         }
 
-        [ActionName("previousreads"), HttpPost]
-        public ActionResult Post(VolumeIdModel model)
+        public IEnumerable<Book> Get()
         {
-            return new EmptyResult();
+            return Request.DocumentSession().Query<PreviousRead>().Select(r => r.Book);
+        }
+
+        public void Post(string id)
+        {
+            if (String.IsNullOrWhiteSpace(id))
+                throw new HttpResponseException("Missing parameter: Google Book Volume ID", HttpStatusCode.BadRequest);
+
+            var staticInfo = importer.GetBook(Request.DocumentSession(), id);
+            if (staticInfo == null)
+                throw new HttpResponseException("Book not found (bad Google Book Volume ID?)", HttpStatusCode.NotFound);
+
+            var associationId = "tmpUserId-" + id; // todo: userid+bookid hash
+
+            Request.DocumentSession().Store(new PreviousRead
+                                                {
+                                                    Book = new Book
+                                                               {
+                                                                   Id = id,
+                                                                   StaticInfo = staticInfo
+                                                               }
+                                                }, associationId);
+            Request.DocumentSession().SaveChanges();
+
         }
     }
 }
