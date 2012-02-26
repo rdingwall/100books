@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Ohb.Mvc.Google;
 using Raven.Client;
 
@@ -22,9 +23,10 @@ namespace Ohb.Mvc.Storage
         public Book GetBook(IDocumentSession session, string googleVolumeId)
         {
             if (session == null) throw new ArgumentNullException("session");
-            if (googleVolumeId == null) throw new ArgumentNullException("googleVolumeId");
+            if (String.IsNullOrWhiteSpace(googleVolumeId)) 
+                throw new ArgumentException("Missing/empty parameter.", "googleVolumeId");
 
-            var book = session.Load<Book>(googleVolumeId);
+            var book = session.Query<Book>().FirstOrDefault(b => b.GoogleVolumeId == googleVolumeId);
             return book ?? ImportBook(session, googleVolumeId);
         }
 
@@ -41,7 +43,7 @@ namespace Ohb.Mvc.Storage
                                StaticInfo = staticInfo
                            };
 
-            session.Store(book, googleVolumeId);
+            session.Store(book);
             session.SaveChanges();
 
             return book;

@@ -1,3 +1,4 @@
+using System.Linq;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Google;
@@ -17,10 +18,11 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                         {
                                             var book = new Book
                                                            {
+                                                               GoogleVolumeId = "4YydO00I9JYC",
                                                                StaticInfo = new BookStaticInfo {Title = "Dummy"}
                                                            };
 
-                                            session.Store(book, "4YydO00I9JYC");
+                                            session.Store(book);
                                             session.SaveChanges();
                                         }
 
@@ -65,7 +67,10 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                     {
                         using (var session = TestRavenDb.OpenSession())
                         {
-                            var book = session.Load<Book>("4YydO00I9JYC");
+                            var book = session.Query<Book>()
+                                .Customize(a => a.WaitForNonStaleResults())
+                                .FirstOrDefault(b => b.GoogleVolumeId == "4YydO00I9JYC");
+
                             book.ShouldNotBeNull();
                             book.StaticInfo.Title.ShouldEqual("The Google story");
                         }
@@ -99,7 +104,9 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                 {
                     using (var session = TestRavenDb.OpenSession())
                     {
-                        var book = session.Load<Book>("xxxxxxxxxxxxxxx");
+                        var book = session.Query<Book>()
+                            .Customize(a => a.WaitForNonStaleResults())
+                            .FirstOrDefault(b => b.GoogleVolumeId == "xxxxxxxxxxxxxxx");
                         book.ShouldBeNull();
                     }
                 };
