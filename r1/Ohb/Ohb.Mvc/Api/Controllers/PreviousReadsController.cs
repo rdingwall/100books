@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
-using System.Web.Mvc;
-using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage;
 
 namespace Ohb.Mvc.Api.Controllers
@@ -33,12 +31,7 @@ namespace Ohb.Mvc.Api.Controllers
             if (book == null)
                 throw new HttpResponseException("Book not found (bad Google Book Volume ID?)", HttpStatusCode.NotFound);
 
-            var associationId = "tmpUserId-" + volumeId; // todo: userid+bookid hash
-
-            Request.DocumentSession().Store(new PreviousRead
-                                                {
-                                                    Book = book
-                                                }, associationId);
+            Request.DocumentSession().Store(new PreviousRead { Book = book });
             Request.DocumentSession().SaveChanges();
 
         }
