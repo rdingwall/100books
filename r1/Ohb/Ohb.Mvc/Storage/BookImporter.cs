@@ -37,8 +37,8 @@ namespace Ohb.Mvc.Storage
 
             var book = new Book
                            {
-                               StaticInfo = staticInfo,
-                               Id = googleVolumeId
+                               GoogleVolumeId = googleVolumeId,
+                               StaticInfo = staticInfo
                            };
 
             session.Store(book, googleVolumeId);

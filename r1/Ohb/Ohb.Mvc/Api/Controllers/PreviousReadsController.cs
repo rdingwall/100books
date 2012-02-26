@@ -24,16 +24,16 @@ namespace Ohb.Mvc.Api.Controllers
             return Request.DocumentSession().Query<PreviousRead>().Select(r => r.Book);
         }
 
-        public void Post(string id)
+        public void Post(string volumeId)
         {
-            if (String.IsNullOrWhiteSpace(id))
-                throw new HttpResponseException("Missing parameter: Google Book Volume ID", HttpStatusCode.BadRequest);
+            if (String.IsNullOrWhiteSpace(volumeId))
+                throw new HttpResponseException("Missing parameter: 'volumeId' (Google Book Volume ID)", HttpStatusCode.BadRequest);
 
-            var book = importer.GetBook(Request.DocumentSession(), id);
+            var book = importer.GetBook(Request.DocumentSession(), volumeId);
             if (book == null)
                 throw new HttpResponseException("Book not found (bad Google Book Volume ID?)", HttpStatusCode.NotFound);
 
-            var associationId = "tmpUserId-" + id; // todo: userid+bookid hash
+            var associationId = "tmpUserId-" + volumeId; // todo: userid+bookid hash
 
             Request.DocumentSession().Store(new PreviousRead
                                                 {

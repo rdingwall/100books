@@ -24,7 +24,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                                           RequestFormat = DataFormat.Json
                                       };
 
-                        request.AddBody(new { id = "4YydO00I9JYC" });
+                        request.AddBody(new { volumeId = "4YydO00I9JYC" });
                     };
             
             Because of = () => response = client.Execute<dynamic>(request);
@@ -89,7 +89,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                         RequestFormat = DataFormat.Json
                     };
 
-                    request.AddBody(new { id = "xxxxxxxxxxxxxxx" });
+                    request.AddBody(new { volumeId = "xxxxxxxxxxxxxxx" });
                     client.AddHandler("application/json", new DynamicJsonDeserializer());
                 };
 
@@ -126,7 +126,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                         RequestFormat = DataFormat.Json
                     };
 
-                    request1.AddBody(new { id = "4YydO00I9JYC" });
+                    request1.AddBody(new { volumeId = "4YydO00I9JYC" });
 
                     request2 = new RestRequest("previousreads")
                     {
@@ -134,7 +134,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                         RequestFormat = DataFormat.Json
                     };
 
-                    request2.AddBody(new { id = "4YydO00I9JYC" });
+                    request2.AddBody(new { volumeId = "4YydO00I9JYC" });
                 };
 
             Because of = () =>

@@ -51,6 +51,10 @@ namespace Ohb.Mvc
 
         static void RegisterApiRoutes(RouteCollection routes)
         {
+            routes.MapHttpRoute("VolumeIdBasedApi",
+                                routeTemplate: "api/v1/{controller}/{volumeId}",
+                                defaults: new { volumeId = RouteParameter.Optional });
+
             routes.MapHttpRoute("DefaultApi",
                                 routeTemplate: "api/v1/{controller}/{id}", // URL with parameters
                                 defaults: new {id = RouteParameter.Optional});
