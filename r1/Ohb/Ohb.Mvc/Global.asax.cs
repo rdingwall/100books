@@ -52,7 +52,7 @@ namespace Ohb.Mvc
         static void RegisterApiRoutes(RouteCollection routes)
         {
             routes.MapHttpRoute("DefaultApi",
-                                routeTemplate: "api/{controller}/{id}", // URL with parameters
+                                routeTemplate: "api/v1/{controller}/{id}", // URL with parameters
                                 defaults: new {id = RouteParameter.Optional});
         }
 

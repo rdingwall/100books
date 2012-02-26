@@ -1,6 +1,9 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Machine.Specifications;
+using Ohb.Mvc.Storage;
 using RestSharp;
 using RestSharp.Deserializers;
 
@@ -14,7 +17,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             Establish context =
                 () =>
                     {
-                        client = new RestClient("http://localhost/api");
+                        client = new RestClient("http://localhost/api/v1");
                         request = new RestRequest("previousreads")
                                       {
                                           Method = Method.POST,
@@ -37,9 +40,12 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
 
                         response.ContentType.ShouldEqual("application/json; charset=utf-8");
                         ((object) response.Data).ShouldBe(typeof (IEnumerable));
-                        ((IEnumerable) response.Data).ShouldNotBeEmpty();
-                        ((string)response.Data[0].StaticInfo.Id.Value).ShouldEqual("4YydO00I9JYC");
-                        ((string)response.Data[0].StaticInfo.Title.Value).ShouldEqual("The Google story");
+
+                        var books = (IEnumerable<dynamic>) response.Data;
+
+                        books.ShouldNotBeEmpty();
+                        books.Select(b => (string)b.StaticInfo.Id.Value).ShouldContain("4YydO00I9JYC");
+                        books.Select(b => (string)b.StaticInfo.Title.Value).ShouldContain("The Google story");
                     };
 
             static RestResponse<dynamic> response;
@@ -52,7 +58,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             Establish context =
                 () =>
                 {
-                    client = new RestClient("http://localhost/api");
+                    client = new RestClient("http://localhost/api/v1");
                     request = new RestRequest("previousreads")
                     {
                         Method = Method.POST,
@@ -76,7 +82,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             Establish context =
                 () =>
                 {
-                    client = new RestClient("http://localhost/api");
+                    client = new RestClient("http://localhost/api/v1");
                     request = new RestRequest("previousreads")
                     {
                         Method = Method.POST,
@@ -113,7 +119,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             Establish context =
                 () =>
                 {
-                    client = new RestClient("http://localhost/api");
+                    client = new RestClient("http://localhost/api/v1");
                     request1 = new RestRequest("previousreads")
                     {
                         Method = Method.POST,

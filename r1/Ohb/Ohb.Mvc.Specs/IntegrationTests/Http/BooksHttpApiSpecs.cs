@@ -13,7 +13,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             Establish context =
                 () =>
                     {
-                        client = new RestClient("http://localhost/api");
+                        client = new RestClient("http://localhost/api/v1");
                         request = new RestRequest("books/4YydO00I9JYC");
                         client.AddHandler("application/json", new DynamicJsonDeserializer());
                     };
@@ -61,7 +61,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             Establish context =
                 () =>
                 {
-                    client = new RestClient("http://localhost/api");
+                    client = new RestClient("http://localhost/api/v1");
                     request = new RestRequest("books/");
                     client.AddHandler("application/json", new DynamicJsonDeserializer());
                 };
@@ -81,7 +81,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             Establish context =
                 () =>
                 {
-                    client = new RestClient("http://localhost/api");
+                    client = new RestClient("http://localhost/api/v1");
                     request = new RestRequest("books/xxxxxxxxxxxxx");
                     client.AddHandler("application/json", new DynamicJsonDeserializer());
                 };

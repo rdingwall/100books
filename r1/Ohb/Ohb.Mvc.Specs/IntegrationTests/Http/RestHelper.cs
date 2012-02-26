@@ -8,7 +8,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
     {
         public static HttpStatusCode GetStatusCode(string path, Method method)
         {
-            var client = new RestClient("http://localhost/api");
+            var client = new RestClient("http://localhost/api/v1");
             var request = new RestRequest(path, method);
             var response = client.Execute(request);
 
