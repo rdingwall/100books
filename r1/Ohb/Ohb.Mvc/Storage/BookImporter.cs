@@ -1,5 +1,4 @@
 using System;
-using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Google;
 using Raven.Client;
 
@@ -7,7 +6,7 @@ namespace Ohb.Mvc.Storage
 {
     public interface IBookImporter
     {
-        BookStaticInfo GetBook(IDocumentSession session, string googleVolumeId);
+        Book GetBook(IDocumentSession session, string googleVolumeId);
     }
 
     public class BookImporter : IBookImporter
@@ -20,18 +19,21 @@ namespace Ohb.Mvc.Storage
             this.googleBooksClient = googleBooksClient;
         }
 
-        public BookStaticInfo GetBook(IDocumentSession session, string googleVolumeId)
+        public Book GetBook(IDocumentSession session, string googleVolumeId)
         {
             if (session == null) throw new ArgumentNullException("session");
             if (googleVolumeId == null) throw new ArgumentNullException("googleVolumeId");
 
             var book = session.Load<Book>(googleVolumeId);
-            return book == null ? ImportBook(session, googleVolumeId) : book.StaticInfo;
+            return book ?? ImportBook(session, googleVolumeId);
         }
 
-        BookStaticInfo ImportBook(IDocumentSession session, string googleVolumeId)
+        Book ImportBook(IDocumentSession session, string googleVolumeId)
         {
             var staticInfo = googleBooksClient.GetVolume(googleVolumeId);
+
+            if (staticInfo == null)
+                return null;
 
             var book = new Book
                            {
@@ -39,10 +41,10 @@ namespace Ohb.Mvc.Storage
                                Id = googleVolumeId
                            };
 
-            session.Store(book);
+            session.Store(book, googleVolumeId);
             session.SaveChanges();
 
-            return staticInfo;
+            return book;
         }
     }
 }

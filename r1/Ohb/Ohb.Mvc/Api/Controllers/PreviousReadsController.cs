@@ -29,19 +29,15 @@ namespace Ohb.Mvc.Api.Controllers
             if (String.IsNullOrWhiteSpace(id))
                 throw new HttpResponseException("Missing parameter: Google Book Volume ID", HttpStatusCode.BadRequest);
 
-            var staticInfo = importer.GetBook(Request.DocumentSession(), id);
-            if (staticInfo == null)
+            var book = importer.GetBook(Request.DocumentSession(), id);
+            if (book == null)
                 throw new HttpResponseException("Book not found (bad Google Book Volume ID?)", HttpStatusCode.NotFound);
 
             var associationId = "tmpUserId-" + id; // todo: userid+bookid hash
 
             Request.DocumentSession().Store(new PreviousRead
                                                 {
-                                                    Book = new Book
-                                                               {
-                                                                   Id = id,
-                                                                   StaticInfo = staticInfo
-                                                               }
+                                                    Book = book
                                                 }, associationId);
             Request.DocumentSession().SaveChanges();
 

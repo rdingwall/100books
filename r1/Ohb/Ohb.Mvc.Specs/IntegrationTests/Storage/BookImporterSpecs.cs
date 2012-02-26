@@ -35,10 +35,10 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                 };
 
             It should_return_the_existing_book =
-                () => book.Title.ShouldEqual("Dummy");
+                () => book.StaticInfo.Title.ShouldEqual("Dummy");
 
             static IBookImporter importer;
-            static BookStaticInfo book;
+            static Book book;
         }
 
         public class when_the_book_wasnt_found_in_ravendb
@@ -58,7 +58,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                     };
 
             It should_return_the_book_from_google = 
-                () => book.Title.ShouldEqual("The Google story");
+                () => book.StaticInfo.Title.ShouldEqual("The Google story");
 
             It should_add_the_book_to_ravendb =
                 () =>
@@ -72,7 +72,40 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                     };
 
             static IBookImporter importer;
-            static BookStaticInfo book;
+            static Book book;
+        }
+
+        public class when_importing_a_non_existing_book
+        {
+            Establish context =
+                () =>
+                {
+                    TestRavenDb.UseNewTenant();
+                    importer = new BookImporter(new GoogleBooksClient(apiKey: "AIzaSyAwesvnG7yP5wCqiNv21l8g7mo-ehkcVJs"));
+                };
+
+            Because of =
+                () =>
+                {
+                    using (var session = TestRavenDb.OpenSession())
+                        book = importer.GetBook(session, "xxxxxxxxxxxxxxx");
+                };
+
+            It should_return_null =
+                () => book.ShouldBeNull();
+
+            It should_not_add_the_book_to_ravendb =
+                () =>
+                {
+                    using (var session = TestRavenDb.OpenSession())
+                    {
+                        var book = session.Load<Book>("xxxxxxxxxxxxxxx");
+                        book.ShouldBeNull();
+                    }
+                };
+
+            static IBookImporter importer;
+            static Book book;
         }
     }
 }

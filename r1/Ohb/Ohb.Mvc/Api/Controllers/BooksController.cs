@@ -1,10 +1,7 @@
 using System;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage;
-using Raven.Client;
 
 namespace Ohb.Mvc.Api.Controllers
 {
@@ -18,16 +15,16 @@ namespace Ohb.Mvc.Api.Controllers
             this.importer = importer;
         }
 
-        public BookInfo Get(string id)
+        public Book Get(string id)
         {
             if (String.IsNullOrWhiteSpace(id))
                 throw new HttpResponseException("Missing parameter: Google Book Volume ID", HttpStatusCode.BadRequest);
 
-            var staticInfo = importer.GetBook(Request.DocumentSession(), id);
-            if (staticInfo == null)
+            var book = importer.GetBook(Request.DocumentSession(), id);
+            if (book == null)
                 throw new HttpResponseException("Book not found (bad Google Book Volume ID?)", HttpStatusCode.NotFound);
 
-            return new BookInfo { StaticInfo = staticInfo };
+            return book;
         }
     }
 }

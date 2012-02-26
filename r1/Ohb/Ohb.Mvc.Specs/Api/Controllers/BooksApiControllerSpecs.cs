@@ -23,7 +23,7 @@ namespace Ohb.Mvc.Specs.Api.Controllers
 
                     importer = MockRepository.GenerateStub<IBookImporter>();
                     documentSession = MockRepository.GenerateStub<IDocumentSession>();
-                    bookStaticInfo = new BookStaticInfo();
+                    book = new Book();
 
                     controller = new BooksController(importer)
                                      {
@@ -35,24 +35,21 @@ namespace Ohb.Mvc.Specs.Api.Controllers
             protected static BooksController controller;
             protected static string googleVolumeId;
             protected static IBookImporter importer;
-            protected static BookStaticInfo bookStaticInfo;
+            protected static Book book;
             protected static IDocumentSession documentSession;
         }
 
         public class when_getting_a_book : scenario
         {
-            static BookInfo result;
+            static Book result;
 
             Establish context =
-                () => importer.Stub(s => s.GetBook(documentSession, googleVolumeId)).Return(bookStaticInfo);
+                () => importer.Stub(s => s.GetBook(documentSession, googleVolumeId)).Return(book);
 
             Because of = () => result = controller.Get(googleVolumeId);
 
             It should_return_the_book_static_data = 
-                () => result.StaticInfo.ShouldEqual(bookStaticInfo);
-
-            It should_be_unread =
-                () => result.HasPreviouslyRead.ShouldBeFalse();
+                () => result.ShouldEqual(book);
         }
 
         public class when_the_book_doesnt_exist : scenario

@@ -48,9 +48,6 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             It should_get_the_books_small_thumbnail_url = 
                 () => ((string)response.Data.StaticInfo.SmallThumbnailUrl.Value).ShouldEqual("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=5&source=gbs_api");
 
-            It should_not_have_been_previously_read = 
-                () => ((bool)response.Data.HasPreviouslyRead.Value).ShouldBeFalse();
-
             static RestResponse<dynamic> response;
             static RestClient client;
             static RestRequest request;
