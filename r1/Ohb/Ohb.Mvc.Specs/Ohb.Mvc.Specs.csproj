@@ -121,6 +121,7 @@
     <Compile Include="IntegrationTests\Http\RestHelper.cs" />
     <Compile Include="IntegrationTests\Storage\BookImporterSpecs.cs" />
     <Compile Include="IntegrationTests\Storage\TestRavenDb.cs" />
+    <Compile Include="IntegrationTests\Storage\UserRepositorySpecs.cs" />
     <Compile Include="IntegrationTests\WindsorRegistrationSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
