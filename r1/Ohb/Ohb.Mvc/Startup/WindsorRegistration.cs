@@ -5,7 +5,6 @@ using Ohb.Mvc.Api;
 using Ohb.Mvc.Api.Controllers;
 using Ohb.Mvc.Controllers;
 using Ohb.Mvc.Google;
-using Ohb.Mvc.Services;
 using Ohb.Mvc.Storage;
 using Raven.Client;
 using Raven.Client.Document;
@@ -27,7 +26,6 @@ namespace Ohb.Mvc.Startup
 
             container.Register(Component.For<IUserFactory>().ImplementedBy<UserFactory>(),
                                Component.For<IUserRepository>().ImplementedBy<UserRepository>(),
-                               Component.For<IUserContextFactory>().ImplementedBy<UserContextFactory>(),
                                Component.For<IBookImporter>().ImplementedBy<BookImporter>(),
                                Component.For<IGoogleBooksClient>().ImplementedBy<GoogleBooksClient>()
                                    .DependsOn(new
@@ -35,15 +33,6 @@ namespace Ohb.Mvc.Startup
                                                       apiKey = "AIzaSyDQsH0G4o3l9FjHUocTO_edha6Pv8N3NXo"
                                                   }),
                                Component.For<IDocumentStore>().UsingFactoryMethod(GetDocumentStore));
-
-            // Depends on HttpContext.Current. In tests we will inject a fake one.
-            if (!container.Kernel.HasComponent(typeof(IUserContext)))
-            {
-                container.Register(
-                    Component.For<IUserContext>()
-                        .UsingFactoryMethod(k => k.Resolve<IUserContextFactory>().GetCurrentContext())
-                        .LifeStyle.PerWebRequestIfPossible());
-            }
 
             container.Install(new ApiInstaller());
         }

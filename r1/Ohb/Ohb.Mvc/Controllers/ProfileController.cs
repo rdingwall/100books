@@ -1,22 +1,24 @@
 using System;
 using System.Web.Mvc;
-using System.Web.Security;
-using Facebook;
 using Facebook.Web;
 using Facebook.Web.Mvc;
 using System.Linq;
-using Ohb.Mvc.Services;
+using Ohb.Mvc.Storage;
+using Raven.Client;
 
 namespace Ohb.Mvc.Controllers
 {
     public class ProfileController : Controller
     {
-        private readonly IUserContext context;
+        readonly IDocumentStore documentStore;
+        private readonly IUserFactory userFactory;
 
-        public ProfileController(IUserContext context)
+        public ProfileController(IDocumentStore documentStore, IUserFactory userFactory)
         {
-            if (context == null) throw new ArgumentNullException("context");
-            this.context = context;
+            if (documentStore == null) throw new ArgumentNullException("documentStore");
+            if (userFactory == null) throw new ArgumentNullException("userFactory");
+            this.documentStore = documentStore;
+            this.userFactory = userFactory;
         }
 
         public ActionResult Redirect()
@@ -29,8 +31,12 @@ namespace Ohb.Mvc.Controllers
         [FacebookAuthorize(LoginUrl = "/?ReturnUrl=~/Profile")]
         public ActionResult Index()
         {
-            ViewBag.ProfilePictureUrl = context.User.ProfilePictureUrl;
-            ViewBag.Name = context.User.Name;
+            User user;
+            using (var session = documentStore.OpenSession())
+                user = userFactory.GetOrCreateUser(session);
+
+            ViewBag.ProfilePictureUrl = user.ProfilePictureUrl;
+            ViewBag.Name = user.Name;
 
             ViewBag.MessagePostSuccess = Request.QueryString.AllKeys.Contains("success") &&
                                          Request.QueryString["success"] == "True";
@@ -41,9 +47,7 @@ namespace Ohb.Mvc.Controllers
         [FacebookAuthorize(LoginUrl = "/?ReturnUrl=~/Profile")]
         public ActionResult LogOut()
         {
-            var fbWebContext = new FacebookWebContext(FacebookApplication.Current, ControllerContext.HttpContext); // or FacebookWebContext.Current;
-
-            fbWebContext.DeleteAuthCookie();
+            FacebookWebContext.Current.DeleteAuthCookie();
 
             return RedirectToAction("Index", "Home");
         }

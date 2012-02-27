@@ -2,9 +2,9 @@ using System;
 using System.Web;
 using Facebook;
 using Facebook.Web;
-using Ohb.Mvc.Storage;
+using Raven.Client;
 
-namespace Ohb.Mvc.Services
+namespace Ohb.Mvc.Storage
 {
     public class UserFactory : IUserFactory
     {
@@ -16,8 +16,10 @@ namespace Ohb.Mvc.Services
             this.users = users;
         }
 
-        public User GetOrCreateUser()
+        public User GetOrCreateUser(IDocumentSession session)
         {
+            if (session == null) throw new ArgumentNullException("session");
+
             var fbWebContext = new FacebookWebContext(
                 FacebookApplication.Current, 
                 new HttpContextWrapper(HttpContext.Current)); // or FacebookWebContext.Current;
@@ -25,11 +27,11 @@ namespace Ohb.Mvc.Services
             if (!fbWebContext.IsAuthenticated())
                 return null;
 
-            var user = users.GetUser(fbWebContext.UserId);
+            var user = users.GetUser(fbWebContext.UserId, session);
             if (user == null)
             {
                 user = CreateUser(fbWebContext);
-                users.AddUser(user);
+                users.AddUser(user, session);
             }
 
             return user;
@@ -52,6 +54,6 @@ namespace Ohb.Mvc.Services
 
     public interface IUserFactory
     {
-        User GetOrCreateUser();
+        User GetOrCreateUser(IDocumentSession session);
     }
 }

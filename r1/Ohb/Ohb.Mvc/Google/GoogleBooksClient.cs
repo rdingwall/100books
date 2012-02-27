@@ -6,11 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Linq;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Models;
-using Ohb.Mvc.Services;
 
 namespace Ohb.Mvc.Google
 {

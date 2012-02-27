@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Mvc;
-using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Controllers;
 using Ohb.Mvc.Areas.Admin.Controllers;
-using Ohb.Mvc.Services;
 using Ohb.Mvc.Startup;
-using Rhino.Mocks;
 
 namespace Ohb.Mvc.Specs.IntegrationTests
 {
@@ -23,11 +20,6 @@ namespace Ohb.Mvc.Specs.IntegrationTests
                 () =>
                 {
                     container = new WindsorContainer();
-
-                    // Fake one (doesn't depend on HttpContext.Current)
-                    container.Register(Component.For<IUserContext>().Instance(
-                        MockRepository.GenerateStub<IUserContext>()));
-
                     new WindsorRegistration().Register(container);
                 };
 

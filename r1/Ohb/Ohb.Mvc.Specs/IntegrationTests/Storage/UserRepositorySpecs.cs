@@ -1,9 +1,11 @@
+using System;
 using Machine.Specifications;
-using Ohb.Mvc.Services;
+using Ohb.Mvc.Storage;
+using System.Linq;
+using Raven.Abstractions.Exceptions;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.Storage
 {
-#if false
     [Subject(typeof(UserRepository))]
     public class UserRepositorySpecs
     {
@@ -12,7 +14,12 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
             Establish context =
                 () =>
                     {
-                        original = new User(123, "Test user", "http://foo/bar");
+                        original = new User
+                                       {
+                                           FacebookId = 123,
+                                           Name = "Test user",
+                                           ProfilePictureUrl = "http://foo/bar"
+                                       };
                         TestRavenDb.UseNewTenant();
                         repository = new UserRepository();
                     };
@@ -39,9 +46,61 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
 
             static IUserRepository repository;
             static User original;
-            static IUser returnedUser;
+            static User returnedUser;
+        }
+
+        public class when_attempting_to_add_duplicates
+        {
+            Establish context =
+                () =>
+                {
+                    TestRavenDb.UseNewTenant();
+                    repository = new UserRepository();
+
+                    using (var session = TestRavenDb.OpenSession())
+                    {
+                        repository.AddUser(new User
+                        {
+                            FacebookId = 123,
+                            Name = "First",
+                            ProfilePictureUrl = "http://foo/bar"
+                        }, session);
+                    }
+                };
+
+            Because of = () => exception = Catch.Exception(
+                () =>
+                    {
+                        using (var session = TestRavenDb.OpenSession())
+                        {
+                            repository.AddUser(new User
+                                                   {
+                                                       FacebookId = 123,
+                                                       Name = "Second",
+                                                       ProfilePictureUrl = "http://foo/bar"
+                                                   }, session);
+                        }
+                    });
+
+            It should_throw_an_exception =
+                () => exception.ShouldBe(typeof(ConcurrencyException));
+
+            It should_not_store_the_duplicate =
+                () =>
+                    {
+                        using (var session = TestRavenDb.OpenSession())
+                        {
+                            session.Query<User>()
+                                .Customize(a => a.WaitForNonStaleResults())
+                                .Where(u => u.FacebookId == 123)
+                                .Single()
+                                .Name.ShouldEqual("First");
+                        }
+                    };
+
+            static IUserRepository repository;
+            static Exception exception;
         }
 
     }
-#endif
 }

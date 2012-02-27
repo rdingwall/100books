@@ -183,10 +183,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Google\IgnoreList.cs" />
+    <Compile Include="Storage\FacebookUserId.cs" />
     <Compile Include="Storage\User.cs" />
-    <Compile Include="Services\UserContext.cs" />
-    <Compile Include="Services\UserContextFactory.cs" />
-    <Compile Include="Services\UserFactory.cs" />
+    <Compile Include="Storage\UserFactory.cs" />
     <Compile Include="Storage\UserRepository.cs" />
     <Compile Include="Startup\LoggedInHomeRoute.cs" />
     <Compile Include="Startup\WindsorResolver.cs" />

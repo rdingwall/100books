@@ -7,7 +7,6 @@ using Bootstrap;
 using Bootstrap.AutoMapper;
 using Bootstrap.Windsor;
 using Castle.Windsor;
-using Ohb.Mvc.Services;
 using Ohb.Mvc.Startup;
 
 namespace Ohb.Mvc
@@ -45,8 +44,7 @@ namespace Ohb.Mvc
                            "{controller}/{action}/{id}", // URL with parameters
                            new RouteValueDictionary( // Parameter defaults
                                new { controller = "Home", action = "Index", id = UrlParameter.Optional }),
-                           new MvcRouteHandler(),
-                           container.Resolve<IUserContextFactory>()));
+                           new MvcRouteHandler()));
         }
 
         static void RegisterApiRoutes(RouteCollection routes)
