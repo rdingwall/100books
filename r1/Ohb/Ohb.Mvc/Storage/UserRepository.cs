@@ -5,16 +5,16 @@ namespace Ohb.Mvc.Storage
 {
     public interface IUserRepository
     {
-        IUser GetUser(long id);
-        void AddUser(IUser user);
+        User GetUser(long id);
+        void AddUser(User user);
     }
 
     public class UserRepository : IUserRepository
     {
         static readonly object syncRoot = new object();
-        private readonly IDictionary<long, IUser> users = new Dictionary<long, IUser>();
+        private readonly IDictionary<long, User> users = new Dictionary<long, User>();
 
-        public IUser GetUser(long id)
+        public User GetUser(long id)
         {
             if (!users.ContainsKey(id))
                 return null;
@@ -22,16 +22,16 @@ namespace Ohb.Mvc.Storage
             return users[id];
         }
 
-        public void AddUser(IUser user)
+        public void AddUser(User user)
         {
             if (user == null) throw new ArgumentNullException("user");
 
             lock (syncRoot)
             {
-                if (users.ContainsKey(user.Id))
+                if (users.ContainsKey(user.FacebookId))
                     return;
 
-                users.Add(user.Id, user);
+                users.Add(user.FacebookId, user);
             }
             
         }

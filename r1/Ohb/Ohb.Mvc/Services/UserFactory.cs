@@ -16,7 +16,7 @@ namespace Ohb.Mvc.Services
             this.users = users;
         }
 
-        public IUser GetOrCreateUser()
+        public User GetOrCreateUser()
         {
             var fbWebContext = new FacebookWebContext(
                 FacebookApplication.Current, 
@@ -41,14 +41,17 @@ namespace Ohb.Mvc.Services
 
             dynamic me = fb.Get("me");
 
-            return new User(fbWebContext.UserId,
-                            me.name,
-                            String.Format("http://graph.facebok.com/{0}/picture", me.id));
+            return new User
+            {
+                FacebookId = fbWebContext.UserId,
+                Name = me.name,
+                ProfilePictureUrl = String.Format("http://graph.facebok.com/{0}/picture", me.id)
+            };
         }
     }
 
     public interface IUserFactory
     {
-        IUser GetOrCreateUser();
+        User GetOrCreateUser();
     }
 }
