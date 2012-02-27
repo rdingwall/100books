@@ -71,7 +71,6 @@ namespace Ohb.Mvc
             // Web API
             var config = GlobalConfiguration.Configuration;
             config.ServiceResolver.SetResolver(resolver);
-            config.MessageHandlers.Add(new RavenDbHandler(container));
             config.Formatters.Remove(config.Formatters.XmlFormatter);
 
             DependencyResolver.SetResolver(resolver);

@@ -161,7 +161,6 @@
     <Compile Include="Api\Controllers\OhbApiController.cs" />
     <Compile Include="Api\Controllers\PreviousReadsController.cs" />
     <Compile Include="Api\Models\VolumeIdModel.cs" />
-    <Compile Include="HttpRequestMessageExtensions.cs" />
     <Compile Include="MethodNotAllowedActionInvoker.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -169,7 +168,6 @@
     <Compile Include="Google\IGoogleBooksClient.cs" />
     <Compile Include="OhbHandleErrorAttribute.cs" />
     <Compile Include="Api\Models\BookStaticInfo.cs" />
-    <Compile Include="RavenDbHandler.cs" />
     <Compile Include="Services\BookTitleComparer.cs" />
     <Compile Include="Google\GoogleBooksClient.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
