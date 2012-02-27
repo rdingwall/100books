@@ -16,6 +16,7 @@ namespace Ohb.Mvc.Startup
 
         public WindsorResolver(IWindsorContainer container)
         {
+            if (container == null) throw new ArgumentNullException("container");
             this.container = container;
         }
 

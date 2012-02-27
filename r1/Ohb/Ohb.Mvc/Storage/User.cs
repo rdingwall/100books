@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ohb.Mvc.Services
+namespace Ohb.Mvc.Storage
 {
     public interface IUser
     {

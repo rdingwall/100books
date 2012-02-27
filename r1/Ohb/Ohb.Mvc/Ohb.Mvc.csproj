@@ -168,7 +168,7 @@
     <Compile Include="Google\IGoogleBooksClient.cs" />
     <Compile Include="OhbHandleErrorAttribute.cs" />
     <Compile Include="Api\Models\BookStaticInfo.cs" />
-    <Compile Include="Services\BookTitleComparer.cs" />
+    <Compile Include="Google\BookTitleComparer.cs" />
     <Compile Include="Google\GoogleBooksClient.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
@@ -183,12 +183,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Services\IgnoreList.cs" />
-    <Compile Include="Services\User.cs" />
+    <Compile Include="Google\IgnoreList.cs" />
+    <Compile Include="Storage\User.cs" />
     <Compile Include="Services\UserContext.cs" />
     <Compile Include="Services\UserContextFactory.cs" />
     <Compile Include="Services\UserFactory.cs" />
-    <Compile Include="Services\UserRepository.cs" />
+    <Compile Include="Storage\UserRepository.cs" />
     <Compile Include="Startup\LoggedInHomeRoute.cs" />
     <Compile Include="Startup\WindsorResolver.cs" />
     <Compile Include="Startup\WindsorExtensions.cs" />

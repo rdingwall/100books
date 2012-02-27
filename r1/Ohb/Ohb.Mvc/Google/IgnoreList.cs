@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Ohb.Mvc.Models;
 
-namespace Ohb.Mvc.Services
+namespace Ohb.Mvc.Google
 {
     public static class IgnoreList
     {

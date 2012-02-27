@@ -2,6 +2,7 @@ using System;
 using System.Web;
 using Facebook;
 using Facebook.Web;
+using Ohb.Mvc.Storage;
 
 namespace Ohb.Mvc.Services
 {

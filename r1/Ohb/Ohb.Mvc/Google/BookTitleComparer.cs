@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Ohb.Mvc.Models;
 
-namespace Ohb.Mvc.Services
+namespace Ohb.Mvc.Google
 {
     class BookTitleComparer : IEqualityComparer<BookSearchResult>
     {

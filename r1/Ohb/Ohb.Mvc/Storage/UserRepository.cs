@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Facebook.Web;
 
-namespace Ohb.Mvc.Services
+namespace Ohb.Mvc.Storage
 {
     public interface IUserRepository
     {

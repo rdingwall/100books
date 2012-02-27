@@ -1,3 +1,5 @@
+using Ohb.Mvc.Storage;
+
 namespace Ohb.Mvc.Services
 {
     public interface IUserContext
