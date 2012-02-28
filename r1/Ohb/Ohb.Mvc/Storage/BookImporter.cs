@@ -1,7 +1,5 @@
 using System;
-using System.Linq;
 using Ohb.Mvc.Google;
-using Raven.Abstractions.Exceptions;
 using Raven.Client;
 
 namespace Ohb.Mvc.Storage
@@ -14,11 +12,14 @@ namespace Ohb.Mvc.Storage
     public class BookImporter : IBookImporter
     {
         readonly IGoogleBooksClient googleBooksClient;
+        readonly IBookRepository books;
 
-        public BookImporter(IGoogleBooksClient googleBooksClient)
+        public BookImporter(IGoogleBooksClient googleBooksClient, IBookRepository books)
         {
             if (googleBooksClient == null) throw new ArgumentNullException("googleBooksClient");
+            if (books == null) throw new ArgumentNullException("books");
             this.googleBooksClient = googleBooksClient;
+            this.books = books;
         }
 
         public Book GetBook(IDocumentSession session, string googleVolumeId)
@@ -27,15 +28,8 @@ namespace Ohb.Mvc.Storage
             if (String.IsNullOrWhiteSpace(googleVolumeId)) 
                 throw new ArgumentException("Missing/empty parameter.", "googleVolumeId");
 
-            try
-            {
-                return ImportBook(session, googleVolumeId);
-            }
-            catch (ConcurrencyException)
-            {
-                // Already exists
-                return session.Query<Book>().First(b => b.GoogleVolumeId == googleVolumeId);
-            }
+            
+            return books.Get(googleVolumeId, session) ?? ImportBook(session, googleVolumeId);
         }
 
         Book ImportBook(IDocumentSession session, string googleVolumeId)
@@ -45,27 +39,15 @@ namespace Ohb.Mvc.Storage
             if (staticInfo == null)
                 return null;
 
-            try
+            var book = new Book
             {
-                session.Advanced.UseOptimisticConcurrency = true;
+                GoogleVolumeId = googleVolumeId,
+                StaticInfo = staticInfo
+            };
 
-                var book = new Book
-                {
-                    GoogleVolumeId = googleVolumeId,
-                    StaticInfo = staticInfo
-                };
+            books.Add(book, session);
 
-                session.Store(new GoogleVolumeId { VolumeId = googleVolumeId },
-                    String.Concat("GoogleVolumeIds/", googleVolumeId));
-                session.Store(book);
-                session.SaveChanges();
-
-                return book;
-            }
-            finally
-            {
-                session.Advanced.UseOptimisticConcurrency = false;
-            }
+            return book;
         }
     }
 }

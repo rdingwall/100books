@@ -26,6 +26,7 @@ namespace Ohb.Mvc.Startup
 
             container.Register(Component.For<IUserFactory>().ImplementedBy<UserFactory>(),
                                Component.For<IUserRepository>().ImplementedBy<UserRepository>(),
+                               Component.For<IBookRepository>().ImplementedBy<BookRepository>(),
                                Component.For<IBookImporter>().ImplementedBy<BookImporter>(),
                                Component.For<IGoogleBooksClient>().ImplementedBy<GoogleBooksClient>()
                                    .DependsOn(new

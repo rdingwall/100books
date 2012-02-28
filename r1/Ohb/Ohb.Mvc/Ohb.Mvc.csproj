@@ -183,6 +183,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Google\IgnoreList.cs" />
+    <Compile Include="Storage\BookRepository.cs" />
     <Compile Include="Storage\FacebookUserId.cs" />
     <Compile Include="Storage\GoogleVolumeId.cs" />
     <Compile Include="Storage\User.cs" />

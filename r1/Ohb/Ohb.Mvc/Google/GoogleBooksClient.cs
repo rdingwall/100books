@@ -72,7 +72,7 @@ namespace Ohb.Mvc.Google
                 }
 
                 if (String.IsNullOrWhiteSpace(json))
-                    throw new InvalidOperationException("Expected JSON but got '{0}'.", json);
+                    throw new InvalidOperationException(String.Format("Expected JSON but got '{0}'.", json));
                 
                 var volume = JsonConvert.DeserializeObject<GoogleVolume>(json);
 

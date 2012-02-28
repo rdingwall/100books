@@ -1,141 +1,80 @@
-using System;
-using System.Linq;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Google;
 using Ohb.Mvc.Storage;
+using Raven.Client;
+using Rhino.Mocks;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.Storage
 {
     [Subject(typeof(BookImporter))]
     public class BookImporterSpecs
     {
-        public class when_a_book_has_already_been_imported_into_ravendb
-        {
-            Establish context = () =>
-                                    {
-                                        TestRavenDb.UseNewTenant();
-                                        using (var session = TestRavenDb.OpenSession())
-                                        {
-                                            var toRemove = session.Query<Book>()
-                                                .Customize(a => a.WaitForNonStaleResults())
-                                                .FirstOrDefault(b => b.GoogleVolumeId == "4YydO00I9JYC");
-
-                                            if (toRemove != null)
-                                                session.Delete(toRemove);
-
-                                            session.SaveChanges();
-
-                                            session.Advanced.UseOptimisticConcurrency = true;
-
-                                            // wait for update
-                                            session.Query<Book>().Customize(a => a.WaitForNonStaleResults()).Any();
-
-                                            var book = new Book
-                                                           {
-                                                               GoogleVolumeId = "4YydO00I9JYC",
-                                                               StaticInfo =
-                                                                   new BookStaticInfo
-                                                                       {Title = "Dummy", Id = "4YydO00I9JYC"}
-                                                           };
-
-                                            session.Store(new GoogleVolumeId {VolumeId = "4YydO00I9JYC"},
-                                                          String.Concat("GoogleVolumeIds/", "4YydO00I9JYC"));
-
-                                            session.Store(book);
-                                            session.SaveChanges();
-
-                                            // wait for update
-                                            session.Query<Book>().Customize(a => a.WaitForNonStaleResults()).Any();
-                                        }
-
-                                        importer = new BookImporter(new GoogleBooksClient(apiKey: "AIzaSyAwesvnG7yP5wCqiNv21l8g7mo-ehkcVJs"));
-                                    };
-
-            Because of =
-                () =>
-                {
-                    using (var session = TestRavenDb.OpenSession())
-                        book = importer.GetBook(session, "4YydO00I9JYC");
-                };
-
-            It should_return_the_existing_book =
-                () => book.StaticInfo.Title.ShouldEqual("Dummy");
-
-            static IBookImporter importer;
-            static Book book;
-        }
-
-        public class when_the_book_wasnt_found_in_ravendb
+        public abstract class scenario
         {
             Establish context =
                 () =>
                     {
-                        TestRavenDb.UseNewTenant();
-                        importer = new BookImporter(new GoogleBooksClient(apiKey: "AIzaSyAwesvnG7yP5wCqiNv21l8g7mo-ehkcVJs"));
+                        books = MockRepository.GenerateMock<IBookRepository>();
+                        session = MockRepository.GenerateStub<IDocumentSession>();
+
+                        importer =
+                            new BookImporter(
+                                new GoogleBooksClient(apiKey: "AIzaSyAwesvnG7yP5wCqiNv21l8g7mo-ehkcVJs"),
+                                books);
+                    };
+
+            protected static IBookImporter importer;
+            protected static Book book;
+            protected static IBookRepository books;
+            protected static IDocumentSession session;
+        }
+
+        public class when_a_book_has_already_been_imported_into_ravendb : scenario
+        {
+            Establish context =
+                () =>
+                    {
+                        var book =
+                            new Book
+                                {
+                                    GoogleVolumeId = "4YydO00I9JYC",
+                                    StaticInfo =
+                                        new BookStaticInfo {Title = "Dummy", Id = "4YydO00I9JYC"}
+                                };
+
+                        books.Stub(b => b.Get(book.GoogleVolumeId, session)).Return(book);
                     };
 
             Because of =
-                () =>
-                    {
-                        using (var session = TestRavenDb.OpenSession())
-                            book = importer.GetBook(session, "4YydO00I9JYC");
-                    };
+                () => book = importer.GetBook(session, "4YydO00I9JYC");
+
+            It should_return_the_existing_book =
+                () => book.StaticInfo.Title.ShouldEqual("Dummy");
+        }
+
+        public class when_the_book_wasnt_found_in_ravendb : scenario
+        {
+            Because of =
+                () => book = importer.GetBook(session, "4YydO00I9JYC");
 
             It should_return_the_book_from_google = 
                 () => book.StaticInfo.Title.ShouldEqual("The Google story");
 
             It should_add_the_book_to_ravendb =
-                () =>
-                    {
-                        using (var session = TestRavenDb.OpenSession())
-                        {
-                            var book = session.Query<Book>()
-                                .Customize(a => a.WaitForNonStaleResults())
-                                .FirstOrDefault(b => b.GoogleVolumeId == "4YydO00I9JYC");
-
-                            book.ShouldNotBeNull();
-                            book.StaticInfo.Title.ShouldEqual("The Google story");
-                        }
-                    };
-
-            static IBookImporter importer;
-            static Book book;
+                () => books.AssertWasCalled(b => b.Add(book, session));
         }
 
-        public class when_importing_a_non_existing_book
+        public class when_importing_a_non_existing_book : scenario
         {
-            Establish context =
-                () =>
-                {
-                    TestRavenDb.UseNewTenant();
-                    importer = new BookImporter(new GoogleBooksClient(apiKey: "AIzaSyAwesvnG7yP5wCqiNv21l8g7mo-ehkcVJs"));
-                };
-
             Because of =
-                () =>
-                {
-                    using (var session = TestRavenDb.OpenSession())
-                        book = importer.GetBook(session, "xxxxxxxxxxxxxxx");
-                };
+                () => book = importer.GetBook(session, "xxxxxxxxxxxxxxx");
 
             It should_return_null =
                 () => book.ShouldBeNull();
 
-            It should_not_add_the_book_to_ravendb =
-                () =>
-                {
-                    using (var session = TestRavenDb.OpenSession())
-                    {
-                        var book = session.Query<Book>()
-                            .Customize(a => a.WaitForNonStaleResults())
-                            .FirstOrDefault(b => b.GoogleVolumeId == "xxxxxxxxxxxxxxx");
-                        book.ShouldBeNull();
-                    }
-                };
-
-            static IBookImporter importer;
-            static Book book;
+            It should_add_the_book_to_ravendb =
+                () => books.AssertWasNotCalled(b => b.Add(Arg<Book>.Is.Anything, Arg.Is(session)));
         }
     }
 }

@@ -62,6 +62,7 @@
       <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="TypesAndNamespaces">
         <ExtraRule Prefix="when_" Suffix="" Style="aa_bb" />
         <ExtraRule Prefix="scenario" Suffix="" Style="aa_bb" />
+        <ExtraRule Prefix="When_" Suffix="" Style="aa_bb" />
       </PredefinedRule>
       <PredefinedRule Inspect="True" Prefix="I" Suffix="" Style="AaBb" ElementKind="Interfaces" />
       <PredefinedRule Inspect="True" Prefix="T" Suffix="" Style="AaBb" ElementKind="TypeParameters" />
