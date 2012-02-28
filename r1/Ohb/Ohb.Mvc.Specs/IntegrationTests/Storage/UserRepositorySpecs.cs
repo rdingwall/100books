@@ -41,8 +41,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
             It should_store_the_name =
                 () => returnedUser.Name.ShouldEqual(original.Name);
 
-            It should_store_the_id =
-                () => returnedUser.FacebookId.ShouldEqual(original.FacebookId);
+            It should_retrieve_the_ravendb_id =
+                () => returnedUser.Id.ShouldNotBeEmpty();
 
             static IUserRepository repository;
             static User original;
