@@ -184,6 +184,7 @@
     </Compile>
     <Compile Include="Google\IgnoreList.cs" />
     <Compile Include="Storage\FacebookUserId.cs" />
+    <Compile Include="Storage\GoogleVolumeId.cs" />
     <Compile Include="Storage\User.cs" />
     <Compile Include="Storage\UserFactory.cs" />
     <Compile Include="Storage\UserRepository.cs" />

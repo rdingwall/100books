@@ -70,6 +70,9 @@ namespace Ohb.Mvc.Google
                     if (response.StatusCode == HttpStatusCode.NotFound)
                         return null;
                 }
+
+                if (String.IsNullOrWhiteSpace(json))
+                    throw new InvalidOperationException("Expected JSON but got '{0}'.", json);
                 
                 var volume = JsonConvert.DeserializeObject<GoogleVolume>(json);
 

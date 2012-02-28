@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Ohb.Mvc.Google;
+using Raven.Abstractions.Exceptions;
 using Raven.Client;
 
 namespace Ohb.Mvc.Storage
@@ -26,8 +27,15 @@ namespace Ohb.Mvc.Storage
             if (String.IsNullOrWhiteSpace(googleVolumeId)) 
                 throw new ArgumentException("Missing/empty parameter.", "googleVolumeId");
 
-            var book = session.Query<Book>().FirstOrDefault(b => b.GoogleVolumeId == googleVolumeId);
-            return book ?? ImportBook(session, googleVolumeId);
+            try
+            {
+                return ImportBook(session, googleVolumeId);
+            }
+            catch (ConcurrencyException)
+            {
+                // Already exists
+                return session.Query<Book>().First(b => b.GoogleVolumeId == googleVolumeId);
+            }
         }
 
         Book ImportBook(IDocumentSession session, string googleVolumeId)
@@ -37,16 +45,27 @@ namespace Ohb.Mvc.Storage
             if (staticInfo == null)
                 return null;
 
-            var book = new Book
-                           {
-                               GoogleVolumeId = googleVolumeId,
-                               StaticInfo = staticInfo
-                           };
+            try
+            {
+                session.Advanced.UseOptimisticConcurrency = true;
 
-            session.Store(book);
-            session.SaveChanges();
+                var book = new Book
+                {
+                    GoogleVolumeId = googleVolumeId,
+                    StaticInfo = staticInfo
+                };
 
-            return book;
+                session.Store(new GoogleVolumeId { VolumeId = googleVolumeId },
+                    String.Concat("GoogleVolumeIds/", googleVolumeId));
+                session.Store(book);
+                session.SaveChanges();
+
+                return book;
+            }
+            finally
+            {
+                session.Advanced.UseOptimisticConcurrency = false;
+            }
         }
     }
 }

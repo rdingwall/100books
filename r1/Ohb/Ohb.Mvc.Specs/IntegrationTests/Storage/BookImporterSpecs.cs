@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
@@ -16,14 +17,36 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                         TestRavenDb.UseNewTenant();
                                         using (var session = TestRavenDb.OpenSession())
                                         {
+                                            var toRemove = session.Query<Book>()
+                                                .Customize(a => a.WaitForNonStaleResults())
+                                                .FirstOrDefault(b => b.GoogleVolumeId == "4YydO00I9JYC");
+
+                                            if (toRemove != null)
+                                                session.Delete(toRemove);
+
+                                            session.SaveChanges();
+
+                                            session.Advanced.UseOptimisticConcurrency = true;
+
+                                            // wait for update
+                                            session.Query<Book>().Customize(a => a.WaitForNonStaleResults()).Any();
+
                                             var book = new Book
                                                            {
                                                                GoogleVolumeId = "4YydO00I9JYC",
-                                                               StaticInfo = new BookStaticInfo {Title = "Dummy"}
+                                                               StaticInfo =
+                                                                   new BookStaticInfo
+                                                                       {Title = "Dummy", Id = "4YydO00I9JYC"}
                                                            };
+
+                                            session.Store(new GoogleVolumeId {VolumeId = "4YydO00I9JYC"},
+                                                          String.Concat("GoogleVolumeIds/", "4YydO00I9JYC"));
 
                                             session.Store(book);
                                             session.SaveChanges();
+
+                                            // wait for update
+                                            session.Query<Book>().Customize(a => a.WaitForNonStaleResults()).Any();
                                         }
 
                                         importer = new BookImporter(new GoogleBooksClient(apiKey: "AIzaSyAwesvnG7yP5wCqiNv21l8g7mo-ehkcVJs"));
