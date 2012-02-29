@@ -20,13 +20,13 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                            Name = "Test user",
                                            ProfilePictureUrl = "http://foo/bar"
                                        };
-                        TestRavenDb.UseNewTenant();
+                        RavenDb.SpinUpNewDatabase();
                         repository = new UserRepository();
                     };
 
             Because of = () =>
                              {
-                                 using (var session = TestRavenDb.OpenSession())
+                                 using (var session = RavenDb.OpenSession())
                                  {
                                      repository.AddUser(original, session);
                                      returnedUser = repository.GetUser(123, session);
@@ -54,10 +54,10 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
             Establish context =
                 () =>
                 {
-                    TestRavenDb.UseNewTenant();
+                    RavenDb.SpinUpNewDatabase();
                     repository = new UserRepository();
 
-                    using (var session = TestRavenDb.OpenSession())
+                    using (var session = RavenDb.OpenSession())
                     {
                         repository.AddUser(new User
                         {
@@ -71,7 +71,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
             Because of = () => exception = Catch.Exception(
                 () =>
                     {
-                        using (var session = TestRavenDb.OpenSession())
+                        using (var session = RavenDb.OpenSession())
                         {
                             repository.AddUser(new User
                                                    {
@@ -88,7 +88,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
             It should_not_store_the_duplicate =
                 () =>
                     {
-                        using (var session = TestRavenDb.OpenSession())
+                        using (var session = RavenDb.OpenSession())
                         {
                             session.Query<User>()
                                 .Customize(a => a.WaitForNonStaleResults())

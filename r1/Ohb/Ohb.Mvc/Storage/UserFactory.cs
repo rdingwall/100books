@@ -20,9 +20,7 @@ namespace Ohb.Mvc.Storage
         {
             if (session == null) throw new ArgumentNullException("session");
 
-            var fbWebContext = new FacebookWebContext(
-                FacebookApplication.Current, 
-                new HttpContextWrapper(HttpContext.Current)); // or FacebookWebContext.Current;
+            var fbWebContext = FacebookWebContext.Current;
 
             if (!fbWebContext.IsAuthenticated())
                 return null;
@@ -45,6 +43,7 @@ namespace Ohb.Mvc.Storage
 
             return new User
             {
+                SecretKey = new SecretKeyGenerator().GetNext(),
                 FacebookId = fbWebContext.UserId,
                 Name = me.name,
                 ProfilePictureUrl = String.Format("http://graph.facebok.com/{0}/picture", me.id)

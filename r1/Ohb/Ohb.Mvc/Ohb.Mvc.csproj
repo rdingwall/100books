@@ -186,6 +186,9 @@
     <Compile Include="Storage\BookRepository.cs" />
     <Compile Include="Storage\FacebookUserId.cs" />
     <Compile Include="Storage\GoogleVolumeId.cs" />
+    <Compile Include="Storage\SecretKeyProvider.cs" />
+    <Compile Include="Storage\SecretUserKey.cs" />
+    <Compile Include="Storage\SecretKeyGenerator.cs" />
     <Compile Include="Storage\User.cs" />
     <Compile Include="Storage\UserFactory.cs" />
     <Compile Include="Storage\UserRepository.cs" />

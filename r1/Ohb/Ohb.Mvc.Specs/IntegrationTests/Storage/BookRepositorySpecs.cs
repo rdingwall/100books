@@ -13,8 +13,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
         {
             Establish context = () =>
             {
-                TestRavenDb.UseNewTenant();
-                using (var session = TestRavenDb.OpenSession())
+                RavenDb.SpinUpNewDatabase();
+                using (var session = RavenDb.OpenSession())
                 {
                     var book = new Book
                     {
@@ -39,7 +39,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
             Because of =
                 () =>
                 {
-                    using (var session = TestRavenDb.OpenSession())
+                    using (var session = RavenDb.OpenSession())
                     {
                         repository.Add(new Book
                         {
@@ -64,14 +64,14 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
             Establish context =
                 () =>
                 {
-                    TestRavenDb.UseNewTenant();
+                    RavenDb.SpinUpNewDatabase();
                     repository = new BookRepository();
                 };
 
             Because of =
                 () =>
                 {
-                    using (var session = TestRavenDb.OpenSession())
+                    using (var session = RavenDb.OpenSession())
                     {
                         repository.Add(
                             new Book
@@ -96,7 +96,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
             It should_add_the_book_to_ravendb =
                 () =>
                 {
-                    using (var session = TestRavenDb.OpenSession())
+                    using (var session = RavenDb.OpenSession())
                     {
                         var book = session.Query<Book>()
                             .Customize(a => a.WaitForNonStaleResults())

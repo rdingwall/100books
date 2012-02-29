@@ -115,6 +115,7 @@
     <Compile Include="Api\Controllers\BooksApiControllerSpecs.cs" />
     <Compile Include="Api\Controllers\TestHelper.cs" />
     <Compile Include="IntegrationTests\Storage\BookRepositorySpecs.cs" />
+    <Compile Include="IntegrationTests\Storage\SecretKeyProviderSpecs.cs" />
     <Compile Include="StubDocumentStore.cs" />
     <Compile Include="IntegrationTests\GoogleBookSearchServiceSpecs.cs" />
     <Compile Include="IntegrationTests\Http\BooksHttpApiSpecs.cs" />
@@ -122,7 +123,7 @@
     <Compile Include="IntegrationTests\Http\DynamicJsonDeserializer.cs" />
     <Compile Include="IntegrationTests\Http\RestHelper.cs" />
     <Compile Include="IntegrationTests\Storage\BookImporterSpecs.cs" />
-    <Compile Include="IntegrationTests\Storage\TestRavenDb.cs" />
+    <Compile Include="IntegrationTests\Storage\RavenDb.cs" />
     <Compile Include="IntegrationTests\Storage\UserRepositorySpecs.cs" />
     <Compile Include="IntegrationTests\WindsorRegistrationSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

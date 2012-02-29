@@ -2,14 +2,11 @@ using Bootstrap.Windsor;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Ohb.Mvc.Api;
-using Ohb.Mvc.Api.Controllers;
 using Ohb.Mvc.Controllers;
 using Ohb.Mvc.Google;
 using Ohb.Mvc.Storage;
 using Raven.Client;
 using Raven.Client.Document;
-using Raven.Client.Extensions;
-using BooksController = Ohb.Mvc.Controllers.BooksController;
 
 namespace Ohb.Mvc.Startup
 {
