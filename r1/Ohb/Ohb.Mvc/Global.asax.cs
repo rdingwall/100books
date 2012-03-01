@@ -8,6 +8,7 @@ using Bootstrap.AutoMapper;
 using Bootstrap.Windsor;
 using Castle.Windsor;
 using Ohb.Mvc.Startup;
+using Ohb.Mvc.Storage.ApiTokens;
 using Ohb.Mvc.Storage.Users;
 using Raven.Client;
 
@@ -23,9 +24,10 @@ namespace Ohb.Mvc
         public static void RegisterGlobalFilters(GlobalFilterCollection filters, 
             IWindsorContainer container)
         {
-            filters.Add(new OhbHandleErrorAttribute());
-            filters.Add(new RavenDbAttribute(container.Resolve<IDocumentStore>()));
-            filters.Add(new CurrentUserAttribute(container.Resolve<IUserFactory>()));
+            filters.Add(container.Resolve<OhbHandleErrorAttribute>());
+            filters.Add(container.Resolve<RavenDbAttribute>());
+            filters.Add(container.Resolve<CurrentUserAttribute>());
+            filters.Add(container.Resolve<ApiTokenCookieAttribute>());
         }
 
         public void RegisterRoutes(RouteCollection routes)

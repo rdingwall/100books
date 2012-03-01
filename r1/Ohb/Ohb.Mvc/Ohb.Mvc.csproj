@@ -156,6 +156,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiTokenCookieAttribute.cs" />
     <Compile Include="Api\ApiInstaller.cs" />
     <Compile Include="Api\Controllers\BooksController.cs" />
     <Compile Include="Api\Controllers\OhbApiController.cs" />

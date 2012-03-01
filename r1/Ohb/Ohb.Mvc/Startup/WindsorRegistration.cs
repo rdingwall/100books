@@ -5,6 +5,7 @@ using Ohb.Mvc.Api;
 using Ohb.Mvc.Controllers;
 using Ohb.Mvc.Google;
 using Ohb.Mvc.Storage;
+using Ohb.Mvc.Storage.ApiTokens;
 using Ohb.Mvc.Storage.Books;
 using Ohb.Mvc.Storage.Users;
 using Raven.Client;
@@ -24,11 +25,19 @@ namespace Ohb.Mvc.Startup
                 Component.For<BooksController>().LifeStyle.Transient);
 
             container.Register(
+                Component.For<OhbHandleErrorAttribute>(),
+                Component.For<ApiTokenCookieAttribute>(),
+                Component.For<RavenDbAttribute>(),
+                Component.For<CurrentUserAttribute>());
+
+            container.Register(
                 Component.For<IUserFactory>().ImplementedBy<UserFactory>(),
                 Component.For<IRavenUniqueInserter>().ImplementedBy<RavenUniqueInserter>(),
                 Component.For<IUserRepository>().ImplementedBy<UserRepository>(),
                 Component.For<IBookRepository>().ImplementedBy<BookRepository>(),
                 Component.For<IBookImporter>().ImplementedBy<BookImporter>(),
+                Component.For<IApiTokenFactory>().ImplementedBy<ApiTokenFactory>(),
+                Component.For<ICryptoTokenGenerator>().ImplementedBy<CryptoTokenGenerator>(),
                 Component.For<IGoogleBooksClient>().ImplementedBy<GoogleBooksClient>()
                     .DependsOn(new
                                    {
