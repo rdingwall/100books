@@ -1,3 +1,4 @@
+using System;
 using Machine.Specifications;
 using Ohb.Mvc.Storage;
 using Ohb.Mvc.Storage.ApiTokens;
@@ -44,6 +45,9 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
             It should_have_the_users_id = () => apiToken.UserId.ShouldEqual("1234");
 
             It should_have_a_token = () => apiToken.Token.ShouldNotBeEmpty();
+
+            It should_store_the_expiry_time = 
+                () => apiToken.ExpiresAt.ShouldBeGreaterThan(DateTime.UtcNow);
 
             It should_store_the_key_in_ravendb =
                 () =>

@@ -14,7 +14,7 @@ namespace Ohb.Mvc.Storage.ApiTokens
         readonly ICryptoTokenGenerator generator;
         readonly IRavenUniqueInserter inserter;
 
-        readonly static TimeSpan expiresAfter = TimeSpan.FromHours(2); // same as Facebook
+        readonly static TimeSpan expiryDuration = TimeSpan.FromHours(2); // same as Facebook
 
         public ApiTokenFactory(ICryptoTokenGenerator generator, 
             IRavenUniqueInserter inserter)
@@ -35,7 +35,12 @@ namespace Ohb.Mvc.Storage.ApiTokens
             for (;;)
             {
                 var token = generator.GetNext();
-                var apiToken = new ApiToken {Token = token, UserId = userId };
+                var apiToken = new ApiToken
+                                   {
+                                       Token = token, 
+                                       UserId = userId,
+                                       ExpiresAt = DateTime.UtcNow.Add(expiryDuration)
+                                   };
                 try
                 {
                     inserter.StoreUnique(session, apiToken, t => t.Token);
