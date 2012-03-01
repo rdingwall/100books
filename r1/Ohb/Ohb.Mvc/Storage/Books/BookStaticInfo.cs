@@ -1,4 +1,4 @@
-namespace Ohb.Mvc.Api.Models
+namespace Ohb.Mvc.Storage.Books
 {
     public class BookStaticInfo
     {

@@ -169,7 +169,7 @@
     <Compile Include="Google\GoogleVolume.cs" />
     <Compile Include="Google\IGoogleBooksClient.cs" />
     <Compile Include="ActionFilters\OhbHandleErrorAttribute.cs" />
-    <Compile Include="Api\Models\BookStaticInfo.cs" />
+    <Compile Include="Storage\Books\BookStaticInfo.cs" />
     <Compile Include="Google\BookTitleComparer.cs" />
     <Compile Include="Google\GoogleBooksClient.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
