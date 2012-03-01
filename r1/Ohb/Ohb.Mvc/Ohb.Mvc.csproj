@@ -192,7 +192,7 @@
     <Compile Include="Storage\UniqueConstraint.cs" />
     <Compile Include="Storage\ApiTokens\ApiTokenFactory.cs" />
     <Compile Include="Storage\ApiTokens\ApiToken.cs" />
-    <Compile Include="Storage\ApiTokens\TokenGenerator.cs" />
+    <Compile Include="Storage\ApiTokens\CryptoTokenGenerator.cs" />
     <Compile Include="Storage\Users\User.cs" />
     <Compile Include="Storage\Users\UserFactory.cs" />
     <Compile Include="Storage\Users\UserRepository.cs" />
