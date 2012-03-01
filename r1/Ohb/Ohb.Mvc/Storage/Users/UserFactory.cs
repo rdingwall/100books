@@ -4,6 +4,11 @@ using Raven.Client;
 
 namespace Ohb.Mvc.Storage.Users
 {
+    public interface IUserFactory
+    {
+        User GetOrCreateUser(IDocumentSession session);
+    }
+
     public class UserFactory : IUserFactory
     {
         private readonly IUserRepository users;
@@ -46,10 +51,5 @@ namespace Ohb.Mvc.Storage.Users
                 ProfilePictureUrl = String.Format("http://graph.facebok.com/{0}/picture", me.id)
             };
         }
-    }
-
-    public interface IUserFactory
-    {
-        User GetOrCreateUser(IDocumentSession session);
     }
 }

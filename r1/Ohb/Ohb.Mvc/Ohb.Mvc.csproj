@@ -163,6 +163,7 @@
     <Compile Include="Api\Models\VolumeIdModel.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\OhbController.cs" />
+    <Compile Include="CurrentUserAttribute.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Google\GoogleVolume.cs" />
     <Compile Include="Google\IGoogleBooksClient.cs" />

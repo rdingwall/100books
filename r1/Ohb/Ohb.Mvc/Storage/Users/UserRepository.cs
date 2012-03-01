@@ -21,7 +21,6 @@ namespace Ohb.Mvc.Storage.Users
             this.inserter = inserter;
         }
 
-
         public User GetUser(long facebookId, IDocumentSession session)
         {
             if (session == null) throw new ArgumentNullException("session");

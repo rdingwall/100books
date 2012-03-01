@@ -8,6 +8,7 @@ using Bootstrap.AutoMapper;
 using Bootstrap.Windsor;
 using Castle.Windsor;
 using Ohb.Mvc.Startup;
+using Ohb.Mvc.Storage.Users;
 using Raven.Client;
 
 namespace Ohb.Mvc
@@ -24,6 +25,7 @@ namespace Ohb.Mvc
         {
             filters.Add(new OhbHandleErrorAttribute());
             filters.Add(new RavenDbAttribute(container.Resolve<IDocumentStore>()));
+            filters.Add(new CurrentUserAttribute(container.Resolve<IUserFactory>()));
         }
 
         public void RegisterRoutes(RouteCollection routes)
