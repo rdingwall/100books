@@ -24,10 +24,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                             new BookStaticInfo { Title = "First", Id = "4YydO00I9JYC" }
                     };
 
-                    session.Store(new UniqueGoogleVolumeId { VolumeId = "4YydO00I9JYC" },
-                                  String.Concat("GoogleVolumeIds/", "4YydO00I9JYC"));
+                    new RavenUniqueInserter().StoreUnique(session, book, b => b.GoogleVolumeId);
 
-                    session.Store(book);
                     session.SaveChanges();
 
                     // wait for update

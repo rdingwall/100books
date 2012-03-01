@@ -22,7 +22,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                            ProfilePictureUrl = "http://foo/bar"
                                        };
                         RavenDb.SpinUpNewDatabase();
-                        repository = new UserRepository();
+                        repository = new UserRepository(new RavenUniqueInserter());
                     };
 
             Because of = () =>
@@ -56,7 +56,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                 () =>
                 {
                     RavenDb.SpinUpNewDatabase();
-                    repository = new UserRepository();
+                    repository = new UserRepository(new RavenUniqueInserter());
 
                     using (var session = RavenDb.OpenSession())
                     {

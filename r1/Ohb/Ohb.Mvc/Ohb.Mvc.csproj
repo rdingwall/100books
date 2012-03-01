@@ -186,8 +186,6 @@
     <Compile Include="Storage\Books\BookRepository.cs" />
     <Compile Include="Storage\RavenUniqueInserter.cs" />
     <Compile Include="Storage\UniqueConstraint.cs" />
-    <Compile Include="Storage\Users\UniqueFacebookId.cs" />
-    <Compile Include="Storage\Books\UniqueGoogleVolumeId.cs" />
     <Compile Include="Storage\ApiTokens\ApiTokenFactory.cs" />
     <Compile Include="Storage\ApiTokens\ApiToken.cs" />
     <Compile Include="Storage\ApiTokens\TokenGenerator.cs" />

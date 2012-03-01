@@ -13,6 +13,14 @@ namespace Ohb.Mvc.Storage.Users
     public class UserRepository : IUserRepository
     {
         static readonly object syncRoot = new object();
+        readonly IRavenUniqueInserter inserter;
+
+        public UserRepository(IRavenUniqueInserter inserter)
+        {
+            if (inserter == null) throw new ArgumentNullException("inserter");
+            this.inserter = inserter;
+        }
+
 
         public User GetUser(long facebookId, IDocumentSession session)
         {
@@ -27,24 +35,7 @@ namespace Ohb.Mvc.Storage.Users
             if (session == null) throw new ArgumentNullException("session");
 
             lock (syncRoot)
-            {
-                try
-                {
-                    // Unique constraint ala http://old.ravendb.net/faq/unique-constraints
-                    session.Advanced.UseOptimisticConcurrency = true;
-
-                    session.Store(new UniqueFacebookId { UserId = user.FacebookId },
-                        String.Format("FacebookUserIds/{0}", user.FacebookId));
-
-                    session.Store(user);
-
-                    session.SaveChanges();
-                }
-                finally
-                {
-                    session.Advanced.UseOptimisticConcurrency = false;
-                }
-            }
+                inserter.StoreUnique(session, user, u => u.FacebookId);
         }
     }
 }
