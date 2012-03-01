@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFilters\ApiTokenCookieAttribute.cs" />
+    <Compile Include="Api\ActionFilters\RavenDbApiAttribute.cs" />
     <Compile Include="Api\ApiInstaller.cs" />
     <Compile Include="Api\Controllers\BooksController.cs" />
     <Compile Include="Api\Controllers\OhbApiController.cs" />

@@ -8,6 +8,7 @@ using Bootstrap.AutoMapper;
 using Bootstrap.Windsor;
 using Castle.Windsor;
 using Ohb.Mvc.ActionFilters;
+using Ohb.Mvc.Api.ActionFilters;
 using Ohb.Mvc.Startup;
 using Ohb.Mvc.Storage.ApiTokens;
 using Ohb.Mvc.Storage.Users;
@@ -75,9 +76,7 @@ namespace Ohb.Mvc
             var resolver = new WindsorResolver(container);
 
             // Web API
-            var config = GlobalConfiguration.Configuration;
-            config.ServiceResolver.SetResolver(resolver);
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            RegisterApiStuff(resolver, container);
 
             DependencyResolver.SetResolver(resolver);
 
@@ -85,6 +84,14 @@ namespace Ohb.Mvc
 
             RegisterGlobalFilters(GlobalFilters.Filters, container);
             RegisterRoutes(RouteTable.Routes);
+        }
+
+        static void RegisterApiStuff(WindsorResolver resolver, IWindsorContainer container)
+        {
+            var config = GlobalConfiguration.Configuration;
+            config.ServiceResolver.SetResolver(resolver);
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            config.Filters.Add(container.Resolve<RavenDbApiAttribute>());
         }
 
         public override void Dispose()
