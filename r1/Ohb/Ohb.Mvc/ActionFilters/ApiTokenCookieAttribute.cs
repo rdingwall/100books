@@ -5,7 +5,7 @@ using Ohb.Mvc.Controllers;
 using Ohb.Mvc.Storage.ApiTokens;
 using System.Linq;
 
-namespace Ohb.Mvc
+namespace Ohb.Mvc.ActionFilters
 {
     public class ApiTokenCookieAttribute : ActionFilterAttribute
     {

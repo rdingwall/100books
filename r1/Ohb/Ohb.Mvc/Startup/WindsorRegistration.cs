@@ -1,6 +1,7 @@
 using Bootstrap.Windsor;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using Ohb.Mvc.ActionFilters;
 using Ohb.Mvc.Api;
 using Ohb.Mvc.Controllers;
 using Ohb.Mvc.Google;

@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using Ohb.Mvc.Controllers;
 using Ohb.Mvc.Storage.Users;
 
-namespace Ohb.Mvc
+namespace Ohb.Mvc.ActionFilters
 {
     public class CurrentUserAttribute : ActionFilterAttribute
     {

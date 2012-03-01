@@ -156,7 +156,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiTokenCookieAttribute.cs" />
+    <Compile Include="ActionFilters\ApiTokenCookieAttribute.cs" />
     <Compile Include="Api\ApiInstaller.cs" />
     <Compile Include="Api\Controllers\BooksController.cs" />
     <Compile Include="Api\Controllers\OhbApiController.cs" />
@@ -164,11 +164,11 @@
     <Compile Include="Api\Models\VolumeIdModel.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\OhbController.cs" />
-    <Compile Include="CurrentUserAttribute.cs" />
+    <Compile Include="ActionFilters\CurrentUserAttribute.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Google\GoogleVolume.cs" />
     <Compile Include="Google\IGoogleBooksClient.cs" />
-    <Compile Include="OhbHandleErrorAttribute.cs" />
+    <Compile Include="ActionFilters\OhbHandleErrorAttribute.cs" />
     <Compile Include="Api\Models\BookStaticInfo.cs" />
     <Compile Include="Google\BookTitleComparer.cs" />
     <Compile Include="Google\GoogleBooksClient.cs" />
@@ -180,7 +180,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\SearchResultsModel.cs" />
-    <Compile Include="RavenDbAttribute.cs" />
+    <Compile Include="ActionFilters\RavenDbAttribute.cs" />
     <Compile Include="Service References\Amazon\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

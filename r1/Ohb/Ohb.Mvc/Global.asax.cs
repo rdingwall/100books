@@ -7,6 +7,7 @@ using Bootstrap;
 using Bootstrap.AutoMapper;
 using Bootstrap.Windsor;
 using Castle.Windsor;
+using Ohb.Mvc.ActionFilters;
 using Ohb.Mvc.Startup;
 using Ohb.Mvc.Storage.ApiTokens;
 using Ohb.Mvc.Storage.Users;

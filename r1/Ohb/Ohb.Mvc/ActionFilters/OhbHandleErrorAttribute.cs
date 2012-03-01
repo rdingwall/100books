@@ -3,7 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using Elmah;
 
-namespace Ohb.Mvc
+namespace Ohb.Mvc.ActionFilters
 {
     public class OhbHandleErrorAttribute : HandleErrorAttribute
     {

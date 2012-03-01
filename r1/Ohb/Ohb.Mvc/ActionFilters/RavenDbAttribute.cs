@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using Ohb.Mvc.Controllers;
 using Raven.Client;
 
-namespace Ohb.Mvc
+namespace Ohb.Mvc.ActionFilters
 {
     public class RavenDbAttribute : ActionFilterAttribute
     {
