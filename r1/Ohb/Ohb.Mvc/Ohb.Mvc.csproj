@@ -184,8 +184,8 @@
     </Compile>
     <Compile Include="Google\IgnoreList.cs" />
     <Compile Include="Storage\Books\BookRepository.cs" />
-    <Compile Include="Storage\Users\FacebookUserId.cs" />
-    <Compile Include="Storage\Books\GoogleVolumeId.cs" />
+    <Compile Include="Storage\Users\UniqueFacebookId.cs" />
+    <Compile Include="Storage\Books\UniqueGoogleVolumeId.cs" />
     <Compile Include="Storage\Users\SecretKeyProvider.cs" />
     <Compile Include="Storage\Users\SecretUserKey.cs" />
     <Compile Include="Storage\Users\SecretKeyGenerator.cs" />

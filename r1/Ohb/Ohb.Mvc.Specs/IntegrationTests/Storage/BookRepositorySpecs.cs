@@ -24,7 +24,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                             new BookStaticInfo { Title = "First", Id = "4YydO00I9JYC" }
                     };
 
-                    session.Store(new GoogleVolumeId { VolumeId = "4YydO00I9JYC" },
+                    session.Store(new UniqueGoogleVolumeId { VolumeId = "4YydO00I9JYC" },
                                   String.Concat("GoogleVolumeIds/", "4YydO00I9JYC"));
 
                     session.Store(book);

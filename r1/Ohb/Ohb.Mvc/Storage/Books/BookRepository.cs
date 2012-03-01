@@ -31,7 +31,7 @@ namespace Ohb.Mvc.Storage.Books
             {
                 session.Advanced.UseOptimisticConcurrency = true;
 
-                session.Store(new GoogleVolumeId {VolumeId = book.GoogleVolumeId},
+                session.Store(new UniqueGoogleVolumeId {VolumeId = book.GoogleVolumeId},
                               String.Concat("GoogleVolumeIds/", book.GoogleVolumeId));
 
                 session.Store(book);

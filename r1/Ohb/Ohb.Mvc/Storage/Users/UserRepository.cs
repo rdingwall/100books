@@ -33,7 +33,7 @@ namespace Ohb.Mvc.Storage.Users
                     // Unique constraint ala http://old.ravendb.net/faq/unique-constraints
                     session.Advanced.UseOptimisticConcurrency = true;
 
-                    session.Store(new FacebookUserId { UserId = user.FacebookId },
+                    session.Store(new UniqueFacebookId { UserId = user.FacebookId },
                         String.Format("FacebookUserIds/{0}", user.FacebookId));
 
                     session.Store(user);
