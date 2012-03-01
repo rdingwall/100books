@@ -1,26 +1,25 @@
-using System;
 using Machine.Specifications;
 using Ohb.Mvc.Storage;
-using Ohb.Mvc.Storage.Users;
+using Ohb.Mvc.Storage.ApiTokens;
 using Rhino.Mocks;
 using System.Linq;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.Storage
 {
-    [Subject(typeof(SecretKeyProvider))]
-    public class SecretKeyProviderSpecs
+    [Subject(typeof(ApiTokenFactory))]
+    public class ApiTokenFactorySpecs
     {
         public abstract class scenario
         {
             Establish context =
                 () =>
                     {
-                        generator = MockRepository.GenerateStub<ISecretKeyGenerator>();
-                        provider = new SecretKeyProvider(generator);
+                        generator = MockRepository.GenerateStub<ICryptoTokenGenerator>();
+                        provider = new ApiTokenFactory(generator, new RavenUniqueInserter());
                     };
 
-            protected static ISecretKeyGenerator generator;
-            protected static SecretKeyProvider provider;
+            protected static ICryptoTokenGenerator generator;
+            protected static IApiTokenFactory provider;
         }
 
         public class When_an_unused_secret_key_was_found : scenario
@@ -30,31 +29,36 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                         RavenDb.SpinUpNewDatabase();
 
                                         // use a real generator
-                                        provider = new SecretKeyProvider(new SecretKeyGenerator());
+                                        provider = new ApiTokenFactory(new CryptoTokenGenerator(), 
+                                            new RavenUniqueInserter());
                                     };
 
             Because of = () =>
                              {
                                  using (var session = RavenDb.OpenSession())
-                                     key = provider.GetUniqueKey(session);
+                                     apiToken = provider.CreateApiToken("1234", session);
                              };
 
-            It should_return_a_key = () => key.ShouldNotBeEmpty();
+            It should_return_a_key = () => apiToken.ShouldNotBeNull();
+
+            It should_have_the_users_id = () => apiToken.UserId.ShouldEqual("1234");
+
+            It should_have_a_token = () => apiToken.Token.ShouldNotBeEmpty();
 
             It should_store_the_key_in_ravendb =
                 () =>
                     {
                         using (var session = RavenDb.OpenSession())
                         {
-                            var doc = session.Query<SecretUserKey>()
+                            var doc = session.Query<ApiToken>()
                                 .Customize(a => a.WaitForNonStaleResults())
-                                .FirstOrDefault(k => k.SecretKey == key);
+                                .FirstOrDefault(k => k.UserId == "1234");
 
                             doc.ShouldNotBeNull();
                         }
                     };
 
-            static string key;
+            static ApiToken apiToken;
         }
 
         public class When_existing_keys_were_generated : scenario
@@ -70,14 +74,17 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
 
                         using (var session = RavenDb.OpenSession())
                         {
-                            session.Store(new SecretUserKey {SecretKey = "aaa"},
-                                          "SecretUserKeys/aaa");
-                            session.Store(new SecretUserKey {SecretKey = "bbb"},
-                                          "SecretUserKeys/bbb");
+                            var wrapper = new RavenUniqueInserter();
+
+                            var aaa = new ApiToken {Token = "aaa"};
+                            var bbb = new ApiToken {Token = "bbb"};
+
+                            wrapper.StoreUnique(session, aaa, t => t.Token);
+                            wrapper.StoreUnique(session, bbb, t => t.Token);
                             session.SaveChanges();
 
                             // wait
-                            session.Query<SecretUserKey>()
+                            session.Query<ApiToken>()
                                 .Customize(a => a.WaitForNonStaleResults())
                                 .Any();
                         }
@@ -86,25 +93,25 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
             Because of = () =>
             {
                 using (var session = RavenDb.OpenSession())
-                    key = provider.GetUniqueKey(session);
+                    apiToken = provider.CreateApiToken("1234", session);
             };
 
-            It should_return_the_first_unused_key = () => key.ShouldEqual("ccc");
+            It should_return_the_first_unused_key = () => apiToken.Token.ShouldEqual("ccc");
 
             It should_store_the_key_in_ravendb =
                 () =>
                 {
                     using (var session = RavenDb.OpenSession())
                     {
-                        var doc = session.Query<SecretUserKey>()
+                        var doc = session.Query<ApiToken>()
                             .Customize(a => a.WaitForNonStaleResults())
-                            .FirstOrDefault(k => k.SecretKey == "ccc");
+                            .FirstOrDefault(k => k.Token == "ccc");
 
                         doc.ShouldNotBeNull();
                     }
                 };
 
-            static string key;
+            static ApiToken apiToken;
         }
     }
 }

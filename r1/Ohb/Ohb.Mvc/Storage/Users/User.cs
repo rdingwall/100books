@@ -6,6 +6,5 @@
         public string ProfilePictureUrl { get; set; }
         public string Name { get; set; }
         public long FacebookId { get; set; }
-        public string SecretKey { get; set; }
     }
 }

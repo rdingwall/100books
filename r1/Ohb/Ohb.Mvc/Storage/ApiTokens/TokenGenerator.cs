@@ -4,20 +4,21 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Ohb.Mvc.Storage.Users
+namespace Ohb.Mvc.Storage.ApiTokens
 {
-    public interface ISecretKeyGenerator
+    public interface ICryptoTokenGenerator
     {
         string GetNext();
     }
 
-    public class SecretKeyGenerator : ISecretKeyGenerator
+    public class CryptoTokenGenerator : ICryptoTokenGenerator
     {
         public string GetNext()
         {
             return RandomString(64);
         }
 
+        // From http://stackoverflow.com/a/8996788/91551
         static string RandomString(int length, string allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_")
         {
             if (length < 0) throw new ArgumentOutOfRangeException("length", "length cannot be less than zero.");

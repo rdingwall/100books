@@ -23,23 +23,25 @@ namespace Ohb.Mvc.Startup
                 Component.For<SearchController>().LifeStyle.Transient,
                 Component.For<BooksController>().LifeStyle.Transient);
 
-            container.Register(Component.For<IUserFactory>().ImplementedBy<UserFactory>(),
-                               Component.For<IUserRepository>().ImplementedBy<UserRepository>(),
-                               Component.For<IBookRepository>().ImplementedBy<BookRepository>(),
-                               Component.For<IBookImporter>().ImplementedBy<BookImporter>(),
-                               Component.For<IGoogleBooksClient>().ImplementedBy<GoogleBooksClient>()
-                                   .DependsOn(new
-                                                  {
-                                                      apiKey = "AIzaSyDQsH0G4o3l9FjHUocTO_edha6Pv8N3NXo"
-                                                  }),
-                               Component.For<IDocumentStore>().UsingFactoryMethod(GetDocumentStore));
+            container.Register(
+                Component.For<IUserFactory>().ImplementedBy<UserFactory>(),
+                Component.For<IRavenUniqueInserter>().ImplementedBy<RavenUniqueInserter>(),
+                Component.For<IUserRepository>().ImplementedBy<UserRepository>(),
+                Component.For<IBookRepository>().ImplementedBy<BookRepository>(),
+                Component.For<IBookImporter>().ImplementedBy<BookImporter>(),
+                Component.For<IGoogleBooksClient>().ImplementedBy<GoogleBooksClient>()
+                    .DependsOn(new
+                                   {
+                                       apiKey = "AIzaSyDQsH0G4o3l9FjHUocTO_edha6Pv8N3NXo"
+                                   }),
+                Component.For<IDocumentStore>().UsingFactoryMethod(GetDocumentStore));
 
             container.Install(new ApiInstaller());
         }
 
         static DocumentStore GetDocumentStore()
         {
-            var store = new DocumentStore {ConnectionStringName = "RavenDB"};
+            var store = new DocumentStore { ConnectionStringName = "RavenDB" };
             store.Initialize();
             return store;
         }

@@ -115,7 +115,7 @@
     <Compile Include="Api\Controllers\BooksApiControllerSpecs.cs" />
     <Compile Include="Api\Controllers\TestHelper.cs" />
     <Compile Include="IntegrationTests\Storage\BookRepositorySpecs.cs" />
-    <Compile Include="IntegrationTests\Storage\SecretKeyProviderSpecs.cs" />
+    <Compile Include="IntegrationTests\Storage\ApiTokenFactorySpecs.cs" />
     <Compile Include="StubDocumentStore.cs" />
     <Compile Include="IntegrationTests\GoogleBookSearchServiceSpecs.cs" />
     <Compile Include="IntegrationTests\Http\BooksHttpApiSpecs.cs" />

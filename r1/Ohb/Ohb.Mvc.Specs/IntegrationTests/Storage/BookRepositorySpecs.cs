@@ -34,7 +34,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                     session.Query<Book>().Customize(a => a.WaitForNonStaleResults()).Any();
                 }
 
-                repository = new BookRepository();
+                repository = new BookRepository(new RavenUniqueInserter());
             };
 
             Because of =
@@ -66,7 +66,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                 () =>
                 {
                     RavenDb.SpinUpNewDatabase();
-                    repository = new BookRepository();
+                    repository = new BookRepository(new RavenUniqueInserter());
                 };
 
             Because of =

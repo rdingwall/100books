@@ -13,6 +13,14 @@ namespace Ohb.Mvc.Storage.Books
 
     public class BookRepository : IBookRepository
     {
+        readonly IRavenUniqueInserter inserter;
+
+        public BookRepository(IRavenUniqueInserter inserter)
+        {
+            if (inserter == null) throw new ArgumentNullException("inserter");
+            this.inserter = inserter;
+        }
+
         public Book Get(string googleVolumeId, IDocumentSession session)
         {
             if (session == null) throw new ArgumentNullException("session");
@@ -29,21 +37,11 @@ namespace Ohb.Mvc.Storage.Books
 
             try
             {
-                session.Advanced.UseOptimisticConcurrency = true;
-
-                session.Store(new UniqueGoogleVolumeId {VolumeId = book.GoogleVolumeId},
-                              String.Concat("GoogleVolumeIds/", book.GoogleVolumeId));
-
-                session.Store(book);
-                session.SaveChanges();
+                inserter.StoreUnique(session, book, b => b.GoogleVolumeId);
             }
             catch (ConcurrencyException)
             {
                 // Already added, do nothing
-            }
-            finally
-            {
-                session.Advanced.UseOptimisticConcurrency = false;
             }
         }
     }
