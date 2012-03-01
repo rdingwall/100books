@@ -1,4 +1,6 @@
-namespace Ohb.Mvc.Storage
+using Ohb.Mvc.Storage.Books;
+
+namespace Ohb.Mvc.Storage.PreviousReads
 {
     public class PreviousRead
     {

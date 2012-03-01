@@ -5,6 +5,8 @@ using Ohb.Mvc.Api;
 using Ohb.Mvc.Controllers;
 using Ohb.Mvc.Google;
 using Ohb.Mvc.Storage;
+using Ohb.Mvc.Storage.Books;
+using Ohb.Mvc.Storage.Users;
 using Raven.Client;
 using Raven.Client.Document;
 

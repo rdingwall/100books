@@ -2,7 +2,7 @@ using System;
 using Raven.Abstractions.Exceptions;
 using Raven.Client;
 
-namespace Ohb.Mvc.Storage
+namespace Ohb.Mvc.Storage.Users
 {
     public interface ISecretKeyProvider
     {

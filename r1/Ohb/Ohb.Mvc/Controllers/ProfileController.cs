@@ -4,6 +4,7 @@ using Facebook.Web;
 using Facebook.Web.Mvc;
 using System.Linq;
 using Ohb.Mvc.Storage;
+using Ohb.Mvc.Storage.Users;
 using Raven.Client;
 
 namespace Ohb.Mvc.Controllers

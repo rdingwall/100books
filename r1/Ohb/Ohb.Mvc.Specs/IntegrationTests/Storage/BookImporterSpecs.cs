@@ -2,6 +2,7 @@ using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Google;
 using Ohb.Mvc.Storage;
+using Ohb.Mvc.Storage.Books;
 using Raven.Client;
 using Rhino.Mocks;
 

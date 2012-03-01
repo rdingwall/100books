@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Web.Http;
 using Ohb.Mvc.Storage;
+using Ohb.Mvc.Storage.Books;
 using Raven.Client;
 
 namespace Ohb.Mvc.Api.Controllers

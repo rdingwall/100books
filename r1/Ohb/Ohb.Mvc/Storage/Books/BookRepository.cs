@@ -3,7 +3,7 @@ using System.Linq;
 using Raven.Abstractions.Exceptions;
 using Raven.Client;
 
-namespace Ohb.Mvc.Storage
+namespace Ohb.Mvc.Storage.Books
 {
     public interface IBookRepository
     {

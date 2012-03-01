@@ -1,4 +1,4 @@
-namespace Ohb.Mvc.Storage
+namespace Ohb.Mvc.Storage.Users
 {
     public class SecretUserKey
     {

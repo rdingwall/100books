@@ -1,9 +1,9 @@
-namespace Ohb.Mvc.Storage
+﻿namespace Ohb.Mvc.Storage.Books
 {
     // Dummy document for unique constraints
     // See http://old.ravendb.net/faq/unique-constraints
-    public class FacebookUserId
+    public class GoogleVolumeId
     {
-        public long UserId { get; set; }
+        public string VolumeId { get; set; }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Web.Http;
 using Ohb.Mvc.Storage;
+using Ohb.Mvc.Storage.Books;
+using Ohb.Mvc.Storage.PreviousReads;
 using Raven.Client;
 
 namespace Ohb.Mvc.Api.Controllers

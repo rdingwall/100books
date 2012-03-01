@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Ohb.Mvc.Storage
+namespace Ohb.Mvc.Storage.Users
 {
     public interface ISecretKeyGenerator
     {

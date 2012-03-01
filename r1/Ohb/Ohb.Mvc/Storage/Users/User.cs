@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Ohb.Mvc.Storage
+﻿namespace Ohb.Mvc.Storage.Users
 {
     public class User
     {

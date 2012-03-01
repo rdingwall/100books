@@ -1,6 +1,7 @@
 using System;
 using Machine.Specifications;
 using Ohb.Mvc.Storage;
+using Ohb.Mvc.Storage.Users;
 using Rhino.Mocks;
 using System.Linq;
 

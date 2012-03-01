@@ -2,7 +2,7 @@ using System;
 using Ohb.Mvc.Google;
 using Raven.Client;
 
-namespace Ohb.Mvc.Storage
+namespace Ohb.Mvc.Storage.Books
 {
     public interface IBookImporter
     {

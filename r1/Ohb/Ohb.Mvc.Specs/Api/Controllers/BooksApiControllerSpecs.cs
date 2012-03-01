@@ -4,6 +4,7 @@ using System.Web.Http;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Controllers;
 using Ohb.Mvc.Storage;
+using Ohb.Mvc.Storage.Books;
 using Rhino.Mocks;
 
 namespace Ohb.Mvc.Specs.Api.Controllers

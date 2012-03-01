@@ -1,10 +1,8 @@
 using System;
-using System.Web;
-using Facebook;
 using Facebook.Web;
 using Raven.Client;
 
-namespace Ohb.Mvc.Storage
+namespace Ohb.Mvc.Storage.Users
 {
     public class UserFactory : IUserFactory
     {

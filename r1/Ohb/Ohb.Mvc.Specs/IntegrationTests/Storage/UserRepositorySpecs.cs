@@ -2,6 +2,7 @@ using System;
 using Machine.Specifications;
 using Ohb.Mvc.Storage;
 using System.Linq;
+using Ohb.Mvc.Storage.Users;
 using Raven.Abstractions.Exceptions;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.Storage
