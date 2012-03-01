@@ -162,6 +162,7 @@
     <Compile Include="Api\Controllers\PreviousReadsController.cs" />
     <Compile Include="Api\Models\VolumeIdModel.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\OhbController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Google\GoogleVolume.cs" />
     <Compile Include="Google\IGoogleBooksClient.cs" />
@@ -177,6 +178,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\SearchResultsModel.cs" />
+    <Compile Include="RavenDbAttribute.cs" />
     <Compile Include="Service References\Amazon\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

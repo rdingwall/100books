@@ -9,7 +9,7 @@ using Ohb.Mvc.Models;
 
 namespace Ohb.Mvc.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : OhbController
     {
 
         //

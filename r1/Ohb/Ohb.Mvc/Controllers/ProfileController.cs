@@ -3,22 +3,18 @@ using System.Web.Mvc;
 using Facebook.Web;
 using Facebook.Web.Mvc;
 using System.Linq;
-using Ohb.Mvc.Storage;
 using Ohb.Mvc.Storage.Users;
 using Raven.Client;
 
 namespace Ohb.Mvc.Controllers
 {
-    public class ProfileController : Controller
+    public class ProfileController : OhbController
     {
-        readonly IDocumentStore documentStore;
         private readonly IUserFactory userFactory;
 
-        public ProfileController(IDocumentStore documentStore, IUserFactory userFactory)
+        public ProfileController(IUserFactory userFactory)
         {
-            if (documentStore == null) throw new ArgumentNullException("documentStore");
             if (userFactory == null) throw new ArgumentNullException("userFactory");
-            this.documentStore = documentStore;
             this.userFactory = userFactory;
         }
 
@@ -32,9 +28,7 @@ namespace Ohb.Mvc.Controllers
         [FacebookAuthorize(LoginUrl = "/?ReturnUrl=~/Profile")]
         public ActionResult Index()
         {
-            User user;
-            using (var session = documentStore.OpenSession())
-                user = userFactory.GetOrCreateUser(session);
+            var user = userFactory.GetOrCreateUser(DocumentSession);
 
             ViewBag.ProfilePictureUrl = user.ProfilePictureUrl;
             ViewBag.Name = user.Name;

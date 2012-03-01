@@ -4,7 +4,7 @@ using Ohb.Mvc.Google;
 
 namespace Ohb.Mvc.Controllers
 {
-    public class BooksController : Controller
+    public class BooksController : OhbController
     {
         readonly IGoogleBooksClient books;
 

@@ -5,7 +5,7 @@ using Ohb.Mvc.Models;
 
 namespace Ohb.Mvc.Controllers
 {
-    public class SearchController : Controller
+    public class SearchController : OhbController
     {
         readonly IGoogleBooksClient searchService;
 

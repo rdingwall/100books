@@ -8,6 +8,7 @@ using Bootstrap.AutoMapper;
 using Bootstrap.Windsor;
 using Castle.Windsor;
 using Ohb.Mvc.Startup;
+using Raven.Client;
 
 namespace Ohb.Mvc
 {
@@ -18,9 +19,11 @@ namespace Ohb.Mvc
     {
         private IWindsorContainer container;
 
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters, 
+            IWindsorContainer container)
         {
             filters.Add(new OhbHandleErrorAttribute());
+            filters.Add(new RavenDbAttribute(container.Resolve<IDocumentStore>()));
         }
 
         public void RegisterRoutes(RouteCollection routes)
@@ -75,7 +78,7 @@ namespace Ohb.Mvc
 
             AreaRegistration.RegisterAllAreas();
 
-            RegisterGlobalFilters(GlobalFilters.Filters);
+            RegisterGlobalFilters(GlobalFilters.Filters, container);
             RegisterRoutes(RouteTable.Routes);
         }
 
