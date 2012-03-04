@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
+using Ohb.Mvc.Api.ActionFilters;
 using Ohb.Mvc.Storage.Books;
 using Ohb.Mvc.Storage.PreviousReads;
 
@@ -18,11 +19,13 @@ namespace Ohb.Mvc.Api.Controllers
             this.importer = importer;
         }
 
+        [ApiAuthorize]
         public IEnumerable<Book> Get()
         {
             return DocumentSession.Query<PreviousRead>().Select(r => r.Book);
         }
 
+        [ApiAuthorize]
         public void Post(string volumeId)
         {
             if (String.IsNullOrWhiteSpace(volumeId))

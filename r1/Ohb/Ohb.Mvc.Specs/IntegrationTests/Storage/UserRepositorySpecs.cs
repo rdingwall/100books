@@ -2,6 +2,7 @@ using System;
 using Machine.Specifications;
 using Ohb.Mvc.Storage;
 using System.Linq;
+using Ohb.Mvc.Storage.ApiTokens;
 using Ohb.Mvc.Storage.Users;
 using Raven.Abstractions.Exceptions;
 
@@ -103,5 +104,44 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
             static Exception exception;
         }
 
+        public class When_looking_up_a_user_by_api_token
+        {
+            Establish context =
+                () =>
+                    {
+                        RavenDb.SpinUpNewDatabase();
+
+                        var tokenFactory = new ApiTokenFactory(
+                            new CryptoTokenGenerator(), new RavenUniqueInserter());
+
+                        user = new User {Name = "Richard"};
+
+                        repository = new UserRepository(new RavenUniqueInserter());
+                        using (var session = RavenDb.OpenSession())
+                        {
+                            repository.AddUser(user, session);
+
+                            // wait
+                            session.Query<User>()
+                                .Customize(a => a.WaitForNonStaleResults()).Any();
+
+                            apiToken = tokenFactory.CreateApiToken(user.Id, session);
+                        }
+                    };
+
+            Because of =
+                () =>
+                    {
+                        using (var session = RavenDb.OpenSession())
+                            returnedUser = repository.GetUserByApiToken(apiToken.Token, session);
+                    };
+
+            It should_return_the_correct_user = () => returnedUser.Name.ShouldEqual(user.Name);
+
+            static IUserRepository repository;
+            static User user;
+            static User returnedUser;
+            static ApiToken apiToken;
+        }
     }
 }

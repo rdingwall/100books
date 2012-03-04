@@ -11,7 +11,8 @@ namespace Ohb.Mvc.Api
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<RavenDbApiAttribute>());
+                Component.For<RavenDbApiAttribute>(),
+                Component.For<ApiAuthorizeHandlerAttribute>());
             
             container.Register(
                 Component.For<BooksController>().LifeStyle.Transient,

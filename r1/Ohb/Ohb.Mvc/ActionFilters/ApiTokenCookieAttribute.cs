@@ -9,7 +9,6 @@ namespace Ohb.Mvc.ActionFilters
 {
     public class ApiTokenCookieAttribute : ActionFilterAttribute
     {
-        const string CookieName = "ApiToken";
         readonly IApiTokenFactory apiTokens;
 
         public ApiTokenCookieAttribute(IApiTokenFactory apiTokens)
@@ -24,7 +23,7 @@ namespace Ohb.Mvc.ActionFilters
             if (controller == null)
                 return;
 
-            if (controller.Request.Cookies.AllKeys.Contains(CookieName))
+            if (controller.Request.Cookies.AllKeys.Contains(OhbCookies.ApiToken))
                 return; // cookie already set
 
             if (controller.User == null)
@@ -38,7 +37,7 @@ namespace Ohb.Mvc.ActionFilters
             var token = apiTokens.CreateApiToken(controller.User.Id,
                                                  controller.DocumentSession);
 
-            var cookie = new HttpCookie(CookieName, token.Token)
+            var cookie = new HttpCookie(OhbCookies.ApiToken, token.Token)
                              {
                                  Expires = token.ExpiresAt
                              };

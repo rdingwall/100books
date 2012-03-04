@@ -3,7 +3,7 @@ using System.Reflection;
 using Raven.Client;
 using Raven.Client.Document;
 
-namespace Ohb.Mvc.Specs.IntegrationTests.Storage
+namespace Ohb.Mvc.Specs.IntegrationTests
 {
     /// <summary>
     /// Test helpers for Raven DB sandbox Database management.

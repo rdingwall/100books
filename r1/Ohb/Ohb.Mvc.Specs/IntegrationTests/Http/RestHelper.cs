@@ -1,5 +1,10 @@
 using System;
+using System.Linq;
 using System.Net;
+using Ohb.Mvc.Storage;
+using Ohb.Mvc.Storage.ApiTokens;
+using Ohb.Mvc.Storage.Users;
+using Raven.Client.Document;
 using RestSharp;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.Http
@@ -15,6 +20,28 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             Console.WriteLine(response.Content);
 
             return response.StatusCode;
+        }
+
+        public static string GenerateNewApiToken(string userId = null)
+        {
+            using (var documentStore = new DocumentStore
+            {
+                Url = "http://localhost:8080",
+                DefaultDatabase = "Ohb"
+            })
+            {
+                documentStore.Initialize();
+                using (var documentSession = documentStore.OpenSession())
+                {
+                    if (userId == null)
+                        userId = documentSession.Query<User>().First().Id;
+
+                    var tokenFactory = new ApiTokenFactory(
+                        new CryptoTokenGenerator(), new RavenUniqueInserter());
+
+                    return tokenFactory.CreateApiToken(userId, documentSession).Token;
+                }
+            }
         }
     }
 }

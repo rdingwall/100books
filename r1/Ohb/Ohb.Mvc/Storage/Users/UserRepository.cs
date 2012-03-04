@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Ohb.Mvc.Storage.ApiTokens;
 using Raven.Client;
 
 namespace Ohb.Mvc.Storage.Users
@@ -8,6 +9,7 @@ namespace Ohb.Mvc.Storage.Users
     {
         User GetUser(long facebookId, IDocumentSession session);
         void AddUser(User user, IDocumentSession session);
+        User GetUserByApiToken(string apiToken, IDocumentSession session);
     }
 
     public class UserRepository : IUserRepository
@@ -35,6 +37,19 @@ namespace Ohb.Mvc.Storage.Users
 
             lock (syncRoot)
                 inserter.StoreUnique(session, user, u => u.FacebookId);
+        }
+
+        public User GetUserByApiToken(string apiToken, IDocumentSession session)
+        {
+            if (session == null) throw new ArgumentNullException("session");
+            if (String.IsNullOrWhiteSpace(apiToken))
+                throw new ArgumentException("Missing/empty parameter.", "apiToken");
+
+            var token = session.Query<ApiToken>()
+                .Customize(x => x.Include<ApiToken>(t => t.UserId))
+                .FirstOrDefault(t => t.Token == apiToken);
+
+            return session.Load<User>(token.UserId);
         }
     }
 }

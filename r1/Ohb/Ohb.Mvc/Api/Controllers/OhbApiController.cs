@@ -7,5 +7,6 @@ namespace Ohb.Mvc.Api.Controllers
     public abstract class OhbApiController : ApiController
     {
         public IDocumentSession DocumentSession { get; set; }
+        public User User { get; set; }
     }
 }

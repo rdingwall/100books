@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFilters\ApiTokenCookieAttribute.cs" />
+    <Compile Include="Api\ActionFilters\ApiAuthorizeAttribute.cs" />
     <Compile Include="Api\ActionFilters\RavenDbApiAttribute.cs" />
     <Compile Include="Api\ApiInstaller.cs" />
     <Compile Include="Api\Controllers\BooksController.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Google\GoogleVolume.cs" />
     <Compile Include="Google\IGoogleBooksClient.cs" />
     <Compile Include="ActionFilters\OhbHandleErrorAttribute.cs" />
+    <Compile Include="OhbCookies.cs" />
     <Compile Include="Storage\Books\BookStaticInfo.cs" />
     <Compile Include="Google\BookTitleComparer.cs" />
     <Compile Include="Google\GoogleBooksClient.cs" />

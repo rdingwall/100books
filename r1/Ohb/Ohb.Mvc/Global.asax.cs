@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web;
+﻿using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -10,9 +9,6 @@ using Castle.Windsor;
 using Ohb.Mvc.ActionFilters;
 using Ohb.Mvc.Api.ActionFilters;
 using Ohb.Mvc.Startup;
-using Ohb.Mvc.Storage.ApiTokens;
-using Ohb.Mvc.Storage.Users;
-using Raven.Client;
 
 namespace Ohb.Mvc
 {
@@ -92,6 +88,7 @@ namespace Ohb.Mvc
             config.ServiceResolver.SetResolver(resolver);
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Filters.Add(container.Resolve<RavenDbApiAttribute>());
+            config.Filters.Add(container.Resolve<ApiAuthorizeHandlerAttribute>());
         }
 
         public override void Dispose()
