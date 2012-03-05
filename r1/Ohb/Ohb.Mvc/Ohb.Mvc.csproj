@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFilters\AuthCookieAttribute.cs" />
+    <Compile Include="Api\ActionFilters\OhbErrorHandlerApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\RequiresAuthCookieApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\RavenDbApiAttribute.cs" />
     <Compile Include="Api\ApiInstaller.cs" />

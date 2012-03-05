@@ -89,6 +89,7 @@ namespace Ohb.Mvc
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Filters.Add(container.Resolve<RavenDbApiAttribute>());
             config.Filters.Add(container.Resolve<RequiresAuthCookieApiAttribute>());
+            config.Filters.Add(container.Resolve<OhbErrorHandlerApiAttribute>());
         }
 
         public override void Dispose()
