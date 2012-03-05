@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Machine.Specifications;
+using Ohb.Mvc.Storage.Books;
 using RestSharp;
-using RestSharp.Deserializers;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.Http
 {
@@ -15,25 +14,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
         {
             public class when_there_was_no_auth_cookie
             {
-                Establish context =
-                    () =>
-                    {
-                        client = new RestSharp.RestClient("http://localhost/api/v1");
-                        request = new RestRequest("previousreads")
-                        {
-                            Method = Method.GET,
-                            RequestFormat = DataFormat.Json
-                        };
-                    };
-
-                Because of = () => response = client.Execute(request);
-
                 It should_return_http_401_unauthorized =
-                    () => response.StatusCode.ShouldEqual(HttpStatusCode.Unauthorized);
-
-                static RestSharp.RestClient client;
-                static RestRequest request;
-                static RestResponse response;
+                    () => new ApiClient().AssertUnauthorized("previousreads");
             }
 
             public class when_there_was_an_expired_auth_cookie
@@ -47,180 +29,84 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
         {
             public class when_it_is_a_valid_request
             {
-                Establish context =
-                    () =>
-                        {
-                            authCookie = RestHelper.GetRandomUserAuthCookie();
+                Because of = () =>
+                                 {
+                                     var api = ApiClientFactory.NewUser();
+                                     response = api.MarkBookAsRead("4YydO00I9JYC");
+                                     results = api.GetPreviousReads();
+                                 };
 
-                            client = new RestSharp.RestClient("http://localhost/api/v1");
-                            request = new RestRequest("previousreads")
-                                          {
-                                              Method = Method.POST,
-                                              RequestFormat = DataFormat.Json
-                                          };
-                            request.AddCookie(OhbCookies.AuthCookie, authCookie);
+                It should_return_http_200_ok_when_marking_the_book_as_read = 
+                    () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
 
-                            request.AddBody(new { volumeId = "4YydO00I9JYC" });
-                        };
+                It should_return_the_previous_reads_list_as_json =
+                    () => results.ContentType.ShouldEqual("application/json; charset=utf-8");
 
-                Because of = () => response = client.Execute<dynamic>(request);
+                It should_return_http_200_for_the_previous_reads_list =
+                    () => results.StatusCode.ShouldEqual(HttpStatusCode.OK);
 
-                It should_return_http_200_ok = () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
+                It should_contain_the_book_in_the_previous_reads_list =
+                    () => results.Data.Select(b => b.StaticInfo.Id).ShouldContain("4YydO00I9JYC");
 
-                It should_return_the_full_book_details =
-                    () =>
-                        {
-                            request = new RestRequest("previousreads");
-                            request.AddCookie(OhbCookies.AuthCookie, authCookie);
-                            client.AddHandler("application/json", new DynamicJsonDeserializer());
-                            var response = client.Execute<dynamic>(request);
+                It should_contain_the_full_book_details_in_the_previous_reads_list =
+                    () => results.Data.Select(b => b.StaticInfo.Title).ShouldContain("The Google story");
 
-                            response.ContentType.ShouldEqual("application/json; charset=utf-8");
-                            ((object) response.Data).ShouldBe(typeof (IEnumerable));
-
-                            var books = (IEnumerable<dynamic>) response.Data;
-
-                            books.ShouldNotBeEmpty();
-                            books.Select(b => (string)b.StaticInfo.Id.Value).ShouldContain("4YydO00I9JYC");
-                            books.Select(b => (string)b.StaticInfo.Title.Value).ShouldContain("The Google story");
-                        };
-
-                static RestResponse<dynamic> response;
-                static RestSharp.RestClient client;
-                static RestRequest request;
-                static string authCookie;
+                static RestResponse response;
+                static RestResponse<List<Book>> results;
             }
 
             public class when_there_was_no_auth_cookie
             {
-                Establish context =
-                    () =>
-                    {
-                        client = new RestSharp.RestClient("http://localhost/api/v1");
-                        request = new RestRequest("previousreads")
-                        {
-                            Method = Method.POST,
-                            RequestFormat = DataFormat.Json
-                        };
-
-                        request.AddBody(new { volumeId = "4YydO00I9JYC" });
-                    };
-
-                Because of = () => response = client.Execute(request);
+                Because of = 
+                    () => response = ApiClientFactory.Anonymous().MarkBookAsRead("4YydO00I9JYC");
 
                 It should_return_http_401_unauthorized = 
                     () => response.StatusCode.ShouldEqual(HttpStatusCode.Unauthorized);
 
-                static RestSharp.RestClient client;
-                static RestRequest request;
                 static RestResponse response;
             }
 
             public class when_no_book_id_is_provided
             {
-                Establish context =
-                    () =>
-                    {
-                        var authCookie = RestHelper.GetRandomUserAuthCookie();
-
-                        client = new RestSharp.RestClient("http://localhost/api/v1");
-                        request = new RestRequest("previousreads")
-                        {
-                            Method = Method.POST,
-                            RequestFormat = DataFormat.Json
-                        };
-                        request.AddCookie(OhbCookies.AuthCookie, authCookie);
-                        client.AddHandler("application/json", new DynamicJsonDeserializer());
-                    };
-
-                Because of = () => response = client.Execute<dynamic>(request);
+                Because of =
+                    () => response = ApiClientFactory.NewUser().MarkBookAsRead(null);
 
                 It should_return_http_400_bad_request = 
                     () => response.StatusCode.ShouldEqual(HttpStatusCode.BadRequest);
 
-                static RestSharp.RestClient client;
-                static RestRequest request;
-                static RestResponse<dynamic> response;
+                static RestResponse response;
             }
 
             public class when_no_matching_book_is_found
             {
-                Establish context =
-                    () =>
-                    {
-                        var authCookie = RestHelper.GetRandomUserAuthCookie();
-
-                        client = new RestSharp.RestClient("http://localhost/api/v1");
-                        request = new RestRequest("previousreads")
-                        {
-                            Method = Method.POST,
-                            RequestFormat = DataFormat.Json
-                        };
-                        request.AddCookie(OhbCookies.AuthCookie, authCookie);
-
-                        request.AddBody(new { volumeId = "xxxxxxxxxxxxxxx" });
-                        client.AddHandler("application/json", new DynamicJsonDeserializer());
-                    };
-
-                Because of = () => response = client.Execute<dynamic>(request);
+                Because of = 
+                    () => response = ApiClientFactory.NewUser().MarkBookAsRead("xxxxxxxxxxxxxxx");
 
                 It should_return_http_404_not_found =
                     () => response.StatusCode.ShouldEqual(HttpStatusCode.NotFound);
 
-                static RestSharp.RestClient client;
-                static RestRequest request;
-                static RestResponse<dynamic> response;
+                static RestResponse response;
             }
 
             public class when_an_http_put_is_sent
             {
-                Because of =
-                    () => statusCode = RestHelper.GetStatusCode("previousreads", Method.PUT);
-
                 It should_return_http_405_method_not_allowed =
-                    () => statusCode.ShouldEqual(HttpStatusCode.MethodNotAllowed);
-
-                static HttpStatusCode statusCode;
+                    () => ApiClientFactory.NewUser().AssertMethodNotAllowed(Method.PUT, "previousreads");
             }
 
             public class when_marking_duplicate_books_as_previously_read
             {
-                Establish context =
-                    () =>
-                    {
-                        var authCookie = RestHelper.GetRandomUserAuthCookie();
-
-                        client = new RestSharp.RestClient("http://localhost/api/v1");
-                        request1 = new RestRequest("previousreads")
-                        {
-                            Method = Method.POST,
-                            RequestFormat = DataFormat.Json,
-                        };
-                        request1.AddCookie(OhbCookies.AuthCookie, authCookie);
-                        request1.AddBody(new { volumeId = "4YydO00I9JYC" });
-
-                        request2 = new RestRequest("previousreads")
-                        {
-                            Method = Method.POST,
-                            RequestFormat = DataFormat.Json
-                        };
-                        request2.AddCookie(OhbCookies.AuthCookie, authCookie);
-
-                        request2.AddBody(new { volumeId = "4YydO00I9JYC" });
-                    };
-
                 Because of = () =>
                                  {
-                                     client.Execute<dynamic>(request1);
-                                     response = client.Execute<dynamic>(request2);
+                                     var api = ApiClientFactory.NewUser();
+                                     api.MarkBookAsRead("4YydO00I9JYC");
+                                     response = api.MarkBookAsRead("4YydO00I9JYC");
                                  };
 
-                It should_return_http_200_ok = () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
+                It should_return_http_200_ok = 
+                    () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
 
-                static RestResponse<dynamic> response;
-                static RestSharp.RestClient client;
-                static RestRequest request1;
-                static RestRequest request2;
+                static RestResponse response;
             }
         }
     }

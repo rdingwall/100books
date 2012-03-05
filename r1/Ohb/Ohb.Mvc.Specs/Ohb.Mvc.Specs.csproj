@@ -117,6 +117,9 @@
     <Compile Include="Api\Controllers\TestHelper.cs" />
     <Compile Include="AuthCookies\AuthCookieEncoderSpecs.cs" />
     <Compile Include="AuthCookies\AuthCookieFactorySpecs.cs" />
+    <Compile Include="RandomExtensions.cs" />
+    <Compile Include="IntegrationTests\LiveRavenDb.cs" />
+    <Compile Include="IntegrationTests\Http\ApiClientFactory.cs" />
     <Compile Include="IntegrationTests\Http\BookStatusesHttpApiSpecs.cs" />
     <Compile Include="IntegrationTests\Http\ApiClient.cs" />
     <Compile Include="IntegrationTests\Http\JsonFormatter.cs" />

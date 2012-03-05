@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using Machine.Specifications;
@@ -13,6 +14,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
         readonly RestClient client;
         readonly RestClient dynamicClient;
         public string BaseUrl { get; set; }
+        public string AuthCookie { get; set; }
 
         public ApiClient()
         {
@@ -34,22 +36,36 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
 
         static void DoLog(RestResponseBase response)
         {
-            Console.WriteLine("Headers:");
-            Console.WriteLine("------------------------------------------------");
+            Console.WriteLine("{0} {1} {2} {3}",
+                              (int) response.StatusCode,
+                              response.StatusCode,
+                              response.Request == null ? "??" : response.Request.Method.ToString(),
+                              response.ResponseUri);
 
-            foreach (var header in response.Headers)
-                Console.WriteLine("{0} = {1}", header.Name, header.Value);
+            if (response.ErrorException != null)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Response error:");
+                Console.WriteLine(response.ErrorException.ToString());
+            }
+
 
             Console.WriteLine();
-            Console.WriteLine("Body:");
-            Console.WriteLine("------------------------------------------------");
+            Console.WriteLine("Response headers:");
 
-            var raw = Encoding.UTF8.GetString(response.RawBytes);
+
+            foreach (var header in response.Headers)
+                Console.WriteLine("   {0} = {1}", header.Name, header.Value);
+
+            Console.WriteLine();
+            Console.WriteLine("Response body:");
+
+            var raw = Encoding.UTF8.GetString(response.RawBytes ?? new byte[0]);
             if (response.ContentType.Contains("application/json"))
                 raw = new JsonFormatter().PrettyPrint(raw);
             Console.WriteLine(raw);
 
-            Console.WriteLine("------------------------------------------------");
+            Console.WriteLine(new string('-', 80));
         }
 
         static RestResponse<T> Log<T>(RestResponse<T> response)
@@ -86,10 +102,54 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             response.StatusCode.ShouldEqual(HttpStatusCode.MethodNotAllowed);
         }
 
+        public void AssertUnauthorized(string path)
+        {
+            AssertUnauthorized(Method.GET, path);
+        }
+
+        public void AssertUnauthorized(Method method, string path)
+        {
+            var request = new RestRequest(path) { Method = method };
+            var response = client.Execute(request);
+            Log(response);
+            response.StatusCode.ShouldEqual(HttpStatusCode.Unauthorized);
+        }
+
         public RestResponse<Book> GetBook(string googleVolumeId)
         {
             var request = new RestRequest(String.Format("books/{0}", googleVolumeId));
             return Log(client.Execute<Book>(request));
+        }
+
+        public RestResponse MarkBookAsRead(string googleVolumeId)
+        {
+            var request = new RestRequest("previousreads")
+                              {
+                                  Method = Method.POST,
+                                  RequestFormat = DataFormat.Json
+                              };
+
+            Authorize(request);
+
+            if (!String.IsNullOrWhiteSpace(googleVolumeId))
+                request.AddBody(new {volumeId = googleVolumeId});
+
+            return Log(client.Execute(request));
+        }
+
+        void Authorize(IRestRequest request)
+        {
+            if (String.IsNullOrWhiteSpace(AuthCookie))
+                return;
+
+            request.AddCookie(OhbCookies.AuthCookie, AuthCookie);
+        }
+
+        public RestResponse<List<Book>> GetPreviousReads()
+        {
+            var request = new RestRequest("previousreads");
+            Authorize(request);
+            return Log(client.Execute<List<Book>>(request));
         }
     }
 }
