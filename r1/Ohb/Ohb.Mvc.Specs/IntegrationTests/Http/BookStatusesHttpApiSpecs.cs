@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Machine.Specifications;
+using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage.PreviousReads;
 using RestSharp;
-using RestSharp.Deserializers;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.Http
 {
@@ -18,19 +18,15 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 Establish context =
                     () =>
                         {
-                            var authCookie = RestHelper.GetRandomUserAuthCookie();
+                            api = ApiClientFactory.NewUser();
 
-                            RestHelper.MarkBookAsRead("0W0DRgAACAAJ", authCookie);
-                            RestHelper.MarkBookAsRead("2GZlm91NNEgC", authCookie);
-                            RestHelper.WaitForNonStaleResults<PreviousRead>();
-                            
-                            client = new RestSharp.RestClient("http://localhost/api/v1");
-                            client.AddHandler("application/json", new DynamicJsonDeserializer());
-                            request = new RestRequest("books/0W0DRgAACAAJ,xxx,2GZlm91NNEgC,yyy,zzz/statuses");
-                            request.AddCookie(OhbCookies.AuthCookie, authCookie);
+                            api.MarkBookAsRead("0W0DRgAACAAJ");
+                            api.MarkBookAsRead("2GZlm91NNEgC");
+                            LiveRavenDb.WaitForNonStaleResults<PreviousRead>();
                         };
 
-                Because of = () => response = client.Execute<dynamic>(request);
+                Because of = () => response = api.GetBookStatuses("0W0DRgAACAAJ", "xxx",
+                                                                  "2GZlm91NNEgC", "yyy", "zzz");
 
                 It should_return_http_200_ok = 
                     () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
@@ -41,49 +37,42 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 It should_mark_the_previously_read_books_as_read =
                     () =>
                         {
-                            var statuses = (IEnumerable<dynamic>) response.Data;
-                            ((bool)statuses.Single(b => b.GoogleVolumeId == "0W0DRgAACAAJ").HasRead).ShouldBeTrue();
-                            ((bool)statuses.Single(b => b.GoogleVolumeId == "2GZlm91NNEgC").HasRead).ShouldBeTrue();
+                            response.Data.Single(b => b.GoogleVolumeId == "0W0DRgAACAAJ").HasRead.ShouldBeTrue();
+                            response.Data.Single(b => b.GoogleVolumeId == "2GZlm91NNEgC").HasRead.ShouldBeTrue();
                         };
 
                 It should_mark_the_unread_books_as_unread =
                     () =>
                     {
-                        var statuses = (IEnumerable<dynamic>)response.Data;
-                        ((bool)statuses.Single(b => b.GoogleVolumeId == "xxx").HasRead).ShouldBeFalse();
-                        ((bool)statuses.Single(b => b.GoogleVolumeId == "yyy").HasRead).ShouldBeFalse();
+                        response.Data.Single(b => b.GoogleVolumeId == "xxx").HasRead.ShouldBeFalse();
+                        response.Data.Single(b => b.GoogleVolumeId == "yyy").HasRead.ShouldBeFalse();
                     };
 
                 It should_return_a_status_for_each_requested_id =
-                    () => ((IEnumerable<dynamic>)response.Data).Count().ShouldEqual(5);
+                    () => response.Data.Count().ShouldEqual(5);
 
-                static RestSharp.RestClient client;
-                static RestRequest request;
-                static RestResponse<dynamic> response;
+                static RestResponse<List<BookStatus>> response;
+                static ApiClient api;
             }
 
             [Subject("api/v1/books/:ids/statuses POST")]
             public class when_it_is_the_wrong_http_method
             {
-                Because of =
-                    () => statusCode = RestHelper.GetStatusCode("books/0W0DRgAACAAJ,2GZlm91NNEgC/statuses", Method.POST);
-
                 It should_return_http_405_method_not_allowed =
-                    () => statusCode.ShouldEqual(HttpStatusCode.MethodNotAllowed);
-
-                static HttpStatusCode statusCode;
+                    () => ApiClientFactory.NewUser()
+                              .AssertMethodNotAllowed(Method.POST, "books/0W0DRgAACAAJ,2GZlm91NNEgC/statuses");
             }
 
             [Subject("api/v1/books/:ids/statuses GET")]
             public class when_there_was_no_auth_token
             {
                 Because of =
-                    () => statusCode = RestHelper.GetStatusCode("books/0W0DRgAACAAJ,2GZlm91NNEgC/statuses", Method.GET);
+                    () => response = ApiClientFactory.Anonymous().GetBookStatuses("yyy", "xxx");
 
                 It should_return_http_401_unauthorized =
-                    () => statusCode.ShouldEqual(HttpStatusCode.Unauthorized);
+                    () => response.StatusCode.ShouldEqual(HttpStatusCode.Unauthorized);
 
-                static HttpStatusCode statusCode;
+                static RestResponse<List<BookStatus>> response;
             }
         }
     }

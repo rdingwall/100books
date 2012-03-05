@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using Machine.Specifications;
+using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage.Books;
 using RestSharp;
 using RestSharp.Deserializers;
@@ -150,6 +151,14 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             var request = new RestRequest("previousreads");
             Authorize(request);
             return Log(client.Execute<List<Book>>(request));
+        }
+
+        public RestResponse<List<BookStatus>> GetBookStatuses(params string[] bookIds)
+        {
+            var ids = String.Join(",", bookIds);
+            var request = new RestRequest(String.Format("books/{0}ids/statuses", ids));
+            Authorize(request);
+            return client.Execute<List<BookStatus>>(request);
         }
     }
 }
