@@ -4,6 +4,7 @@ using System.Net;
 using Ohb.Mvc.AuthCookies;
 using Ohb.Mvc.Storage;
 using Ohb.Mvc.Storage.Users;
+using Raven.Client;
 using Raven.Client.Document;
 using RestSharp;
 
@@ -24,19 +25,11 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
 
         public static string GetRandomUserAuthCookie()
         {
-            using (var documentStore = new DocumentStore
+            using (var documentSession = OpenLiveRavenSession())
             {
-                Url = "http://localhost:8080",
-                DefaultDatabase = "Ohb"
-            })
-            {
-                documentStore.Initialize();
-                using (var documentSession = documentStore.OpenSession())
-                {
-                    var userId = documentSession.Query<User>().First().Id;
+                var userId = documentSession.Query<User>().First().Id;
 
-                    return GetAuthCookie(userId);
-                }
+                return GetAuthCookie(userId);
             }
         }
 
@@ -46,9 +39,64 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             {
                 var factory = new AuthCookieFactory(encoder);
                 var cookie = factory.CreateAuthCookie(new User {Id = userId});
+                Console.WriteLine("Using auth cookie: {0} (expires {1})", cookie.Value, cookie.Expires);
                 return cookie.Value;
             }
         }
 
+        public static void MarkBookAsRead()
+        {
+            
+        }
+
+        public static void MarkBookAsRead(string volumeId, string authCookie)
+        {
+            var client = new RestClient("http://localhost/api/v1");
+            var request = new RestRequest("previousreads")
+            {
+                Method = Method.POST,
+                RequestFormat = DataFormat.Json
+            };
+            request.AddCookie(OhbCookies.AuthCookie, authCookie);
+            request.AddBody(new { volumeId = volumeId });
+            var response = client.Execute(request);
+
+            if (response.ErrorException != null)
+                throw new Exception("Couldn't mark book as read for test.", response.ErrorException);
+        }
+
+        public static void WaitForNonStaleResults<T>()
+        {
+            using (var documentSession = OpenLiveRavenSession())
+            {
+                documentSession.Query<T>()
+                    .Customize(a => a.WaitForNonStaleResults())
+                    .Any();
+            }
+        }
+
+        static readonly Lazy<IDocumentStore> liveDocumentStore =
+            new Lazy<IDocumentStore>(() =>
+                                         {
+                                             var ds = new DocumentStore
+                                                 {
+                                                     Url =
+                                                         "http://localhost:8080",
+                                                     DefaultDatabase = "Ohb"
+                                                 };
+
+                                             ds.Initialize();
+                                             return ds;
+                                         });
+
+        public static IDocumentStore LiveRavenDocumentStore
+        {
+            get { return liveDocumentStore.Value; }
+        }
+
+        public static IDocumentSession OpenLiveRavenSession()
+        {
+            return LiveRavenDocumentStore.OpenSession();
+        }
     }
 }

@@ -165,6 +165,7 @@
     <Compile Include="Api\Controllers\BookStatusesController.cs" />
     <Compile Include="Api\Controllers\OhbApiController.cs" />
     <Compile Include="Api\Controllers\PreviousReadsController.cs" />
+    <Compile Include="Api\Models\BookStatus.cs" />
     <Compile Include="AuthCookies\AuthCookieContext.cs" />
     <Compile Include="AuthCookies\AuthCookieEncoder.cs" />
     <Compile Include="AuthCookies\AuthCookieFactory.cs" />
@@ -372,9 +373,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\Amazon\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Api\Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
