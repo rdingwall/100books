@@ -164,6 +164,8 @@
     <Compile Include="Api\Controllers\OhbApiController.cs" />
     <Compile Include="Api\Controllers\PreviousReadsController.cs" />
     <Compile Include="Api\Models\VolumeIdModel.cs" />
+    <Compile Include="Authentication\AuthCookieContext.cs" />
+    <Compile Include="Authentication\AuthCookieEncoder.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\OhbController.cs" />
     <Compile Include="ActionFilters\CurrentUserAttribute.cs" />
