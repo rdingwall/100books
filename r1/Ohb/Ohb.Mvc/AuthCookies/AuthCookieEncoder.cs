@@ -32,7 +32,7 @@ namespace Ohb.Mvc.AuthCookies
         HMACSHA1 hmacSha1;
         const string DateFormat = "u";
         const char Separator = '&'; // won't be percent-encoded
-        static readonly Encoding ascii = Encoding.ASCII;
+        static readonly Encoding utf8 = Encoding.UTF8;
 
         public AuthCookieEncoder(string secretKey)
         {
@@ -54,7 +54,7 @@ namespace Ohb.Mvc.AuthCookies
 
             try
             {
-                var cookie = ascii.GetString(Convert.FromBase64String(base64Encoded));
+                var cookie = utf8.GetString(HttpServerUtility.UrlTokenDecode(base64Encoded));
 
                 var segments = cookie.Split(Separator);
                 if (segments.Length != 3)
@@ -64,6 +64,9 @@ namespace Ohb.Mvc.AuthCookies
                 var expirationTime = HttpUtility.UrlDecode(segments[1]);
                 var signature = HttpUtility.UrlDecode(segments[2]);
 
+                //Console.WriteLine("User ID: {0}, Expiration Time: {1}, Signature = {2}",
+                //    userId, expirationTime, signature);
+
                 var context =
                     new AuthCookieContext
                         {
@@ -72,13 +75,18 @@ namespace Ohb.Mvc.AuthCookies
                         };
 
                 if (signature != Sign(context))
+                {
+                    //Console.WriteLine("Expected: {0}", Sign(context));
+                    //Console.WriteLine("Actual: {0}", signature);
                     return false;
+                }
 
                 output = context;
                 return true;
             }
-            catch (FormatException)
+            catch (FormatException e)
             {
+                //Console.WriteLine(e.ToString());
                 return false;
             }
         }
@@ -95,7 +103,9 @@ namespace Ohb.Mvc.AuthCookies
                 Separator,
                 HttpUtility.UrlPathEncode(signature));
 
-            return Convert.ToBase64String(ascii.GetBytes(cookie));
+            // URL-encode safe base64
+            // See http://stackoverflow.com/questions/1228701/code-for-decoding-encoding-a-modified-base64-url
+            return HttpServerUtility.UrlTokenEncode(utf8.GetBytes(cookie));
         }
 
         static string GetUserAndExpirySegment(AuthCookieContext cookieContext)
@@ -113,11 +123,13 @@ namespace Ohb.Mvc.AuthCookies
                 Separator,
                 secretKey);
 
-            var plainText = ascii.GetBytes(plainTextStr);
+            var plainText = utf8.GetBytes(plainTextStr);
 
             var hash = hmacSha1.ComputeHash(plainText);
 
-            return Convert.ToBase64String(hash);
+            // URL-encode safe base64
+            // See http://stackoverflow.com/questions/1228701/code-for-decoding-encoding-a-modified-base64-url
+            return HttpServerUtility.UrlTokenEncode(hash);
         }
 
         public void Dispose()
