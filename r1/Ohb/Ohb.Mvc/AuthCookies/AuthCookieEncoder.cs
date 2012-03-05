@@ -28,10 +28,9 @@ namespace Ohb.Mvc.AuthCookies
     /// </summary>
     public class AuthCookieEncoder : IAuthCookieEncoder
     {
-        readonly string secretKey;
         HMACSHA1 hmacSha1;
         const string DateFormat = "u";
-        const char Separator = '&'; // won't be percent-encoded
+        const char Separator = '|';
         static readonly Encoding utf8 = Encoding.UTF8;
 
         public AuthCookieEncoder(string secretKey)
@@ -39,8 +38,7 @@ namespace Ohb.Mvc.AuthCookies
             if (String.IsNullOrEmpty(secretKey)) 
                 throw new ArgumentException("Null/empty argument.", "secretKey");
 
-            this.secretKey = secretKey;
-            hmacSha1 = new HMACSHA1();
+            hmacSha1 = new HMACSHA1 { Key = utf8.GetBytes(secretKey) };
         }
 
         public bool TryDecode(string base64Encoded, out AuthCookieContext output)
@@ -54,15 +52,17 @@ namespace Ohb.Mvc.AuthCookies
 
             try
             {
+                // URL-encode safe base64
+                // See http://stackoverflow.com/questions/1228701/code-for-decoding-encoding-a-modified-base64-url
                 var cookie = utf8.GetString(HttpServerUtility.UrlTokenDecode(base64Encoded));
 
                 var segments = cookie.Split(Separator);
                 if (segments.Length != 3)
                     return false;
 
-                var userId = HttpUtility.UrlDecode(segments[0]);
-                var expirationTime = HttpUtility.UrlDecode(segments[1]);
-                var signature = HttpUtility.UrlDecode(segments[2]);
+                var userId = segments[0];
+                var expirationTime = segments[1];
+                var signature = segments[2];
 
                 //Console.WriteLine("User ID: {0}, Expiration Time: {1}, Signature = {2}",
                 //    userId, expirationTime, signature);
@@ -95,20 +95,20 @@ namespace Ohb.Mvc.AuthCookies
         {
             if (context == null) throw new ArgumentNullException("context");
 
-            var userIdAndExpiry = GetUserAndExpirySegment(context);
+            var userIdAndExpiry = GetUserIdAndExpirySegment(context);
             var signature = Sign(context);
             
             var cookie = String.Concat(
-                HttpUtility.UrlPathEncode(userIdAndExpiry), 
+                userIdAndExpiry, 
                 Separator,
-                HttpUtility.UrlPathEncode(signature));
+                signature);
 
             // URL-encode safe base64
             // See http://stackoverflow.com/questions/1228701/code-for-decoding-encoding-a-modified-base64-url
             return HttpServerUtility.UrlTokenEncode(utf8.GetBytes(cookie));
         }
 
-        static string GetUserAndExpirySegment(AuthCookieContext cookieContext)
+        static string GetUserIdAndExpirySegment(AuthCookieContext cookieContext)
         {
             return String.Concat(
                 cookieContext.UserId,
@@ -118,11 +118,7 @@ namespace Ohb.Mvc.AuthCookies
 
         string Sign(AuthCookieContext cookieContext)
         {
-            var plainTextStr = String.Concat(
-                GetUserAndExpirySegment(cookieContext),
-                Separator,
-                secretKey);
-
+            var plainTextStr = GetUserIdAndExpirySegment(cookieContext);
             var plainText = utf8.GetBytes(plainTextStr);
 
             var hash = hmacSha1.ComputeHash(plainText);

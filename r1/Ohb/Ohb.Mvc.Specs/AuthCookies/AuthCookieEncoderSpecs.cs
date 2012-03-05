@@ -12,7 +12,9 @@ namespace Ohb.Mvc.Specs.AuthCookies
             Establish context =
                 () =>
                     {
-                        encoder = new AuthCookieEncoder("aaaaaa");
+                        // separate HMAC instances (had a bug here previously)
+                        encoder1 = new AuthCookieEncoder("aaaaaa");
+                        encoder2 = new AuthCookieEncoder("aaaaaa");
 
                         cookieContext = new AuthCookieContext
                                      {
@@ -21,9 +23,13 @@ namespace Ohb.Mvc.Specs.AuthCookies
                                      };
                     };
 
-            Cleanup after = () => encoder.Dispose();
+            Cleanup after = () =>
+            {
+                encoder1.Dispose();
+                encoder2.Dispose();
+            };
 
-            Because of = () => result = encoder.TryDecode(encoder.Encode(cookieContext), out decodedCookieContext);
+            Because of = () => result = encoder2.TryDecode(encoder1.Encode(cookieContext), out decodedCookieContext);
 
             It should_return_true = () => result.ShouldBeTrue();
 
@@ -33,7 +39,8 @@ namespace Ohb.Mvc.Specs.AuthCookies
             It should_decode_the_user_id =
                 () => decodedCookieContext.ExpirationTime.ShouldBeCloseTo(cookieContext.ExpirationTime, TimeSpan.FromSeconds(1));
 
-            static IAuthCookieEncoder encoder;
+            static IAuthCookieEncoder encoder1;
+            static IAuthCookieEncoder encoder2;
             static AuthCookieContext cookieContext;
             static AuthCookieContext decodedCookieContext;
             static bool result;
