@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Machine.Specifications;
+using Ohb.Mvc.Storage.Books;
 using RestSharp;
-using RestSharp.Deserializers;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.Http
 {
@@ -10,120 +10,69 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
     {
         public class when_looking_up_a_book_by_id
         {
-            Establish context =
-                () =>
-                    {
-                        client = new RestClient("http://localhost/api/v1");
-                        request = new RestRequest("books/4YydO00I9JYC");
-                        client.AddHandler("application/json", new DynamicJsonDeserializer());
-                    };
-            
-            Because of = () => response = client.Execute<dynamic>(request);
+            Because of = () => response = new ApiClient().GetBook("4YydO00I9JYC");
 
-            It should_return_http_200_ok = () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
+            It should_return_http_200_ok = 
+                () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
 
-            It should_be_json = () => response.ContentType.ShouldEqual("application/json; charset=utf-8");
+            It should_be_json = 
+                () => response.ContentType.ShouldEqual("application/json; charset=utf-8");
 
             It should_get_the_books_id = 
-                () => ((string)response.Data.StaticInfo.Id.Value).ShouldEqual("4YydO00I9JYC");
+                () => response.Data.StaticInfo.Id.ShouldEqual("4YydO00I9JYC");
             
             It should_get_the_books_title = 
-                () => ((string)response.Data.StaticInfo.Title.Value).ShouldEqual("The Google story");
+                () => response.Data.StaticInfo.Title.ShouldEqual("The Google story");
             
             It should_get_the_books_authors = 
-                () => ((string)response.Data.StaticInfo.Authors.Value).ShouldEqual("David A. Vise, Mark Malseed");
+                () => response.Data.StaticInfo.Authors.ShouldEqual("David A. Vise, Mark Malseed");
             
             It should_get_the_books_publishers = 
-                () => ((string)response.Data.StaticInfo.Publisher.Value).ShouldEqual("Delacorte Press");
+                () => response.Data.StaticInfo.Publisher.ShouldEqual("Delacorte Press");
             
             It should_get_the_books_published_date = 
-                () => ((string)response.Data.StaticInfo.PublishedYear.Value).ShouldEqual("2005");
+                () => response.Data.StaticInfo.PublishedYear.ShouldEqual("2005");
 
             It should_get_the_books_description = 
-                () => ((string)response.Data.StaticInfo.Description.Value).ShouldEqual("Here is the story behind one of the most remarkable Internet successes of our time. Based on scrupulous research and extraordinary access to Google, the book takes you inside the creation and growth of a company whose name is a favorite brand and a standard verb recognized around the world. Its stock is worth more than General Motors’ and Ford’s combined, its staff eats for free in a dining room that used to be\u003cb\u003e \u003c/b\u003erun\u003cb\u003e \u003c/b\u003eby the Grateful Dead’s former chef, and its employees traverse the firm’s colorful Silicon Valley campus on scooters and inline skates.\u003cbr\u003e\u003cbr\u003e\u003cb\u003eTHE GOOGLE STORY \u003c/b\u003eis the definitive account of the populist media company powered by the world’s most advanced technology that in a few short years has revolutionized access to information about everything for everybody everywhere. \u003cbr\u003eIn 1998, Moscow-born Sergey Brin and Midwest-born Larry Page dropped out of graduate school at Stanford University to, in their own words, “change the world” through a search engine that would organize every bit of information on the Web for free.\u003cbr\u003e\u003cbr\u003eWhile the company has done exactly that in more than one hundred languages, Google’s quest continues as it seeks to add millions of library books, television broadcasts, and more to its searchable database. \u003cbr\u003eReaders will learn about the amazing business acumen and computer wizardry that started the company on its astonishing course; the secret network of computers delivering lightning-fast search results; the unorthodox approach that has enabled it to challenge Microsoft’s dominance and shake up Wall Street. Even as it rides high, Google wrestles with difficult choices that will enable it to continue expanding while sustaining the guiding vision of its founders’ mantra: DO NO EVIL.");
+                () => response.Data.StaticInfo.Description.ShouldEqual("Here is the story behind one of the most remarkable Internet successes of our time. Based on scrupulous research and extraordinary access to Google, the book takes you inside the creation and growth of a company whose name is a favorite brand and a standard verb recognized around the world. Its stock is worth more than General Motors’ and Ford’s combined, its staff eats for free in a dining room that used to be\u003cb\u003e \u003c/b\u003erun\u003cb\u003e \u003c/b\u003eby the Grateful Dead’s former chef, and its employees traverse the firm’s colorful Silicon Valley campus on scooters and inline skates.\u003cbr\u003e\u003cbr\u003e\u003cb\u003eTHE GOOGLE STORY \u003c/b\u003eis the definitive account of the populist media company powered by the world’s most advanced technology that in a few short years has revolutionized access to information about everything for everybody everywhere. \u003cbr\u003eIn 1998, Moscow-born Sergey Brin and Midwest-born Larry Page dropped out of graduate school at Stanford University to, in their own words, “change the world” through a search engine that would organize every bit of information on the Web for free.\u003cbr\u003e\u003cbr\u003eWhile the company has done exactly that in more than one hundred languages, Google’s quest continues as it seeks to add millions of library books, television broadcasts, and more to its searchable database. \u003cbr\u003eReaders will learn about the amazing business acumen and computer wizardry that started the company on its astonishing course; the secret network of computers delivering lightning-fast search results; the unorthodox approach that has enabled it to challenge Microsoft’s dominance and shake up Wall Street. Even as it rides high, Google wrestles with difficult choices that will enable it to continue expanding while sustaining the guiding vision of its founders’ mantra: DO NO EVIL.");
             
             It should_get_the_books_thumbnail_url = 
-                () => ((string)response.Data.StaticInfo.ThumbnailUrl.Value).ShouldEqual("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=1&source=gbs_api");
+                () => response.Data.StaticInfo.ThumbnailUrl.ShouldEqual("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=1&source=gbs_api");
             
             It should_get_the_books_small_thumbnail_url = 
-                () => ((string)response.Data.StaticInfo.SmallThumbnailUrl.Value).ShouldEqual("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=5&source=gbs_api");
+                () => response.Data.StaticInfo.SmallThumbnailUrl.ShouldEqual("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=5&source=gbs_api");
 
-            static RestResponse<dynamic> response;
-            static RestClient client;
-            static RestRequest request;
+            static RestResponse<Book> response;
         }
 
         public class when_no_book_id_is_provided
         {
-            Establish context =
-                () =>
-                {
-                    client = new RestClient("http://localhost/api/v1");
-                    request = new RestRequest("books/");
-                    client.AddHandler("application/json", new DynamicJsonDeserializer());
-                };
-
-            Because of = () => response = client.Execute<dynamic>(request);
-
-            It should_return_http_400_bad_request = 
-                () => response.StatusCode.ShouldEqual(HttpStatusCode.BadRequest);
-
-            static RestClient client;
-            static RestRequest request;
-            static RestResponse<dynamic> response;
+            It should_return_http_404_not_found =
+                () => new ApiClient().AssertReturns(Method.GET, "books/", HttpStatusCode.BadRequest);
         }
 
         public class when_no_matching_book_is_found
         {
-            Establish context =
-                () =>
-                {
-                    client = new RestClient("http://localhost/api/v1");
-                    request = new RestRequest("books/xxxxxxxxxxxxx");
-                    client.AddHandler("application/json", new DynamicJsonDeserializer());
-                };
-
-            Because of = () => response = client.Execute<dynamic>(request);
-
             It should_return_http_404_not_found =
-                () => response.StatusCode.ShouldEqual(HttpStatusCode.NotFound);
-
-            static RestClient client;
-            static RestRequest request;
-            static RestResponse<dynamic> response;
+                () => new ApiClient().AssertReturns(Method.GET, "books/xxxxxxxxxxxxx", HttpStatusCode.NotFound);
         }
 
         public class when_an_http_post_is_sent
         {
-            Because of =
-                () => statusCode = RestHelper.GetStatusCode("books/4YydO00I9JYC", Method.POST);
-
             It should_return_http_405_method_not_allowed =
-                () => statusCode.ShouldEqual(HttpStatusCode.MethodNotAllowed);
-
-            static HttpStatusCode statusCode;
+                () => new ApiClient().AssertMethodNotAllowed(Method.POST, "books/4YydO00I9JYC");
         }
 
         public class when_an_http_put_is_sent
         {
-            Because of =
-                () => statusCode = RestHelper.GetStatusCode("books/4YydO00I9JYC", Method.PUT);
-
             It should_return_http_405_method_not_allowed =
-                () => statusCode.ShouldEqual(HttpStatusCode.MethodNotAllowed);
-
-            static HttpStatusCode statusCode;
+                () => new ApiClient().AssertMethodNotAllowed(Method.PUT, "books/4YydO00I9JYC");
         }
 
         public class when_an_http_delete_is_sent
         {
-            Because of =
-                () => statusCode = RestHelper.GetStatusCode("books/4YydO00I9JYC", Method.DELETE);
-
             It should_return_http_405_method_not_allowed =
-                () => statusCode.ShouldEqual(HttpStatusCode.MethodNotAllowed);
-
-            static HttpStatusCode statusCode;
+                () => new ApiClient().AssertMethodNotAllowed(Method.DELETE, "books/4YydO00I9JYC");
         }
     }
 }

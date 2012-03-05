@@ -24,7 +24,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                             RestHelper.MarkBookAsRead("2GZlm91NNEgC", authCookie);
                             RestHelper.WaitForNonStaleResults<PreviousRead>();
                             
-                            client = new RestClient("http://localhost/api/v1");
+                            client = new RestSharp.RestClient("http://localhost/api/v1");
                             client.AddHandler("application/json", new DynamicJsonDeserializer());
                             request = new RestRequest("books/0W0DRgAACAAJ,xxx,2GZlm91NNEgC,yyy,zzz/statuses");
                             request.AddCookie(OhbCookies.AuthCookie, authCookie);
@@ -57,7 +57,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 It should_return_a_status_for_each_requested_id =
                     () => ((IEnumerable<dynamic>)response.Data).Count().ShouldEqual(5);
 
-                static RestClient client;
+                static RestSharp.RestClient client;
                 static RestRequest request;
                 static RestResponse<dynamic> response;
             }

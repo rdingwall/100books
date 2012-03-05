@@ -18,7 +18,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 Establish context =
                     () =>
                     {
-                        client = new RestClient("http://localhost/api/v1");
+                        client = new RestSharp.RestClient("http://localhost/api/v1");
                         request = new RestRequest("previousreads")
                         {
                             Method = Method.GET,
@@ -31,7 +31,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 It should_return_http_401_unauthorized =
                     () => response.StatusCode.ShouldEqual(HttpStatusCode.Unauthorized);
 
-                static RestClient client;
+                static RestSharp.RestClient client;
                 static RestRequest request;
                 static RestResponse response;
             }
@@ -52,7 +52,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                         {
                             authCookie = RestHelper.GetRandomUserAuthCookie();
 
-                            client = new RestClient("http://localhost/api/v1");
+                            client = new RestSharp.RestClient("http://localhost/api/v1");
                             request = new RestRequest("previousreads")
                                           {
                                               Method = Method.POST,
@@ -86,7 +86,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                         };
 
                 static RestResponse<dynamic> response;
-                static RestClient client;
+                static RestSharp.RestClient client;
                 static RestRequest request;
                 static string authCookie;
             }
@@ -96,7 +96,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 Establish context =
                     () =>
                     {
-                        client = new RestClient("http://localhost/api/v1");
+                        client = new RestSharp.RestClient("http://localhost/api/v1");
                         request = new RestRequest("previousreads")
                         {
                             Method = Method.POST,
@@ -111,7 +111,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 It should_return_http_401_unauthorized = 
                     () => response.StatusCode.ShouldEqual(HttpStatusCode.Unauthorized);
 
-                static RestClient client;
+                static RestSharp.RestClient client;
                 static RestRequest request;
                 static RestResponse response;
             }
@@ -123,7 +123,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                     {
                         var authCookie = RestHelper.GetRandomUserAuthCookie();
 
-                        client = new RestClient("http://localhost/api/v1");
+                        client = new RestSharp.RestClient("http://localhost/api/v1");
                         request = new RestRequest("previousreads")
                         {
                             Method = Method.POST,
@@ -138,7 +138,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 It should_return_http_400_bad_request = 
                     () => response.StatusCode.ShouldEqual(HttpStatusCode.BadRequest);
 
-                static RestClient client;
+                static RestSharp.RestClient client;
                 static RestRequest request;
                 static RestResponse<dynamic> response;
             }
@@ -150,7 +150,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                     {
                         var authCookie = RestHelper.GetRandomUserAuthCookie();
 
-                        client = new RestClient("http://localhost/api/v1");
+                        client = new RestSharp.RestClient("http://localhost/api/v1");
                         request = new RestRequest("previousreads")
                         {
                             Method = Method.POST,
@@ -167,7 +167,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 It should_return_http_404_not_found =
                     () => response.StatusCode.ShouldEqual(HttpStatusCode.NotFound);
 
-                static RestClient client;
+                static RestSharp.RestClient client;
                 static RestRequest request;
                 static RestResponse<dynamic> response;
             }
@@ -190,7 +190,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                     {
                         var authCookie = RestHelper.GetRandomUserAuthCookie();
 
-                        client = new RestClient("http://localhost/api/v1");
+                        client = new RestSharp.RestClient("http://localhost/api/v1");
                         request1 = new RestRequest("previousreads")
                         {
                             Method = Method.POST,
@@ -218,7 +218,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 It should_return_http_200_ok = () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
 
                 static RestResponse<dynamic> response;
-                static RestClient client;
+                static RestSharp.RestClient client;
                 static RestRequest request1;
                 static RestRequest request2;
             }

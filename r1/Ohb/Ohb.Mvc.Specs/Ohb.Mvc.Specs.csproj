@@ -118,6 +118,8 @@
     <Compile Include="AuthCookies\AuthCookieEncoderSpecs.cs" />
     <Compile Include="AuthCookies\AuthCookieFactorySpecs.cs" />
     <Compile Include="IntegrationTests\Http\BookStatusesHttpApiSpecs.cs" />
+    <Compile Include="IntegrationTests\Http\ApiClient.cs" />
+    <Compile Include="IntegrationTests\Http\JsonFormatter.cs" />
     <Compile Include="IntegrationTests\Storage\BookRepositorySpecs.cs" />
     <Compile Include="StubDocumentStore.cs" />
     <Compile Include="IntegrationTests\GoogleBookSearchServiceSpecs.cs" />

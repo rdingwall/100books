@@ -14,7 +14,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
     {
         public static HttpStatusCode GetStatusCode(string path, Method method)
         {
-            var client = new RestClient("http://localhost/api/v1");
+            var client = new RestSharp.RestClient("http://localhost/api/v1");
             var request = new RestRequest(path, method);
             var response = client.Execute(request);
 
@@ -51,7 +51,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
 
         public static void MarkBookAsRead(string volumeId, string authCookie)
         {
-            var client = new RestClient("http://localhost/api/v1");
+            var client = new RestSharp.RestClient("http://localhost/api/v1");
             var request = new RestRequest("previousreads")
             {
                 Method = Method.POST,
