@@ -115,7 +115,7 @@
     <Compile Include="Api\ActionFilters\ApiAuthorizeHandlerAttributeSpecs.cs" />
     <Compile Include="Api\Controllers\BooksApiControllerSpecs.cs" />
     <Compile Include="Api\Controllers\TestHelper.cs" />
-    <Compile Include="Authentication\AuthCookieEncoderSpecs.cs" />
+    <Compile Include="AuthCookies\AuthCookieEncoderSpecs.cs" />
     <Compile Include="IntegrationTests\Storage\BookRepositorySpecs.cs" />
     <Compile Include="IntegrationTests\Storage\ApiTokenFactorySpecs.cs" />
     <Compile Include="StubDocumentStore.cs" />

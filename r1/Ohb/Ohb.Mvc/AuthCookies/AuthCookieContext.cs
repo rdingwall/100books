@@ -1,6 +1,6 @@
 using System;
 
-namespace Ohb.Mvc.Authentication
+namespace Ohb.Mvc.AuthCookies
 {
     public class AuthCookieContext
     {
