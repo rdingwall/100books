@@ -1,7 +1,5 @@
-using System;
 using System.Linq;
 using Machine.Specifications;
-using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage;
 using Ohb.Mvc.Storage.Books;
 

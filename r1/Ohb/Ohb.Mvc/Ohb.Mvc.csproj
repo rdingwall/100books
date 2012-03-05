@@ -162,6 +162,7 @@
     <Compile Include="Api\ActionFilters\RavenDbApiAttribute.cs" />
     <Compile Include="Api\ApiInstaller.cs" />
     <Compile Include="Api\Controllers\BooksController.cs" />
+    <Compile Include="Api\Controllers\BookStatusesController.cs" />
     <Compile Include="Api\Controllers\OhbApiController.cs" />
     <Compile Include="Api\Controllers\PreviousReadsController.cs" />
     <Compile Include="AuthCookies\AuthCookieContext.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Google\IGoogleBooksClient.cs" />
     <Compile Include="ActionFilters\OhbHandleErrorAttribute.cs" />
     <Compile Include="OhbCookies.cs" />
+    <Compile Include="Startup\WebInstaller.cs" />
     <Compile Include="Storage\Books\BookStaticInfo.cs" />
     <Compile Include="Google\BookTitleComparer.cs" />
     <Compile Include="Google\GoogleBooksClient.cs" />

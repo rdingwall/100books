@@ -1,10 +1,8 @@
 using Bootstrap.Windsor;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using Ohb.Mvc.ActionFilters;
 using Ohb.Mvc.Api;
 using Ohb.Mvc.AuthCookies;
-using Ohb.Mvc.Controllers;
 using Ohb.Mvc.Google;
 using Ohb.Mvc.Storage;
 using Ohb.Mvc.Storage.Books;
@@ -18,19 +16,6 @@ namespace Ohb.Mvc.Startup
     {
         public void Register(IWindsorContainer container)
         {
-            container.Register(
-                Component.For<HomeController>().LifeStyle.Transient,
-                Component.For<AccountController>().LifeStyle.Transient,
-                Component.For<ProfileController>().LifeStyle.Transient,
-                Component.For<SearchController>().LifeStyle.Transient,
-                Component.For<BooksController>().LifeStyle.Transient);
-
-            container.Register(
-                Component.For<OhbHandleErrorAttribute>(),
-                Component.For<RavenDbAttribute>(),
-                Component.For<CurrentUserAttribute>(),
-                Component.For<AuthCookieAttribute>());
-
             container.Register(
                 Component.For<IUserFactory>().ImplementedBy<UserFactory>(),
                 Component.For<IRavenUniqueInserter>().ImplementedBy<RavenUniqueInserter>(),
@@ -47,6 +32,7 @@ namespace Ohb.Mvc.Startup
                                    }),
                 Component.For<IDocumentStore>().UsingFactoryMethod(GetDocumentStore));
 
+            container.Install(new WebInstaller());
             container.Install(new ApiInstaller());
         }
 
