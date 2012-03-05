@@ -26,6 +26,7 @@ namespace Ohb.Mvc
             filters.Add(container.Resolve<RavenDbAttribute>());
             filters.Add(container.Resolve<CurrentUserAttribute>());
             filters.Add(container.Resolve<ApiTokenCookieAttribute>());
+            filters.Add(container.Resolve<AuthCookieAttribute>());
         }
 
         public void RegisterRoutes(RouteCollection routes)

@@ -3,6 +3,7 @@ using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Ohb.Mvc.ActionFilters;
 using Ohb.Mvc.Api;
+using Ohb.Mvc.AuthCookies;
 using Ohb.Mvc.Controllers;
 using Ohb.Mvc.Google;
 using Ohb.Mvc.Storage;
@@ -29,7 +30,8 @@ namespace Ohb.Mvc.Startup
                 Component.For<OhbHandleErrorAttribute>(),
                 Component.For<ApiTokenCookieAttribute>(),
                 Component.For<RavenDbAttribute>(),
-                Component.For<CurrentUserAttribute>());
+                Component.For<CurrentUserAttribute>(),
+                Component.For<AuthCookieAttribute>());
 
             container.Register(
                 Component.For<IUserFactory>().ImplementedBy<UserFactory>(),
@@ -39,6 +41,9 @@ namespace Ohb.Mvc.Startup
                 Component.For<IBookImporter>().ImplementedBy<BookImporter>(),
                 Component.For<IApiTokenFactory>().ImplementedBy<ApiTokenFactory>(),
                 Component.For<ICryptoTokenGenerator>().ImplementedBy<CryptoTokenGenerator>(),
+                Component.For<IAuthCookieEncoder>().ImplementedBy<AuthCookieEncoder>()
+                .DependsOn(new { secretKey = "vipbOO5m4RGVGBuUSCQBmw==" }),
+                Component.For<IAuthCookieFactory>().ImplementedBy<AuthCookieFactory>(),
                 Component.For<IGoogleBooksClient>().ImplementedBy<GoogleBooksClient>()
                     .DependsOn(new
                                    {

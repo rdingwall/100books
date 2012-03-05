@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFilters\ApiTokenCookieAttribute.cs" />
+    <Compile Include="ActionFilters\AuthCookieAttribute.cs" />
     <Compile Include="Api\ActionFilters\ApiAuthorizeAttribute.cs" />
     <Compile Include="Api\ActionFilters\RavenDbApiAttribute.cs" />
     <Compile Include="Api\ApiInstaller.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="Api\Models\VolumeIdModel.cs" />
     <Compile Include="AuthCookies\AuthCookieContext.cs" />
     <Compile Include="AuthCookies\AuthCookieEncoder.cs" />
+    <Compile Include="AuthCookies\AuthCookieFactory.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\OhbController.cs" />
     <Compile Include="ActionFilters\CurrentUserAttribute.cs" />

@@ -95,6 +95,7 @@
       <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\AspNetWebApi.Core.4.0.20126.16343\lib\net40\System.Web.Http.dll</HintPath>
     </Reference>
@@ -116,6 +117,7 @@
     <Compile Include="Api\Controllers\BooksApiControllerSpecs.cs" />
     <Compile Include="Api\Controllers\TestHelper.cs" />
     <Compile Include="AuthCookies\AuthCookieEncoderSpecs.cs" />
+    <Compile Include="AuthCookies\AuthCookieFactorySpecs.cs" />
     <Compile Include="IntegrationTests\Storage\BookRepositorySpecs.cs" />
     <Compile Include="IntegrationTests\Storage\ApiTokenFactorySpecs.cs" />
     <Compile Include="StubDocumentStore.cs" />
