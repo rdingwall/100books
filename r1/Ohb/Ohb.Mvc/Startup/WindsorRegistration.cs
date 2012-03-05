@@ -7,7 +7,6 @@ using Ohb.Mvc.AuthCookies;
 using Ohb.Mvc.Controllers;
 using Ohb.Mvc.Google;
 using Ohb.Mvc.Storage;
-using Ohb.Mvc.Storage.ApiTokens;
 using Ohb.Mvc.Storage.Books;
 using Ohb.Mvc.Storage.Users;
 using Raven.Client;
@@ -28,7 +27,6 @@ namespace Ohb.Mvc.Startup
 
             container.Register(
                 Component.For<OhbHandleErrorAttribute>(),
-                Component.For<ApiTokenCookieAttribute>(),
                 Component.For<RavenDbAttribute>(),
                 Component.For<CurrentUserAttribute>(),
                 Component.For<AuthCookieAttribute>());
@@ -39,8 +37,6 @@ namespace Ohb.Mvc.Startup
                 Component.For<IUserRepository>().ImplementedBy<UserRepository>(),
                 Component.For<IBookRepository>().ImplementedBy<BookRepository>(),
                 Component.For<IBookImporter>().ImplementedBy<BookImporter>(),
-                Component.For<IApiTokenFactory>().ImplementedBy<ApiTokenFactory>(),
-                Component.For<ICryptoTokenGenerator>().ImplementedBy<CryptoTokenGenerator>(),
                 Component.For<IAuthCookieEncoder>().ImplementedBy<AuthCookieEncoder>()
                 .DependsOn(new { secretKey = "vipbOO5m4RGVGBuUSCQBmw==" }),
                 Component.For<IAuthCookieFactory>().ImplementedBy<AuthCookieFactory>(),

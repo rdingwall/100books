@@ -156,9 +156,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionFilters\ApiTokenCookieAttribute.cs" />
     <Compile Include="ActionFilters\AuthCookieAttribute.cs" />
-    <Compile Include="Api\ActionFilters\ApiAuthorizeAttribute.cs" />
     <Compile Include="Api\ActionFilters\RequiresAuthCookieApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\RavenDbApiAttribute.cs" />
     <Compile Include="Api\ApiInstaller.cs" />
@@ -198,9 +196,6 @@
     <Compile Include="Storage\Books\BookRepository.cs" />
     <Compile Include="Storage\RavenUniqueInserter.cs" />
     <Compile Include="Storage\UniqueConstraint.cs" />
-    <Compile Include="Storage\ApiTokens\ApiTokenFactory.cs" />
-    <Compile Include="Storage\ApiTokens\ApiToken.cs" />
-    <Compile Include="Storage\ApiTokens\CryptoTokenGenerator.cs" />
     <Compile Include="Storage\Users\User.cs" />
     <Compile Include="Storage\Users\UserFactory.cs" />
     <Compile Include="Storage\Users\UserRepository.cs" />

@@ -19,14 +19,12 @@ namespace Ohb.Mvc.Api.Controllers
             this.importer = importer;
         }
 
-        [ApiAuthorize]
         [RequiresAuthCookie]
         public IEnumerable<Book> Get()
         {
             return DocumentSession.Query<PreviousRead>().Select(r => r.Book);
         }
 
-        [ApiAuthorize]
         [RequiresAuthCookie]
         public void Post(string volumeId)
         {
