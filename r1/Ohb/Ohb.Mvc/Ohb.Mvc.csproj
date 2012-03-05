@@ -159,6 +159,7 @@
     <Compile Include="ActionFilters\ApiTokenCookieAttribute.cs" />
     <Compile Include="ActionFilters\AuthCookieAttribute.cs" />
     <Compile Include="Api\ActionFilters\ApiAuthorizeAttribute.cs" />
+    <Compile Include="Api\ActionFilters\RequiresAuthCookieApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\RavenDbApiAttribute.cs" />
     <Compile Include="Api\ApiInstaller.cs" />
     <Compile Include="Api\Controllers\BooksController.cs" />

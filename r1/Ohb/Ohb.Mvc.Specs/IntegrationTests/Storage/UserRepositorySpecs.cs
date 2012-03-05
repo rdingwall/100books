@@ -31,7 +31,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                  using (var session = RavenDb.OpenSession())
                                  {
                                      repository.AddUser(original, session);
-                                     returnedUser = repository.GetUser(123, session);
+                                     returnedUser = repository.GetFacebookUser(123, session);
                                  }
                              };
 

@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace Ohb.Mvc.ActionFilters
 {
+    [Obsolete]
     public class ApiTokenCookieAttribute : ActionFilterAttribute
     {
         readonly IApiTokenFactory apiTokens;

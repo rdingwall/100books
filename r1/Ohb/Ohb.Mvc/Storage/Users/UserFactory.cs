@@ -28,7 +28,7 @@ namespace Ohb.Mvc.Storage.Users
             if (!fbWebContext.IsAuthenticated())
                 return null;
 
-            var user = users.GetUser(fbWebContext.UserId, session);
+            var user = users.GetFacebookUser(fbWebContext.UserId, session);
             if (user == null)
             {
                 user = CreateUser(fbWebContext);

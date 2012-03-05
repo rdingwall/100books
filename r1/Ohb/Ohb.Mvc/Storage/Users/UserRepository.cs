@@ -7,9 +7,10 @@ namespace Ohb.Mvc.Storage.Users
 {
     public interface IUserRepository
     {
-        User GetUser(long facebookId, IDocumentSession session);
+        User GetFacebookUser(long facebookId, IDocumentSession session);
         void AddUser(User user, IDocumentSession session);
         User GetUserByApiToken(string apiToken, IDocumentSession session);
+        User GetUser(string userId, IDocumentSession session);
     }
 
     public class UserRepository : IUserRepository
@@ -23,7 +24,7 @@ namespace Ohb.Mvc.Storage.Users
             this.inserter = inserter;
         }
 
-        public User GetUser(long facebookId, IDocumentSession session)
+        public User GetFacebookUser(long facebookId, IDocumentSession session)
         {
             if (session == null) throw new ArgumentNullException("session");
 
@@ -50,6 +51,14 @@ namespace Ohb.Mvc.Storage.Users
                 .FirstOrDefault(t => t.Token == apiToken);
 
             return session.Load<User>(token.UserId);
+        }
+
+        public User GetUser(string userId, IDocumentSession session)
+        {
+            if (userId == null) throw new ArgumentNullException("userId");
+            if (session == null) throw new ArgumentNullException("session");
+
+            return session.Load<User>(userId);
         }
     }
 }

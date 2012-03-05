@@ -25,7 +25,6 @@ namespace Ohb.Mvc
             filters.Add(container.Resolve<OhbHandleErrorAttribute>());
             filters.Add(container.Resolve<RavenDbAttribute>());
             filters.Add(container.Resolve<CurrentUserAttribute>());
-            filters.Add(container.Resolve<ApiTokenCookieAttribute>());
             filters.Add(container.Resolve<AuthCookieAttribute>());
         }
 
@@ -89,7 +88,7 @@ namespace Ohb.Mvc
             config.ServiceResolver.SetResolver(resolver);
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Filters.Add(container.Resolve<RavenDbApiAttribute>());
-            config.Filters.Add(container.Resolve<ApiAuthorizeHandlerAttribute>());
+            config.Filters.Add(container.Resolve<RequiresAuthCookieApiAttribute>());
         }
 
         public override void Dispose()

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Net;
+using Ohb.Mvc.AuthCookies;
 using Ohb.Mvc.Storage;
 using Ohb.Mvc.Storage.ApiTokens;
 using Ohb.Mvc.Storage.Users;
@@ -22,6 +23,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             return response.StatusCode;
         }
 
+        [Obsolete("Use auth cookies instead")]
         public static string GenerateNewApiToken(string userId = null)
         {
             using (var documentStore = new DocumentStore
@@ -43,5 +45,34 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 }
             }
         }
+
+        public static string GetRandomUserAuthCookie()
+        {
+            using (var documentStore = new DocumentStore
+            {
+                Url = "http://localhost:8080",
+                DefaultDatabase = "Ohb"
+            })
+            {
+                documentStore.Initialize();
+                using (var documentSession = documentStore.OpenSession())
+                {
+                    var userId = documentSession.Query<User>().First().Id;
+
+                    return GetAuthCookie(userId);
+                }
+            }
+        }
+
+        public static string GetAuthCookie(string userId)
+        {
+            using (var encoder = new AuthCookieEncoder(secretKey: "vipbOO5m4RGVGBuUSCQBmw=="))
+            {
+                var factory = new AuthCookieFactory(encoder);
+                var cookie = factory.CreateAuthCookie(new User {Id = userId});
+                return cookie.Value;
+            }
+        }
+
     }
 }

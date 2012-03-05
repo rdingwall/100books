@@ -12,7 +12,8 @@ namespace Ohb.Mvc.Api
         {
             container.Register(
                 Component.For<RavenDbApiAttribute>(),
-                Component.For<ApiAuthorizeHandlerAttribute>());
+                Component.For<ApiAuthorizeHandlerAttribute>(),
+                Component.For<RequiresAuthCookieApiAttribute>());
             
             container.Register(
                 Component.For<BooksController>().LifeStyle.Transient,

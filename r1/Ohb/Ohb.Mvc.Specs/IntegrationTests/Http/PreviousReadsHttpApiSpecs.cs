@@ -13,7 +13,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
         [Subject("api/v1/previousreads GET")]
         public class when_retrieving_previous_reads
         {
-            public class when_there_was_no_api_token
+            public class when_there_was_no_auth_cookie
             {
                 Establish context =
                     () =>
@@ -35,6 +35,11 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 static RestRequest request;
                 static RestResponse response;
             }
+
+            public class when_there_was_an_expired_auth_cookie
+            {
+                // ..?
+            }
         }
 
         [Subject("api/v1/previousreads POST")]
@@ -45,7 +50,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 Establish context =
                     () =>
                         {
-                            apiToken = RestHelper.GenerateNewApiToken();
+                            authCookie = RestHelper.GetRandomUserAuthCookie();
 
                             client = new RestClient("http://localhost/api/v1");
                             request = new RestRequest("previousreads")
@@ -53,7 +58,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                                               Method = Method.POST,
                                               RequestFormat = DataFormat.Json
                                           };
-                            request.AddCookie(OhbCookies.ApiToken, apiToken);
+                            request.AddCookie(OhbCookies.AuthCookie, authCookie);
 
                             request.AddBody(new { volumeId = "4YydO00I9JYC" });
                         };
@@ -66,7 +71,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                     () =>
                         {
                             request = new RestRequest("previousreads");
-                            request.AddCookie(OhbCookies.ApiToken, apiToken);
+                            request.AddCookie(OhbCookies.AuthCookie, authCookie);
                             client.AddHandler("application/json", new DynamicJsonDeserializer());
                             var response = client.Execute<dynamic>(request);
 
@@ -83,10 +88,10 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 static RestResponse<dynamic> response;
                 static RestClient client;
                 static RestRequest request;
-                static string apiToken;
+                static string authCookie;
             }
 
-            public class when_there_was_no_api_token
+            public class when_there_was_no_auth_cookie
             {
                 Establish context =
                     () =>
@@ -116,7 +121,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 Establish context =
                     () =>
                     {
-                        var apiToken = RestHelper.GenerateNewApiToken();
+                        var authCookie = RestHelper.GetRandomUserAuthCookie();
 
                         client = new RestClient("http://localhost/api/v1");
                         request = new RestRequest("previousreads")
@@ -124,7 +129,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                             Method = Method.POST,
                             RequestFormat = DataFormat.Json
                         };
-                        request.AddCookie(OhbCookies.ApiToken, apiToken);
+                        request.AddCookie(OhbCookies.AuthCookie, authCookie);
                         client.AddHandler("application/json", new DynamicJsonDeserializer());
                     };
 
@@ -143,7 +148,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 Establish context =
                     () =>
                     {
-                        var apiToken = RestHelper.GenerateNewApiToken();
+                        var authCookie = RestHelper.GetRandomUserAuthCookie();
 
                         client = new RestClient("http://localhost/api/v1");
                         request = new RestRequest("previousreads")
@@ -151,7 +156,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                             Method = Method.POST,
                             RequestFormat = DataFormat.Json
                         };
-                        request.AddCookie(OhbCookies.ApiToken, apiToken);
+                        request.AddCookie(OhbCookies.AuthCookie, authCookie);
 
                         request.AddBody(new { volumeId = "xxxxxxxxxxxxxxx" });
                         client.AddHandler("application/json", new DynamicJsonDeserializer());
@@ -183,7 +188,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 Establish context =
                     () =>
                     {
-                        var apiToken = RestHelper.GenerateNewApiToken();
+                        var authCookie = RestHelper.GetRandomUserAuthCookie();
 
                         client = new RestClient("http://localhost/api/v1");
                         request1 = new RestRequest("previousreads")
@@ -191,7 +196,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                             Method = Method.POST,
                             RequestFormat = DataFormat.Json,
                         };
-                        request1.AddCookie(OhbCookies.ApiToken, apiToken);
+                        request1.AddCookie(OhbCookies.AuthCookie, authCookie);
                         request1.AddBody(new { volumeId = "4YydO00I9JYC" });
 
                         request2 = new RestRequest("previousreads")
@@ -199,7 +204,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                             Method = Method.POST,
                             RequestFormat = DataFormat.Json
                         };
-                        request2.AddCookie(OhbCookies.ApiToken, apiToken);
+                        request2.AddCookie(OhbCookies.AuthCookie, authCookie);
 
                         request2.AddBody(new { volumeId = "4YydO00I9JYC" });
                     };

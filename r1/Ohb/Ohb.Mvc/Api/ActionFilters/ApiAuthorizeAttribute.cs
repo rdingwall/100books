@@ -11,9 +11,11 @@ using Raven.Client;
 
 namespace Ohb.Mvc.Api.ActionFilters
 {
+    [Obsolete]
     [AttributeUsage(AttributeTargets.Method)]
     public class ApiAuthorizeAttribute : Attribute {}
 
+    [Obsolete]
     public class ApiAuthorizeHandlerAttribute : ActionFilterAttribute
     {
         readonly IUserRepository users;
