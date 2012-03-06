@@ -45,6 +45,7 @@ namespace Ohb.Mvc.Api.Controllers
                         Book = book
                     };
 
+            // Overwrite existing
             DocumentSession.Store(previousRead);
             DocumentSession.SaveChanges();
         }

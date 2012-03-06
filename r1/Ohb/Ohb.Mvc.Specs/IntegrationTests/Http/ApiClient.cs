@@ -176,9 +176,9 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
         public RestResponse<List<BookStatus>> GetBookStatuses(params string[] bookIds)
         {
             var ids = String.Join(",", bookIds);
-            var request = new RestRequest(String.Format("books/{0}ids/statuses", ids));
+            var request = new RestRequest(String.Format("books/{0}/statuses", ids));
             Authorize(request);
-            return client.Execute<List<BookStatus>>(request);
+            return Log(client.Execute<List<BookStatus>>(request));
         }
     }
 }

@@ -3,35 +3,50 @@ using System.Linq;
 using Ohb.Mvc.Api.ActionFilters;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage.PreviousReads;
-using Raven.Client.Linq;
 
 namespace Ohb.Mvc.Api.Controllers
 {
     public class BookStatusesController : OhbApiController
     {
+        // GET books/:ids/statuses e.g. books/aaa,bbb,ccc/statuses
+        //
+        // Should return
+        // [{ GoogleVolumeId = "aaa", HasRead = false },
+        //  { GoogleVolumeId = "bbb", HasRead = true },
+        //  { GoogleVolumeId = "ccc", HasRead = false }] <-- might not exist but return it anyway
         [RequiresAuthCookie]
         public IEnumerable<BookStatus> Get(string volumeIds)
         {
-            var volumeIdsList = volumeIds.Split(new [] {';', ','});
+            var requestedVolumeIds = volumeIds
+                .Split(new[] {';', ','})
+                .Distinct();
 
-            var results = volumeIdsList.Distinct().ToDictionary(k => k, v => false);
+            var previouslyReadVolumeIds = GetPreviouslyReadVolumeIds(requestedVolumeIds);
 
-            // todo: properly implement this query with an index or something
-            var previousReads = DocumentSession.Query<PreviousRead>()
-                .Select(p => new { p.Book.GoogleVolumeId })
-                .ToList();
+            var results = requestedVolumeIds
+                .ToDictionary(k => k, v => new BookStatus { GoogleVolumeId = v });
 
-            foreach (var previousRead in previousReads)
+            // Mark any results which were found in the PreviousReads results
+            foreach (var volumeId in previouslyReadVolumeIds)
             {
-                if (results.ContainsKey(previousRead.GoogleVolumeId))
-                    results[previousRead.GoogleVolumeId] = true;
+                if (results.ContainsKey(volumeId))
+                    results[volumeId].HasRead = true;
             }
 
-            return results.Select(p => new BookStatus
-                                           {
-                                               GoogleVolumeId = p.Key,
-                                               HasRead = p.Value
-                                           });
+            return results.Values;
+        }
+
+        IEnumerable<string> GetPreviouslyReadVolumeIds(IEnumerable<string> requestedGoogleVolumeIds)
+        {
+            var idsToQuery = requestedGoogleVolumeIds
+                .Select(googleVolumeId => PreviousRead.MakeId(User.Id, googleVolumeId))
+                .ToList();
+
+            var previousReads = DocumentSession
+                .Load<PreviousRead>(idsToQuery)
+                .Where(p => p != null);
+
+            return previousReads.Select(p => p.Book.GoogleVolumeId);
         }
     }
 }
