@@ -169,6 +169,7 @@
     <Compile Include="AuthCookies\AuthCookieContext.cs" />
     <Compile Include="AuthCookies\AuthCookieEncoder.cs" />
     <Compile Include="AuthCookies\AuthCookieFactory.cs" />
+    <Compile Include="AuthCookies\AuthCookieSecretKey.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\OhbController.cs" />
     <Compile Include="ActionFilters\CurrentUserAttribute.cs" />

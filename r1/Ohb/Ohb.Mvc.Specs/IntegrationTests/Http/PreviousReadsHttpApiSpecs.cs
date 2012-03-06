@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using Machine.Specifications;
 using Ohb.Mvc.Storage.Books;
+using Ohb.Mvc.Storage.PreviousReads;
 using RestSharp;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.Http
@@ -31,7 +32,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             {
                 Because of = () =>
                                  {
-                                     var api = ApiClientFactory.NewUser();
+                                     api = ApiClientFactory.NewUser();
                                      response = api.MarkBookAsRead("4YydO00I9JYC");
                                      results = api.GetPreviousReads();
                                  };
@@ -45,14 +46,21 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 It should_return_http_200_for_the_previous_reads_list =
                     () => results.StatusCode.ShouldEqual(HttpStatusCode.OK);
 
+                It should_only_return_one_book_in_the_previous_reads_list =
+                    () => results.Data.Count.ShouldEqual(1);
+
                 It should_contain_the_book_in_the_previous_reads_list =
-                    () => results.Data.Select(b => b.StaticInfo.Id).ShouldContain("4YydO00I9JYC");
+                    () => results.Data.Select(b => b.Book.StaticInfo.Id).ShouldContain("4YydO00I9JYC");
+
+                It should_contain_the_user_id_in_the_previous_reads_list =
+                    () => results.Data.FirstOrDefault().UserId.ShouldEqual(api.UserId);
 
                 It should_contain_the_full_book_details_in_the_previous_reads_list =
-                    () => results.Data.Select(b => b.StaticInfo.Title).ShouldContain("The Google story");
+                    () => results.Data.Select(b => b.Book.StaticInfo.Title).ShouldContain("The Google story");
 
                 static RestResponse response;
-                static RestResponse<List<Book>> results;
+                static RestResponse<List<PreviousRead>> results;
+                static ApiClient api;
             }
 
             public class when_there_was_no_auth_cookie

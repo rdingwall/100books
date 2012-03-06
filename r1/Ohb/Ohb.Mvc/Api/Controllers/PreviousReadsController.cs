@@ -21,9 +21,9 @@ namespace Ohb.Mvc.Api.Controllers
         }
 
         [RequiresAuthCookie]
-        public IEnumerable<Book> Get()
+        public IEnumerable<PreviousRead> Get()
         {
-            return DocumentSession.Query<PreviousRead>().Select(r => r.Book);
+            return DocumentSession.Query<PreviousRead>();
         }
 
         [RequiresAuthCookie]
@@ -37,7 +37,15 @@ namespace Ohb.Mvc.Api.Controllers
                 throw new HttpResponseException("Book not found (bad Google Book Volume ID?)",
                                                 HttpStatusCode.NotFound);
 
-            DocumentSession.Store(new PreviousRead {Book = book});
+            var previousRead =
+                new PreviousRead
+                    {
+                        Id = String.Format("PreviousReads/{0}-{1}", User.Id, book.GoogleVolumeId),
+                        UserId = User.Id,
+                        Book = book
+                    };
+
+            DocumentSession.Store(previousRead);
             DocumentSession.SaveChanges();
         }
     }

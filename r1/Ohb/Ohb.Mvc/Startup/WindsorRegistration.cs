@@ -23,7 +23,7 @@ namespace Ohb.Mvc.Startup
                 Component.For<IBookRepository>().ImplementedBy<BookRepository>(),
                 Component.For<IBookImporter>().ImplementedBy<BookImporter>(),
                 Component.For<IAuthCookieEncoder>().ImplementedBy<AuthCookieEncoder>()
-                .DependsOn(new { secretKey = "vipbOO5m4RGVGBuUSCQBmw==" }),
+                .DependsOn(new { secretKey = AuthCookieSecretKey.Value }),
                 Component.For<IAuthCookieFactory>().ImplementedBy<AuthCookieFactory>(),
                 Component.For<IGoogleBooksClient>().ImplementedBy<GoogleBooksClient>()
                     .DependsOn(new

@@ -38,7 +38,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
 
         static HttpCookie GetAuthCookie(string userId)
         {
-            using (var encoder = new AuthCookieEncoder(secretKey: "vipbOO5m4RGVGBuUSCQBmw=="))
+            using (var encoder = new AuthCookieEncoder(secretKey: AuthCookieSecretKey.Value))
             {
                 var factory = new AuthCookieFactory(encoder);
                 var cookie = factory.CreateAuthCookie(new User { Id = userId });

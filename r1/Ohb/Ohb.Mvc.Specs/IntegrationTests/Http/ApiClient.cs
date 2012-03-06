@@ -4,7 +4,9 @@ using System.Net;
 using System.Text;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
+using Ohb.Mvc.AuthCookies;
 using Ohb.Mvc.Storage.Books;
+using Ohb.Mvc.Storage.PreviousReads;
 using RestSharp;
 using RestSharp.Deserializers;
 
@@ -16,6 +18,24 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
         readonly RestClient dynamicClient;
         public string BaseUrl { get; set; }
         public string AuthCookie { get; set; }
+
+        public string UserId
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(AuthCookie))
+                    return null;
+
+                using (var encoder = new AuthCookieEncoder(AuthCookieSecretKey.Value))
+                {
+                    AuthCookieContext context;
+                    if (!encoder.TryDecode(AuthCookie, out context))
+                        return null;
+
+                    return context.UserId;
+                }
+            }
+        }
 
         public ApiClient()
         {
@@ -146,11 +166,11 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             request.AddCookie(OhbCookies.AuthCookie, AuthCookie);
         }
 
-        public RestResponse<List<Book>> GetPreviousReads()
+        public RestResponse<List<PreviousRead>> GetPreviousReads()
         {
             var request = new RestRequest("previousreads");
             Authorize(request);
-            return Log(client.Execute<List<Book>>(request));
+            return Log(client.Execute<List<PreviousRead>>(request));
         }
 
         public RestResponse<List<BookStatus>> GetBookStatuses(params string[] bookIds)
