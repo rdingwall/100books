@@ -4,8 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Web.Http;
 using Ohb.Mvc.Api.ActionFilters;
+using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage.Books;
 using Ohb.Mvc.Storage.PreviousReads;
+using Raven.Client.Linq;
 
 namespace Ohb.Mvc.Api.Controllers
 {
@@ -20,11 +22,15 @@ namespace Ohb.Mvc.Api.Controllers
         }
 
         [RequiresAuthCookie]
-        public IEnumerable<PreviousRead> Get()
+        public IEnumerable<PreviousReadModel> Get()
         {
-            return DocumentSession.Query<PreviousRead>()
+            return DocumentSession
+                .Query<PreviousRead, PreviousReadsWithBook>()
                 .Where(p => p.UserId == User.Id)
-                .OrderByDescending(p => p.MarkedByUserAt);
+                .OrderByDescending(p => p.MarkedByUserAt)
+                .Take(100)
+                .As<PreviousReadModel>()
+                .ToList();
         }
 
         [RequiresAuthCookie]
@@ -43,7 +49,8 @@ namespace Ohb.Mvc.Api.Controllers
                     {
                         Id = String.Format("PreviousReads/{0}-{1}", User.Id, book.GoogleVolumeId),
                         UserId = User.Id,
-                        Book = book,
+                        BookId = book.Id,
+                        GoogleVolumeId = book.GoogleVolumeId,
                         MarkedByUserAt = DateTime.UtcNow
                     };
 

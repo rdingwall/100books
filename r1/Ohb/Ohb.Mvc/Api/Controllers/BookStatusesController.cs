@@ -46,7 +46,7 @@ namespace Ohb.Mvc.Api.Controllers
                 .Load<PreviousRead>(idsToQuery)
                 .Where(p => p != null);
 
-            return previousReads.Select(p => p.Book.GoogleVolumeId);
+            return previousReads.Select(p => p.GoogleVolumeId);
         }
     }
 }

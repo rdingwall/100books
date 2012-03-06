@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Machine.Specifications;
+using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage.Books;
 using Ohb.Mvc.Storage.PreviousReads;
 using RestSharp;
@@ -54,16 +55,17 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                     () => results.Data.Count.ShouldEqual(1);
 
                 It should_contain_the_book_in_the_previous_reads_list =
-                    () => results.Data.Select(b => b.Book.StaticInfo.Id).ShouldContain("4YydO00I9JYC");
-
-                It should_contain_the_user_id_in_the_previous_reads_list =
-                    () => results.Data.FirstOrDefault().UserId.ShouldEqual(api.UserId);
+                    () => results.Data.FirstOrDefault().Book.StaticInfo.Id.ShouldEqual("4YydO00I9JYC");
 
                 It should_contain_the_full_book_details_in_the_previous_reads_list =
-                    () => results.Data.Select(b => b.Book.StaticInfo.Title).ShouldContain("The Google story");
+                    () => results.Data.FirstOrDefault().Book.StaticInfo.Title.ShouldEqual("The Google story");
 
+                It should_contain_the_marked_read_at_timestamp =
+                    () =>
+                    results.Data.FirstOrDefault().MarkedByUserAt.ShouldBeCloseTo(DateTime.UtcNow,
+                                                                                 TimeSpan.FromSeconds(5));
                 static RestResponse response;
-                static RestResponse<List<PreviousRead>> results;
+                static RestResponse<List<PreviousReadModel>> results;
                 static ApiClient api;
             }
 
@@ -141,7 +143,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                     () => String.Join(",", response.Data.Select(p => p.Book.GoogleVolumeId))
                               .ShouldEqual("4YydO00I9JYC,KOWFacYRlXoC,lAIJAAAAIAAJ,N0EEAAAAMBAJ");
 
-                static RestResponse<List<PreviousRead>> response;
+                static RestResponse<List<PreviousReadModel>> response;
                 static ApiClient api;
             }
         }

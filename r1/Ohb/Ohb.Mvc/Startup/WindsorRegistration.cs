@@ -1,3 +1,4 @@
+using System.Reflection;
 using Bootstrap.Windsor;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
@@ -9,6 +10,7 @@ using Ohb.Mvc.Storage.Books;
 using Ohb.Mvc.Storage.Users;
 using Raven.Client;
 using Raven.Client.Document;
+using Raven.Client.Indexes;
 
 namespace Ohb.Mvc.Startup
 {
@@ -40,6 +42,7 @@ namespace Ohb.Mvc.Startup
         {
             var store = new DocumentStore { ConnectionStringName = "RavenDB" };
             store.Initialize();
+            IndexCreation.CreateIndexes(Assembly.GetExecutingAssembly(), store);
             return store;
         }
     }

@@ -166,11 +166,11 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             request.AddCookie(OhbCookies.AuthCookie, AuthCookie);
         }
 
-        public RestResponse<List<PreviousRead>> GetPreviousReads()
+        public RestResponse<List<PreviousReadModel>> GetPreviousReads()
         {
             var request = new RestRequest("previousreads");
             Authorize(request);
-            return Log(client.Execute<List<PreviousRead>>(request));
+            return Log(client.Execute<List<PreviousReadModel>>(request));
         }
 
         public RestResponse<List<BookStatus>> GetBookStatuses(params string[] bookIds)

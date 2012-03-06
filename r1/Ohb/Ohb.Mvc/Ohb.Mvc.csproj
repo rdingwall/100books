@@ -165,7 +165,9 @@
     <Compile Include="Api\Controllers\BookStatusesController.cs" />
     <Compile Include="Api\Controllers\OhbApiController.cs" />
     <Compile Include="Api\Controllers\PreviousReadsController.cs" />
+    <Compile Include="Storage\PreviousReads\PreviousReadsWithBook.cs" />
     <Compile Include="Api\Models\BookStatus.cs" />
+    <Compile Include="Api\Models\PreviousReadModel.cs" />
     <Compile Include="AuthCookies\AuthCookieContext.cs" />
     <Compile Include="AuthCookies\AuthCookieEncoder.cs" />
     <Compile Include="AuthCookies\AuthCookieFactory.cs" />
