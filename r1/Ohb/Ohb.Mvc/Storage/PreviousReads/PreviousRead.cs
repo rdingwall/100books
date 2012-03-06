@@ -8,6 +8,7 @@ namespace Ohb.Mvc.Storage.PreviousReads
         public Book Book { get; set; }
         public string Id { get; set; }
         public string UserId { get; set; }
+        public DateTime MarkedByUserAt { get; set; }
 
         public static string MakeId(string userId, string googleVolumeId)
         {

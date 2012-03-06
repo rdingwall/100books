@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Ohb.Mvc.Api.ActionFilters;
 using Ohb.Mvc.Storage.Books;
@@ -23,7 +22,9 @@ namespace Ohb.Mvc.Api.Controllers
         [RequiresAuthCookie]
         public IEnumerable<PreviousRead> Get()
         {
-            return DocumentSession.Query<PreviousRead>().Where(p => p.UserId == User.Id);
+            return DocumentSession.Query<PreviousRead>()
+                .Where(p => p.UserId == User.Id)
+                .OrderByDescending(p => p.MarkedByUserAt);
         }
 
         [RequiresAuthCookie]
@@ -42,7 +43,8 @@ namespace Ohb.Mvc.Api.Controllers
                     {
                         Id = String.Format("PreviousReads/{0}-{1}", User.Id, book.GoogleVolumeId),
                         UserId = User.Id,
-                        Book = book
+                        Book = book,
+                        MarkedByUserAt = DateTime.UtcNow
                     };
 
             // Overwrite existing

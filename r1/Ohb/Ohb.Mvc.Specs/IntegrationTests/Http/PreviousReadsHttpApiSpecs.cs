@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Machine.Specifications;
@@ -118,6 +119,30 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                     () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
 
                 static RestResponse response;
+            }
+
+            public class when_querying_previously_read_books
+            {
+                Establish context = () =>
+                                        {
+                                            api = ApiClientFactory.NewUser();
+                                            api.MarkBookAsRead("N0EEAAAAMBAJ");
+                                            api.MarkBookAsRead("lAIJAAAAIAAJ");
+                                            api.MarkBookAsRead("KOWFacYRlXoC");
+                                            api.MarkBookAsRead("4YydO00I9JYC");
+                                        };
+
+                Because of = () => response = api.GetPreviousReads();
+
+                It should_return_the_correct_number = 
+                    () => response.Data.Count.ShouldEqual(4);
+
+                It should_return_the_latest_read_books_first =
+                    () => String.Join(",", response.Data.Select(p => p.Book.GoogleVolumeId))
+                              .ShouldEqual("4YydO00I9JYC,KOWFacYRlXoC,lAIJAAAAIAAJ,N0EEAAAAMBAJ");
+
+                static RestResponse<List<PreviousRead>> response;
+                static ApiClient api;
             }
         }
     }
