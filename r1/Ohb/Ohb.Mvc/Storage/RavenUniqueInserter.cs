@@ -22,10 +22,13 @@ public class RavenUniqueInserter : IRavenUniqueInserter
         if (entity == null) throw new ArgumentNullException("entity");
 
         var key = keyProperty.Compile().Invoke(entity).ToString();
+        var type = typeof (T).Name;
+        var id = String.Format("UniqueConstraints/{0}/{1}", type, key);
 
         var constraint = new UniqueConstraint
                                 {
-                                    Type = typeof (T).Name,
+                                    Id = id,
+                                    Type = type,
                                     Key = key
                                 };
 
@@ -40,9 +43,7 @@ public class RavenUniqueInserter : IRavenUniqueInserter
         try
         {
             session.Advanced.UseOptimisticConcurrency = true;
-            session.Store(constraint,
-                            String.Format("UniqueConstraints/{0}/{1}",
-                                        constraint.Type, constraint.Key));
+            session.Store(constraint);
             session.Store(entity);
             session.SaveChanges();
         }
