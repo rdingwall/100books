@@ -23,7 +23,7 @@ namespace Ohb.Mvc.Api.Controllers
         [RequiresAuthCookie]
         public IEnumerable<PreviousRead> Get()
         {
-            return DocumentSession.Query<PreviousRead>();
+            return DocumentSession.Query<PreviousRead>().Where(p => p.UserId == User.Id);
         }
 
         [RequiresAuthCookie]

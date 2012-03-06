@@ -35,6 +35,9 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                                      api = ApiClientFactory.NewUser();
                                      response = api.MarkBookAsRead("4YydO00I9JYC");
                                      results = api.GetPreviousReads();
+
+                                     // Also mark another book as read under a different user
+                                     ApiClientFactory.NewUser().MarkBookAsRead("KOWFacYRlXoC");
                                  };
 
                 It should_return_http_200_ok_when_adding_a_previous_read = 
