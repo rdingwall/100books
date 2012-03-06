@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using Ohb.Mvc.Api.ActionFilters;
 using Ohb.Mvc.Storage.Books;
@@ -26,7 +27,7 @@ namespace Ohb.Mvc.Api.Controllers
         }
 
         [RequiresAuthCookie]
-        public void Post(string volumeId)
+        public void Put(string volumeId)
         {
             if (String.IsNullOrWhiteSpace(volumeId))
                 throw new HttpResponseException("Missing parameter: 'volumeId' (Google Book Volume ID)", HttpStatusCode.BadRequest);
@@ -38,7 +39,6 @@ namespace Ohb.Mvc.Api.Controllers
 
             DocumentSession.Store(new PreviousRead {Book = book});
             DocumentSession.SaveChanges();
-
         }
     }
 }

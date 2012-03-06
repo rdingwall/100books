@@ -24,7 +24,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             }
         }
 
-        [Subject("api/v1/previousreads POST")]
+        [Subject("api/v1/previousreads PUT")]
         public class when_marking_a_book_as_previously_read
         {
             public class when_it_is_a_valid_request
@@ -36,7 +36,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                                      results = api.GetPreviousReads();
                                  };
 
-                It should_return_http_200_ok_when_marking_the_book_as_read = 
+                It should_return_http_200_ok_when_adding_a_previous_read = 
                     () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
 
                 It should_return_the_previous_reads_list_as_json =
@@ -88,10 +88,10 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 static RestResponse response;
             }
 
-            public class when_an_http_put_is_sent
+            public class when_an_http_post_is_sent
             {
                 It should_return_http_405_method_not_allowed =
-                    () => ApiClientFactory.NewUser().AssertMethodNotAllowed(Method.PUT, "previousreads");
+                    () => ApiClientFactory.NewUser().AssertMethodNotAllowed(Method.POST, "previousreads");
             }
 
             public class when_marking_duplicate_books_as_previously_read
@@ -103,7 +103,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                                      response = api.MarkBookAsRead("4YydO00I9JYC");
                                  };
 
-                It should_return_http_200_ok = 
+                It should_return_http_201_ok = 
                     () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
 
                 static RestResponse response;

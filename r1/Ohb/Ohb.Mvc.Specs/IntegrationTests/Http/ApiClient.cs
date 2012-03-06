@@ -126,7 +126,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
         {
             var request = new RestRequest("previousreads")
                               {
-                                  Method = Method.POST,
+                                  Method = Method.PUT,
                                   RequestFormat = DataFormat.Json
                               };
 
