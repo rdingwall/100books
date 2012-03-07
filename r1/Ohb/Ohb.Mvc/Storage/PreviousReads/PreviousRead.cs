@@ -1,9 +1,11 @@
 using System;
+using Ohb.Mvc.Storage.Books;
 
 namespace Ohb.Mvc.Storage.PreviousReads
 {
     public class PreviousRead
     {
+        public string GoogleVolumeIdBase64 { get; set; }
         public string GoogleVolumeId { get; set; }
         public string Id { get; set; }
         public string UserId { get; set; }
@@ -12,7 +14,8 @@ namespace Ohb.Mvc.Storage.PreviousReads
 
         public static string MakeId(string userId, string googleVolumeId)
         {
-            return string.Concat("PreviousReads/", userId, "-", googleVolumeId);
+            var base64 = ConvertGoogleVolumeId.ToBase64String(googleVolumeId);
+            return string.Concat("PreviousReads/", userId, "-", base64);
         }
     }
 }

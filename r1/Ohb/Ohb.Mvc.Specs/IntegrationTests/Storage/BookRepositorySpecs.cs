@@ -18,11 +18,12 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                     var book = new Book
                     {
                         GoogleVolumeId = "4YydO00I9JYC",
+                        GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String("4YydO00I9JYC"),
                         StaticInfo =
                             new BookStaticInfo { Title = "First", Id = "4YydO00I9JYC" }
                     };
 
-                    new RavenUniqueInserter().StoreUnique(session, book, b => b.GoogleVolumeId);
+                    new RavenUniqueInserter().StoreUnique(session, book, b => b.GoogleVolumeIdBase64);
 
                     session.SaveChanges();
 
@@ -41,6 +42,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                         repository.Add(new Book
                         {
                             GoogleVolumeId = "4YydO00I9JYC",
+                            GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String("4YydO00I9JYC"),
                             StaticInfo =
                                 new BookStaticInfo { Title = "Second", Id = "4YydO00I9JYC" }
                         }, session);
@@ -52,7 +54,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
             It should_return_the_existing_book =
                 () => book.StaticInfo.Title.ShouldEqual("First");
 
-            static BookRepository repository;
+            static IBookRepository repository;
             static Book book;
         }
 
@@ -74,6 +76,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                             new Book
                                 {
                                     GoogleVolumeId = "abc",
+                                    GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String("abc"),
                                     StaticInfo =
                                         new BookStaticInfo { Title = "The Google story", Id = "abc" }
                                 }, session);
@@ -97,15 +100,69 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                     {
                         var book = session.Query<Book>()
                             .Customize(a => a.WaitForNonStaleResults())
-                            .FirstOrDefault(b => b.GoogleVolumeId == "abc");
+                            .FirstOrDefault(b => b.GoogleVolumeIdBase64 == ConvertGoogleVolumeId.ToBase64String("abc"));
 
                         book.ShouldNotBeNull();
                         book.StaticInfo.Title.ShouldEqual("The Google story");
                     }
                 };
 
-            static BookRepository repository;
+            static IBookRepository repository;
             static Book book;
+        }
+
+        public class when_adding_books_with_the_same_google_volume_id_but_different_cased_letters
+        {
+            Establish context =
+                () =>
+                    {
+                        repository = new BookRepository(new RavenUniqueInserter());
+
+                        using (var session = RavenDb.OpenSession())
+                        {
+                            book1 = new Book
+                                        {
+                                            GoogleVolumeId = "aaa",
+                                            GoogleVolumeIdBase64 =
+                                                ConvertGoogleVolumeId.ToBase64String("aaa"),
+                                            StaticInfo = new BookStaticInfo {Title = "Book1"}
+                                        };
+
+                            book2 = new Book
+                                        {
+                                            GoogleVolumeId = "aAa",
+                                            GoogleVolumeIdBase64 =
+                                                ConvertGoogleVolumeId.ToBase64String("aAa"),
+                                            StaticInfo = new BookStaticInfo {Title = "Book2"}
+                                        };
+
+                            repository.Add(book1, session);
+                            repository.Add(book2, session);
+                            RavenDb.WaitForNonStaleResults<Book>();
+                        }
+                    };
+
+            Because of =
+                () =>
+                    {
+                        using (var session = RavenDb.OpenSession())
+                        {
+                            returnedBook1 = repository.Get("aaa", session);
+                            returnedBook2 = repository.Get("aAa", session);
+                        }
+                    };
+
+            It should_return_the_correct_first_book =
+                () => returnedBook1.StaticInfo.Title.ShouldEqual(book1.StaticInfo.Title);
+
+            It should_return_the_correct_second_book =
+                () => returnedBook2.StaticInfo.Title.ShouldEqual(book2.StaticInfo.Title);
+
+            static IBookRepository repository;
+            static Book book1;
+            static Book book2;
+            static Book returnedBook1;
+            static Book returnedBook2;
         }
     }
 }

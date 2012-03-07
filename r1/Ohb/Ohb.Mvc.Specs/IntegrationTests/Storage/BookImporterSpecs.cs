@@ -38,6 +38,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                             new Book
                                 {
                                     GoogleVolumeId = "4YydO00I9JYC",
+                                    GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String("4YydO00I9JYC"),
                                     StaticInfo =
                                         new BookStaticInfo {Title = "Dummy", Id = "4YydO00I9JYC"}
                                 };

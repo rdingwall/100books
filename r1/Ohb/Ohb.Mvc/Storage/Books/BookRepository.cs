@@ -26,8 +26,11 @@ namespace Ohb.Mvc.Storage.Books
             if (session == null) throw new ArgumentNullException("session");
             if (String.IsNullOrWhiteSpace(googleVolumeId))
                 throw new ArgumentException("Missing/empty parameter.", "googleVolumeId");
-            
-            return session.Query<Book>().FirstOrDefault(b => b.GoogleVolumeId == googleVolumeId);
+
+            var base64 = ConvertGoogleVolumeId.ToBase64String(googleVolumeId);
+
+            return session.Query<Book>()
+                .FirstOrDefault(b => b.GoogleVolumeIdBase64 == base64);
         }
 
         public void Add(Book book, IDocumentSession session)
@@ -37,7 +40,7 @@ namespace Ohb.Mvc.Storage.Books
 
             try
             {
-                inserter.StoreUnique(session, book, b => b.GoogleVolumeId);
+                inserter.StoreUnique(session, book, b => b.GoogleVolumeIdBase64);
             }
             catch (ConcurrencyException)
             {
