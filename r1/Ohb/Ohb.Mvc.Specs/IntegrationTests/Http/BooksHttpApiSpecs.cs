@@ -1,16 +1,18 @@
 ﻿using System.Net;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
+using Ohb.Mvc.Storage.Books;
+using Ohb.Mvc.Storage.PreviousReads;
 using RestSharp;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.Http
 {
-    [Subject("api/books")]
+    [Subject("api/v1/books/:id GET")]
     class BooksHttpApiSpecs
     {
         public class when_looking_up_a_book_by_id
         {
-            Because of = () => response = new ApiClient().GetBook("4YydO00I9JYC");
+            Because of = () => response = ApiClientFactory.NewUser().GetBook("4YydO00I9JYC");
 
             It should_return_http_200_ok = 
                 () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
@@ -41,6 +43,9 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             
             It should_get_the_books_small_thumbnail_url =
                 () => response.Data.Book.StaticInfo.SmallThumbnailUrl.ShouldEqual("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=5&source=gbs_api");
+
+            It should_not_be_previously_read =
+                () => response.Data.HasPreviouslyRead.ShouldBeFalse();
 
             static RestResponse<BookModel> response;
         }
@@ -73,6 +78,25 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
         {
             It should_return_http_405_method_not_allowed =
                 () => new ApiClient().AssertMethodNotAllowed(Method.DELETE, "books/4YydO00I9JYC");
+        }
+
+        public class when_getting_a_book_that_was_marked_as_previously_read
+        {
+            Establish context = () =>
+                                    {
+                                        api = ApiClientFactory.NewUser();
+                                        api.MarkBookAsRead("4YydO00I9JYC");
+                                        LiveRavenDb.WaitForNonStaleResults<Book>();
+                                        LiveRavenDb.WaitForNonStaleResults<PreviousRead>();
+                                    };
+
+            Because of = () => response = api.GetBook("4YydO00I9JYC");
+
+            It should_be_marked_as_previously_read = 
+                () => response.Data.HasPreviouslyRead.ShouldBeTrue();
+
+            static ApiClient api;
+            static RestResponse<BookModel> response;
         }
     }
 }

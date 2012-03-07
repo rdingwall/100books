@@ -3,6 +3,7 @@ using System.Net;
 using System.Web.Http;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage.Books;
+using Ohb.Mvc.Storage.PreviousReads;
 
 namespace Ohb.Mvc.Api.Controllers
 {
@@ -26,7 +27,18 @@ namespace Ohb.Mvc.Api.Controllers
             if (book == null)
                     throw new HttpResponseException("Book not found (bad Google Book Volume ID?)",
                                                     HttpStatusCode.NotFound);
-            return new BookModel {Book = book};
+
+            var result = new BookModel { Book = book };
+
+            if (User != null)
+            {
+                var previousRead = DocumentSession.Load<PreviousRead>(PreviousRead.MakeId(User.Id, volumeId));
+
+                if (previousRead != null)
+                    result.HasPreviouslyRead = true;
+            }
+
+            return result;
         }
     }
 }

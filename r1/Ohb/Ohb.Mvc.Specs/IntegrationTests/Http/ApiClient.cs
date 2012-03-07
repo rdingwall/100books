@@ -139,6 +139,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
         public RestResponse<BookModel> GetBook(string googleVolumeId)
         {
             var request = new RestRequest(String.Format("books/{0}", googleVolumeId));
+            Authorize(request);
             return Log(client.Execute<BookModel>(request));
         }
 
