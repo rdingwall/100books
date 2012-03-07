@@ -4,7 +4,7 @@ using Ohb.Mvc.Storage.Books;
 using Raven.Client;
 using Rhino.Mocks;
 
-namespace Ohb.Mvc.Specs.IntegrationTests.Storage
+namespace Ohb.Mvc.Specs.Storage
 {
     [Subject(typeof(BookImporter))]
     public class BookImporterSpecs
