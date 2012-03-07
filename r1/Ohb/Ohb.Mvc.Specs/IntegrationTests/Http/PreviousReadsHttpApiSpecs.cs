@@ -29,6 +29,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
         [Subject("api/v1/previousreads PUT")]
         public class when_marking_a_book_as_previously_read
         {
+            [Subject("api/v1/previousreads PUT")]
             public class when_it_is_a_valid_request
             {
                 Because of = () =>
@@ -70,6 +71,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 static ApiClient api;
             }
 
+            [Subject("api/v1/previousreads PUT")]
             public class when_there_was_no_auth_cookie
             {
                 Because of = 
@@ -81,6 +83,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 static RestResponse response;
             }
 
+            [Subject("api/v1/previousreads PUT")]
             public class when_no_book_id_is_provided
             {
                 Because of =
@@ -92,6 +95,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 static RestResponse response;
             }
 
+            [Subject("api/v1/previousreads PUT")]
             public class when_no_matching_book_is_found
             {
                 Because of = 
@@ -103,12 +107,14 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 static RestResponse response;
             }
 
+            [Subject("api/v1/previousreads PUT")]
             public class when_an_http_post_is_sent
             {
                 It should_return_http_405_method_not_allowed =
                     () => ApiClientFactory.NewUser().AssertMethodNotAllowed(Method.POST, "previousreads");
             }
 
+            [Subject("api/v1/previousreads PUT")]
             public class when_marking_duplicate_books_as_previously_read
             {
                 Because of = () =>
@@ -124,6 +130,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 static RestResponse response;
             }
 
+            [Subject("api/v1/previousreads PUT")]
             public class when_querying_previously_read_books
             {
                 Establish context = () =>
@@ -149,5 +156,65 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 static ApiClient api;
             }
         }
+
+        [Subject("api/v1/previousreads/:id DELETE")]
+        public class when_removing_a_previous_read
+        {
+            [Subject("api/v1/previousreads/:id DELETE")]
+            public class when_it_is_a_valid_request
+            {
+                Establish context = () =>
+                {
+                    api = ApiClientFactory.NewUser();
+                    api.MarkBookAsRead("4YydO00I9JYC");
+                    api.MarkBookAsRead("N0EEAAAAMBAJ");
+
+                    LiveRavenDb.WaitForNonStaleResults<PreviousRead, PreviousReadsWithBook>();
+                };
+
+                Because of = () =>
+                                 {
+
+                                     response = api.RemovePreviousRead("N0EEAAAAMBAJ");
+                                     LiveRavenDb.WaitForNonStaleResults<PreviousRead, PreviousReadsWithBook>();
+                                 };
+
+                It should_return_http_200_ok =
+                    () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
+
+                It should_then_exclude_that_book_from_the_previous_reads_list =
+                    () => api.GetPreviousReads().Data.Select(p => p.Book.GoogleVolumeId)
+                              .ShouldNotContain("N0EEAAAAMBAJ");
+
+                static ApiClient api;
+                static RestResponse response;
+            }
+        }
+
+        [Subject("api/v1/previousreads/:id DELETE")]
+        public class when_no_book_id_is_provided
+        {
+            Because of =
+                () => response = ApiClientFactory.NewUser().RemovePreviousRead("");
+
+            It should_return_http_400_bad_request =
+                () => response.StatusCode.ShouldEqual(HttpStatusCode.BadRequest);
+
+            static RestResponse response;
+        }
+
+        [Subject("api/v1/previousreads/:id DELETE")]
+        public class when_removing_a_book_that_wasnt_previously_read
+        {
+            Because of =
+                () => response = ApiClientFactory.NewUser().RemovePreviousRead("4YydO00I9JYC");
+
+            // DELETE verb is idempotent - can fire it as many times as you like
+            It should_return_http_200_ok =
+                () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
+
+            static RestResponse response;
+        }
+
     }
 }

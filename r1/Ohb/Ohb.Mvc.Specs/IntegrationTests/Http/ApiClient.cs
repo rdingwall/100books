@@ -181,5 +181,18 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             Authorize(request);
             return Log(client.Execute<List<BookStatus>>(request));
         }
+
+        public RestResponse RemovePreviousRead(string volumeId)
+        {
+            var request = new RestRequest(String.Format("previousreads/{0}", volumeId))
+            {
+                Method = Method.DELETE,
+                RequestFormat = DataFormat.Json
+            };
+
+            Authorize(request);
+
+            return Log(client.Execute(request));
+        }
     }
 }

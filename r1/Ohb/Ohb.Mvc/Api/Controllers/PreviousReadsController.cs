@@ -47,7 +47,7 @@ namespace Ohb.Mvc.Api.Controllers
             var previousRead =
                 new PreviousRead
                     {
-                        Id = String.Format("PreviousReads/{0}-{1}", User.Id, book.GoogleVolumeId),
+                        Id = PreviousRead.MakeId(User.Id, book.GoogleVolumeId),
                         UserId = User.Id,
                         BookId = book.Id,
                         GoogleVolumeId = book.GoogleVolumeId,
@@ -56,6 +56,21 @@ namespace Ohb.Mvc.Api.Controllers
 
             // Overwrite existing
             DocumentSession.Store(previousRead);
+            DocumentSession.SaveChanges();
+        }
+
+        [RequiresAuthCookie]
+        public void Delete(string volumeId)
+        {
+            if (String.IsNullOrWhiteSpace(volumeId))
+                throw new HttpResponseException("Missing parameter: 'volumeId' (Google Book Volume ID)", HttpStatusCode.BadRequest);
+
+            var id = PreviousRead.MakeId(User.Id, volumeId);
+            var previousRead = DocumentSession.Load<PreviousRead>(id);
+            if (previousRead == null)
+                return;
+
+            DocumentSession.Delete(previousRead);
             DocumentSession.SaveChanges();
         }
     }
