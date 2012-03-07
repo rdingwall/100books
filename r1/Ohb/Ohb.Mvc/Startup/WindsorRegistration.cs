@@ -25,7 +25,9 @@ namespace Ohb.Mvc.Startup
                 Component.For<IBookRepository>().ImplementedBy<BookRepository>(),
                 Component.For<IBookImporter>().ImplementedBy<BookImporter>(),
                 Component.For<IAuthCookieEncoder>().ImplementedBy<AuthCookieEncoder>()
-                .DependsOn(new { secretKey = AuthCookieSecretKey.Value }),
+                    .Named("AuthCookieEncoder").DependsOn(new {secretKey = AuthCookieSecretKey.Value}),
+                Component.For<IAuthCookieEncoder>().ImplementedBy<AuthCookieCache>()
+                    .ServiceOverrides(new {encoder = "AuthCookieEncoder"}),
                 Component.For<IAuthCookieFactory>().ImplementedBy<AuthCookieFactory>(),
                 Component.For<IGoogleBooksClient>().ImplementedBy<GoogleBooksClient>()
                     .DependsOn(new

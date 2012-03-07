@@ -115,6 +115,7 @@
   <ItemGroup>
     <Compile Include="Api\Controllers\BooksApiControllerSpecs.cs" />
     <Compile Include="Api\Controllers\TestHelper.cs" />
+    <Compile Include="AuthCookies\AuthCookieCacheSpecs.cs" />
     <Compile Include="AuthCookies\AuthCookieEncoderSpecs.cs" />
     <Compile Include="AuthCookies\AuthCookieFactorySpecs.cs" />
     <Compile Include="RandomExtensions.cs" />
