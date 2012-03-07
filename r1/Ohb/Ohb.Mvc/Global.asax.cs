@@ -96,7 +96,7 @@ namespace Ohb.Mvc
             config.ServiceResolver.SetResolver(resolver);
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Filters.Add(container.Resolve<RavenDbApiAttribute>());
-            config.Filters.Add(container.Resolve<RequiresAuthCookieApiAttribute>());
+            config.Filters.Add(container.Resolve<AuthCookieApiAttribute>());
             config.Filters.Add(container.Resolve<OhbErrorHandlerApiAttribute>());
         }
 

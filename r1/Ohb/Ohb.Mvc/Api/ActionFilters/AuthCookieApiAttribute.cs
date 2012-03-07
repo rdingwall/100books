@@ -16,12 +16,12 @@ namespace Ohb.Mvc.Api.ActionFilters
     {}
     
     // handler
-    public class RequiresAuthCookieApiAttribute : ActionFilterAttribute, IDisposable
+    public class AuthCookieApiAttribute : ActionFilterAttribute, IDisposable
     {
         readonly IUserRepository users;
         IAuthCookieEncoder encoder;
 
-        public RequiresAuthCookieApiAttribute(IUserRepository users, 
+        public AuthCookieApiAttribute(IUserRepository users, 
             IAuthCookieEncoder encoder)
         {
             if (users == null) throw new ArgumentNullException("users");
@@ -36,22 +36,25 @@ namespace Ohb.Mvc.Api.ActionFilters
             if (controller == null)
                 return;
 
-            if (!RequiresAuthorization(actionContext))
-                return;
+            var cookie = HttpContext.Current.Request.Cookies[OhbCookies.AuthCookie];
 
-            AuthCookieContext context = GetAuthCookieContext();
+            if (cookie == null)
+            {
+                if (RequiresAuthorization(actionContext))
+                    throw MissingAuthCookieException();
+
+                return;
+            }
+
+            AuthCookieContext context = GetAuthCookieContext(cookie);
 
             // todo: assert api token has not expired
 
             controller.User = users.GetUser(context.UserId, controller.DocumentSession);
         }
 
-        AuthCookieContext GetAuthCookieContext()
+        AuthCookieContext GetAuthCookieContext(HttpCookie cookie)
         {
-            var cookie = HttpContext.Current.Request.Cookies[OhbCookies.AuthCookie];
-            if (cookie == null) 
-                throw MissingAuthCookieException();
-
             AuthCookieContext context;
             if (!encoder.TryDecode(cookie.Value, out context))
                 throw BadAuthCookieException();
@@ -99,7 +102,7 @@ namespace Ohb.Mvc.Api.ActionFilters
             }
         }
 
-        ~RequiresAuthCookieApiAttribute()
+        ~AuthCookieApiAttribute()
         {
             Dispose(false);
         }
