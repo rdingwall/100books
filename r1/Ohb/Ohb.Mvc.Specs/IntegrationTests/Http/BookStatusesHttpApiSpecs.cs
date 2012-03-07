@@ -74,6 +74,21 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
 
                 static RestResponse<List<BookStatus>> response;
             }
+
+            [Subject("api/v1/books/:ids/statuses GET")]
+            public class when_requesting_the_same_book_id_multiple_times
+            {
+                Because of =
+                    () => response = ApiClientFactory.NewUser().GetBookStatuses("xxx", "xxx", "xxx");
+
+                It should_return_http_200_ok =
+                    () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
+
+                It should_return_the_book_only_once =
+                    () => response.Data.Count.ShouldEqual(1);
+
+                static RestResponse<List<BookStatus>> response;
+            }
         }
     }
 }
