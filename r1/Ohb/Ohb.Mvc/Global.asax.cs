@@ -7,6 +7,7 @@ using Bootstrap.AutoMapper;
 using Bootstrap.Windsor;
 using Castle.Windsor;
 using Ohb.Mvc.ActionFilters;
+using Ohb.Mvc.Api;
 using Ohb.Mvc.Api.ActionFilters;
 using Ohb.Mvc.Startup;
 
@@ -95,6 +96,7 @@ namespace Ohb.Mvc
             var config = GlobalConfiguration.Configuration;
             config.ServiceResolver.SetResolver(resolver);
             config.Formatters.Remove(config.Formatters.XmlFormatter);
+            config.Formatters[0] = new JsonCamelCaseFormatter();
             config.Filters.Add(container.Resolve<RavenDbApiAttribute>());
             config.Filters.Add(container.Resolve<AuthCookieApiAttribute>());
             config.Filters.Add(container.Resolve<OhbErrorHandlerApiAttribute>());

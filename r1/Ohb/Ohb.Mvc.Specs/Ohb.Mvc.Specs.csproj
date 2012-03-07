@@ -118,6 +118,7 @@
     <Compile Include="AuthCookies\AuthCookieCacheSpecs.cs" />
     <Compile Include="AuthCookies\AuthCookieEncoderSpecs.cs" />
     <Compile Include="AuthCookies\AuthCookieFactorySpecs.cs" />
+    <Compile Include="IntegrationTests\Http\JsonCamelCaseDeserializer.cs" />
     <Compile Include="RandomExtensions.cs" />
     <Compile Include="IntegrationTests\LiveRavenDb.cs" />
     <Compile Include="IntegrationTests\Http\ApiClientFactory.cs" />

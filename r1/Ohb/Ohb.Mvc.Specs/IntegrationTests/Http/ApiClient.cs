@@ -5,8 +5,6 @@ using System.Text;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.AuthCookies;
-using Ohb.Mvc.Storage.Books;
-using Ohb.Mvc.Storage.PreviousReads;
 using RestSharp;
 using RestSharp.Deserializers;
 
@@ -42,6 +40,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             BaseUrl = "http://localhost/api/v1";
 
             client = new RestClient(BaseUrl);
+            client.AddHandler("application/json", new JsonCamelCaseDeserializer());
 
             // Only get one handler per content type so easiest just to have 2
             // clients
@@ -145,16 +144,17 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
 
         public RestResponse MarkBookAsRead(string googleVolumeId)
         {
-            var request = new RestRequest("previousreads")
+            var path = "previousreads/";
+            if (!String.IsNullOrWhiteSpace(googleVolumeId))
+                path += googleVolumeId;
+            
+            var request = new RestRequest(path)
                               {
                                   Method = Method.PUT,
                                   RequestFormat = DataFormat.Json
                               };
 
             Authorize(request);
-
-            if (!String.IsNullOrWhiteSpace(googleVolumeId))
-                request.AddBody(new {volumeId = googleVolumeId});
 
             return Log(client.Execute(request));
         }

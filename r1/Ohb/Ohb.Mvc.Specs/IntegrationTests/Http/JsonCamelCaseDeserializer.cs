@@ -5,7 +5,7 @@ using Newtonsoft.Json.Serialization;
 namespace RestSharp.Deserializers
 // ReSharper restore CheckNamespace
 {
-    public class DynamicJsonDeserializer : IDeserializer
+    public class JsonCamelCaseDeserializer : IDeserializer
     {
         public string RootElement { get; set; }
         public string Namespace { get; set; }
@@ -13,7 +13,7 @@ namespace RestSharp.Deserializers
 
         public T Deserialize<T>(RestResponse response) where T : new()
         {
-            return JsonConvert.DeserializeObject<dynamic>(
+            return JsonConvert.DeserializeObject<T>(
                 response.Content,
                 new JsonSerializerSettings
                     {
