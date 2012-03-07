@@ -3,6 +3,7 @@ using System.Net;
 using System.Web.Http;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Controllers;
+using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage.Books;
 using Raven.Client;
 using Rhino.Mocks;
@@ -38,7 +39,7 @@ namespace Ohb.Mvc.Specs.Api.Controllers
 
         public class when_getting_a_book : scenario
         {
-            static Book result;
+            static BookModel result;
 
             Establish context =
                 () => importer.Stub(s => s.GetBook(documentSession, googleVolumeId)).Return(book);
@@ -46,7 +47,7 @@ namespace Ohb.Mvc.Specs.Api.Controllers
             Because of = () => result = controller.Get(googleVolumeId);
 
             It should_return_the_book_static_data = 
-                () => result.ShouldEqual(book);
+                () => result.Book.ShouldEqual(book);
         }
 
         public class when_the_book_doesnt_exist : scenario

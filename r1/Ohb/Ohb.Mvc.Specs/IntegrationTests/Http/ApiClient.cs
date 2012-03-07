@@ -136,10 +136,10 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             response.StatusCode.ShouldEqual(HttpStatusCode.Unauthorized);
         }
 
-        public RestResponse<Book> GetBook(string googleVolumeId)
+        public RestResponse<BookModel> GetBook(string googleVolumeId)
         {
             var request = new RestRequest(String.Format("books/{0}", googleVolumeId));
-            return Log(client.Execute<Book>(request));
+            return Log(client.Execute<BookModel>(request));
         }
 
         public RestResponse MarkBookAsRead(string googleVolumeId)

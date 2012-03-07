@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Raven.Client;
 using Raven.Client.Document;
+using Raven.Client.Indexes;
 
 namespace Ohb.Mvc.Specs.IntegrationTests
 {
@@ -54,6 +55,12 @@ namespace Ohb.Mvc.Specs.IntegrationTests
         {
             using (var session = OpenSession())
                 session.Query<T>().Customize(a => a.WaitForNonStaleResults()).Any();
+        }
+
+        public static void WaitForNonStaleResults<T, TIndex>() where TIndex : AbstractIndexCreationTask, new()
+        {
+            using (var session = OpenSession())
+                session.Query<T, TIndex>().Customize(a => a.WaitForNonStaleResults()).Any();
         }
     }
 }

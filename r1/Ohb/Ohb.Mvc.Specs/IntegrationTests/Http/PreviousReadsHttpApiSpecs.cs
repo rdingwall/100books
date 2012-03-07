@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
-using Ohb.Mvc.Storage.Books;
 using Ohb.Mvc.Storage.PreviousReads;
 using RestSharp;
 
@@ -40,6 +39,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
 
                                      // Also mark another book as read under a different user
                                      ApiClientFactory.NewUser().MarkBookAsRead("KOWFacYRlXoC");
+
+                                     LiveRavenDb.WaitForNonStaleResults<PreviousRead, PreviousReadsWithBook>();
                                  };
 
                 It should_return_http_200_ok_when_adding_a_previous_read = 
@@ -132,6 +133,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                                             api.MarkBookAsRead("lAIJAAAAIAAJ");
                                             api.MarkBookAsRead("KOWFacYRlXoC");
                                             api.MarkBookAsRead("4YydO00I9JYC");
+                                            LiveRavenDb.WaitForNonStaleResults<PreviousRead, PreviousReadsWithBook>();
                                         };
 
                 Because of = () => response = api.GetPreviousReads();

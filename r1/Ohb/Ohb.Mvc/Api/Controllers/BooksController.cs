@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Web.Http;
+using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage.Books;
 
 namespace Ohb.Mvc.Api.Controllers
@@ -15,7 +16,7 @@ namespace Ohb.Mvc.Api.Controllers
             this.importer = importer;
         }
 
-        public Book Get(string volumeId)
+        public BookModel Get(string volumeId)
         {
             if (String.IsNullOrWhiteSpace(volumeId))
                 throw new HttpResponseException("Missing parameter: 'volumeId' (Google Book Volume ID)", HttpStatusCode.BadRequest);
@@ -25,7 +26,7 @@ namespace Ohb.Mvc.Api.Controllers
             if (book == null)
                     throw new HttpResponseException("Book not found (bad Google Book Volume ID?)",
                                                     HttpStatusCode.NotFound);
-            return book;
+            return new BookModel {Book = book};
         }
     }
 }
