@@ -2,6 +2,7 @@ using System.Web.Http.Filters;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using Ohb.Mvc.Api.ActionFilters;
 using Ohb.Mvc.Api.Controllers;
 
 namespace Ohb.Mvc.Api
@@ -11,6 +12,8 @@ namespace Ohb.Mvc.Api
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
+                Component.For<GoogleAnalyticsTrackerApiAttribute>()
+                .DependsOn(new { trackingId = "UA-29788114-1" }),
                 AllTypes.FromThisAssembly().BasedOn<FilterAttribute>());
 
             container.Register(

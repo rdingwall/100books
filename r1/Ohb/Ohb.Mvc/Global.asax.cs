@@ -98,6 +98,7 @@ namespace Ohb.Mvc
             config.Filters.Add(container.Resolve<RavenDbApiAttribute>());
             config.Filters.Add(container.Resolve<AuthCookieApiAttribute>());
             config.Filters.Add(container.Resolve<OhbErrorHandlerApiAttribute>());
+            config.Filters.Add(container.Resolve<GoogleAnalyticsTrackerApiAttribute>());
         }
 
         public override void Dispose()

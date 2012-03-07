@@ -76,6 +76,9 @@
     <Reference Include="Facebook.Web.Mvc">
       <HintPath>..\packages\FacebookWebMvc.5.2.1.0\lib\net40\Facebook.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="GoogleAnalyticsTracker">
+      <HintPath>..\packages\GoogleAnalyticsTracker.1.0.0.13\lib\net40\GoogleAnalyticsTracker.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.3\lib\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -157,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFilters\AuthCookieAttribute.cs" />
+    <Compile Include="Api\ActionFilters\GoogleAnalyticsTrackerApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\OhbErrorHandlerApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\AuthCookieApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\RavenDbApiAttribute.cs" />
