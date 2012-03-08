@@ -23,7 +23,7 @@ public class RavenUniqueInserter : IRavenUniqueInserter
 
         var key = keyProperty.Compile().Invoke(entity).ToString();
         var type = typeof (T).Name;
-        var id = String.Format("UniqueConstraints/{0}/{1}", type, key);
+        var id = UniqueConstraint.MakeKey<T>(key);
 
         var constraint = new UniqueConstraint
                                 {

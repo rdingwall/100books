@@ -211,6 +211,7 @@
     <Compile Include="Storage\Books\BookRepository.cs" />
     <Compile Include="Storage\RavenUniqueInserter.cs" />
     <Compile Include="Storage\UniqueConstraint.cs" />
+    <Compile Include="Storage\Users\FacebookId.cs" />
     <Compile Include="Storage\Users\User.cs" />
     <Compile Include="Storage\Users\UserFactory.cs" />
     <Compile Include="Storage\Users\UserRepository.cs" />

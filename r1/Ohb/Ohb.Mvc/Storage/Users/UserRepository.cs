@@ -13,7 +13,6 @@ namespace Ohb.Mvc.Storage.Users
 
     public class UserRepository : IUserRepository
     {
-        static readonly object syncRoot = new object();
         readonly IRavenUniqueInserter inserter;
 
         public UserRepository(IRavenUniqueInserter inserter)
@@ -26,7 +25,11 @@ namespace Ohb.Mvc.Storage.Users
         {
             if (session == null) throw new ArgumentNullException("session");
 
-            return session.Query<User>().FirstOrDefault(u => u.FacebookId == facebookId);
+            var facebookUser = session
+                .Include<FacebookId>(f => f.UserId)
+                .Load(FacebookId.MakeKey(facebookId));
+
+            return session.Load<User>(facebookUser.UserId);
         }
 
         public void AddUser(User user, IDocumentSession session)
@@ -34,8 +37,25 @@ namespace Ohb.Mvc.Storage.Users
             if (user == null) throw new ArgumentNullException("user");
             if (session == null) throw new ArgumentNullException("session");
 
-            lock (syncRoot)
-                inserter.StoreUnique(session, user, u => u.FacebookId);
+            try
+            {
+                session.Advanced.UseOptimisticConcurrency = true;
+
+                session.Store(user);
+
+                var facebookId = new FacebookId
+                                     {
+                                         Id = FacebookId.MakeKey(user.FacebookId),
+                                         UserId = user.Id
+                                     };
+
+                session.Store(facebookId);
+                session.SaveChanges();
+            }
+            finally
+            {
+                session.Advanced.UseOptimisticConcurrency = false;
+            }
         }
 
         public User GetUser(string userId, IDocumentSession session)
