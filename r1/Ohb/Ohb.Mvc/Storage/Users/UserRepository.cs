@@ -25,11 +25,16 @@ namespace Ohb.Mvc.Storage.Users
         {
             if (session == null) throw new ArgumentNullException("session");
 
-            var facebookUser = session
-                .Include<FacebookId>(f => f.UserId)
-                .Load(FacebookId.MakeKey(facebookId));
+            var id = FacebookId.MakeKey(facebookId);
 
-            return session.Load<User>(facebookUser.UserId);
+            var facebookUser = session
+                    .Include<FacebookId>(f => f.UserId)
+                    .Load(id);
+
+            if (facebookUser == null)
+                return null;
+
+             return session.Load<User>(facebookUser.UserId);
         }
 
         public void AddUser(User user, IDocumentSession session)
