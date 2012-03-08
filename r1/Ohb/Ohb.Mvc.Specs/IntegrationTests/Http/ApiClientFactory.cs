@@ -1,7 +1,6 @@
 using System;
 using System.Web;
 using Ohb.Mvc.AuthCookies;
-using Ohb.Mvc.Storage;
 using Ohb.Mvc.Storage.Users;
 using System.Linq;
 
@@ -20,7 +19,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
         {
             var name = "TestUser-" + DateTime.Now.Ticks;
 
-            var users = new UserRepository(new RavenUniqueInserter());
+            var users = new UserRepository();
             using (var session = LiveRavenDb.OpenSession())
             {
                 users.AddUser(new User

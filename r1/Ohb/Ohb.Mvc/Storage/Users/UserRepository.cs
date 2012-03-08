@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Raven.Client;
 
 namespace Ohb.Mvc.Storage.Users
@@ -13,14 +12,6 @@ namespace Ohb.Mvc.Storage.Users
 
     public class UserRepository : IUserRepository
     {
-        readonly IRavenUniqueInserter inserter;
-
-        public UserRepository(IRavenUniqueInserter inserter)
-        {
-            if (inserter == null) throw new ArgumentNullException("inserter");
-            this.inserter = inserter;
-        }
-
         public User GetFacebookUser(long facebookId, IDocumentSession session)
         {
             if (session == null) throw new ArgumentNullException("session");

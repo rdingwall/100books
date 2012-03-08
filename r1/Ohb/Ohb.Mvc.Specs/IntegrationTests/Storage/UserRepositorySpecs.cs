@@ -1,6 +1,5 @@
 using System;
 using Machine.Specifications;
-using Ohb.Mvc.Storage;
 using System.Linq;
 using Ohb.Mvc.Storage.Users;
 using Raven.Abstractions.Exceptions;
@@ -22,7 +21,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                            ProfilePictureUrl = "http://foo/bar"
                                        };
                         RavenDb.SpinUpNewDatabase();
-                        repository = new UserRepository(new RavenUniqueInserter());
+                        repository = new UserRepository();
                     };
 
             Because of = () =>
@@ -56,7 +55,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                 () =>
                 {
                     RavenDb.SpinUpNewDatabase();
-                    repository = new UserRepository(new RavenUniqueInserter());
+                    repository = new UserRepository();
 
                     using (var session = RavenDb.OpenSession())
                     {
