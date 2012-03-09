@@ -19,7 +19,7 @@ namespace Ohb.Mvc.Api
         {
             jsonSerializerSettings =
                 new JsonSerializerSettings
-                    {
+                    { 
                         ContractResolver = new CamelCasePropertyNamesContractResolver()
                     };
 
@@ -74,7 +74,11 @@ namespace Ohb.Mvc.Api
             // Create task writing the serialized content
             return Task.Factory.StartNew(() =>
             {
-                using (var jsonTextWriter = new JsonTextWriter(new StreamWriter(stream, Encoding)) { CloseOutput = false })
+                using (var jsonTextWriter = new JsonTextWriter(new StreamWriter(stream, Encoding))
+                                                {
+                                                    Formatting = Formatting.Indented, 
+                                                    CloseOutput = false
+                                                })
                 {
                     serializer.Serialize(jsonTextWriter, value);
                     jsonTextWriter.Flush();
