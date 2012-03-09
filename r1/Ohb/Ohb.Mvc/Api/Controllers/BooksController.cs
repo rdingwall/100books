@@ -28,7 +28,19 @@ namespace Ohb.Mvc.Api.Controllers
                     throw new HttpResponseException("Book not found (bad Google Book Volume ID?)",
                                                     HttpStatusCode.NotFound);
 
-            var result = new BookModel { Book = book };
+            var result = new BookModel
+                             {
+                                 Id = book.Id,
+                                 GoogleVolumeId = book.GoogleVolumeId,
+                                 Authors = book.StaticInfo.Authors,
+                                 Description = book.StaticInfo.Description,
+                                 PageCount = book.StaticInfo.PageCount,
+                                 PublishedYear = book.StaticInfo.PublishedYear,
+                                 Publisher = book.StaticInfo.Publisher,
+                                 SmallThumbnailUrl = book.StaticInfo.SmallThumbnailUrl,
+                                 ThumbnailUrl =  book.StaticInfo.ThumbnailUrl,
+                                 Title = book.StaticInfo.Title
+                             };
 
             if (User != null)
             {
