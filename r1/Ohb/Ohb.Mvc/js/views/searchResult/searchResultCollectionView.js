@@ -1,123 +1,127 @@
-﻿"use strict";
+﻿$(function() {
 
-var Ohb = window;
+    "use strict";
 
-Ohb.SearchResultCollectionView = (function($, Backbone,
-          _, eventBus, SearchResultView, SearchResult,
-          NoSearchResultsAvailableView) {
+    var Ohb = window;
 
-    var log = $.jog("SearchResultCollectionView");
+    Ohb.SearchResultCollectionView = (function($, Backbone,
+              _, eventBus, SearchResultView, SearchResult,
+              NoSearchResultsAvailableView) {
 
-    // todo: generic version http://liquidmedia.ca/blog/2011/02/backbone-js-part-3/
-    return Backbone.View.extend({
+        var log = $.jog("SearchResultCollectionView");
 
-        el: $('#search-results'),
+        // todo: generic version http://liquidmedia.ca/blog/2011/02/backbone-js-part-3/
+        return Backbone.View.extend({
 
-        initialize: function () {
-            var that = this;
+            el: $('#search-results'),
 
-            this.searchResultViews = [];
+            initialize: function () {
+                var that = this;
 
-            $("html").click("click", $.proxy(this.tryClose, this));
+                this.searchResultViews = [];
 
-            $(this.el).click(function (e) {
-                e.stopPropagation();
-            });
+                $("html").click("click", $.proxy(this.tryClose, this));
 
-            $("#menubar").click(function (e) {
-                e.stopPropagation();
-            });
+                $(this.el).click(function (e) {
+                    e.stopPropagation();
+                });
 
-            eventBus.bind('searchResultsArrived', this.onSearchResultsArrived, this);
-            eventBus.bind('searchReturnedNoResults', this.onSearchReturnedNoResults, this);
-        },
+                $("#menubar").click(function (e) {
+                    e.stopPropagation();
+                });
 
-        addResult: function (searchResult) {
-            var view = new SearchResultView({
-                model: searchResult,
-                tagName: 'div'
-            });
+                eventBus.bind('searchResultsArrived', this.onSearchResultsArrived, this);
+                eventBus.bind('searchReturnedNoResults', this.onSearchReturnedNoResults, this);
+            },
 
-            this.addView(view);
-        },
+            addResult: function (searchResult) {
+                var view = new SearchResultView({
+                    model: searchResult,
+                    tagName: 'div'
+                });
 
-        addView: function (view) {
-            this.searchResultViews.push(view);
+                this.addView(view);
+            },
 
-            if (this._rendered) {
-                $(this.el).append(view.render().el);
+            addView: function (view) {
+                this.searchResultViews.push(view);
+
+                if (this._rendered) {
+                    $(this.el).append(view.render().el);
+                }
+            },
+
+            removeResult: function (searchResult) {
+                var viewToRemove = _(this.searchResultViews).select(function (cv) {
+                    return cv.model === searchResult;
+                })[0];
+
+                this.searchResultViews = _(this.searchResultViews).without(viewToRemove);
+
+                if (this._rendered) {
+                    $(viewToRemove.el).remove();
+                }
+            },
+
+            render: function () {
+                // We keep track of the rendered state of the view
+                this._rendered = true;
+
+                $(this.el).empty();
+
+                var that = this;
+
+                _(this.searchResultViews).each(function (view) {
+                    $(that.el).append(view.render().el);
+                });
+
+                $(this.el).show();
+
+                return this;
+            },
+
+            onSearchResultsArrived: function (results) {
+                log.info('showing search results...');
+                this.clearResults();
+
+                results.each($.proxy(this.addResult, this));
+
+                this.render();
+            },
+
+            onSearchReturnedNoResults: function () {
+                log.info("showing 'no results' msg...");
+                this.clearResults();
+                this.addView(new NoSearchResultsAvailableView());
+                this.render();
+            },
+
+            clearResults: function () {
+                $(this.el).empty();
+                this.searchResultViews.length = 0;
+            },
+
+            tryClose: function () {
+
+                if (!this._rendered) {
+                    return;
+                }
+
+                log.info("closing search results...");
+
+                $(this.el).hide();
+                this.clearResults();
+                this._rendered = false;
             }
-        },
+        });
 
-        removeResult: function (searchResult) {
-            var viewToRemove = _(this.searchResultViews).select(function (cv) {
-                return cv.model === searchResult;
-            })[0];
+    })(
+        $,
+        Backbone,
+        _,
+        Ohb.EventBus,
+        Ohb.SearchResultView,
+        Ohb.SearchResult,
+        Ohb.NoSearchResultsAvailableView);
 
-            this.searchResultViews = _(this.searchResultViews).without(viewToRemove);
-
-            if (this._rendered) {
-                $(viewToRemove.el).remove();
-            }
-        },
-
-        render: function () {
-            // We keep track of the rendered state of the view
-            this._rendered = true;
-
-            $(this.el).empty();
-
-            var that = this;
-
-            _(this.searchResultViews).each(function (view) {
-                $(that.el).append(view.render().el);
-            });
-
-            $(this.el).show();
-
-            return this;
-        },
-
-        onSearchResultsArrived: function (results) {
-            log.info('showing search results...');
-            this.clearResults();
-
-            results.each($.proxy(this.addResult, this));
-
-            this.render();
-        },
-
-        onSearchReturnedNoResults: function () {
-            log.info("showing 'no results' msg...");
-            this.clearResults();
-            this.addView(new NoSearchResultsAvailableView());
-            this.render();
-        },
-
-        clearResults: function () {
-            $(this.el).empty();
-            this.searchResultViews.length = 0;
-        },
-
-        tryClose: function () {
-
-            if (!this._rendered) {
-                return;
-            }
-
-            log.info("closing search results...");
-
-            $(this.el).hide();
-            this.clearResults();
-            this._rendered = false;
-        }
-    });
-
-})(
-    $,
-    Backbone,
-    _,
-    Ohb.EventBus,
-    Ohb.SearchResultView,
-    Ohb.SearchResult,
-    Ohb.NoSearchResultsAvailableView);
+});

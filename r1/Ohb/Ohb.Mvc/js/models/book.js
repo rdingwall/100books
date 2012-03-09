@@ -9,6 +9,8 @@ Ohb.Book = (function(Backbone) {
         hasPreviouslyRead: false,
         googleVolumeId: null,
 
+        urlRoot: "/api/v1/books",
+
         publisher: "",
         title: "",
         authors: "",

@@ -3,16 +3,32 @@
 <html>
 <head>
     <title>API Tests</title>
-    <script src="../js/lib/modernizr/modernizr.js"
-        type="text/javascript"></script>
+    <script src="../js/lib/modernizr/modernizr.js" type="text/javascript"></script>
 
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/git/qunit.css" type="text/css" media="screen" />
 
-    <link rel="stylesheet" href="http://code.jquery.com/qunit/git/qunit.css" type="text/css"
-        media="screen" />
-    <!--<script type="text/javascript" src="http://code.jquery.com/qunit/git/qunit.js"></script>-->
-    
-    <script data-main="apitests"
-            src="../js/lib/requires/require-jquery.js"></script>
+    <script type="text/javascript" src="/js/lib/jquery/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="/js/lib/jquery/jog.js"></script>
+    <script type="text/javascript" src="/js/lib/underscore/underscore.js"></script>
+    <script type="text/javascript" src="/js/lib/mustache/mustache.js"></script>
+    <script type="text/javascript" src="/js/lib/backbone/backbone.js"></script>
+    <script type="text/javascript" src="/js/lib/bootstrap/bootstrap-modal.js"></script>
+
+    <script type="text/javascript" src="/js/lib/qunit/qunit.js"></script>
+
+    <script type="text/javascript" src="/js/eventbus.js"></script>
+    <script type="text/javascript" src="/js/models/book.js"></script>
+    <script type="text/javascript" src="/js/models/searchresult.js"></script>
+    <script type="text/javascript" src="/js/collections/searchresultcollection.js"></script>
+    <script type="text/javascript" src="/js/views/menuBar/menubarView.js"></script>
+    <script type="text/javascript" src="/js/views/searchResult/searchResultView.js"></script>
+    <script type="text/javascript" src="/js/views/searchResult/noSearchResultsAvailableView.js"></script>
+    <script type="text/javascript" src="/js/views/searchResult/searchResultCollectionView.js"></script>
+    <script type="text/javascript" src="/js/router.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+
+    <script type="text/javascript" src="/jstests/apitests.js"></script>
 </head>
 <body>
     <h1 id="qunit-header">100 Books API integration tests (requires live API)</h1>

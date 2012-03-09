@@ -1,46 +1,50 @@
-﻿"use strict";
+﻿$(function () {
 
-var Ohb = window;
+    "use strict";
 
-Ohb.MenuBarView = (function ($, Backbone, eventBus) {
+    var Ohb = window;
 
-    var log = $.jog("MenuBarView");
+    Ohb.MenuBarView = (function ($, Backbone, eventBus) {
 
-    return Backbone.View.extend({
-        el: $('#menubar'),
+        var log = $.jog("MenuBarView");
 
-        events: {
-            "keyup #menubar-search-input": "searchRequested"
-        },
+        return Backbone.View.extend({
+            el: $('#menubar'),
 
-        initialize: function () {
-            log.info("initializing menubarview...");
-            eventBus.bind('searchBegan', this.onSearchBegan);
-            eventBus.bind('searchCompleted', this.onSearchCompleted);
-        },
+            events: {
+                "keyup #menubar-search-input": "searchRequested"
+            },
 
-        searchRequested: function (e) {
-            if (e.which !== 13) {
-                return;
+            initialize: function () {
+                log.info("initializing menubarview...");
+                eventBus.bind('searchBegan', this.onSearchBegan);
+                eventBus.bind('searchCompleted', this.onSearchCompleted);
+            },
+
+            searchRequested: function (e) {
+                if (e.which !== 13) {
+                    return;
+                }
+
+                var q = $("#menubar-search-input").val();
+
+                if (q.replace(/\s/g, "") === "") {
+                    return;
+                }
+
+                eventBus.trigger("searchRequested", q);
+            },
+
+            onSearchBegan: function () {
+                $("#search-loader-spinner").show();
+            },
+
+            onSearchCompleted: function () {
+                $("#search-loader-spinner").hide();
             }
+        });
 
-            var q = $("#menubar-search-input").val();
+    })($, Backbone, Ohb.EventBus);
 
-            if (q.replace(/\s/g, "") === "") {
-                return;
-            }
-
-            eventBus.trigger("searchRequested", q);
-        },
-
-        onSearchBegan: function () {
-            $("#search-loader-spinner").show();
-        },
-
-        onSearchCompleted: function () {
-            $("#search-loader-spinner").hide();
-        }
-    });
-
-})($, Backbone, Ohb.EventBus);
+});
 

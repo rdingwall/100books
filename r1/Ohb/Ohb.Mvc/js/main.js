@@ -1,7 +1,8 @@
-﻿var Ohb = window;
+﻿$(function() {
 
-$(function() {
     "use strict";
+
+    var Ohb = window;
 
     (function (App, Backbone) {
         App.initialize();

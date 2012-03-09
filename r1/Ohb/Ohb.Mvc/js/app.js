@@ -1,24 +1,28 @@
-﻿"use strict";
+﻿$(function() {
 
-var Ohb = window;
+    "use strict";
 
-Ohb.App = (function (
-    $,
-    _,
-    Backbone,
-    router,
-    eventBus,
-    MenuBarView,
-    SearchResultCollectionView
-) {
+    var Ohb = window;
 
-    var menuBarView = new MenuBarView(),
-        searchResultCollectionView = new SearchResultCollectionView();
+    Ohb.App = (function (
+        $,
+        _,
+        Backbone,
+        router,
+        eventBus,
+        MenuBarView,
+        SearchResultCollectionView
+    ) {
 
-    return {
-        initialize: function () {
-            // Pass in our Router module and call it's initialize function
-            router.initialize();
-        }
-    };
-})($, _, Backbone, Ohb.Router, Ohb.EventBus, Ohb.MenuBarView, Ohb.SearchResultCollectionView);
+        var menuBarView = new MenuBarView(),
+            searchResultCollectionView = new SearchResultCollectionView();
+
+        return {
+            initialize: function () {
+                // Pass in our Router module and call it's initialize function
+                router.initialize();
+            }
+        };
+    })($, _, Backbone, Ohb.Router, Ohb.EventBus, Ohb.MenuBarView, Ohb.SearchResultCollectionView);
+
+});
