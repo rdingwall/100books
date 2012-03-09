@@ -40,6 +40,7 @@ require([
     'views/menubar/menubarview',
     'views/searchresult/searchresultview',
     'models/searchresult',
+    'models/book',
     'collections/searchresultcollection',
     'views/searchresult/searchresultcollectionview',
     'qunit',
@@ -55,6 +56,7 @@ require([
     MenuBarView,
     SearchResultView,
     SearchResult,
+    Book,
     SearchResultCollection,
     SearchResultCollectionView
 ) {
@@ -335,6 +337,30 @@ require([
             eventBus.trigger('searchResultSelected', model);
 
             equal(window.location.hash, '#books/foo');
+        });
+
+        module("when a Book model has no thumbnail image");
+
+        test("It should use the default placeholder thumbnail image in search results", 1, function() {
+            var model = new Book({});
+            equal(model.getSearchResultThumbnail(), "img/search-result-no-cover.png");
+        });
+
+        test("It should use the default placeholder thumbnail image on the book page", 1, function() {
+            var model = new Book({});
+            equal(model.getBookThumbnail(), "img/book-no-cover.png");
+        });
+
+        module("when a Book model has thumbnails");
+
+        test("It should use the real thumbnail image in search results", 1, function() {
+            var model = new Book({ smallThumbnailUrl: "test" });
+            equal(model.getSearchResultThumbnail(), "test");
+        });
+
+        test("It should use the real thumbnail image on the book page", 1, function() {
+            var model = new Book({ thumbnailUrl: "test" });
+            equal(model.getBookThumbnail(), "test");
         });
     });
 });

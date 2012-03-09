@@ -37,13 +37,15 @@ require([
     'eventbus',
     'router',
     'qunit',
-    'lib/jog'
+    'lib/jog',
+    'models/book'
 ], function (
     main,
     $,
     SearchResult,
     eventBus,
-    router
+    router,
+    Book
 ) {
     "use strict";
 

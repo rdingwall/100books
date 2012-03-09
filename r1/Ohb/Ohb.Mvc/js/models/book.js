@@ -7,29 +7,27 @@ define([
         "use strict";
 
         var Book = Backbone.Model.extend({
-            book: {
-                googleVolumeId: null,
-                staticInfo: {
-                    publisher: "",
-                    id: "",
-                    title: "",
-                    authors: "",
-                    publishedYear: "",
-                    description: "",
-                    pageCount: 0,
-                    thumbnailUrl: null,
-                    smallThumbnailUrl: null
-                },
-                id: null
-            },
+            id: null,
             hasPreviouslyRead: false,
+            googleVolumeId: null,
+
+            publisher: "",
+            title: "",
+            authors: "",
+            publishedYear: "",
+            description: "",
+            pageCount: 0,
+            thumbnailUrl: null,
+            smallThumbnailUrl: null,
 
             getSearchResultThumbnail: function() {
-
+                return this.get("smallThumbnailUrl")
+                    || "img/search-result-no-cover.png";
             },
 
             getBookThumbnail: function() {
-
+                return this.get("thumbnailUrl")
+                    || "img/book-no-cover.png";
             }
         });
 
