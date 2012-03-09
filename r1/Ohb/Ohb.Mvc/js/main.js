@@ -1,23 +1,11 @@
-﻿/*globals require */
-require.config({
-    paths: {
-        underscore: 'lib/underscore/underscore',
-        backbone: 'lib/backbone/backbone',
-        mustache: 'lib/mustache/mustache',
-        bootstrapModal: 'lib/bootstrap/bootstrap-modal'
-    }
-});
+﻿var Ohb = window;
 
-require([
-
-// Load our app module and pass it to our definition function
-    'app',
-    'backbone'
-], function (App, Backbone) {
+$(function() {
     "use strict";
 
-    // The "app" dependency is passed in as "App"
-    // Again, the other dependencies passed in are not "AMD" therefore don't pass a parameter to this function
-    App.initialize();
-    Backbone.history.start();
+    (function (App, Backbone) {
+        App.initialize();
+        Backbone.history.start();
+    })(Ohb.App, Backbone);
+
 });

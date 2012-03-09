@@ -1,10 +1,11 @@
-﻿/*globals define */
-define([
-    'backbone',
-    'models/searchresult'
-], function (Backbone, SearchResult) {
-    "use strict";
+﻿"use strict";
+
+var Ohb = window;
+
+Ohb.SearchResultCollection = (function(Backbone, SearchResult) {
+
     return Backbone.Collection.extend({
         model: SearchResult
     });
-});
+
+})(Backbone, Ohb.SearchResult);

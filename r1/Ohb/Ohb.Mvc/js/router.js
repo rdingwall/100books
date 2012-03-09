@@ -1,15 +1,6 @@
-﻿/*globals $, BackBone, searchResult, searchResultCollection,
- searchResultsListView, eventBus, define */
-define([
-    'jquery',
-    'backbone',
-    'models/searchresult',
-    'collections/searchresultcollection',
-    'eventbus',
-    'views/searchresult/searchresultview',
-    'bootstrapModal',
-    'lib/jog'
-], function ($, Backbone, SearchResult, SearchResultCollection, eventBus) {
+﻿var Ohb = window;
+
+Ohb.Router = (function ($, Backbone, SearchResult, SearchResultCollection, eventBus) {
     "use strict";
 
     var log = $.jog("Router"),
@@ -86,7 +77,8 @@ define([
             instance = new AppRouter();
         }
         return instance;
-    }
+    };
 
     return AppRouter.getInstance();
-});
+
+})($, Backbone, Ohb.SearchResult, Ohb.SearchResultCollection, Ohb.EventBus);

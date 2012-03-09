@@ -1,11 +1,8 @@
-﻿/*globals define */
-define([
-    'jquery',
-    'backbone',
-    'eventbus',
-    'lib/jog'
-], function ($, Backbone, eventBus) {
-    "use strict";
+﻿"use strict";
+
+var Ohb = window;
+
+Ohb.MenuBarView = (function ($, Backbone, eventBus) {
 
     var log = $.jog("MenuBarView");
 
@@ -44,4 +41,6 @@ define([
             $("#search-loader-spinner").hide();
         }
     });
-});
+
+})($, Backbone, Ohb.EventBus);
+

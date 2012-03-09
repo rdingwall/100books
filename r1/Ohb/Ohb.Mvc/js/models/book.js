@@ -1,35 +1,32 @@
-/*globals define, Backbone */
+"use strict";
 
-define([
-    'backbone'
-],
-    function (Backbone) {
-        "use strict";
+var Ohb = window;
 
-        var Book = Backbone.Model.extend({
-            id: null,
-            hasPreviouslyRead: false,
-            googleVolumeId: null,
+Ohb.Book = (function(Backbone) {
 
-            publisher: "",
-            title: "",
-            authors: "",
-            publishedYear: "",
-            description: "",
-            pageCount: 0,
-            thumbnailUrl: null,
-            smallThumbnailUrl: null,
+    return Backbone.Model.extend({
+        id: null,
+        hasPreviouslyRead: false,
+        googleVolumeId: null,
 
-            getSearchResultThumbnail: function() {
-                return this.get("smallThumbnailUrl")
-                    || "img/search-result-no-cover.png";
-            },
+        publisher: "",
+        title: "",
+        authors: "",
+        publishedYear: "",
+        description: "",
+        pageCount: 0,
+        thumbnailUrl: null,
+        smallThumbnailUrl: null,
 
-            getBookThumbnail: function() {
-                return this.get("thumbnailUrl")
-                    || "img/book-no-cover.png";
-            }
-        });
+        getSearchResultThumbnail: function() {
+            return this.get("smallThumbnailUrl")
+                || "img/search-result-no-cover.png";
+        },
 
-        return Book;
+        getBookThumbnail: function() {
+            return this.get("thumbnailUrl")
+                || "img/book-no-cover.png";
+        }
     });
+
+})(Backbone);

@@ -1,23 +1,10 @@
-﻿/*globals define */
-define([
-    'backbone',
-    'jquery',
-    'underscore',
-    'views/searchresult/searchresultview',
-    'collections/searchresultcollection',
-    'views/searchresult/nosearchresultsavailableview',
-    'eventbus',
-    'lib/jog'
-], function (
-    Backbone,
-    $,
-    _,
-    SearchResultView,
-    SearchResultCollection,
-    NoSearchResultsAvailableView,
-    eventBus
-) {
-    "use strict";
+﻿"use strict";
+
+var Ohb = window;
+
+Ohb.SearchResultCollectionView = (function($, Backbone,
+          _, eventBus, SearchResultView, SearchResult,
+          NoSearchResultsAvailableView) {
 
     var log = $.jog("SearchResultCollectionView");
 
@@ -125,4 +112,12 @@ define([
             this._rendered = false;
         }
     });
-});
+
+})(
+    $,
+    Backbone,
+    _,
+    Ohb.EventBus,
+    Ohb.SearchResultView,
+    Ohb.SearchResult,
+    Ohb.NoSearchResultsAvailableView);
