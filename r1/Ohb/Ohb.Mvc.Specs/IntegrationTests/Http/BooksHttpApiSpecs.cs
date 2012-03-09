@@ -20,11 +20,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             It should_be_json = 
                 () => response.ContentType.ShouldEqual("application/json; charset=utf-8");
 
-            It should_get_the_books_id = 
-                () => response.Data.Id.ShouldNotBeEmpty();
-
-            It should_return_the_books_ohb_id =
-                () => response.Data.Id.ShouldNotContain("4YydO00I9JYC");
+            It should_get_the_books_id =
+                () => response.Data.Id.ShouldEqual("4YydO00I9JYC");
             
             It should_get_the_books_title =
                 () => response.Data.Title.ShouldEqual("The Google story");

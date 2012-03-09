@@ -30,8 +30,7 @@ namespace Ohb.Mvc.Api.Controllers
 
             var result = new BookModel
                              {
-                                 Id = book.Id,
-                                 GoogleVolumeId = book.GoogleVolumeId,
+                                 Id = book.GoogleVolumeId,
                                  Authors = book.StaticInfo.Authors,
                                  Description = book.StaticInfo.Description,
                                  PageCount = book.StaticInfo.PageCount,

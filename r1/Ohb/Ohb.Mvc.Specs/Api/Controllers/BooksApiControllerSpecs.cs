@@ -22,7 +22,7 @@ namespace Ohb.Mvc.Specs.Api.Controllers
 
                     importer = MockRepository.GenerateStub<IBookImporter>();
                     documentSession = MockRepository.GenerateStub<IDocumentSession>();
-                    book = new Book { Id = "testId", StaticInfo = new BookStaticInfo() };
+                    book = new Book { GoogleVolumeId = "testId", StaticInfo = new BookStaticInfo() };
 
                     controller = new BooksController(importer)
                                      {
@@ -47,7 +47,7 @@ namespace Ohb.Mvc.Specs.Api.Controllers
             Because of = () => result = controller.Get(googleVolumeId);
 
             It should_return_the_book_static_data = 
-                () => result.Id.ShouldEqual(book.Id);
+                () => result.Id.ShouldEqual(book.GoogleVolumeId);
         }
 
         public class when_the_book_doesnt_exist : scenario

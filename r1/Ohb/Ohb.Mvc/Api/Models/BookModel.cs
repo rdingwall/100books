@@ -2,8 +2,9 @@ namespace Ohb.Mvc.Api.Models
 {
     public class BookModel
     {
-        public string GoogleVolumeId { get; set; }
+        // Google books ID
         public string Id { get; set; }
+
         public bool HasPreviouslyRead { get; set; }
 
         // Google properties
