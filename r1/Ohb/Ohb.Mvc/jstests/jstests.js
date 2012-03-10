@@ -274,6 +274,8 @@
             var model = new SearchResult({ title: "foo" });
             var view = new SearchResultView({ el: el, model: model });
 
+
+
             eventBus.bind('searchResultSelected', function (sr) {
                 equal(sr, model);
             });

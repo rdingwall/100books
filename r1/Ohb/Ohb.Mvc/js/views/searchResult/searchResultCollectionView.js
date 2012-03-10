@@ -36,8 +36,7 @@
 
             addResult: function (searchResult) {
                 var view = new SearchResultView({
-                    model: searchResult,
-                    tagName: 'div'
+                    model: searchResult
                 });
 
                 this.addView(view);

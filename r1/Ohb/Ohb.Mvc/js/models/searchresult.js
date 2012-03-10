@@ -5,10 +5,11 @@ var Ohb = window;
 Ohb.SearchResult = (function (Backbone) {
 
     var searchResult = Backbone.Model.extend({
-        title: null,
-        authors: null,
-        smallThumbnailUrl: null,
-        id: null
+        defaults: {
+            title: null,
+            authors: null,
+            smallThumbnailUrl: null
+        }
     });
 
     searchResult.fromGoogle = function (volume) {

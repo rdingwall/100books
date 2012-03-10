@@ -27,9 +27,9 @@ Ohb.Router = (function ($, Backbone, SearchResult, SearchResultCollection, event
 
             initialize: function () {
                 log.info("initializing router...");
-                eventBus.bind('searchRequested', this.search);
-                eventBus.bind('searchFailed', this.onSearchFailed);
-                eventBus.bind('searchResultSelected', this.onSearchResultSelected);
+                eventBus.on('searchRequested', this.search, this);
+                eventBus.on('searchFailed', this.onSearchFailed, this);
+                eventBus.on('searchResultSelected', this.onSearchResultSelected, this);
             },
 
             search: function (q) {

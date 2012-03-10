@@ -7,7 +7,7 @@ var template = '<div class="row"> \
     <img src="{{ smallThumbnailUrl }}" alt="{{ title }}" /> \
     </div> \
 <div class="span8"> \
-    <h3><a href="/books/{{ id }}" class="searchresult-title">{{ title }}</a></h3> \
+    <h3 class="searchresult-title">{{ title }}</h3> \
     <p class="searchresult-authors">{{ authors }}</p> \
 </div> \
 </div>';
@@ -16,12 +16,10 @@ Ohb.SearchResultView = (function (
     Backbone,
     Mustache,
     $,
-    //SearchResult,
     searchResultTemplate,
     EventBus
 ) {
     return Backbone.View.extend({
-        //model: SearchResult,
         tagName: "div",
         className: "book-search-result",
 
@@ -31,14 +29,15 @@ Ohb.SearchResultView = (function (
 
         //'lib/requires/text!/templates/searchresult/searchresult.html',
         render: function () {
-            $(this.el).empty();
-            $(this.el).append(Mustache.to_html(searchResultTemplate, this.model.toJSON()));
+            $(this.el).html(Mustache.to_html(searchResultTemplate, this.model.toJSON()));
+            $(this.el).attr("id", "book-search-result-" + this.model.id);
             return this;
         },
 
         select: function () {
+            //alert("you clicked me!");
             EventBus.trigger('searchResultSelected', this.model);
         }
     });
 
-})(Backbone, Mustache, $, /*Ohb.SearchResult,*/ template, Ohb.EventBus);
+})(Backbone, Mustache, $, template, Ohb.EventBus);
