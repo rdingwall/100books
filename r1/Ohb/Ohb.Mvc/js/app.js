@@ -11,25 +11,11 @@
         Router,
         eventBus,
         MenuBarView,
-        SearchResultCollectionView
+        SearchResultCollectionView,
+        SearchResultCollection
     ) {
 
         var log = $.jog("App");
-
-        var distinct = function(items, keyCallback) {
-            var keys = new Array();
-            var results = new Array();
-
-            $.each(items, function(i, item) {
-                var key = keyCallback(item);
-                if (jQuery.inArray(key, keys) === -1) {
-                    results.push(item);
-                    keys.push(key);
-                }
-            });
-
-            return results;
-        };
 
         return {
 
@@ -43,46 +29,27 @@
                 this.router = new Router();
             },
 
-            search: function (q) {
-                log.info("Searching for " + q + "...");
+            search: function (query) {
+                log.info("Searching for " + query + "...");
+                eventBus.trigger("searchBegan", query);
 
-                eventBus.trigger("searchBegan", q);
-
-                $.getJSON("https://www.googleapis.com/books/v1/volumes?callback=?",
+                new SearchResultCollection().fetch(
                     {
-                        q: decodeURIComponent(q),
-                        projection: "lite"
-                    },
-                    function (json) {
-                        try {
-                            var results = new SearchResultCollection();
-
-                            if (!json.items) {
-                                eventBus.trigger("searchCompleted");
+                        data: { q: query },
+                        success: function(collection) {
+                            eventBus.trigger("searchCompleted");
+                            if (collection.length == 0) {
                                 eventBus.trigger("searchReturnedNoResults");
-                                return;
                             }
-
-                            var uniqueItems = distinct(json.items, function(result) { return result.id; });
-
-                            $(uniqueItems).each(function () {
-                                log.info("Adding result " + this.id);
-                                results.add(SearchResult.fromGoogle(this));
-                            });
-
-                            eventBus.trigger("searchResultsArrived", results);
-                        } catch (e) {
-                            log.severe("Search error: " + e.message);
+                            else {
+                                eventBus.trigger("searchResultsArrived", collection);
+                            }
+                        },
+                        error: function() {
+                            log.severe("Search failed!");
                             eventBus.trigger("searchCompleted");
                             eventBus.trigger("searchFailed");
                         }
-
-                        eventBus.trigger("searchCompleted");
-                    })
-                    .error(function (jqXHR, textStatus, errorThrown) {
-                        log.warning("Search error: " + textStatus);
-                        eventBus.trigger("searchCompleted");
-                        eventBus.trigger("searchFailed");
                     });
             },
 
@@ -98,5 +65,11 @@
                 this.router.navigate("books/" + searchResult.id);
             }
         };
-    })($, _, Backbone, Ohb.Router, Ohb.EventBus, Ohb.MenuBarView, Ohb.SearchResultCollectionView);
+    })($, _,
+        Backbone,
+        Ohb.Router,
+        Ohb.EventBus,
+        Ohb.MenuBarView,
+        Ohb.SearchResultCollectionView,
+        Ohb.SearchResultCollection);
 });
