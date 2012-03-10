@@ -1,5 +1,4 @@
 ﻿$(function () {
-
     "use strict";
 
     var Ohb = window;
@@ -44,7 +43,6 @@
             }
         });
 
-    })($, Backbone, Ohb.eventBus);
-
+    }($, Backbone, Ohb.eventBus));
 });
 

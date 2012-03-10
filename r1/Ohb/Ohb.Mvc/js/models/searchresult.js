@@ -1,10 +1,9 @@
-﻿"use strict";
-
-var Ohb = window;
+﻿var Ohb = window;
 
 Ohb.SearchResult = (function (Backbone) {
+    "use strict";
 
-    var searchResult = Backbone.Model.extend({
+    var SearchResult = Backbone.Model.extend({
         defaults: {
             title: null,
             authors: null,
@@ -12,19 +11,18 @@ Ohb.SearchResult = (function (Backbone) {
         }
     });
 
-    searchResult.fromGoogle = function (volume) {
-        var info = volume.volumeInfo;
+    SearchResult.fromGoogle = function (volume) {
+        var info = volume.volumeInfo,
+            title = info.title,
+            imageLinks = info.imageLinks,
+            smallThumbnailUrl = imageLinks ? imageLinks.smallThumbnail : null,
+            authors = info.authors ? info.authors.join(", ") : null;
 
-        var title = info.title;
         if (info.subtitle) {
             title += ": " + info.subtitle;
         }
 
-        var imageLinks = info.imageLinks,
-            smallThumbnailUrl = imageLinks ? imageLinks.smallThumbnail : null,
-            authors = info.authors ? info.authors.join(", ") : null;
-
-        return new searchResult({
+        return new SearchResult({
             title: title,
             authors: authors,
             smallThumbnailUrl: smallThumbnailUrl,
@@ -32,6 +30,6 @@ Ohb.SearchResult = (function (Backbone) {
         });
     };
 
-    return searchResult;
+    return SearchResult;
 
-})(Backbone);
+}(Backbone));

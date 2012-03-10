@@ -1,4 +1,22 @@
-﻿$(function() {
+﻿/*global window: false, document: false, $: false, log: false, bleep: false,
+ QUnit: false,
+ test: false,
+ asyncTest: false,
+ expect: false,
+ module: false,
+ ok: false,
+ equal: false,
+ notEqual: false,
+ deepEqual: false,
+ notDeepEqual: false,
+ strictEqual: false,
+ notStrictEqual: false,
+ raises: false,
+ start: false,
+ stop: false
+ */
+
+$(function () {
     "use strict";
 
     var Ohb = window;
@@ -10,7 +28,7 @@
         eventBus,
         router,
         SearchResultCollection
-    ){
+    ) {
 
         var log = $.jog("GoogleTests");
 
@@ -24,7 +42,7 @@
 
             var results = new SearchResultCollection();
 
-            results.fetch({ data: { q: "harry potter" }, success: function(collection) {
+            results.fetch({ data: { q: "harry potter" }, success: function (collection) {
                 equal(collection.length, 10);
                 var result = collection.get("0W0DRgAACAAJ");
                 equal(result.get("authors"), "J. K. Rowling");
@@ -47,7 +65,7 @@
                     start();
                 })
                 .error(function () {
-                    throw "failed";
+                    ok(false, "failed");
                     start();
                 });
         };
@@ -189,5 +207,12 @@
 
 
 
-    })($, Ohb.app, Ohb.SearchResult, Ohb.eventBus, Ohb.Router, Ohb.SearchResultCollection);
+    }(
+        $,
+        Ohb.app,
+        Ohb.SearchResult,
+        Ohb.eventBus,
+        Ohb.Router,
+        Ohb.SearchResultCollection
+    ));
 });

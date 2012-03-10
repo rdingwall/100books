@@ -1,4 +1,22 @@
-﻿$(function() {
+﻿/*global window: false, document: false, $: false, log: false, bleep: false,
+ QUnit: false,
+ test: false,
+ asyncTest: false,
+ expect: false,
+ module: false,
+ ok: false,
+ equal: false,
+ notEqual: false,
+ deepEqual: false,
+ notDeepEqual: false,
+ strictEqual: false,
+ notStrictEqual: false,
+ raises: false,
+ start: false,
+ stop: false
+ */
+
+$(function () {
     "use strict";
 
     var Ohb = window;
@@ -297,28 +315,28 @@
 
         module("When a Book model has no thumbnail image");
 
-        test("It should use the default placeholder thumbnail image in search results", 1, function() {
+        test("It should use the default placeholder thumbnail image in search results", 1, function () {
             var model = new Book({});
             equal(model.getSearchResultThumbnail(), "img/search-result-no-cover.png");
         });
 
-        test("It should use the default placeholder thumbnail image on the book page", 1, function() {
+        test("It should use the default placeholder thumbnail image on the book page", 1, function () {
             var model = new Book({});
             equal(model.getBookThumbnail(), "img/book-no-cover.png");
         });
 
         module("When a Book model has thumbnails");
 
-        test("It should use the real thumbnail image in search results", 1, function() {
+        test("It should use the real thumbnail image in search results", 1, function () {
             var model = new Book({ smallThumbnailUrl: "test" });
             equal(model.getSearchResultThumbnail(), "test");
         });
 
-        test("It should use the real thumbnail image on the book page", 1, function() {
+        test("It should use the real thumbnail image on the book page", 1, function () {
             var model = new Book({ thumbnailUrl: "test" });
             equal(model.getBookThumbnail(), "test");
         });
-    })(
+    }(
         Ohb.app,
         Ohb.Router,
         Ohb.eventBus,
@@ -330,5 +348,6 @@
         Ohb.SearchResult,
         Ohb.Book,
         Ohb.SearchResultCollection,
-        Ohb.SearchResultCollectionView);
+        Ohb.SearchResultCollectionView
+    ));
 });

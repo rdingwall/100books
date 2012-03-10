@@ -1,6 +1,4 @@
-﻿"use strict";
-
-var Ohb = window;
+﻿var Ohb = window;
 
 var template = '<div class="row"> \
     <div class="span2"> \
@@ -19,6 +17,8 @@ Ohb.SearchResultView = (function (
     searchResultTemplate,
     EventBus
 ) {
+    "use strict";
+
     return Backbone.View.extend({
         tagName: "div",
         className: "book-search-result",
@@ -40,4 +40,4 @@ Ohb.SearchResultView = (function (
         }
     });
 
-})(Backbone, Mustache, $, template, Ohb.eventBus);
+}(Backbone, Mustache, $, template, Ohb.eventBus));

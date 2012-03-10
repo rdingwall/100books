@@ -1,4 +1,4 @@
-"use strict";
+
 
 var Ohb = window;
 
@@ -6,8 +6,12 @@ var template = '<div class="row searchresult-no-results-available"> \
     <p>No books found, sorry! Try broadening your search.</p> \
 </div>';
 
-Ohb.NoSearchResultsAvailableView = (function(
-    Backbone, SearchResult, noSearchResultsAvailableTemplate) {
+Ohb.NoSearchResultsAvailableView = (function (
+    Backbone,
+    SearchResult,
+    noSearchResultsAvailableTemplate
+) {
+    "use strict";
 
     return Backbone.View.extend({
         model: SearchResult,
@@ -26,5 +30,5 @@ Ohb.NoSearchResultsAvailableView = (function(
         }
     });
 
-})(Backbone, Ohb.SearchResult, template);
+}(Backbone, Ohb.SearchResult, template));
 

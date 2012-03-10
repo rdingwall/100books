@@ -1,4 +1,22 @@
-﻿$(function() {
+﻿/*global window: false, document: false, $: false, log: false, bleep: false,
+ QUnit: false,
+ test: false,
+ asyncTest: false,
+ expect: false,
+ module: false,
+ ok: false,
+ equal: false,
+ notEqual: false,
+ deepEqual: false,
+ notDeepEqual: false,
+ strictEqual: false,
+ notStrictEqual: false,
+ raises: false,
+ start: false,
+ stop: false
+ */
+
+$(function () {
     "use strict";
     var Ohb = window;
 
@@ -14,11 +32,11 @@
 
         module("When getting a book by ID");
 
-        asyncTest("It should retrieve and populate the book from the server", function() {
+        asyncTest("It should retrieve and populate the book from the server", function () {
 
             var model = new Book({ id: "4YydO00I9JYC"});
 
-            model.fetch({ success: function(model) {
+            model.fetch({ success: function (model) {
                 equal(model.id, "4YydO00I9JYC");
                 equal(model.get("publisher"), "Delacorte Press");
                 equal(model.get("title"), "The Google story");
@@ -32,5 +50,5 @@
             }});
 
         });
-     })($, Backbone, Ohb.Book);
+    }($, Backbone, Ohb.Book));
 });

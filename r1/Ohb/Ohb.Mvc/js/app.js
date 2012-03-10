@@ -1,4 +1,4 @@
-﻿$(function() {
+﻿$(function () {
 
     "use strict";
 
@@ -36,21 +36,21 @@
                 new SearchResultCollection().fetch(
                     {
                         data: { q: query },
-                        success: function(collection) {
+                        success: function (collection) {
                             eventBus.trigger("searchCompleted");
-                            if (collection.length == 0) {
+                            if (collection.length === 0) {
                                 eventBus.trigger("searchReturnedNoResults");
-                            }
-                            else {
+                            } else {
                                 eventBus.trigger("searchResultsArrived", collection);
                             }
                         },
-                        error: function() {
+                        error: function () {
                             log.severe("Search failed!");
                             eventBus.trigger("searchCompleted");
                             eventBus.trigger("searchFailed");
                         }
-                    });
+                    }
+                );
             },
 
             onSearchFailed: function () {
@@ -65,11 +65,14 @@
                 this.router.navigate("books/" + searchResult.id);
             }
         };
-    })($, _,
+    }(
+        $,
+        _,
         Backbone,
         Ohb.Router,
         Ohb.eventBus,
         Ohb.MenuBarView,
         Ohb.SearchResultCollectionView,
-        Ohb.SearchResultCollection);
+        Ohb.SearchResultCollection
+    ));
 });

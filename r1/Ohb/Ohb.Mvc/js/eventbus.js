@@ -1,8 +1,7 @@
-﻿"use strict";
-
-var Ohb = window;
+﻿var Ohb = window;
 
 Ohb.eventBus = (function ($, _, Backbone) {
+    "use strict";
 
     var log = $.jog("EventBus"),
         instance = null,
@@ -36,4 +35,4 @@ Ohb.eventBus = (function ($, _, Backbone) {
     log.info("returning eventBus...");
     return new EventBus();
 
-})($, _, Backbone);
+}($, _, Backbone));

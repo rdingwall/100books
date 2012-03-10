@@ -9,4 +9,4 @@ Ohb.Router = (function ($, Backbone) {
         }
     });
 
-})($, Backbone);
+}($, Backbone));

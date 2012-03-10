@@ -1,10 +1,10 @@
-﻿$(function() {
+﻿$(function () {
 
     "use strict";
 
     var Ohb = window;
 
-    Ohb.SearchResultCollectionView = (function($, Backbone,
+    Ohb.SearchResultCollectionView = (function ($, Backbone,
               _, eventBus, SearchResultView, SearchResult,
               NoSearchResultsAvailableView) {
 
@@ -114,13 +114,13 @@
             }
         });
 
-    })(
+    }(
         $,
         Backbone,
         _,
         Ohb.eventBus,
         Ohb.SearchResultView,
         Ohb.SearchResult,
-        Ohb.NoSearchResultsAvailableView);
-
+        Ohb.NoSearchResultsAvailableView
+    ));
 });

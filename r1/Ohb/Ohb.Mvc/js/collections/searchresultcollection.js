@@ -1,13 +1,13 @@
-﻿"use strict";
+﻿var Ohb = window;
 
-var Ohb = window;
+Ohb.SearchResultCollection = (function ($, _, Backbone, SearchResult) {
+    "use strict";
 
-Ohb.SearchResultCollection = (function($, _, Backbone, SearchResult) {
-    var distinct = function(items, keyCallback) {
-        var keys = new Array();
-        var results = new Array();
+    var distinct = function (items, keyCallback) {
+        var keys = [],
+            results = [];
 
-        $.each(items, function(i, item) {
+        $.each(items, function (i, item) {
             var key = keyCallback(item);
             if ($.inArray(key, keys) === -1) {
                 results.push(item);
@@ -21,19 +21,19 @@ Ohb.SearchResultCollection = (function($, _, Backbone, SearchResult) {
     return Backbone.Collection.extend({
         model: SearchResult,
 
-        url: function() {
+        url: function () {
             return "https://www.googleapis.com/books/v1/volumes?projection=lite&callback=?";
         },
 
-        parse: function(response) {
+        parse: function (response) {
             if (!response.items) {
                 return;
             }
 
-            var uniqueItems = distinct(response.items, function(result) { return result.id; });
+            var uniqueItems = distinct(response.items, function (result) { return result.id; });
 
             return _.map(uniqueItems, SearchResult.fromGoogle);
         }
     });
 
-})($, _, Backbone, Ohb.SearchResult);
+}($, _, Backbone, Ohb.SearchResult));

@@ -1,8 +1,7 @@
-"use strict";
-
 var Ohb = window;
 
-Ohb.Book = (function(Backbone) {
+Ohb.Book = (function (Backbone) {
+    "use strict";
 
     return Backbone.Model.extend({
         id: null,
@@ -31,4 +30,4 @@ Ohb.Book = (function(Backbone) {
         }
     });
 
-})(Backbone);
+}(Backbone));
