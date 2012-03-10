@@ -3,6 +3,21 @@
 Ohb.Router = (function ($, Backbone, SearchResult, SearchResultCollection, eventBus) {
     "use strict";
 
+    var distinct = function(items, keyCallback) {
+        var keys = new Array();
+        var results = new Array();
+
+        $.each(items, function(i, item) {
+            var key = keyCallback(item);
+            if (jQuery.inArray(key, keys) === -1) {
+                results.push(item);
+                keys.push(key);
+            }
+        });
+
+        return results;
+    };
+
     var log = $.jog("Router"),
         instance = null,
         AppRouter = Backbone.Router.extend({
@@ -38,13 +53,16 @@ Ohb.Router = (function ($, Backbone, SearchResult, SearchResultCollection, event
                                 return;
                             }
 
-                            $(json.items).each(function () {
-                                results.add(SearchResult.fromGoogle($(this)[0]));
+                            var uniqueItems = distinct(json.items, function(result) { return result.id; });
+
+                            $(uniqueItems).each(function () {
+                                log.info("Adding result " + this.id);
+                                results.add(SearchResult.fromGoogle(this));
                             });
 
                             eventBus.trigger("searchResultsArrived", results);
                         } catch (e) {
-                            log.error("Search error: " + e.message);
+                            log.severe("Search error: " + e.message);
                             eventBus.trigger("searchCompleted");
                             eventBus.trigger("searchFailed");
                         }
