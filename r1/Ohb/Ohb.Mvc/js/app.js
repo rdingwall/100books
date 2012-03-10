@@ -21,9 +21,9 @@
 
             initialize: function () {
                 log.info("initializing router...");
-                eventBus.on('searchRequested', this.search, this);
-                eventBus.on('searchFailed', this.onSearchFailed, this);
-                eventBus.on('searchResultSelected', this.onSearchResultSelected, this);
+                eventBus.on("searchRequested", this.search, this);
+                eventBus.on("searchFailed", this.onSearchFailed, this);
+                eventBus.on("searchResultSelected", this.onSearchResultSelected, this);
                 this.menuBarView = new MenuBarView();
                 this.searchResultCollectionView = new SearchResultCollectionView();
                 this.router = new Router();
@@ -59,7 +59,7 @@
             },
 
             onSearchResultSelected: function (searchResult) {
-                log.info('navigating to show book ' + searchResult.id);
+                log.info("navigating to show book " + searchResult.id);
 
                 // this = that. Bit of a hack.
                 this.router.navigate("books/" + searchResult.id);

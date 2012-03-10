@@ -44,19 +44,19 @@
             ok(Backbone);
         });
 
-        module('when pressing enter in the search box');
+        module("when pressing enter in the search box");
 
-        test('It should raise the searchRequested event', function () {
+        test("It should raise the searchRequested event", function () {
             eventBus.reset();
 
-            var view = new MenuBarView({ el: $("#qunit-fixture") }), expected = 'test search';
+            var view = new MenuBarView({ el: $("#qunit-fixture") }), expected = "test search";
 
-            eventBus.bind('searchRequested', function (q) {
+            eventBus.bind("searchRequested", function (q) {
                 equal(q, expected);
             });
 
             $("#menubar-search-input").val(expected);
-            var e = $.Event('keyup');
+            var e = $.Event("keyup");
             e.which = 13;
             $("#menubar-search-input").trigger(e);
         });
@@ -65,11 +65,11 @@
             eventBus.reset();
             var view = new MenuBarView({ el: $("#qunit-fixture") });
 
-            $("#menubar-search-input").val('');
-            var e = $.Event('keyup');
+            $("#menubar-search-input").val("");
+            var e = $.Event("keyup");
             e.which = 13;
 
-            eventBus.bind('searchRequested', function (q) {
+            eventBus.bind("searchRequested", function (q) {
                 ok(false, "should not have been raised!");
             });
 
@@ -78,7 +78,7 @@
 
         module("when a search fails");
 
-        test('It should render the error modal', 2, function () {
+        test("It should render the error modal", 2, function () {
             eventBus.reset();
             app.initialize();
 
@@ -277,11 +277,11 @@
 
 
 
-            eventBus.bind('searchResultSelected', function (sr) {
+            eventBus.bind("searchResultSelected", function (sr) {
                 equal(sr, model);
             });
 
-            el.trigger('click');
+            el.trigger("click");
         });
 
         module("when a searchResultSelected event is raised");
@@ -290,9 +290,9 @@
             eventBus.reset();
             app.initialize();
             var model = new SearchResult({ id: "foo" });
-            eventBus.trigger('searchResultSelected', model);
+            eventBus.trigger("searchResultSelected", model);
 
-            equal(window.location.hash, '#books/foo');
+            equal(window.location.hash, "#books/foo");
         });
 
         module("When a Book model has no thumbnail image");

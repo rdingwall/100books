@@ -17,8 +17,8 @@
 
             initialize: function () {
                 log.info("initializing menubarview...");
-                eventBus.bind('searchBegan', this.onSearchBegan);
-                eventBus.bind('searchCompleted', this.onSearchCompleted);
+                eventBus.bind("searchBegan", this.onSearchBegan);
+                eventBus.bind("searchCompleted", this.onSearchCompleted);
             },
 
             searchRequested: function (e) {

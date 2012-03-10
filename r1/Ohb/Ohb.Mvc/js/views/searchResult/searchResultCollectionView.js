@@ -30,8 +30,8 @@
                     e.stopPropagation();
                 });
 
-                eventBus.bind('searchResultsArrived', this.onSearchResultsArrived, this);
-                eventBus.bind('searchReturnedNoResults', this.onSearchReturnedNoResults, this);
+                eventBus.bind("searchResultsArrived", this.onSearchResultsArrived, this);
+                eventBus.bind("searchReturnedNoResults", this.onSearchReturnedNoResults, this);
             },
 
             addResult: function (searchResult) {
@@ -80,7 +80,7 @@
             },
 
             onSearchResultsArrived: function (results) {
-                log.info('showing search results...');
+                log.info("showing search results...");
                 this.clearResults();
 
                 results.each($.proxy(this.addResult, this));

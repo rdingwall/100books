@@ -36,7 +36,7 @@ Ohb.SearchResultView = (function (
 
         select: function () {
             //alert("you clicked me!");
-            EventBus.trigger('searchResultSelected', this.model);
+            EventBus.trigger("searchResultSelected", this.model);
         }
     });
 
