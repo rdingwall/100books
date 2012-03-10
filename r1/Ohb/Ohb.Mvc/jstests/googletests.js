@@ -76,14 +76,14 @@
             app.initialize();
 
             var wasRaised = false;
-            eventBus.bind("searchResultsArrived", function (results) {
+            eventBus.on("searchResultsArrived", function (results) {
                 wasRaised = true;
                 ok(results);
                 equal(results.length, 10);
                 start();
             });
 
-            eventBus.bind("searchFailed", function (results) {
+            eventBus.on("searchFailed", function (results) {
                 ok(false, "search failed!");
                 start();
             });
@@ -95,7 +95,7 @@
             eventBus.reset();
             app.initialize();
 
-            eventBus.bind("searchBegan", function (q) {
+            eventBus.on("searchBegan", function (q) {
                 ok(true);
                 equal(q, "harry potter");
                 start();
@@ -108,7 +108,7 @@
             eventBus.reset();
             app.initialize();
 
-            eventBus.bind("searchCompleted", function (q) {
+            eventBus.on("searchCompleted", function (q) {
                 ok(true);
                 start();
             });
@@ -120,12 +120,12 @@
             eventBus.reset();
             app.initialize();
 
-            eventBus.bind("searchFailed", function (results) {
+            eventBus.on("searchFailed", function (results) {
                 ok(true);
                 start();
             });
 
-            eventBus.bind("searchResultsArrived", function (results) {
+            eventBus.on("searchResultsArrived", function (results) {
                 ok(false, "should not have been raised!");
                 start();
             });
@@ -137,12 +137,12 @@
             eventBus.reset();
             app.initialize();
 
-            eventBus.bind("searchCompleted", function (results) {
+            eventBus.on("searchCompleted", function (results) {
                 ok(true);
                 start();
             });
 
-            eventBus.bind("searchResultsArrived", function (results) {
+            eventBus.on("searchResultsArrived", function (results) {
                 ok(false, "should not have been raised!");
                 start();
             });
@@ -156,12 +156,12 @@
             eventBus.reset();
             app.initialize();
 
-            eventBus.bind("searchFailed", function (results) {
+            eventBus.on("searchFailed", function (results) {
                 ok(false, "searchFailed was raised");
                 start();
             });
 
-            eventBus.bind("searchReturnedNoResults", function (results) {
+            eventBus.on("searchReturnedNoResults", function (results) {
                 ok(true);
                 start();
             });
@@ -173,12 +173,12 @@
             eventBus.reset();
             app.initialize();
 
-            eventBus.bind("searchFailed", function (results) {
+            eventBus.on("searchFailed", function (results) {
                 ok(false, "searchFailed was raised");
                 start();
             });
 
-            eventBus.bind("searchCompleted", function (results) {
+            eventBus.on("searchCompleted", function (results) {
                 ok(true);
                 start();
             });

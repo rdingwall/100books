@@ -27,7 +27,7 @@ Ohb.eventBus = (function ($, _, Backbone) {
         reset: function () {
             log.info("eventBus.reset");
             this.unbind();
-            this.bind("all", function (eventName) {
+            this.on("all", function (eventName) {
                 log.info("Received event: " + eventName);
             });
         }

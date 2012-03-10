@@ -51,7 +51,7 @@
 
             var view = new MenuBarView({ el: $("#qunit-fixture") }), expected = "test search";
 
-            eventBus.bind("searchRequested", function (q) {
+            eventBus.on("searchRequested", function (q) {
                 equal(q, expected);
             });
 
@@ -69,7 +69,7 @@
             var e = $.Event("keyup");
             e.which = 13;
 
-            eventBus.bind("searchRequested", function (q) {
+            eventBus.on("searchRequested", function (q) {
                 ok(false, "should not have been raised!");
             });
 
@@ -277,7 +277,7 @@
 
 
 
-            eventBus.bind("searchResultSelected", function (sr) {
+            eventBus.on("searchResultSelected", function (sr) {
                 equal(sr, model);
             });
 
