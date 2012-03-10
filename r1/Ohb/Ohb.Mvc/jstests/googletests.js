@@ -7,12 +7,29 @@
         $,
         SearchResult,
         eventBus,
-        router
+        router,
+        SearchResultCollection
     ){
 
         var log = $.jog("GoogleTests");
 
         log.info("hiya");
+
+        module("When fetching a search result collection");
+
+        asyncTest("It should perform a search and raise a resultsArrived event with the results", 4, function () {
+
+            var results = new SearchResultCollection();
+
+            results.fetch({ data: { q: "harry potter" }, success: function(collection) {
+                equal(collection.length, 10);
+                var result = collection.get("0W0DRgAACAAJ");
+                equal(result.get("authors"), "J. K. Rowling");
+                equal(result.get("title"), "Harry Potter and the Deathly Hallows");
+                equal(result.get("smallThumbnailUrl"), "http://bks2.books.google.co.uk/books?id=0W0DRgAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api");
+                start();
+            }});
+        });
 
         module("When mapping google book search results");
 
@@ -184,5 +201,8 @@
             setTimeout(start, 2000);
         });
 
-    })($, Ohb.SearchResult, Ohb.EventBus, Ohb.Router);
+
+
+
+    })($, Ohb.SearchResult, Ohb.EventBus, Ohb.Router, Ohb.SearchResultCollection);
 });
