@@ -19,7 +19,6 @@ Ohb.Router = (function ($, Backbone, SearchResult, SearchResultCollection, event
     };
 
     var log = $.jog("Router"),
-        instance = null,
         AppRouter = Backbone.Router.extend({
 
             routes: {
@@ -85,18 +84,10 @@ Ohb.Router = (function ($, Backbone, SearchResult, SearchResultCollection, event
                 log.info('navigating to show book ' + searchResult.id);
 
                 // this = that. Bit of a hack.
-                AppRouter.getInstance().navigate("books/" + searchResult.id);
+                this.navigate("books/" + searchResult.id);
             }
         });
 
-    AppRouter.getInstance = function () {
-        // singleton
-        if (instance === null) {
-            instance = new AppRouter();
-        }
-        return instance;
-    };
-
-    return AppRouter.getInstance();
+    return new AppRouter();
 
 })($, Backbone, Ohb.SearchResult, Ohb.SearchResultCollection, Ohb.EventBus);
