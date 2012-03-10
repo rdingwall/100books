@@ -202,11 +202,6 @@
     </Compile>
     <Compile Include="Models\SearchResultsModel.cs" />
     <Compile Include="ActionFilters\RavenDbAttribute.cs" />
-    <Compile Include="Service References\Amazon\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Google\IgnoreList.cs" />
     <Compile Include="Storage\Books\BookRepository.cs" />
     <Compile Include="Storage\RavenUniqueInserter.cs" />
@@ -244,81 +239,6 @@
     <None Include="css\less\tables.less" />
     <None Include="css\less\type.less" />
     <None Include="css\less\variables.less" />
-    <None Include="Service References\Amazon\configuration91.svcinfo" />
-    <None Include="Service References\Amazon\configuration.svcinfo" />
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.BrowseNodeLookupResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.CartAddResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.CartClearResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.CartCreateResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.CartGetResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.CartModifyResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.CustomerContentLookupResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.CustomerContentSearchResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.HelpResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.ItemLookupResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.ItemSearchResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.ListLookupResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.ListSearchResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.MultiOperationResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.SellerListingLookupResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.SellerListingSearchResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.SellerLookupResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.SimilarityLookupResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.TagLookupResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.TransactionLookupResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.VehiclePartLookupResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.VehiclePartSearchResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Ohb.Mvc.Amazon.VehicleSearchResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Amazon\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="js\app.js" />
     <Content Include="js\collections\searchresultcollection.js" />
     <Content Include="js\eventbus.js" />
@@ -370,19 +290,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_LoggedInMenuPartial.cshtml" />
-    <None Include="Service References\Amazon\AWSECommerceService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Profile\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\Amazon\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="js\lib\jquery\" />

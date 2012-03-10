@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Ohb.Mvc.Amazon;
 
 namespace Ohb.Mvc.Models
 {
