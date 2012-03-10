@@ -19,8 +19,7 @@
 
         return {
             initialize: function () {
-                // Pass in our Router module and call it's initialize function
-                router.initialize();
+
             }
         };
     })($, _, Backbone, Ohb.Router, Ohb.EventBus, Ohb.MenuBarView, Ohb.SearchResultCollectionView);
