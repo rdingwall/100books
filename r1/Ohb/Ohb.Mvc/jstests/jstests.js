@@ -4,6 +4,7 @@
     var Ohb = window;
 
     (function (
+        app,
         router,
         eventBus,
         $,
@@ -79,7 +80,7 @@
 
         test('It should render the error modal', 2, function () {
             eventBus.reset();
-            router.initialize();
+            app.initialize();
 
             ok(!($("#search-failed-modal").is(":visible")), "should be hidden to start with");
 
@@ -287,7 +288,7 @@
 
         test("It should raise a search result selected event", 1, function () {
             eventBus.reset();
-            router.initialize();
+            app.initialize();
             var model = new SearchResult({ id: "foo" });
             eventBus.trigger('searchResultSelected', model);
 
@@ -318,6 +319,7 @@
             equal(model.getBookThumbnail(), "test");
         });
     })(
+        Ohb.App,
         Ohb.Router,
         Ohb.EventBus,
         $,

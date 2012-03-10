@@ -5,6 +5,7 @@
 
     (function (
         $,
+        app,
         SearchResult,
         eventBus,
         router,
@@ -76,7 +77,7 @@
 
         asyncTest('It should perform a search and raise a resultsArrived event with the results', 2, function () {
             eventBus.reset();
-            router.initialize();
+            app.initialize();
 
             var wasRaised = false;
             eventBus.bind('searchResultsArrived', function (results) {
@@ -96,7 +97,7 @@
 
         asyncTest('It should raise a searchBegan event', 2, function () {
             eventBus.reset();
-            router.initialize();
+            app.initialize();
 
             eventBus.bind('searchBegan', function (q) {
                 ok(true);
@@ -110,7 +111,7 @@
 
         asyncTest('It should raise a searchCompleted event', 1, function () {
             eventBus.reset();
-            router.initialize();
+            app.initialize();
 
             eventBus.bind('searchCompleted', function (q) {
                 ok(true);
@@ -123,7 +124,7 @@
 
         asyncTest('When the test fails, it should raise a searchFailed event', 1, function () {
             eventBus.reset();
-            router.initialize();
+            app.initialize();
 
             eventBus.bind('searchFailed', function (results) {
                 ok(true);
@@ -140,7 +141,7 @@
 
         asyncTest('When the test fails, it should raise a searchCompleted event', 1, function () {
             eventBus.reset();
-            router.initialize();
+            app.initialize();
 
             eventBus.bind('searchCompleted', function (results) {
                 ok(true);
@@ -159,7 +160,7 @@
 
         asyncTest('It should raise a no results event', 1, function () {
             eventBus.reset();
-            router.initialize();
+            app.initialize();
 
             eventBus.bind('searchFailed', function (results) {
                 ok(false, "searchFailed was raised");
@@ -181,7 +182,7 @@
 
         asyncTest('It should raise a searchCompleted event', 1, function () {
             eventBus.reset();
-            router.initialize();
+            app.initialize();
 
             eventBus.bind('searchFailed', function (results) {
                 ok(false, "searchFailed was raised");
@@ -204,5 +205,5 @@
 
 
 
-    })($, Ohb.SearchResult, Ohb.EventBus, Ohb.Router, Ohb.SearchResultCollection);
+    })($, Ohb.App, Ohb.SearchResult, Ohb.EventBus, Ohb.Router, Ohb.SearchResultCollection);
 });
