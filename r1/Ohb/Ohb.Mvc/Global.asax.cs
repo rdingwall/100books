@@ -96,7 +96,10 @@ namespace Ohb.Mvc
             var config = GlobalConfiguration.Configuration;
             config.ServiceResolver.SetResolver(resolver);
             config.Formatters.Remove(config.Formatters.XmlFormatter);
-            config.Formatters[0] = new JsonCamelCaseFormatter();
+
+            var index = config.Formatters.IndexOf(config.Formatters.JsonFormatter);
+            config.Formatters[index] = new JsonCamelCaseFormatter();
+
             config.Filters.Add(container.Resolve<RavenDbApiAttribute>());
             config.Filters.Add(container.Resolve<AuthCookieApiAttribute>());
             config.Filters.Add(container.Resolve<OhbErrorHandlerApiAttribute>());
