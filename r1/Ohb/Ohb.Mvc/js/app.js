@@ -4,7 +4,7 @@
 
     var Ohb = window;
 
-    Ohb.App = (function (
+    Ohb.app = (function (
         $,
         _,
         Backbone,
@@ -68,7 +68,7 @@
     })($, _,
         Backbone,
         Ohb.Router,
-        Ohb.EventBus,
+        Ohb.eventBus,
         Ohb.MenuBarView,
         Ohb.SearchResultCollectionView,
         Ohb.SearchResultCollection);

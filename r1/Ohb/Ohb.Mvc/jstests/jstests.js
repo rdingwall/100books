@@ -319,9 +319,9 @@
             equal(model.getBookThumbnail(), "test");
         });
     })(
-        Ohb.App,
+        Ohb.app,
         Ohb.Router,
-        Ohb.EventBus,
+        Ohb.eventBus,
         $,
         _,
         Backbone,

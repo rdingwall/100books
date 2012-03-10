@@ -118,7 +118,7 @@
         $,
         Backbone,
         _,
-        Ohb.EventBus,
+        Ohb.eventBus,
         Ohb.SearchResultView,
         Ohb.SearchResult,
         Ohb.NoSearchResultsAvailableView);

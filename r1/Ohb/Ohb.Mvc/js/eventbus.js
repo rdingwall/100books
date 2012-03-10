@@ -2,7 +2,7 @@
 
 var Ohb = window;
 
-Ohb.EventBus = (function ($, _, Backbone) {
+Ohb.eventBus = (function ($, _, Backbone) {
 
     var log = $.jog("EventBus"),
         instance = null,
@@ -33,16 +33,7 @@ Ohb.EventBus = (function ($, _, Backbone) {
         }
     };
 
-    EventBus.getInstance = function () {
-        // summary:
-        //      Gets an instance of the singleton. It is better to use
-        if (instance === null) {
-            instance = new EventBus();
-        }
-        return instance;
-    };
-
     log.info("returning eventBus...");
-    return EventBus.getInstance();
+    return new EventBus();
 
 })($, _, Backbone);

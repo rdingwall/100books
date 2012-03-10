@@ -40,4 +40,4 @@ Ohb.SearchResultView = (function (
         }
     });
 
-})(Backbone, Mustache, $, template, Ohb.EventBus);
+})(Backbone, Mustache, $, template, Ohb.eventBus);

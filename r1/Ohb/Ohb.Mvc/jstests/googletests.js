@@ -205,5 +205,5 @@
 
 
 
-    })($, Ohb.App, Ohb.SearchResult, Ohb.EventBus, Ohb.Router, Ohb.SearchResultCollection);
+    })($, Ohb.app, Ohb.SearchResult, Ohb.eventBus, Ohb.Router, Ohb.SearchResultCollection);
 });

@@ -4,9 +4,9 @@
 
     var Ohb = window;
 
-    (function (App, Backbone) {
-        App.initialize();
+    (function (app, Backbone) {
+        app.initialize();
         Backbone.history.start();
-    })(Ohb.App, Backbone);
+    })(Ohb.app, Backbone);
 
 });

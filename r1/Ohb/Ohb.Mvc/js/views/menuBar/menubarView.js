@@ -44,7 +44,7 @@
             }
         });
 
-    })($, Backbone, Ohb.EventBus);
+    })($, Backbone, Ohb.eventBus);
 
 });
 
