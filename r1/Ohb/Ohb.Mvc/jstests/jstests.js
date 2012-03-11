@@ -36,6 +36,8 @@ $(function () {
         SearchResultCollectionView
     ) {
 
+        QUnit.config.testTimeout = 2000;
+
         var log = $.jog("Tests");
 
         log.info("document loaded, running tests");
@@ -309,6 +311,19 @@ $(function () {
             eventBus.trigger("search:resultSelected", model);
 
             equal(window.location.hash, "#books/foo");
+        });
+
+        // This one fails when run with the other tests for some reason
+        test("It should raise a book:requested event (RUN SEPARATELY)", 1, function () {
+            eventBus.reset();
+            app.initialize();
+            var model = new SearchResult({ id: "foo" });
+
+            eventBus.on("book:requested", function (id) {
+                equal(id, model.id);
+            });
+
+            eventBus.trigger("search:resultSelected", model);
         });
 
         module("When a Book model has no thumbnail image");

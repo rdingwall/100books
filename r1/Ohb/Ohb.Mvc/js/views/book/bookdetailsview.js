@@ -25,12 +25,12 @@ $(function () {
             el: "#content-main",
 
             initialize: function () {
-                eventBus.on("search:resultSelected", this.onResultSelected, this);
+                eventBus.on("book:requested", this.onBookRequested, this);
             },
 
-            onResultSelected: function (searchResult) {
+            onBookRequested: function (id) {
                 log.info("Fetching book from API...");
-                this.model = new Book({ id: searchResult.id });
+                this.model = new Book({ id: id });
                 this.model.fetch({
                     success: _.bind(this.render, this),
                     error: _.bind(this.onFetchError, this)
@@ -49,7 +49,7 @@ $(function () {
             onFetchError: function () {
                 log.warning("Error loading book");
                 $(this.el).html(fetchErrorTemplate);
-                eventBus.trigger("book:fetchError", this.model);
+                eventBus.trigger("book:fetchError");
             }
         });
 

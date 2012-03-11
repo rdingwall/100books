@@ -55,36 +55,48 @@ $(function () {
             }});
         });
 
-        module("when a search:resultSelected event is raised");
+        module("when a book:requested event is raised");
 
         asyncTest("It should fetch the book details and render them", 1, function () {
 
             eventBus.reset();
             app.initialize();
-            var searchResult = new SearchResult({ id: "4YydO00I9JYC" });
 
             eventBus.on("book:rendered", function () {
                 equal($("div.book-details h3").text(), "The Google story");
                 start();
             });
 
-            eventBus.trigger("search:resultSelected", searchResult);
+            eventBus.trigger("book:requested", "4YydO00I9JYC");
         });
 
-        module("when a search:resultSelected event is raised and the fetch fails");
+        module("when a book:requested event is raised and the fetch fails");
 
         asyncTest("It should fetch the book details and render them", 1, function () {
 
             eventBus.reset();
             app.initialize();
-            var searchResult = new SearchResult({ id: "xxxx-fake-id" });
 
             eventBus.on("book:fetchError", function () {
                 ok($("div.book-details-error").is(":visible"));
                 start();
             });
 
-            eventBus.trigger("search:resultSelected", searchResult);
+            eventBus.trigger("book:requested", "xxxx-fake-id");
+        });
+
+        module("when navigating to the book hash");
+
+        asyncTest("It should fetch the book details and render them", 1, function () {
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("book:rendered", function () {
+                equal($("div.book-details h3").text(), "The Google story");
+                start();
+            });
+    
+            window.location.hash = "books/4YydO00I9JYC";
         });
 
     }($, Backbone, Ohb.Book, Ohb.SearchResult, Ohb.eventBus, Ohb.app));

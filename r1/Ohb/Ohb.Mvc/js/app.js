@@ -67,7 +67,7 @@
                 log.info("navigating to show book " + searchResult.id);
 
                 // this = that. Bit of a hack.
-                this.router.navigate("books/" + searchResult.id);
+                this.router.navigate("books/" + searchResult.id, { trigger: true });
             }
         };
     }(

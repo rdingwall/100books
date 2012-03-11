@@ -1,12 +1,16 @@
 ﻿var Ohb = window;
 
-Ohb.Router = (function ($, Backbone) {
+Ohb.Router = (function ($, Backbone, eventBus) {
     "use strict";
 
     return Backbone.Router.extend({
         routes: {
-            "book/:id/:dummy": "openBook"
+            "books/:id": "openBook"
+        },
+
+        openBook: function (id) {
+            eventBus.trigger("book:requested", id);
         }
     });
 
-}($, Backbone));
+}($, Backbone, Ohb.eventBus));
