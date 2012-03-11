@@ -41,9 +41,6 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             It should_get_the_books_thumbnail_url =
                 () => response.Data.ThumbnailUrl.ShouldEqual("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=1&source=gbs_api");
             
-            It should_get_the_books_small_thumbnail_url =
-                () => response.Data.SmallThumbnailUrl.ShouldEqual("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=5&source=gbs_api");
-
             It should_not_be_previously_read =
                 () => response.Data.HasPreviouslyRead.ShouldBeFalse();
 
@@ -59,6 +56,21 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
 
             It should_concatenate_the_titles =
                 () => response.Data.Title.ShouldEqual("LEGO: A Love Story");
+
+            static RestResponse<BookModel> response;
+        }
+        public class when_looking_up_a_book_with_no_covers
+        {
+            Because of = () => response = ApiClientFactory.Anonymous().GetBook("DAAAAAAACAAJ");
+
+            It should_return_http_200_ok =
+                () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
+
+            It should_use_the_default_cover_image =
+                () => response.Data.ThumbnailUrl.ShouldEqual("img/book-no-cover.png");
+
+            It should_use_the_default_small_cover_image =
+                () => response.Data.SmallThumbnailUrl.ShouldEqual("img/search-result-no-cover.png");
 
             static RestResponse<BookModel> response;
         }

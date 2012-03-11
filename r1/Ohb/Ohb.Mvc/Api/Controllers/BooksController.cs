@@ -44,6 +44,13 @@ namespace Ohb.Mvc.Api.Controllers
             if (!String.IsNullOrWhiteSpace(book.StaticInfo.SubTitle))
                 result.Title = String.Concat(result.Title, ": ", book.StaticInfo.SubTitle);
 
+            // todo: clean this up
+            if (String.IsNullOrEmpty(result.ThumbnailUrl))
+                result.ThumbnailUrl = "img/book-no-cover.png";
+
+            if (String.IsNullOrWhiteSpace(result.SmallThumbnailUrl))
+                result.SmallThumbnailUrl = "img/search-result-no-cover.png";
+
             if (User != null)
             {
                 var previousRead = DocumentSession.Load<PreviousRead>(PreviousRead.MakeId(User.Id, volumeId));
