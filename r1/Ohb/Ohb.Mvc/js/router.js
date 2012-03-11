@@ -5,7 +5,7 @@ Ohb.Router = (function ($, Backbone, eventBus) {
 
     return Backbone.Router.extend({
         routes: {
-            "books/:id": "openBook"
+            "books/:id/:slug": "openBook"
         },
 
         openBook: function (id) {

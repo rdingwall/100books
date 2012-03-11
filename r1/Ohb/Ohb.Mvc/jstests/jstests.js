@@ -307,10 +307,15 @@ $(function () {
         test("It should navigate to the new route", 1, function () {
             eventBus.reset();
             app.initialize();
-            var model = new SearchResult({ id: "foo" });
+
+            var model = new SearchResult({
+                id: "foo",
+                title: "Harry Potter's amazing #(*@(#)(# adventure$ 2008"
+            });
+
             eventBus.trigger("search:resultSelected", model);
 
-            equal(window.location.hash, "#books/foo");
+            equal(window.location.hash, "#books/foo/harry-potters-amazing-adventure-2008");
         });
 
         // This one fails when run with the other tests for some reason

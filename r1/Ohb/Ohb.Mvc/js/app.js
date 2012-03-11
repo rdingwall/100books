@@ -66,8 +66,13 @@
             onSearchResultSelected: function (searchResult) {
                 log.info("navigating to show book " + searchResult.id);
 
+                var titleSlug = (searchResult.get("title"))
+                    .replace(/[^\w\s]|_/g, "")
+                    .replace(/\s+/g, "-")
+                    .toLowerCase();
+
                 // this = that. Bit of a hack.
-                this.router.navigate("books/" + searchResult.id, { trigger: true });
+                this.router.navigate("books/" + searchResult.id + "/" + titleSlug, { trigger: true });
             }
         };
     }(

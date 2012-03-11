@@ -95,8 +95,8 @@ $(function () {
                 equal($("div.book-details h3").text(), "The Google story");
                 start();
             });
-    
-            window.location.hash = "books/4YydO00I9JYC";
+
+            window.location.hash = "books/4YydO00I9JYC/test-slug";
         });
 
     }($, Backbone, Ohb.Book, Ohb.SearchResult, Ohb.eventBus, Ohb.app));
