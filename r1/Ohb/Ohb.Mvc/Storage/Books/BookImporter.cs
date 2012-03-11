@@ -43,7 +43,7 @@ namespace Ohb.Mvc.Storage.Books
             {
                 GoogleVolumeId = googleVolumeId,
                 GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String(googleVolumeId),
-                StaticInfo = BookStaticInfo.FromGoogleVolume(volume)
+                GoogleVolume = volume
             };
 
             books.Add(book, session);

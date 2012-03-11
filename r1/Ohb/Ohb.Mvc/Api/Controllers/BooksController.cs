@@ -31,18 +31,20 @@ namespace Ohb.Mvc.Api.Controllers
             var result = new BookModel
                              {
                                  Id = book.GoogleVolumeId,
-                                 Authors = book.StaticInfo.Authors,
-                                 Description = book.StaticInfo.Description,
-                                 PageCount = book.StaticInfo.PageCount,
-                                 PublishedYear = book.StaticInfo.PublishedYear,
-                                 Publisher = book.StaticInfo.Publisher,
-                                 SmallThumbnailUrl = book.StaticInfo.SmallThumbnailUrl,
-                                 ThumbnailUrl =  book.StaticInfo.ThumbnailUrl,
-                                 Title = book.StaticInfo.Title
+                                 Authors = String.Join(", ", book.GoogleVolume.VolumeInfo.Authors),
+                                 Description = book.GoogleVolume.VolumeInfo.Description,
+                                 PageCount = book.GoogleVolume.VolumeInfo.PageCount,
+                                 Publisher = book.GoogleVolume.VolumeInfo.Publisher,
+                                 SmallThumbnailUrl = book.GoogleVolume.VolumeInfo.ImageLinks.SmallThumbnail,
+                                 ThumbnailUrl = book.GoogleVolume.VolumeInfo.ImageLinks.Thumbnail,
+                                 Title = book.GoogleVolume.VolumeInfo.Title
                              };
 
-            if (!String.IsNullOrWhiteSpace(book.StaticInfo.SubTitle))
-                result.Title = String.Concat(result.Title, ": ", book.StaticInfo.SubTitle);
+            if (!String.IsNullOrWhiteSpace(book.GoogleVolume.VolumeInfo.PublishedDate))
+                result.PublishedYear = book.GoogleVolume.VolumeInfo.PublishedDate.Substring(0, 4);
+
+            if (!String.IsNullOrWhiteSpace(book.GoogleVolume.VolumeInfo.SubTitle))
+                result.Title = String.Concat(result.Title, ": ", book.GoogleVolume.VolumeInfo.SubTitle);
 
             // todo: clean this up
             if (String.IsNullOrEmpty(result.ThumbnailUrl))

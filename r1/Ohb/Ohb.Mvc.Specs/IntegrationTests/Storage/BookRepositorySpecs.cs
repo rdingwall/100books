@@ -1,5 +1,6 @@
 using System.Linq;
 using Machine.Specifications;
+using Ohb.Mvc.Google;
 using Ohb.Mvc.Storage;
 using Ohb.Mvc.Storage.Books;
 
@@ -19,8 +20,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                     {
                         GoogleVolumeId = "4YydO00I9JYC",
                         GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String("4YydO00I9JYC"),
-                        StaticInfo =
-                            new BookStaticInfo { Title = "First", Id = "4YydO00I9JYC" }
+                        GoogleVolume =
+                            new GoogleVolume { VolumeInfo = { Title = "First" }, Id = "4YydO00I9JYC"}
                     };
 
                     new RavenUniqueInserter().StoreUnique(session, book, b => b.GoogleVolumeIdBase64);
@@ -43,8 +44,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                         {
                             GoogleVolumeId = "4YydO00I9JYC",
                             GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String("4YydO00I9JYC"),
-                            StaticInfo =
-                                new BookStaticInfo { Title = "Second", Id = "4YydO00I9JYC" }
+                            GoogleVolume =
+                                new GoogleVolume { VolumeInfo = { Title = "Second" }, Id = "4YydO00I9JYC"}
                         }, session);
 
                         book = repository.Get("4YydO00I9JYC", session);
@@ -52,7 +53,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                 };
 
             It should_return_the_existing_book =
-                () => book.StaticInfo.Title.ShouldEqual("First");
+                () => book.GoogleVolume.VolumeInfo.Title.ShouldEqual("First");
 
             static IBookRepository repository;
             static Book book;
@@ -77,8 +78,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                 {
                                     GoogleVolumeId = "abc",
                                     GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String("abc"),
-                                    StaticInfo =
-                                        new BookStaticInfo { Title = "The Google story", Id = "abc" }
+                                    GoogleVolume =
+                                        new GoogleVolume { VolumeInfo = { Title = "The Google story" }, Id = "abc"}
                                 }, session);
 
                         // wait
@@ -91,7 +92,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                 };
 
             It should_be_able_to_retrieve_the_book =
-                () => book.StaticInfo.Title.ShouldEqual("The Google story");
+                () => book.GoogleVolume.VolumeInfo.Title.ShouldEqual("The Google story");
 
             It should_add_the_book_to_ravendb =
                 () =>
@@ -103,7 +104,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                             .FirstOrDefault(b => b.GoogleVolumeIdBase64 == ConvertGoogleVolumeId.ToBase64String("abc"));
 
                         book.ShouldNotBeNull();
-                        book.StaticInfo.Title.ShouldEqual("The Google story");
+                        book.GoogleVolume.VolumeInfo.Title.ShouldEqual("The Google story");
                     }
                 };
 
@@ -125,7 +126,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                             GoogleVolumeId = "aaa",
                                             GoogleVolumeIdBase64 =
                                                 ConvertGoogleVolumeId.ToBase64String("aaa"),
-                                            StaticInfo = new BookStaticInfo {Title = "Book1"}
+                                            GoogleVolume = new GoogleVolume { VolumeInfo ={ Title = "Book1"}}
                                         };
 
                             book2 = new Book
@@ -133,7 +134,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                             GoogleVolumeId = "aAa",
                                             GoogleVolumeIdBase64 =
                                                 ConvertGoogleVolumeId.ToBase64String("aAa"),
-                                            StaticInfo = new BookStaticInfo {Title = "Book2"}
+                                            GoogleVolume = new GoogleVolume {VolumeInfo = {Title = "Book2"}}
                                         };
 
                             repository.Add(book1, session);
@@ -153,10 +154,10 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                     };
 
             It should_return_the_correct_first_book =
-                () => returnedBook1.StaticInfo.Title.ShouldEqual(book1.StaticInfo.Title);
+                () => returnedBook1.GoogleVolume.VolumeInfo.Title.ShouldEqual(book1.GoogleVolume.VolumeInfo.Title);
 
             It should_return_the_correct_second_book =
-                () => returnedBook2.StaticInfo.Title.ShouldEqual(book2.StaticInfo.Title);
+                () => returnedBook2.GoogleVolume.VolumeInfo.Title.ShouldEqual(book2.GoogleVolume.VolumeInfo.Title);
 
             static IBookRepository repository;
             static Book book1;

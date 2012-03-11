@@ -58,10 +58,10 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                     () => results.Data.Count.ShouldEqual(1);
 
                 It should_contain_the_book_in_the_previous_reads_list =
-                    () => results.Data.FirstOrDefault().Book.StaticInfo.Id.ShouldEqual("4YydO00I9JYC");
+                    () => results.Data.FirstOrDefault().Book.GoogleVolume.Id.ShouldEqual("4YydO00I9JYC");
 
                 It should_contain_the_full_book_details_in_the_previous_reads_list =
-                    () => results.Data.FirstOrDefault().Book.StaticInfo.Title.ShouldEqual("The Google story");
+                    () => results.Data.FirstOrDefault().Book.GoogleVolume.VolumeInfo.Title.ShouldEqual("The Google story");
 
                 It should_contain_the_marked_read_at_timestamp =
                     () =>

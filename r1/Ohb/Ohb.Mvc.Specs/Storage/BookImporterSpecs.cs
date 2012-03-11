@@ -39,8 +39,8 @@ namespace Ohb.Mvc.Specs.Storage
                                 {
                                     GoogleVolumeId = "4YydO00I9JYC",
                                     GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String("4YydO00I9JYC"),
-                                    StaticInfo =
-                                        new BookStaticInfo {Title = "Dummy", Id = "4YydO00I9JYC"}
+                                    GoogleVolume =
+                                        new GoogleVolume { VolumeInfo = { Title = "Dummy" }, Id = "4YydO00I9JYC"}
                                 };
 
                         books.Stub(b => b.Get(book.GoogleVolumeId, session)).Return(book);
@@ -50,7 +50,7 @@ namespace Ohb.Mvc.Specs.Storage
                 () => book = importer.GetBook(session, "4YydO00I9JYC");
 
             It should_return_the_existing_book =
-                () => book.StaticInfo.Title.ShouldEqual("Dummy");
+                () => book.GoogleVolume.VolumeInfo.Title.ShouldEqual("Dummy");
         }
 
         public class when_the_book_wasnt_found_in_ravendb : scenario
@@ -59,7 +59,7 @@ namespace Ohb.Mvc.Specs.Storage
                 () => book = importer.GetBook(session, "4YydO00I9JYC");
 
             It should_return_the_book_from_google = 
-                () => book.StaticInfo.Title.ShouldEqual("The Google story");
+                () => book.GoogleVolume.VolumeInfo.Title.ShouldEqual("The Google story");
 
             It should_add_the_book_to_ravendb =
                 () => books.AssertWasCalled(b => b.Add(book, session));

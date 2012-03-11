@@ -16,6 +16,12 @@ namespace Ohb.Mvc.Google
     [JsonObject(MemberSerialization.OptIn)]
     public class GoogleVolume
     {
+        public GoogleVolume()
+        {
+            VolumeInfo = new GoogleVolumeInfo();
+            AccessInfo = new GoogleAccessInfo();
+        }
+
         [JsonProperty("id")]
         public string Id { get; set; }
 

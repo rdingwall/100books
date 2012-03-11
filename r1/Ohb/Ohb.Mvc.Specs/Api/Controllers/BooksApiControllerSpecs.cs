@@ -4,6 +4,7 @@ using System.Web.Http;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Controllers;
 using Ohb.Mvc.Api.Models;
+using Ohb.Mvc.Google;
 using Ohb.Mvc.Storage.Books;
 using Raven.Client;
 using Rhino.Mocks;
@@ -22,7 +23,7 @@ namespace Ohb.Mvc.Specs.Api.Controllers
 
                     importer = MockRepository.GenerateStub<IBookImporter>();
                     documentSession = MockRepository.GenerateStub<IDocumentSession>();
-                    book = new Book { GoogleVolumeId = "testId", StaticInfo = new BookStaticInfo() };
+                    book = new Book { GoogleVolumeId = "testId", GoogleVolume = new GoogleVolume() };
 
                     controller = new BooksController(importer)
                                      {
