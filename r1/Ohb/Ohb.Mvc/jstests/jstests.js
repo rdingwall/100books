@@ -64,7 +64,7 @@ $(function () {
             ok(Backbone);
         });
 
-        module("when pressing enter in the search box");
+        module("When pressing enter in the search box");
 
         test("It should raise the search:requested event", function () {
             eventBus.reset();
@@ -96,7 +96,7 @@ $(function () {
             $("#menubar-search-input").trigger(e);
         });
 
-        module("when a search fails");
+        module("When a search fails");
 
         test("It should render the error modal", 2, function () {
             eventBus.reset();
@@ -111,7 +111,7 @@ $(function () {
             $("#search-failed-modal").hide();
         });
 
-        module("when a search begins");
+        module("When a search begins");
 
         test("It should show the ajax loader gif", 2, function () {
             eventBus.reset();
@@ -127,7 +127,7 @@ $(function () {
             $("#search-loader-spinner").hide();
         });
 
-        module("when a search completes");
+        module("When a search completes");
 
         test("The ajax loader gif should dissappear", 2, function () {
             eventBus.reset();
@@ -143,9 +143,9 @@ $(function () {
             ok(!($("#search-loader-spinner").is(":visible")));
         });
 
-        module("when search results become available");
+        module("When search results become available");
 
-        test("they should be rendered", 3, function () {
+        test("They should be rendered", 3, function () {
             eventBus.reset();
             var view = new SearchResultCollectionView({ el: $("#test-search-results") });
 
@@ -161,9 +161,9 @@ $(function () {
             equal($("#test-search-results").children().length, 2);
         });
 
-        module("when rendering a single search result");
+        module("When rendering a single search result");
 
-        asyncTest("it should be rendered", 2, function () {
+        asyncTest("It should be rendered", 2, function () {
 
             var el = $("#test-search-result"), view = new SearchResultView({
                 el: el[0],
@@ -183,9 +183,9 @@ $(function () {
             }, 500);
         });
 
-        module("when the search result box is open");
+        module("When the search result box is open");
 
-        test("clicking anywhere outside should hide it", 4, function () {
+        test("Clicking anywhere outside should hide it", 4, function () {
             var el = $("#test-search-results");
             ok(!(el.is(":visible")), "should be hidden to start with");
 
@@ -201,7 +201,7 @@ $(function () {
             equal(view.searchResultViews.length, 0, "should clear the items");
         });
 
-        test("clicking inside the search results should not hide the results", 3, function () {
+        test("Clicking inside the search results should not hide the results", 3, function () {
             var el = $("#test-search-results");
             ok(!(el.is(":visible")), "should be hidden to start with");
 
@@ -215,7 +215,7 @@ $(function () {
             ok(el.is(":visible"), "should stay visible");
         });
 
-        test("clicking in the menu bar should not hide the results", 3, function () {
+        test("Clicking in the menu bar should not hide the results", 3, function () {
             var el = $("#test-search-results");
             ok(!(el.is(":visible")), "should be hidden to start with");
 
@@ -253,7 +253,7 @@ $(function () {
             equal($("#test-search-results").children().length, 3, "should replace existing results");
         });
 
-        module("when there are no search results available");
+        module("When there are no search results available");
 
         asyncTest("It should display a no search results message", 3, function () {
             eventBus.reset();
@@ -311,7 +311,7 @@ $(function () {
             el.trigger("click");
         });
 
-        module("when a search:resultSelected event is raised");
+        module("When a search:resultSelected event is raised");
 
         test("It should navigate to the new route", 1, function () {
             eventBus.reset();

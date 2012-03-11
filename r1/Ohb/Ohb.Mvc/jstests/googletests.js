@@ -134,7 +134,9 @@ $(function () {
             eventBus.trigger("search:requested", "harry potter");
         });
 
-        asyncTest("When the test fails, it should raise a search:failed event", 1, function () {
+        module("When the book search fails");
+
+        asyncTest("It should raise a search:failed event", 1, function () {
             eventBus.reset();
             app.initialize();
 
@@ -151,7 +153,7 @@ $(function () {
             eventBus.trigger("search:requested", "3894h9f893jhf934jf92ht8");
         });
 
-        asyncTest("When the test fails, it should raise a search:completed event", 1, function () {
+        asyncTest("It should raise a search:completed event", 1, function () {
             eventBus.reset();
             app.initialize();
 
@@ -203,9 +205,6 @@ $(function () {
 
             eventBus.trigger("search:requested", "3894h9f893jhf934jf92ht8");
         });
-
-
-
 
     }(
         $,

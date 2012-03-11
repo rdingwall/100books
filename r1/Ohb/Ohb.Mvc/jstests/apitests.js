@@ -55,7 +55,7 @@ $(function () {
             }});
         });
 
-        module("when a book:requested event is raised");
+        module("When a book:requested event is raised");
 
         asyncTest("It should fetch the book details and render them", 1, function () {
 
@@ -70,7 +70,7 @@ $(function () {
             eventBus.trigger("book:requested", "4YydO00I9JYC");
         });
 
-        module("when a book:requested event is raised and the fetch fails");
+        module("When a book:requested event is raised and the fetch fails");
 
         asyncTest("It should fetch the book details and render them", 1, function () {
 
@@ -85,7 +85,7 @@ $(function () {
             eventBus.trigger("book:requested", "xxxx-fake-id");
         });
 
-        module("when navigating to the book hash");
+        module("When navigating to the book hash");
 
         asyncTest("It should fetch the book details and render them", 1, function () {
             eventBus.reset();
