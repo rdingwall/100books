@@ -266,6 +266,9 @@
     <Content Include="js\views\searchResult\noSearchResultsAvailableView.js" />
     <Content Include="js\views\searchResult\searchResultCollectionView.js" />
     <Content Include="js\views\searchResult\searchResultView.js" />
+    <Content Include="templates\book\bookdetails.html" />
+    <Content Include="templates\book\fetcherror.html" />
+    <Content Include="templates\searchResult\noSearchResultsAvailable.html" />
     <Content Include="templates\searchResult\searchResult.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

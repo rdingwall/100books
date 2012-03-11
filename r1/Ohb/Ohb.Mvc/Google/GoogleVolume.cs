@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -22,6 +21,9 @@ namespace Ohb.Mvc.Google
 
         [JsonProperty("volumeInfo")]
         public GoogleVolumeInfo VolumeInfo { get; set; }
+
+        [JsonProperty("accessInfo")]
+        public GoogleAccessInfo AccessInfo { get; set; }
     }
 
     [JsonObject(MemberSerialization.OptIn)]
@@ -31,6 +33,8 @@ namespace Ohb.Mvc.Google
         {
             Authors = new List<string>();
             ImageLinks = new GoogleImageLinks();
+            IndustryIdentifiers = new List<GoogleIndustryIdentifiers>();
+
             Title = Publisher = PublishedDate = Description = "";
         }
 
@@ -54,6 +58,21 @@ namespace Ohb.Mvc.Google
 
         [JsonProperty("imageLinks")]
         public GoogleImageLinks ImageLinks { get; set; }
+
+        [JsonProperty("canonicalVolumeLink")]
+        public string CanonicalVolumeLink { get; set; }
+
+        [JsonProperty("printType")]
+        public string PrintType { get; set; }
+
+        [JsonProperty("industryIdentifiers")]
+        public IList<GoogleIndustryIdentifiers> IndustryIdentifiers { get; set; }
+
+        [JsonProperty("pageCount")]
+        public int PageCount { get; set; }
+
+        [JsonProperty("language")]
+        public string Language { get; set; }
     }
     
     [JsonObject(MemberSerialization.OptIn)]
@@ -63,6 +82,8 @@ namespace Ohb.Mvc.Google
         {
             Thumbnail = "";
             SmallThumbnail = "";
+            Small = "";
+            Medium = "";
         }
 
         [JsonProperty("thumbnail")]
@@ -70,5 +91,27 @@ namespace Ohb.Mvc.Google
 
         [JsonProperty("smallThumbnail")]
         public string SmallThumbnail { get; set; }
+
+        [JsonProperty("small")]
+        public string Small { get; set; }
+
+        [JsonProperty("medium")]
+        public string Medium { get; set; }
+    }
+
+    public class GoogleIndustryIdentifiers
+    {
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        [JsonProperty("identifier")]
+        public string Identifier { get; set; }
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class GoogleAccessInfo
+    {
+        [JsonProperty("webReaderLink")]
+        public string WebReaderLink { get; set; }
     }
 }

@@ -48,7 +48,7 @@ namespace Ohb.Mvc.Google
                 null);
         }
 
-        public BookStaticInfo GetVolume(string id)
+        public GoogleVolume GetVolume(string id)
         {
             if (id == null) throw new ArgumentNullException("id");
 
@@ -58,7 +58,6 @@ namespace Ohb.Mvc.Google
                 try
                 {
                     json = client.DownloadString(String.Format("https://www.googleapis.com/books/v1/volumes/{0}", id));
-
                 }
                 catch (WebException e)
                 {
@@ -74,20 +73,7 @@ namespace Ohb.Mvc.Google
                 if (String.IsNullOrWhiteSpace(json))
                     throw new InvalidOperationException(String.Format("Expected JSON but got '{0}'.", json));
                 
-                var volume = JsonConvert.DeserializeObject<GoogleVolume>(json);
-
-                return new BookStaticInfo
-                           {
-                               Id = volume.Id,
-                               Title = volume.VolumeInfo.Title,
-                               SubTitle = volume.VolumeInfo.SubTitle,
-                               PublishedYear = (volume.VolumeInfo.PublishedDate ?? "").Substring(0, 4),
-                               Publisher = volume.VolumeInfo.Publisher,
-                               ThumbnailUrl = volume.VolumeInfo.ImageLinks.Thumbnail,
-                               SmallThumbnailUrl = volume.VolumeInfo.ImageLinks.SmallThumbnail,
-                               Authors = String.Join(", ", volume.VolumeInfo.Authors),
-                               Description = volume.VolumeInfo.Description.Trim('"')
-                           };
+                return JsonConvert.DeserializeObject<GoogleVolume>(json);
             }
         }
 

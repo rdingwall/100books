@@ -34,16 +34,16 @@ namespace Ohb.Mvc.Storage.Books
 
         Book ImportBook(IDocumentSession session, string googleVolumeId)
         {
-            var staticInfo = googleBooksClient.GetVolume(googleVolumeId);
+            var volume = googleBooksClient.GetVolume(googleVolumeId);
 
-            if (staticInfo == null)
+            if (volume == null)
                 return null;
 
             var book = new Book
             {
                 GoogleVolumeId = googleVolumeId,
                 GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String(googleVolumeId),
-                StaticInfo = staticInfo
+                StaticInfo = BookStaticInfo.FromGoogleVolume(volume)
             };
 
             books.Add(book, session);
