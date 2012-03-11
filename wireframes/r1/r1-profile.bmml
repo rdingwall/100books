@@ -16,9 +16,9 @@
         <text>Richard%20Dingwall%20-%20100%20books%0Ahttp%3A//100books.ws/</text>
       </controlProperties>
     </control>
-    <control controlID="64" controlTypeID="com.balsamiq.mockups::Label" x="479" y="82" w="64" h="27" measuredW="47" measuredH="25" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="64" controlTypeID="com.balsamiq.mockups::Label" x="479" y="82" w="120" h="27" measuredW="108" measuredH="25" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>%5BProfile%5D</text>
+        <text>%5BRichard%20Dingwall%5D</text>
         <align>left</align>
       </controlProperties>
     </control>
@@ -33,7 +33,7 @@
         <text>DOMAIN%20DRIVEN%20DESIGN%3A%20TACKLING%20COMPLEXITY%20IN%20...</text>
       </controlProperties>
     </control>
-    <control controlID="77" controlTypeID="com.balsamiq.mockups::SearchBox" x="544" y="83" w="242" h="-1" measuredW="182" measuredH="25" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="77" controlTypeID="com.balsamiq.mockups::SearchBox" x="588" y="82" w="242" h="-1" measuredW="182" measuredH="25" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Search%20to%20add%20books</text>
       </controlProperties>
@@ -63,31 +63,31 @@
     <control controlID="82" controlTypeID="com.balsamiq.mockups::PointyButton" x="1155" y="194" w="70" h="-1" measuredW="75" measuredH="27" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <state>up</state>
-        <icon>CheckMarkIcon%7Cxsmall</icon>
+        <size>8</size>
         <color>40463</color>
+        <icon>CheckMarkIcon%7Cxsmall</icon>
         <text>READ%20IT</text>
         <direction>center</direction>
-        <size>8</size>
       </controlProperties>
     </control>
     <control controlID="83" controlTypeID="com.balsamiq.mockups::PointyButton" x="1155" y="256" w="70" h="-1" measuredW="75" measuredH="27" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <state>up</state>
+        <color>40463</color>
+        <size>8</size>
         <icon>CheckMarkIcon%7Cxsmall</icon>
         <direction>center</direction>
         <text>READ%20IT</text>
-        <size>8</size>
-        <color>40463</color>
       </controlProperties>
     </control>
     <control controlID="84" controlTypeID="com.balsamiq.mockups::PointyButton" x="1155" y="318" w="70" h="-1" measuredW="75" measuredH="27" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
         <state>up</state>
+        <color>40463</color>
+        <size>8</size>
         <icon>CheckMarkIcon%7Cxsmall</icon>
         <direction>center</direction>
         <text>READ%20IT</text>
-        <size>8</size>
-        <color>40463</color>
       </controlProperties>
     </control>
     <control controlID="78" controlTypeID="com.balsamiq.mockups::Label" x="1159" y="83" w="63" h="27" measuredW="61" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
