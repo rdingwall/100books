@@ -41,6 +41,9 @@ namespace Ohb.Mvc.Api.Controllers
                                  Title = book.StaticInfo.Title
                              };
 
+            if (!String.IsNullOrWhiteSpace(book.StaticInfo.SubTitle))
+                result.Title = String.Concat(result.Title, ": ", book.StaticInfo.SubTitle);
+
             if (User != null)
             {
                 var previousRead = DocumentSession.Load<PreviousRead>(PreviousRead.MakeId(User.Id, volumeId));

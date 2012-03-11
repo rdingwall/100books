@@ -50,6 +50,19 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             static RestResponse<BookModel> response;
         }
 
+        public class when_looking_up_a_book_with_a_subtitle
+        {
+            Because of = () => response = ApiClientFactory.Anonymous().GetBook("a52a_F-OKUcC");
+
+            It should_return_http_200_ok =
+                () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
+
+            It should_concatenate_the_titles =
+                () => response.Data.Title.ShouldEqual("LEGO: A Love Story");
+
+            static RestResponse<BookModel> response;
+        }
+
         public class when_no_book_id_is_provided
         {
             It should_return_http_404_not_found =

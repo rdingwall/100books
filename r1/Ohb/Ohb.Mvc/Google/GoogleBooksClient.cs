@@ -80,6 +80,7 @@ namespace Ohb.Mvc.Google
                            {
                                Id = volume.Id,
                                Title = volume.VolumeInfo.Title,
+                               SubTitle = volume.VolumeInfo.SubTitle,
                                PublishedYear = (volume.VolumeInfo.PublishedDate ?? "").Substring(0, 4),
                                Publisher = volume.VolumeInfo.Publisher,
                                ThumbnailUrl = volume.VolumeInfo.ImageLinks.Thumbnail,
