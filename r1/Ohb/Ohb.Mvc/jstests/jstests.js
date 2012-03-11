@@ -64,12 +64,12 @@ $(function () {
 
         module("when pressing enter in the search box");
 
-        test("It should raise the searchRequested event", function () {
+        test("It should raise the search:requested event", function () {
             eventBus.reset();
 
             var view = new MenuBarView({ el: $("#qunit-fixture") }), expected = "test search";
 
-            eventBus.on("searchRequested", function (q) {
+            eventBus.on("search:requested", function (q) {
                 equal(q, expected);
             });
 
@@ -79,7 +79,7 @@ $(function () {
             $("#menubar-search-input").trigger(e);
         });
 
-        test("It shouldn't raise any event if the search box is empty", function () {
+        test("It should not raise search:requested if the search box is empty", function () {
             eventBus.reset();
             var view = new MenuBarView({ el: $("#qunit-fixture") });
 
@@ -87,7 +87,7 @@ $(function () {
             var e = $.Event("keyup");
             e.which = 13;
 
-            eventBus.on("searchRequested", function (q) {
+            eventBus.on("search:requested", function (q) {
                 ok(false, "should not have been raised!");
             });
 
@@ -102,7 +102,7 @@ $(function () {
 
             ok(!($("#search-failed-modal").is(":visible")), "should be hidden to start with");
 
-            eventBus.trigger("searchFailed");
+            eventBus.trigger("search:failed");
 
             ok($("#search-failed-modal").is(":visible"));
 
@@ -118,7 +118,7 @@ $(function () {
 
             ok(!($("#search-loader-spinner").is(":visible")), "should be hidden to start with");
 
-            eventBus.trigger("searchBegan");
+            eventBus.trigger("search:began");
 
             ok($("#search-loader-spinner").is(":visible"));
 
@@ -136,7 +136,7 @@ $(function () {
 
             ok(($("#search-loader-spinner").is(":visible")), "should be visible to start with");
 
-            eventBus.trigger("searchCompleted");
+            eventBus.trigger("search:completed");
 
             ok(!($("#search-loader-spinner").is(":visible")));
         });
@@ -153,7 +153,7 @@ $(function () {
             results.add(new SearchResult({ title: "test book" }));
             results.add(new SearchResult({ title: "test book 2" }));
 
-            eventBus.trigger("searchResultsArrived", results);
+            eventBus.trigger("search:resultsArrived", results);
 
             ok($("#test-search-results").is(":visible"), "should become visible");
             equal($("#test-search-results").children().length, 2);
@@ -242,7 +242,7 @@ $(function () {
             results.add(new SearchResult({ title: "test book 2" }));
             results.add(new SearchResult({ title: "test book 3" }));
 
-            eventBus.trigger("searchResultsArrived", results);
+            eventBus.trigger("search:resultsArrived", results);
 
             ok($("#test-search-results").is(":visible"), "should become visible");
             equal($("#test-search-results").children().length, 3, "should replace existing results");
@@ -256,7 +256,7 @@ $(function () {
 
             ok(!($("#test-search-results").is(":visible")), "should be hidden to start with");
 
-            eventBus.trigger("searchReturnedNoResults");
+            eventBus.trigger("search:returnedNoResults");
 
             ok($("#test-search-results").is(":visible"), "should become visible");
             ok($(".searchresult-no-results-available").is(":visible"));
@@ -277,7 +277,7 @@ $(function () {
 
             equal(el.children().length, 2, "started with 2 results");
 
-            eventBus.trigger("searchReturnedNoResults");
+            eventBus.trigger("search:returnedNoResults");
 
             ok(el.is(":visible"), "should become visible");
             ok($(".searchresult-no-results-available").is(":visible"));
@@ -286,29 +286,27 @@ $(function () {
 
         module("When clicking on a search result");
 
-        test("It should raise a search result selected event", 1, function () {
+        test("It should raise a search:resultSelected event", 1, function () {
             eventBus.reset();
 
             var el = $("#test-search-result");
             var model = new SearchResult({ title: "foo" });
             var view = new SearchResultView({ el: el, model: model });
 
-
-
-            eventBus.on("searchResultSelected", function (sr) {
+            eventBus.on("search:resultSelected", function (sr) {
                 equal(sr, model);
             });
 
             el.trigger("click");
         });
 
-        module("when a searchResultSelected event is raised");
+        module("when a search:resultSelected event is raised");
 
-        test("It should raise a search result selected event", 1, function () {
+        test("It should navigate to the new route", 1, function () {
             eventBus.reset();
             app.initialize();
             var model = new SearchResult({ id: "foo" });
-            eventBus.trigger("searchResultSelected", model);
+            eventBus.trigger("search:resultSelected", model);
 
             equal(window.location.hash, "#books/foo");
         });

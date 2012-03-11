@@ -30,8 +30,8 @@
                     e.stopPropagation();
                 });
 
-                eventBus.on("searchResultsArrived", this.onSearchResultsArrived, this);
-                eventBus.on("searchReturnedNoResults", this.onSearchReturnedNoResults, this);
+                eventBus.on("search:resultsArrived", this.onSearchResultsArrived, this);
+                eventBus.on("search:returnedNoResults", this.onSearchReturnedNoResults, this);
             },
 
             addResult: function (searchResult) {

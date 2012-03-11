@@ -21,9 +21,9 @@
 
             initialize: function () {
                 log.info("initializing router...");
-                eventBus.on("searchRequested", this.search, this);
-                eventBus.on("searchFailed", this.onSearchFailed, this);
-                eventBus.on("searchResultSelected", this.onSearchResultSelected, this);
+                eventBus.on("search:requested", this.search, this);
+                eventBus.on("search:failed", this.onSearchFailed, this);
+                eventBus.on("search:resultSelected", this.onSearchResultSelected, this);
                 this.menuBarView = new MenuBarView();
                 this.searchResultCollectionView = new SearchResultCollectionView();
                 this.router = new Router();
@@ -31,23 +31,23 @@
 
             search: function (query) {
                 log.info("Searching for " + query + "...");
-                eventBus.trigger("searchBegan", query);
+                eventBus.trigger("search:began", query);
 
                 new SearchResultCollection().fetch(
                     {
                         data: { q: query },
                         success: function (collection) {
-                            eventBus.trigger("searchCompleted");
+                            eventBus.trigger("search:completed");
                             if (collection.length === 0) {
-                                eventBus.trigger("searchReturnedNoResults");
+                                eventBus.trigger("search:returnedNoResults");
                             } else {
-                                eventBus.trigger("searchResultsArrived", collection);
+                                eventBus.trigger("search:resultsArrived", collection);
                             }
                         },
                         error: function () {
                             log.severe("Search failed!");
-                            eventBus.trigger("searchCompleted");
-                            eventBus.trigger("searchFailed");
+                            eventBus.trigger("search:completed");
+                            eventBus.trigger("search:failed");
                         }
                     }
                 );

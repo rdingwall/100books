@@ -16,8 +16,8 @@
 
             initialize: function () {
                 log.info("initializing menubarview...");
-                eventBus.on("searchBegan", this.onSearchBegan);
-                eventBus.on("searchCompleted", this.onSearchCompleted);
+                eventBus.on("search:began", this.onSearchBegan);
+                eventBus.on("search:completed", this.onSearchCompleted);
             },
 
             searchRequested: function (e) {
@@ -31,7 +31,7 @@
                     return;
                 }
 
-                eventBus.trigger("searchRequested", q);
+                eventBus.trigger("search:requested", q);
             },
 
             onSearchBegan: function () {
