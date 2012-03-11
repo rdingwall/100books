@@ -163,7 +163,7 @@ $(function () {
 
         module("when rendering a single search result");
 
-        test("it should be rendered", 2, function () {
+        asyncTest("it should be rendered", 2, function () {
 
             var el = $("#test-search-result"), view = new SearchResultView({
                 el: el[0],
@@ -176,8 +176,11 @@ $(function () {
             });
             view.render();
 
-            equal(el.find(".searchresult-title").text(), "Harry Potter");
-            equal(el.find("p.searchresult-authors").text(), "JK Rowling");
+            setTimeout(function () {
+                equal(el.find(".searchresult-title").text(), "Harry Potter");
+                equal(el.find("p.searchresult-authors").text(), "JK Rowling");
+                start();
+            }, 500);
         });
 
         module("when the search result box is open");
@@ -252,7 +255,7 @@ $(function () {
 
         module("when there are no search results available");
 
-        test("It should display a no search results message", 3, function () {
+        asyncTest("It should display a no search results message", 3, function () {
             eventBus.reset();
             var view = new SearchResultCollectionView({ el: $("#test-search-results") });
 
@@ -260,11 +263,14 @@ $(function () {
 
             eventBus.trigger("search:returnedNoResults");
 
-            ok($("#test-search-results").is(":visible"), "should become visible");
-            ok($(".searchresult-no-results-available").is(":visible"));
+            setTimeout(function () {
+                ok($("#test-search-results").is(":visible"), "should become visible");
+                ok($(".searchresult-no-results-available").is(":visible"));
+                start();
+            }, 500);
         });
 
-        test("It should replace any previous results", 6, function () {
+        asyncTest("It should replace any previous results", 6, function () {
             log.info("starting the test");
             eventBus.reset();
             var el = $("#test-search-results");
@@ -281,9 +287,12 @@ $(function () {
 
             eventBus.trigger("search:returnedNoResults");
 
-            ok(el.is(":visible"), "should become visible");
-            ok($(".searchresult-no-results-available").is(":visible"));
-            equal(el.children().length, 1, "should replace existing results");
+            setTimeout(function () {
+                ok(el.is(":visible"), "should become visible");
+                ok($(".searchresult-no-results-available").is(":visible"));
+                equal(el.children().length, 1, "should replace existing results");
+                start();
+            }, 500);
         });
 
         module("When clicking on a search result");
@@ -319,7 +328,7 @@ $(function () {
         });
 
         // This one fails when run with the other tests for some reason
-        test("It should raise a book:requested event (RUN SEPARATELY)", 1, function () {
+        asyncTest("It should raise a book:requested event (RUN SEPARATELY)", 1, function () {
             eventBus.reset();
             app.initialize();
             var model = new SearchResult({ id: "foo" });
@@ -329,6 +338,8 @@ $(function () {
             });
 
             eventBus.trigger("search:resultSelected", model);
+
+            setTimeout(start, 1000);
         });
 
         module("When a Book model has no thumbnail image");

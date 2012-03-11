@@ -18,6 +18,22 @@
 
         var log = $.jog("App");
 
+        var bookFragment = function (searchResult) {
+            var fragment = "books/" + searchResult.id;
+
+            var title = searchResult.get("title");
+            if (title) {
+                var titleSlug = (searchResult.get("title") || "")
+                    .replace(/[^\w\s]|_/g, "")
+                    .replace(/\s+/g, "-")
+                    .toLowerCase();
+
+                fragment += "/" + titleSlug;
+            }
+
+            return fragment;
+        };
+
         return {
 
             initialize: function () {
@@ -65,14 +81,7 @@
 
             onSearchResultSelected: function (searchResult) {
                 log.info("navigating to show book " + searchResult.id);
-
-                var titleSlug = (searchResult.get("title"))
-                    .replace(/[^\w\s]|_/g, "")
-                    .replace(/\s+/g, "-")
-                    .toLowerCase();
-
-                // this = that. Bit of a hack.
-                this.router.navigate("books/" + searchResult.id + "/" + titleSlug, { trigger: true });
+                this.router.navigate(bookFragment(searchResult), { trigger: true });
             }
         };
     }(

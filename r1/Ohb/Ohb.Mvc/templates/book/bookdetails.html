@@ -1,0 +1,18 @@
+﻿<div class="book-details row">
+    <div class="row span16">
+        <h1>{{ title }}</h1>
+        {{ authors }}
+    </div>
+    <div class="span3">
+        <img src="{{ thumbnailUrl }}" title="{{ title }}" alt="{{ title }}" />
+    </div>
+    <div class="span7">
+        <p>{{{ description }}}</p>
+    </div>
+    <div class="span2">
+        <input type="button" value="
+        {{#hasPreviouslyRead}}No I haven't{{/hasPreviouslyRead}}
+        {{^hasPreviouslyRead}}Yes I have{{/hasPreviouslyRead}}
+        " />
+    </div>
+</div>

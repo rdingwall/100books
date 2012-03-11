@@ -1,21 +1,10 @@
 ﻿var Ohb = window;
 
-var template = '<div class="row"> \
-    <div class="span2"> \
-    <img src="{{ smallThumbnailUrl }}" alt="{{ title }}" /> \
-    </div> \
-<div class="span8"> \
-    <h3 class="searchresult-title">{{ title }}</h3> \
-    <p class="searchresult-authors">{{ authors }}</p> \
-</div> \
-</div>';
-
 Ohb.SearchResultView = (function (
     Backbone,
     Mustache,
     $,
-    searchResultTemplate,
-    EventBus
+    eventBus
 ) {
     "use strict";
 
@@ -27,17 +16,18 @@ Ohb.SearchResultView = (function (
             "click": "select"
         },
 
-        //'lib/requires/text!/templates/searchresult/searchresult.html',
         render: function () {
-            $(this.el).html(Mustache.to_html(searchResultTemplate, this.model.toJSON()));
-            $(this.el).attr("id", "book-search-result-" + this.model.id);
+            $.get("/templates/searchResult/searchResult.html", "text",
+                _.bind(function (template) {
+                    $(this.el).html(Mustache.to_html(template, this.model.toJSON()));
+                    $(this.el).attr("id", "book-search-result-" + this.model.id);
+                }, this));
+
             return this;
         },
 
         select: function () {
-            //alert("you clicked me!");
-            EventBus.trigger("search:resultSelected", this.model);
+            eventBus.trigger("search:resultSelected", this.model);
         }
     });
-
-}(Backbone, Mustache, $, template, Ohb.eventBus));
+}(Backbone, Mustache, $, Ohb.eventBus));
