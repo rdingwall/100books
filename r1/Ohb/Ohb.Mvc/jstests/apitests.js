@@ -24,8 +24,12 @@ $(function () {
         $,
         Backbone,
         Book,
-        SearchResult
+        SearchResult,
+        eventBus,
+        app
     ) {
+
+        QUnit.config.testTimeout = 2000;
 
         var log = $.jog("ApiTests");
 
@@ -67,5 +71,21 @@ $(function () {
             eventBus.trigger("search:resultSelected", searchResult);
         });
 
-    }($, Backbone, Ohb.Book, Ohb.SearchResult));
+        module("when a search:resultSelected event is raised and the fetch fails");
+
+        asyncTest("It should fetch the book details and render them", 1, function () {
+
+            eventBus.reset();
+            app.initialize();
+            var searchResult = new SearchResult({ id: "xxxx-fake-id" });
+
+            eventBus.on("book:fetchError", function () {
+                ok($("div.book-details-error").is(":visible"));
+                start();
+            });
+
+            eventBus.trigger("search:resultSelected", searchResult);
+        });
+
+    }($, Backbone, Ohb.Book, Ohb.SearchResult, Ohb.eventBus, Ohb.app));
 });

@@ -10,8 +10,13 @@ $(function () {
         <p>{{ description }}</p>\
     </div>';
 
+    var fetchErrorTemplate = '<div class="book-details">\
+        <div class="book-details-error">We\'re sorry, there was an error loading this book.</div>\
+        </div>';
+
     Ohb.BookDetailsView = (function ($, Backbone, _, Mustache,
-                           eventBus, Book, bookDetailsTemplate) {
+                           eventBus, Book, bookDetailsTemplate,
+                           fetchErrorTemplate) {
 
         var log = $.jog("BookDetailsView");
 
@@ -26,7 +31,10 @@ $(function () {
             onResultSelected: function (searchResult) {
                 log.info("Fetching book from API...");
                 this.model = new Book({ id: searchResult.id });
-                this.model.fetch({ success: _.bind(this.render, this) });
+                this.model.fetch({
+                    success: _.bind(this.render, this),
+                    error: _.bind(this.onFetchError, this)
+                });
             },
 
             render: function () {
@@ -36,6 +44,12 @@ $(function () {
                 $(this.el).show();
                 eventBus.trigger("book:rendered", this.model);
                 return this;
+            },
+
+            onFetchError: function () {
+                log.warning("Error loading book");
+                $(this.el).html(fetchErrorTemplate);
+                eventBus.trigger("book:fetchError", this.model);
             }
         });
 
@@ -46,6 +60,7 @@ $(function () {
         Mustache,
         Ohb.eventBus,
         Ohb.Book,
-        template
+        template,
+        fetchErrorTemplate
     ));
 });
