@@ -7,7 +7,7 @@ $(function () {
     var template = '<div class="book-details"> \
         <h3>{{ title }}</h3> \
         <p>{{ authors }}</p> \
-        <p>{{ description }}</p>\
+        <p>{{{ description }}}</p>\
     </div>';
 
     var fetchErrorTemplate = '<div class="book-details">\
