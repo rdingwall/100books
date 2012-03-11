@@ -1,4 +1,4 @@
-﻿<div class="book-details row">
+﻿<div class="book-details row" xmlns="http://www.w3.org/1999/html">
     <div class="row span16">
         <h1>{{ title }}</h1>
         {{ authors }}{{#publishedYear}}, {{publishedYear}}{{/publishedYear}}
@@ -10,9 +10,11 @@
         <p>{{{ description }}}</p>
     </div>
     <div class="span2">
-        <input type="button" value="
-        {{#hasPreviouslyRead}}No I haven't{{/hasPreviouslyRead}}
-        {{^hasPreviouslyRead}}Yes I have{{/hasPreviouslyRead}}
-        " />
+        {{#hasPreviouslyRead}}
+            <a class="btn btn-success large"><i class="icon-ok icon-white"></i>You have read this book</a>
+        {{/hasPreviouslyRead}}
+        {{^hasPreviouslyRead}}
+            <a class="btn large"><i class="icon-remove"></i>You have not read this book</a>
+        {{/hasPreviouslyRead}}
     </div>
 </div>

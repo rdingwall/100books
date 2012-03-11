@@ -13,6 +13,10 @@ $(function () {
 
             el: "#content-main",
 
+            events: {
+                "click .statusToggleButton" : "toggleStatus"
+            },
+
             initialize: function () {
                 eventBus.on("book:requested", this.onBookRequested, this);
             },
@@ -47,6 +51,10 @@ $(function () {
                         $(this.el).html(template);
                         eventBus.trigger("book:fetchError");
                     }, this));
+            },
+
+            toggleStatus: function () {
+
             }
         });
 
