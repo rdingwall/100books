@@ -4,11 +4,26 @@ $(function () {
 
     var Ohb = window;
 
-    var template = '<div class="book-details"> \
-        <h3>{{ title }}</h3> \
-        <p>{{ authors }}</p> \
-        <p>{{{ description }}}</p>\
-    </div>';
+    var template = '<div class="book-details row"> \
+        <div class="row span16">\
+            <h1>{{ title }}</h1>\
+            {{ authors }}\
+        </div>\
+        <div class="span3"><img src="{{ thumbnailUrl }}" title="{{ title }}" alt="{{ title }}" /> </div>\
+        <div class="span7">\
+            <p>{{{ description }}}</p>\
+        </div>\
+        <div class="span2">\
+        <input type="button" value="\
+        {{#hasPreviouslyRead}}\
+        No I haven\'t\
+        {{/hasPreviouslyRead}}\
+        {{^hasPreviouslyRead}}\
+        Yes I have\
+        {{/hasPreviouslyRead}}\
+        " />\
+        </div>\
+     </div>';
 
     var fetchErrorTemplate = '<div class="book-details">\
         <div class="book-details-error">We\'re sorry, there was an error loading this book.</div>\
