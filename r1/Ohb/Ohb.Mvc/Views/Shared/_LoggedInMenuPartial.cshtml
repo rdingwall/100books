@@ -1,7 +1,7 @@
 ﻿@if (Facebook.Web.FacebookWebContext.Current.IsAuthenticated())
 {
     <ul class="nav">
-        <li><a href="/">Profile</a></li>
+        <li><a href="/">@ViewBag.Name</a></li>
     </ul>
     <form onsubmit="return false">
         <input class="input-xlarge" id="menubar-search-input" type="text" placeholder="Search to add books" />
