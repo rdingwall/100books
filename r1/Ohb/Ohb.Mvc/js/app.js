@@ -12,7 +12,8 @@
         eventBus,
         MenuBarView,
         SearchResultCollectionView,
-        SearchResultCollection
+        SearchResultCollection,
+        BookDetailsView
     ) {
 
         var log = $.jog("App");
@@ -24,8 +25,12 @@
                 eventBus.on("search:requested", this.search, this);
                 eventBus.on("search:failed", this.onSearchFailed, this);
                 eventBus.on("search:resultSelected", this.onSearchResultSelected, this);
+
+                // initialize singleton views
                 this.menuBarView = new MenuBarView();
                 this.searchResultCollectionView = new SearchResultCollectionView();
+                this.bookDetailsView = new BookDetailsView();
+
                 this.router = new Router();
             },
 
@@ -73,6 +78,7 @@
         Ohb.eventBus,
         Ohb.MenuBarView,
         Ohb.SearchResultCollectionView,
-        Ohb.SearchResultCollection
+        Ohb.SearchResultCollection,
+        Ohb.BookDetailsView
     ));
 });

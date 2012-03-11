@@ -23,7 +23,8 @@ $(function () {
     (function (
         $,
         Backbone,
-        Book
+        Book,
+        SearchResult
     ) {
 
         var log = $.jog("ApiTests");
@@ -48,7 +49,23 @@ $(function () {
                 equal(model.get("smallThumbnailUrl"), "http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=5&source=gbs_api");
                 start();
             }});
-
         });
-    }($, Backbone, Ohb.Book));
+
+        module("when a search:resultSelected event is raised");
+
+        asyncTest("It should fetch the book details and render them", 1, function () {
+
+            eventBus.reset();
+            app.initialize();
+            var searchResult = new SearchResult({ id: "4YydO00I9JYC" });
+
+            eventBus.on("book:rendered", function () {
+                equal($("div.book-details h3").text(), "The Google story");
+                start();
+            });
+
+            eventBus.trigger("search:resultSelected", searchResult);
+        });
+
+    }($, Backbone, Ohb.Book, Ohb.SearchResult));
 });
