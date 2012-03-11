@@ -327,6 +327,24 @@ $(function () {
             equal(window.location.hash, "#books/foo/harry-potters-amazing-adventure-2008");
         });
 
+        test("It should close the search results", 4, function () {
+            eventBus.reset();
+
+            var el = $("#test-search-results");
+            ok(!(el.is(":visible")), "should be hidden to start with");
+
+            var collectionView = new SearchResultCollectionView({ el: el[0] });
+            collectionView.render();
+
+            ok(el.is(":visible"), "should become visible");
+
+            eventBus.trigger("search:resultSelected", new SearchResult({}));
+
+            ok(!(el.is(":visible")), "should be hidden");
+
+            equal(collectionView.searchResultViews.length, 0, "should clear the items");
+        });
+
         // This one fails when run with the other tests for some reason
         asyncTest("It should raise a book:requested event (RUN SEPARATELY)", 1, function () {
             eventBus.reset();

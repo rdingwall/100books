@@ -16,8 +16,6 @@
             el: $('#search-results'),
 
             initialize: function () {
-                var that = this;
-
                 this.searchResultViews = [];
 
                 $("html").click("click", $.proxy(this.tryClose, this));
@@ -32,6 +30,7 @@
 
                 eventBus.on("search:resultsArrived", this.onSearchResultsArrived, this);
                 eventBus.on("search:returnedNoResults", this.onSearchReturnedNoResults, this);
+                eventBus.on("search:resultSelected", this.tryClose, this);
             },
 
             addResult: function (searchResult) {
