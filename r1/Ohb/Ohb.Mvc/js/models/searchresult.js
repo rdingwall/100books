@@ -11,11 +11,17 @@ Ohb.SearchResult = (function (Backbone) {
         }
     });
 
+    var placeholderImage = "img/search-result-no-cover.png",
+        getThumbnail = function (imageLinks) {
+            if (!imageLinks) {
+                return placeholderImage;
+            }
+            return imageLinks.smallThumbnail || placeholderImage;
+        };
+
     SearchResult.fromGoogle = function (volume) {
         var info = volume.volumeInfo,
             title = info.title,
-            imageLinks = info.imageLinks,
-            smallThumbnailUrl = imageLinks ? imageLinks.smallThumbnail : null,
             authors = info.authors ? info.authors.join(", ") : null;
 
         if (info.subtitle) {
@@ -25,7 +31,7 @@ Ohb.SearchResult = (function (Backbone) {
         return new SearchResult({
             title: title,
             authors: authors,
-            smallThumbnailUrl: smallThumbnailUrl,
+            smallThumbnailUrl: getThumbnail(info.imageLinks),
             id: volume.id
         });
     };

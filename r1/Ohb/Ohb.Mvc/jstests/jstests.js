@@ -342,16 +342,12 @@ $(function () {
             setTimeout(start, 1000);
         });
 
-        module("When a Book model has no thumbnail image");
+        module("When a Search result has no thumbnail image");
 
-        test("It should use the default placeholder thumbnail image in search results", 1, function () {
-            var model = new Book({});
-            equal(model.getSearchResultThumbnail(), "img/search-result-no-cover.png");
-        });
-
-        test("It should use the default placeholder thumbnail image on the book page", 1, function () {
-            var model = new Book({});
-            equal(model.getBookThumbnail(), "img/book-no-cover.png");
+        test("It should use the default placeholder thumbnail image", 1, function () {
+            var model = { volumeInfo: { } };
+            var searchResult = SearchResult.fromGoogle(model);
+            equal(searchResult.get("smallThumbnailUrl"), "img/search-result-no-cover.png");
         });
 
         module("When a Book model has thumbnails");
