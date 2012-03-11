@@ -1,7 +1,7 @@
 ﻿<div class="book-details row">
     <div class="row span16">
         <h1>{{ title }}</h1>
-        {{ authors }}
+        {{ authors }}{{#publishedYear}}, {{publishedYear}}{{/publishedYear}}
     </div>
     <div class="span3">
         <img src="{{ thumbnailUrl }}" title="{{ title }}" alt="{{ title }}" />
