@@ -45,7 +45,7 @@ $(function () {
         _,
         Mustache,
         Ohb.eventBus,
-        Book,
+        Ohb.Book,
         template
     ));
 });
