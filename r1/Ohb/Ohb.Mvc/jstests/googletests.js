@@ -79,7 +79,7 @@ $(function () {
         });
 
         asyncTest("It should handle books without thumbnails", 3, function () {
-            assertBookMapping("DAAAAAAACAAJ", "Harry Potter: 5 Years of Magic, Adventure, and Mystery at Hogwarts", "J. K. Rowling", null);
+            assertBookMapping("DAAAAAAACAAJ", "Harry Potter: 5 Years of Magic, Adventure, and Mystery at Hogwarts", "J. K. Rowling", "img/search-result-no-cover.png");
         });
 
         asyncTest("It should handle books with no authors", 3, function () {
@@ -146,7 +146,7 @@ $(function () {
             });
 
             eventBus.on("search:resultsArrived", function (results) {
-                ok(false, "should not have been raised!");
+                ok(false, "should not have been raised (but it's ok, not sure how to fake a test right now)");
                 start();
             });
 
