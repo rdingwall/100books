@@ -200,7 +200,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
 
         public RestResponse<ProfileModel> GetProfile(string userId)
         {
-            throw new NotImplementedException();
+            var request = new RestRequest("profiles/" + userId);
+            return Log(client.Execute<ProfileModel>(request));
         }
     }
 }

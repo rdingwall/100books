@@ -77,7 +77,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
 
         public class when_no_book_id_is_provided
         {
-            It should_return_http_404_not_found =
+            It should_return_http_400_bad_request =
                 () => new ApiClient().AssertReturns(Method.GET, "books/", HttpStatusCode.BadRequest);
         }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using Ohb.Mvc.Startup;
 using Raven.Client;
 using Raven.Client.Document;
 
@@ -76,6 +77,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests
                                 Url = "http://localhost:8080",
                                 DefaultDatabase = databaseName
                             };
+            new RavenDbConventions().Apply(store);
             store.Initialize();
             return store;
         }

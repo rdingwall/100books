@@ -63,6 +63,14 @@ namespace Ohb.Mvc
                                                   volumeIds = RouteParameter.Optional
                                               });
 
+            routes.MapHttpRoute("ProfilesApi",
+                                routeTemplate: "api/v1/profiles/{id}", // URL with parameters
+                                defaults: new
+                                              {
+                                                  controller = "Profiles",
+                                                  id = RouteParameter.Optional
+                                              });
+
             routes.MapHttpRoute("VolumeIdBasedApi",
                                 routeTemplate: "api/v1/{controller}/{volumeId}",
                                 defaults: new { volumeId = RouteParameter.Optional });

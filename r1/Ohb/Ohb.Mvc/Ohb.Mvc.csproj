@@ -170,11 +170,15 @@
     <Compile Include="Api\Controllers\BookStatusesController.cs" />
     <Compile Include="Api\Controllers\OhbApiController.cs" />
     <Compile Include="Api\Controllers\PreviousReadsController.cs" />
+    <Compile Include="Api\Controllers\ProfilesController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Api\JsonCamelCaseFormatter.cs" />
     <Compile Include="Api\Models\BookModel.cs" />
     <Compile Include="Api\Models\ApiModelMapper.cs" />
     <Compile Include="Api\Models\ProfileModel.cs" />
     <Compile Include="AuthCookies\AuthCookieCache.cs" />
+    <Compile Include="Startup\RavenDbConventions.cs" />
     <Compile Include="Storage\Books\ConvertGoogleVolumeId.cs" />
     <Compile Include="Storage\PreviousReads\PreviousReadWithBook.cs" />
     <Compile Include="Storage\PreviousReads\PreviousReadsWithBook.cs" />

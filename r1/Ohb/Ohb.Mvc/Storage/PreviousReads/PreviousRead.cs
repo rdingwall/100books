@@ -15,7 +15,7 @@ namespace Ohb.Mvc.Storage.PreviousReads
         public static string MakeId(string userId, string googleVolumeId)
         {
             var base64 = ConvertGoogleVolumeId.ToBase64String(googleVolumeId);
-            return string.Concat("PreviousReads/", userId, "-", base64);
+            return string.Concat("PreviousReads-", userId, "-", base64);
         }
     }
 }

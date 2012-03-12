@@ -42,7 +42,8 @@ namespace Ohb.Mvc.Startup
 
         static DocumentStore GetDocumentStore()
         {
-            var store = new DocumentStore { ConnectionStringName = "RavenDB" };
+            var store = new DocumentStore { ConnectionStringName = "RavenDB" };            
+            new RavenDbConventions().Apply(store);
             store.Initialize();
             IndexCreation.CreateIndexes(Assembly.GetExecutingAssembly(), store);
             return store;

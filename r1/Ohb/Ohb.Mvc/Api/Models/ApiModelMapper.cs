@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Ohb.Mvc.Storage.Books;
 using Ohb.Mvc.Storage.PreviousReads;
+using Ohb.Mvc.Storage.Users;
 
 namespace Ohb.Mvc.Api.Models
 {
@@ -8,6 +11,7 @@ namespace Ohb.Mvc.Api.Models
     {
         PreviousReadModel ToPreviousRead(PreviousReadWithBook pair);
         BookModel ToBook(Book book);
+        ProfileModel ToProfile(User user, IEnumerable<PreviousReadWithBook> previousReads);
     }
 
     public class ApiModelMapper : IApiModelMapper
@@ -24,6 +28,20 @@ namespace Ohb.Mvc.Api.Models
         public BookModel ToBook(Book book)
         {
             return ToBookBase<BookModel>(book);
+        }
+
+        public ProfileModel ToProfile(User user, IEnumerable<PreviousReadWithBook> previousReads)
+        {
+            if (user == null) throw new ArgumentNullException("user");
+            if (previousReads == null) throw new ArgumentNullException("previousReads");
+
+            return new ProfileModel
+            {
+                RecentReads = previousReads.Select(ToPreviousRead).ToList(),
+                Id = user.Id,
+                ImageUrl = user.ProfilePictureUrl,
+                Name = user.Name
+            };
         }
 
         static T ToBookBase<T>(Book book) where T : BookModel, new()
