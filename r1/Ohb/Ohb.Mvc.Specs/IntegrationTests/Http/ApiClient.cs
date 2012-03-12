@@ -5,6 +5,7 @@ using System.Text;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.AuthCookies;
+using Ohb.Mvc.Storage.Users;
 using RestSharp;
 using RestSharp.Deserializers;
 
@@ -34,6 +35,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 }
             }
         }
+
+        public User User { get; set; }
 
         public ApiClient()
         {
@@ -193,6 +196,11 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             Authorize(request);
 
             return Log(client.Execute(request));
+        }
+
+        public RestResponse<ProfileModel> GetProfile(string userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

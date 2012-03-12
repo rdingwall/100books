@@ -28,30 +28,7 @@ namespace Ohb.Mvc.Api.Controllers
                     throw new HttpResponseException("Book not found (bad Google Book Volume ID?)",
                                                     HttpStatusCode.NotFound);
 
-            var result = new BookModel
-                             {
-                                 Id = book.GoogleVolumeId,
-                                 Authors = String.Join(", ", book.GoogleVolume.VolumeInfo.Authors),
-                                 Description = book.GoogleVolume.VolumeInfo.Description,
-                                 PageCount = book.GoogleVolume.VolumeInfo.PageCount,
-                                 Publisher = book.GoogleVolume.VolumeInfo.Publisher,
-                                 SmallThumbnailUrl = book.GoogleVolume.VolumeInfo.ImageLinks.SmallThumbnail,
-                                 ThumbnailUrl = book.GoogleVolume.VolumeInfo.ImageLinks.Thumbnail,
-                                 Title = book.GoogleVolume.VolumeInfo.Title
-                             };
-
-            if (!String.IsNullOrWhiteSpace(book.GoogleVolume.VolumeInfo.PublishedDate))
-                result.PublishedYear = book.GoogleVolume.VolumeInfo.PublishedDate.Substring(0, 4);
-
-            if (!String.IsNullOrWhiteSpace(book.GoogleVolume.VolumeInfo.SubTitle))
-                result.Title = String.Concat(result.Title, ": ", book.GoogleVolume.VolumeInfo.SubTitle);
-
-            // todo: clean this up
-            if (String.IsNullOrEmpty(result.ThumbnailUrl))
-                result.ThumbnailUrl = "img/book-no-cover.png";
-
-            if (String.IsNullOrWhiteSpace(result.SmallThumbnailUrl))
-                result.SmallThumbnailUrl = "img/search-result-no-cover.png";
+            var result = BookModel.FromBook(book);
 
             if (User != null)
             {

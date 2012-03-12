@@ -29,8 +29,13 @@ namespace Ohb.Mvc.Api.Controllers
                 .Where(p => p.UserId == User.Id)
                 .OrderByDescending(p => p.MarkedByUserAt)
                 .Take(100)
-                .As<PreviousReadModel>()
-                .ToList();
+                .As<PreviousReadWithBook>()
+                .ToList()
+                .Select(p => new PreviousReadModel
+                                 {
+                                     Book = BookModel.FromBook(p.Book),
+                                     MarkedByUserAt = p.MarkedByUserAt
+                                 });
         }
 
         [RequiresAuthCookie]

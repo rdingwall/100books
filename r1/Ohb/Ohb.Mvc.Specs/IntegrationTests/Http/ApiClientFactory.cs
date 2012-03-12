@@ -53,7 +53,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             Console.WriteLine("user id: {0} name: {1}", user.Id, user.Name);
             Console.WriteLine("auth cookie: {0} (expires {1})", cookie.Value, cookie.Expires);
 
-            return new ApiClient {AuthCookie = cookie.Value};
+            return new ApiClient {AuthCookie = cookie.Value, User = user};
         }
 
         public static ApiClient Anonymous()
