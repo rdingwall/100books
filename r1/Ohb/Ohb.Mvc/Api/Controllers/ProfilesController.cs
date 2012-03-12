@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Web.Http;
+using Ohb.Mvc.Api.ActionFilters;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage.PreviousReads;
 using Ohb.Mvc.Storage.Users;
@@ -34,6 +35,12 @@ namespace Ohb.Mvc.Api.Controllers
             var previousReads = recentReads.Get(DocumentSession, id);
 
             return mapper.ToProfile(user, previousReads);
+        }
+
+        [RequiresAuthCookie]
+        public ProfileModel GetMe()
+        {
+            return Get(User.Id);
         }
     }
 }

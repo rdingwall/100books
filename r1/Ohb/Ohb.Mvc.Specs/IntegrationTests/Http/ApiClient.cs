@@ -203,5 +203,12 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             var request = new RestRequest("profiles/" + userId);
             return Log(client.Execute<ProfileModel>(request));
         }
+
+        public RestResponse<ProfileModel> GetMyProfile()
+        {
+            var request = new RestRequest("profiles/me");
+            Authorize(request);
+            return Log(client.Execute<ProfileModel>(request));
+        }
     }
 }
