@@ -3,11 +3,13 @@
     <ul class="nav">
         <li><a href="/">@ViewBag.Name</a></li>
     </ul>
-    <form onsubmit="return false">
-        <input class="input-xlarge" id="menubar-search-input" type="text" placeholder="Search to add books" />
+    
+    <form class="navbar-search" onsubmit="return false">
+        <input class="search-query span3" id="menubar-search-input" type="text" placeholder="Search to add books" />
         <img id="search-loader-spinner" class="hide" src="@Url.Content("~/img/menubar/ajax-loader.gif")" />
     </form>
-    <ul class="nav secondary-nav">
+    
+    <ul class="nav pull-right">
         <li>@Html.ActionLink("Sign Out", "LogOut", "Profile")</li>
     </ul>
 }
