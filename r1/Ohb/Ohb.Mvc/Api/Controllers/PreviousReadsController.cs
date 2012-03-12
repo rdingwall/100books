@@ -7,7 +7,6 @@ using Ohb.Mvc.Api.ActionFilters;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage.Books;
 using Ohb.Mvc.Storage.PreviousReads;
-using Raven.Client.Linq;
 
 namespace Ohb.Mvc.Api.Controllers
 {
@@ -15,26 +14,25 @@ namespace Ohb.Mvc.Api.Controllers
     {
         readonly IBookImporter importer;
         readonly IApiModelMapper mapper;
+        readonly IRecentReadsQuery recentReads;
 
-        public PreviousReadsController(IBookImporter importer, IApiModelMapper mapper)
+        public PreviousReadsController(IBookImporter importer, 
+            IApiModelMapper mapper, IRecentReadsQuery recentReads)
         {
             if (importer == null) throw new ArgumentNullException("importer");
             if (mapper == null) throw new ArgumentNullException("mapper");
+            if (recentReads == null) throw new ArgumentNullException("recentReads");
             this.importer = importer;
             this.mapper = mapper;
+            this.recentReads = recentReads;
         }
 
         [RequiresAuthCookie]
         public IEnumerable<PreviousReadModel> Get()
         {
-            return DocumentSession
-                .Query<PreviousRead, PreviousReadsWithBook>()
-                .Where(p => p.UserId == User.Id)
-                .OrderByDescending(p => p.MarkedByUserAt)
-                .Take(100)
-                .As<PreviousReadWithBook>()
-                .ToList()
-                .Select(mapper.ToPreviousRead);
+            var reads = recentReads.Get(DocumentSession, User.Id);
+            
+            return reads.Select(mapper.ToPreviousRead);
         }
 
         [RequiresAuthCookie]

@@ -12,11 +12,14 @@ namespace Ohb.Mvc.Api.Controllers
     public class ProfilesController : OhbApiController
     {
         readonly IApiModelMapper mapper;
+        readonly IRecentReadsQuery recentReads;
 
-        public ProfilesController(IApiModelMapper mapper)
+        public ProfilesController(IApiModelMapper mapper, IRecentReadsQuery recentReads)
         {
             if (mapper == null) throw new ArgumentNullException("mapper");
+            if (recentReads == null) throw new ArgumentNullException("recentReads");
             this.mapper = mapper;
+            this.recentReads = recentReads;
         }
 
         public ProfileModel Get(string id)
@@ -25,18 +28,10 @@ namespace Ohb.Mvc.Api.Controllers
                 throw new HttpResponseException("Missing parameter: 'id' (User ID)", HttpStatusCode.BadRequest);
 
             var user = DocumentSession.Load<User>(id);
-
             if (user == null)
                 throw new HttpResponseException("User not found (bad user ID?)", HttpStatusCode.NotFound);
 
-            // Todo extract this into a query object
-            var previousReads = DocumentSession
-                .Query<PreviousRead, PreviousReadsWithBook>()
-                .Where(p => p.UserId == id)
-                .OrderByDescending(p => p.MarkedByUserAt)
-                .Take(100)
-                .As<PreviousReadWithBook>()
-                .ToList();
+            var previousReads = recentReads.Get(DocumentSession, id);
 
             return mapper.ToProfile(user, previousReads);
         }

@@ -210,6 +210,7 @@
     <Compile Include="ActionFilters\RavenDbAttribute.cs" />
     <Compile Include="Google\IgnoreList.cs" />
     <Compile Include="Storage\Books\BookRepository.cs" />
+    <Compile Include="Storage\PreviousReads\RecentReadsQuery.cs" />
     <Compile Include="Storage\RavenUniqueInserter.cs" />
     <Compile Include="Storage\UniqueConstraint.cs" />
     <Compile Include="Storage\Users\FacebookId.cs" />

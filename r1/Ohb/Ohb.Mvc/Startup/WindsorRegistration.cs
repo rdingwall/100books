@@ -7,6 +7,7 @@ using Ohb.Mvc.AuthCookies;
 using Ohb.Mvc.Google;
 using Ohb.Mvc.Storage;
 using Ohb.Mvc.Storage.Books;
+using Ohb.Mvc.Storage.PreviousReads;
 using Ohb.Mvc.Storage.Users;
 using Raven.Client;
 using Raven.Client.Document;
@@ -21,6 +22,7 @@ namespace Ohb.Mvc.Startup
             container.Register(
                 Component.For<IUserFactory>().ImplementedBy<UserFactory>(),
                 Component.For<IRavenUniqueInserter>().ImplementedBy<RavenUniqueInserter>(),
+                Component.For<IRecentReadsQuery>().ImplementedBy<RecentReadsQuery>(),
                 Component.For<IUserRepository>().ImplementedBy<UserRepository>(),
                 Component.For<IBookRepository>().ImplementedBy<BookRepository>(),
                 Component.For<IBookImporter>().ImplementedBy<BookImporter>(),
