@@ -1,6 +1,6 @@
 var Ohb = window;
 
-Ohb.Book = (function (Backbone) {
+Ohb.Book = (function (Backbone, eventBus) {
     "use strict";
 
     return Backbone.Model.extend({
@@ -19,15 +19,28 @@ Ohb.Book = (function (Backbone) {
         thumbnailUrl: null,
         smallThumbnailUrl: null,
 
-        getSearchResultThumbnail: function() {
+        initialize: function () {
+            this.on("change:hasPreviouslyRead", this.notifyStatusChange, this);
+        },
+
+        toggleStatus: function () {
+            var previousStatus = this.get("hasPreviouslyRead");
+            this.set({ hasPreviouslyRead: !previousStatus });
+        },
+
+        notifyStatusChange: function () {
+            eventBus.trigger("book:statusChanged", this);
+        },
+
+        getSearchResultThumbnail: function () {
             return this.get("smallThumbnailUrl")
                 || "img/search-result-no-cover.png";
         },
 
-        getBookThumbnail: function() {
+        getBookThumbnail: function () {
             return this.get("thumbnailUrl")
                 || "img/book-no-cover.png";
         }
     });
 
-}(Backbone));
+}(Backbone, Ohb.eventBus));

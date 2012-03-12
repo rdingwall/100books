@@ -33,7 +33,8 @@ $(function () {
         SearchResult,
         Book,
         SearchResultCollection,
-        SearchResultCollectionView
+        SearchResultCollectionView,
+        BookDetailsView
     ) {
 
         QUnit.config.testTimeout = 2000;
@@ -379,6 +380,44 @@ $(function () {
             var model = new Book({ thumbnailUrl: "test" });
             equal(model.getBookThumbnail(), "test");
         });
+
+        module("When clicking the button to toggle a book's status");
+
+        asyncTest("It should change the book's hasPreviouslyRead attr to true", 1, function () {
+            var model  = new Book({ thumbnailUrl: "/img/book-no-cover.png" });
+            app.bookDetailsView.model = model;
+            app.bookDetailsView.render();
+
+            setTimeout(function () {
+                $(".status-toggle-button").trigger("click");
+                ok(model.get("hasPreviouslyRead"));
+                start();
+            }, 1000);
+        });
+
+        module("When toggling a book's status");
+
+        test("It should change the book's hasPreviouslyRead", 2, function () {
+            eventBus.reset();
+            var model = new Book({ thumbnailUrl: "test" });
+            model.toggleStatus();
+            ok(model.get("hasPreviouslyRead"), "set to true");
+            model.toggleStatus();
+            ok(!model.get("hasPreviouslyRead"), "set to false");
+        });
+
+        asyncTest("It should raise a book:statusChanged event", 1, function () {
+            eventBus.reset();
+            var model = new Book({ thumbnailUrl: "test" });
+
+            eventBus.on("book:statusChanged", function (m) {
+                equal(m, model);
+                start();
+            });
+
+            model.toggleStatus();
+        });
+
     }(
         Ohb.app,
         Ohb.Router,
@@ -391,6 +430,7 @@ $(function () {
         Ohb.SearchResult,
         Ohb.Book,
         Ohb.SearchResultCollection,
-        Ohb.SearchResultCollectionView
+        Ohb.SearchResultCollectionView,
+        Ohb.BookDetailsView
     ));
 });

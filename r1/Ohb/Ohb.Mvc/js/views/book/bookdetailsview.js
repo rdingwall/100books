@@ -55,7 +55,7 @@ $(function () {
 
             toggleStatus: function (event) {
                 event.preventDefault();
-                alert("toggling status!");
+                this.model.toggleStatus();
             }
         });
 
