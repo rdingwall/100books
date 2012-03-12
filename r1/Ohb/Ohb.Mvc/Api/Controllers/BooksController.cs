@@ -10,11 +10,14 @@ namespace Ohb.Mvc.Api.Controllers
     public class BooksController : OhbApiController
     {
         readonly IBookImporter importer;
+        readonly IApiModelMapper mapper;
 
-        public BooksController(IBookImporter importer)
+        public BooksController(IBookImporter importer, IApiModelMapper mapper)
         {
             if (importer == null) throw new ArgumentNullException("importer");
+            if (mapper == null) throw new ArgumentNullException("mapper");
             this.importer = importer;
+            this.mapper = mapper;
         }
 
         public BookModel Get(string volumeId)
@@ -28,7 +31,7 @@ namespace Ohb.Mvc.Api.Controllers
                     throw new HttpResponseException("Book not found (bad Google Book Volume ID?)",
                                                     HttpStatusCode.NotFound);
 
-            var result = BookModel.FromBook(book);
+            var result = mapper.ToBook(book);
 
             if (User != null)
             {

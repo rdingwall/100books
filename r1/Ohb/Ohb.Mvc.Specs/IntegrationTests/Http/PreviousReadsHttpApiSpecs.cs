@@ -58,10 +58,10 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                     () => results.Data.Count.ShouldEqual(1);
 
                 It should_contain_the_book_in_the_previous_reads_list =
-                    () => results.Data.FirstOrDefault().Book.Id.ShouldEqual("4YydO00I9JYC");
+                    () => results.Data.FirstOrDefault().Id.ShouldEqual("4YydO00I9JYC");
 
                 It should_contain_the_full_book_details_in_the_previous_reads_list =
-                    () => results.Data.FirstOrDefault().Book.Title.ShouldEqual("The Google story");
+                    () => results.Data.FirstOrDefault().Title.ShouldEqual("The Google story");
 
                 It should_contain_the_marked_read_at_timestamp =
                     () =>
@@ -150,7 +150,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                     () => response.Data.Count.ShouldEqual(4);
 
                 It should_return_the_latest_read_books_first =
-                    () => String.Join(",", response.Data.Select(p => p.Book.Id))
+                    () => String.Join(",", response.Data.Select(p => p.Id))
                               .ShouldEqual("4YydO00I9JYC,KOWFacYRlXoC,lAIJAAAAIAAJ,N0EEAAAAMBAJ");
 
                 static RestResponse<List<PreviousReadModel>> response;
@@ -184,7 +184,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                     () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
 
                 It should_then_exclude_that_book_from_the_previous_reads_list =
-                    () => api.GetPreviousReads().Data.Select(p => p.Book.Id)
+                    () => api.GetPreviousReads().Data.Select(p => p.Id)
                               .ShouldNotContain("N0EEAAAAMBAJ");
 
                 static ApiClient api;

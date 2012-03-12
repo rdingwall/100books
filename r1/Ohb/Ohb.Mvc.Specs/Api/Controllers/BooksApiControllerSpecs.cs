@@ -25,7 +25,7 @@ namespace Ohb.Mvc.Specs.Api.Controllers
                     documentSession = MockRepository.GenerateStub<IDocumentSession>();
                     book = new Book { GoogleVolumeId = "testId", GoogleVolume = new GoogleVolume() };
 
-                    controller = new BooksController(importer)
+                    controller = new BooksController(importer, new ApiModelMapper())
                                      {
                                          DocumentSession = documentSession
                                      };

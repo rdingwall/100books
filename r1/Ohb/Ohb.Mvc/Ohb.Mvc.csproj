@@ -172,6 +172,7 @@
     <Compile Include="Api\Controllers\PreviousReadsController.cs" />
     <Compile Include="Api\JsonCamelCaseFormatter.cs" />
     <Compile Include="Api\Models\BookModel.cs" />
+    <Compile Include="Api\Models\ApiModelMapper.cs" />
     <Compile Include="Api\Models\ProfileModel.cs" />
     <Compile Include="AuthCookies\AuthCookieCache.cs" />
     <Compile Include="Storage\Books\ConvertGoogleVolumeId.cs" />

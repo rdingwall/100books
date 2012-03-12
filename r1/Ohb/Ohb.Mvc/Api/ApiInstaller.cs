@@ -4,6 +4,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using Ohb.Mvc.Api.ActionFilters;
 using Ohb.Mvc.Api.Controllers;
+using Ohb.Mvc.Api.Models;
 
 namespace Ohb.Mvc.Api
 {
@@ -13,7 +14,8 @@ namespace Ohb.Mvc.Api
         {
             container.Register(
                 Component.For<GoogleAnalyticsTrackerApiAttribute>()
-                .DependsOn(new { trackingId = "UA-29788114-1" }),
+                    .DependsOn(new {trackingId = "UA-29788114-1"}),
+                Component.For<IApiModelMapper>().ImplementedBy<ApiModelMapper>(),
                 AllTypes.FromThisAssembly().BasedOn<FilterAttribute>());
 
             container.Register(

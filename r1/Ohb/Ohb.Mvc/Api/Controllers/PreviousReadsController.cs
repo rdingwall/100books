@@ -14,11 +14,14 @@ namespace Ohb.Mvc.Api.Controllers
     public class PreviousReadsController : OhbApiController
     {
         readonly IBookImporter importer;
+        readonly IApiModelMapper mapper;
 
-        public PreviousReadsController(IBookImporter importer)
+        public PreviousReadsController(IBookImporter importer, IApiModelMapper mapper)
         {
             if (importer == null) throw new ArgumentNullException("importer");
+            if (mapper == null) throw new ArgumentNullException("mapper");
             this.importer = importer;
+            this.mapper = mapper;
         }
 
         [RequiresAuthCookie]
@@ -31,11 +34,7 @@ namespace Ohb.Mvc.Api.Controllers
                 .Take(100)
                 .As<PreviousReadWithBook>()
                 .ToList()
-                .Select(p => new PreviousReadModel
-                                 {
-                                     Book = BookModel.FromBook(p.Book),
-                                     MarkedByUserAt = p.MarkedByUserAt
-                                 });
+                .Select(mapper.ToPreviousRead);
         }
 
         [RequiresAuthCookie]
