@@ -14,7 +14,7 @@ $(function () {
             el: "#content-main",
 
             events: {
-                "click .statusToggleButton" : "toggleStatus"
+                "click .status-toggle-button" : "toggleStatus"
             },
 
             initialize: function () {
@@ -53,8 +53,9 @@ $(function () {
                     }, this));
             },
 
-            toggleStatus: function () {
-
+            toggleStatus: function (event) {
+                event.preventDefault();
+                alert("toggling status!");
             }
         });
 
