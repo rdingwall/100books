@@ -50,7 +50,7 @@ $(function () {
                 $.get("/templates/book/bookdetails.html", "text",
                     _.bind(function (template) {
                         var el = $(Mustache.to_html(template, this.model.toJSON()));
-                        this.renderStatusButtonPartial(el);
+                        this.updateToggleButton(el);
                         $(this.el).html(el);
                         $(this.el).show();
                         eventBus.trigger("book:rendered", this.model);
@@ -60,20 +60,17 @@ $(function () {
             },
 
             onModelStatusChanged: function () {
-                this.renderStatusButtonPartial($(this.el));
+                this.updateToggleButton($(this.el));
             },
 
-            renderStatusButtonPartial: function (el) {
-
-                var newButton;
+            updateToggleButton: function (el) {
                 if (this.model.get("hasPreviouslyRead")) {
-                    newButton = $("<a class='status-toggle-button btn btn-success large'><i class='icon-ok icon-white'></i>You have read this book</a>");
-
+                    $(el).find("#book-add-previousread-button").hide();
+                    $(el).find("#book-remove-previousread-button").css("display", "block");
                 } else {
-                    newButton = $("<a class='status-toggle-button btn large'><i class='icon-remove'></i>You have not read this book</a>");
+                    $(el).find("#book-remove-previousread-button").hide();
+                    $(el).find("#book-add-previousread-button").css("display", "block");
                 }
-
-                $(el).find(".status-toggle-region").html(newButton);
             },
 
             onFetchError: function () {
