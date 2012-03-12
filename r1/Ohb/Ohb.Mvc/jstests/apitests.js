@@ -99,5 +99,61 @@ $(function () {
             window.location.hash = "books/4YydO00I9JYC/test-slug";
         });
 
+        module("When a previousread:addRequested event is raised");
+
+        asyncTest("It should raise a previousread:added event", 1, function () {
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("previousread:added", function (id) {
+                equal(id, "4YydO00I9JYC");
+                start();
+            });
+
+            eventBus.trigger("previousread:addRequested", "4YydO00I9JYC");
+        });
+
+        asyncTest("It should mark the book as read via the API", 1, function () {
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("previousread:added", function () {
+                $.getJSON("/api/v1/books/4YydO00I9JYC", function (data) {
+                    ok(data.hasPreviouslyRead);
+                    start();
+                });
+            });
+
+            eventBus.trigger("previousread:addRequested", "4YydO00I9JYC");
+        });
+
+        module("When a previousread:removeRequested event is raised");
+
+        asyncTest("It should raise a previousread:removed event", 1, function () {
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("previousread:removed", function (id) {
+                equal(id, "4YydO00I9JYC");
+                start();
+            });
+
+            eventBus.trigger("previousread:removeRequested", "4YydO00I9JYC");
+        });
+
+        asyncTest("It should mark the book as unread via the API", 1, function () {
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("previousread:removed", function () {
+                $.getJSON("/api/v1/books/4YydO00I9JYC", function (data) {
+                    ok(!data.hasPreviouslyRead);
+                    start();
+                });
+            });
+
+            eventBus.trigger("previousread:removeRequested", "4YydO00I9JYC");
+        });
+
     }($, Backbone, Ohb.Book, Ohb.SearchResult, Ohb.eventBus, Ohb.app));
 });
