@@ -395,7 +395,7 @@ $(function () {
             }, 1000);
         });
 
-        module("When toggling a book's status");
+        module("When toggling an unread book's status");
 
         test("It should change the book's hasPreviouslyRead", 2, function () {
             eventBus.reset();
@@ -406,12 +406,26 @@ $(function () {
             ok(!model.get("hasPreviouslyRead"), "set to false");
         });
 
-        asyncTest("It should raise a book:statusChanged event", 1, function () {
+        asyncTest("It should raise a previousread:addRequested event", 1, function () {
             eventBus.reset();
-            var model = new Book({ thumbnailUrl: "test" });
+            var model = new Book({ id: "test" });
 
-            eventBus.on("book:statusChanged", function (m) {
-                equal(m, model);
+            eventBus.on("previousread:addRequested", function (id) {
+                equal(id, model.id);
+                start();
+            });
+
+            model.toggleStatus();
+        });
+
+        module("When toggling a previously-read book's status");
+
+        asyncTest("It should raise a previousread:removeRequested event", 1, function () {
+            eventBus.reset();
+            var model = new Book({ id: "test", hasPreviouslyRead: true });
+
+            eventBus.on("previousread:removeRequested", function (id) {
+                equal(id, model.id);
                 start();
             });
 

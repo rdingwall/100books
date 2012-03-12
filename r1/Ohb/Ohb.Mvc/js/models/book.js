@@ -19,17 +19,15 @@ Ohb.Book = (function (Backbone, eventBus) {
         thumbnailUrl: null,
         smallThumbnailUrl: null,
 
-        initialize: function () {
-            this.on("change:hasPreviouslyRead", this.notifyStatusChange, this);
-        },
-
         toggleStatus: function () {
-            var previousStatus = this.get("hasPreviouslyRead");
-            this.set({ hasPreviouslyRead: !previousStatus });
-        },
+            var previouslyRead = this.get("hasPreviouslyRead");
+            this.set({ hasPreviouslyRead: !previouslyRead });
 
-        notifyStatusChange: function () {
-            eventBus.trigger("book:statusChanged", this);
+            var event = previouslyRead ?
+                    "previousread:removeRequested" :
+                    "previousread:addRequested";
+
+            eventBus.trigger(event, this.id);
         },
 
         getSearchResultThumbnail: function () {
