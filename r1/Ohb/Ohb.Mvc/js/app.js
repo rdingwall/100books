@@ -18,7 +18,7 @@
 
         var log = $.jog("App");
 
-            var bookFragment = function (searchResult) {
+        var bookHashFragment = function (searchResult) {
             var fragment = "books/" + searchResult.id;
 
             var title = searchResult.get("title");
@@ -83,7 +83,7 @@
 
             onSearchResultSelected: function (searchResult) {
                 log.info("navigating to show book " + searchResult.id);
-                this.router.navigate(bookFragment(searchResult), { trigger: true });
+                this.router.navigate(bookHashFragment(searchResult), { trigger: true });
             },
 
             onPreviousReadAddRequested : function (id) {
