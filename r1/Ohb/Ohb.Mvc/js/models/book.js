@@ -19,6 +19,20 @@ Ohb.Book = (function (Backbone, eventBus) {
         thumbnailUrl: null,
         smallThumbnailUrl: null,
 
+        initialize: function () {
+            eventBus.on("previousread:added", function (id) {
+                if (this.id === id) {
+                    this.set("hasPreviouslyRead", true);
+                }
+            }, this);
+
+            eventBus.on("previousread:removed", function (id) {
+                if (this.id === id) {
+                    this.set("hasPreviouslyRead", false);
+                }
+            }, this);
+        },
+
         toggleStatus: function () {
             var previouslyRead = this.get("hasPreviouslyRead");
             this.set({ hasPreviouslyRead: !previouslyRead });

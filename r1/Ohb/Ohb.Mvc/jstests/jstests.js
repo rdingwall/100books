@@ -383,7 +383,7 @@ $(function () {
 
         module("When clicking the button to toggle a book's status");
 
-        asyncTest("It should change the book's hasPreviouslyRead attr to true", 1, function () {
+        asyncTest("It should change the book's hasPreviouslyRead attr to true (RUN SEPARATELY)", 1, function () {
             var model  = new Book({ thumbnailUrl: "/img/book-no-cover.png" });
             app.bookDetailsView.model = model;
             app.bookDetailsView.render();
@@ -430,6 +430,36 @@ $(function () {
             });
 
             model.toggleStatus();
+        });
+
+        module("When a previousread:added event is raised");
+
+        test("It should set the matching book's hasPreviouslyRead to true", 2, function () {
+            eventBus.reset();
+            var aaa = new Book({ thumbnailUrl: "test", id : "aaa" });
+            var bbb = new Book({ thumbnailUrl: "test", id : "bbb" });
+
+            eventBus.trigger("previousread:added", "bbb");
+
+            ok(!aaa.get("hasPreviouslyRead"));
+            ok(bbb.get("hasPreviouslyRead"));
+        });
+
+        module("When a previousread:removed event is raised");
+
+        test("It should set the matching book's hasPreviouslyRead to false", 2, function () {
+            eventBus.reset();
+            var aaa = new Book({ thumbnailUrl: "test", id : "aaa" });
+            var bbb = new Book({
+                thumbnailUrl: "test",
+                id : "bbb",
+                hasPreviouslyRead: true
+            });
+
+            eventBus.trigger("previousread:removed", "bbb");
+
+            ok(!aaa.get("hasPreviouslyRead"));
+            ok(!bbb.get("hasPreviouslyRead"));
         });
 
     }(
