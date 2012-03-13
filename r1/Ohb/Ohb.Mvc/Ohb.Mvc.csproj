@@ -161,7 +161,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFilters\AuthCookieAttribute.cs" />
+    <Compile Include="Api\ActionFilters\FilterIPAttribute.cs" />
     <Compile Include="Api\ActionFilters\GoogleAnalyticsTrackerApiAttribute.cs" />
+    <Compile Include="Api\ActionFilters\IPList.cs" />
     <Compile Include="Api\ActionFilters\OhbErrorHandlerApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\AuthCookieApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\RavenDbApiAttribute.cs" />

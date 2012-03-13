@@ -3,6 +3,7 @@ using System;
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Ohb.Mvc.Api.ActionFilters;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.AuthCookies;
 using Ohb.Mvc.Storage.Users;
@@ -11,6 +12,7 @@ namespace Ohb.Mvc.Api.Controllers
 {
     // NOT FOR PUBLIC USE. This is a harness for testing only. If it gets 
     // deployed, and someone finds it, we are totally fucked
+    [FilterIP(AllowedSingleIPs = "localhost, 127.0.0.1")]
     public class BackdoorController : OhbApiController
     {
         readonly IUserRepository users;
