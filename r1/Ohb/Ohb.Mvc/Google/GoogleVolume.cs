@@ -53,6 +53,12 @@ namespace Ohb.Mvc.Google
         [JsonProperty("authors")]
         public List<string> Authors { get; set; }
 
+        [JsonProperty("categories")]
+        public List<string> Categories { get; set; }
+
+        [JsonProperty("mainCategory")]
+        public string MainCategory { get; set; }
+
         [JsonProperty("publisher")]
         public string Publisher { get; set; }
 

@@ -7,7 +7,7 @@ using Ohb.Mvc.Models;
 namespace Ohb.Mvc.Specs.IntegrationTests
 {
     [Subject(typeof(GoogleBooksClient))]
-    public class GoogleBookSearchServiceSpecs
+    public class GoogleBooksClientSpecs
     {
         public class when_searching_for_books
         {
@@ -103,6 +103,32 @@ namespace Ohb.Mvc.Specs.IntegrationTests
                 () =>
                 volume.AccessInfo.WebReaderLink.ShouldEqual(
                     "http://books.google.co.uk/books/reader?id=a52a_F-OKUcC&printsec=frontcover&output=reader&source=gbs_api");
+
+            It should_get_the_books_categories =
+                () => volume.VolumeInfo.Categories.ShouldContain("Bender, Jonathan - Travel",
+                                                                 "Handicraft - Competitions",
+                                                                 "Handicraft/ Competitions",
+                                                                 "Handicraft",
+                                                                 "Journalists - Travel - United States",
+                                                                 "Journalists/ Travel/ United States",
+                                                                 "Journalists",
+                                                                 "LEGO Group",
+                                                                 "LEGO koncernen (Denmark)",
+                                                                 "LEGO toys",
+                                                                 "Toys - Psychological aspects",
+                                                                 "Toys",
+                                                                 "Antiques & Collectibles / Toys",
+                                                                 "Biography & Autobiography / Editors, Journalists, Publishers",
+                                                                 "Biography & Autobiography / Personal Memoirs",
+                                                                 "Crafts & Hobbies / General",
+                                                                 "Crafts & Hobbies / Models",
+                                                                 "Sports & Recreation / General",
+                                                                 "Antiques & Collectibles / Reference");
+
+            It should_get_the_books_main_category =
+                () =>
+                volume.VolumeInfo.MainCategory.ShouldEqual(
+                    "Biography & Autobiography / Editors, Journalists, Publishers");
 
             static IGoogleBooksClient service;
             static GoogleVolume volume;
