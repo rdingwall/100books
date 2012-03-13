@@ -5,12 +5,17 @@ Ohb.Router = (function ($, Backbone, eventBus) {
 
     return Backbone.Router.extend({
         routes: {
+            "" : "openMyProfile",
             "books/:id": "openBook",
             "books/:id/:slug": "openBook"
         },
 
         openBook: function (id) {
             eventBus.trigger("book:requested", id);
+        },
+
+        openMyProfile: function (id) {
+            eventBus.trigger("myprofile:requested", id);
         }
     });
 

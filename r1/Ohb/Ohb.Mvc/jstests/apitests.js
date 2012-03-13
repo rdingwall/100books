@@ -206,38 +206,19 @@ $(function () {
             }, userDisplayName);
         });
 
-        module("When a profile:requested event is raised");
+        module("When a myprofile:requested event is raised");
 
-        asyncTest("It should fetch the profile details and render them", 1, function () {
-
-            eventBus.reset();
-            app.initialize();
-
-            var userDisplayName = "Test for profile view render";
-
-            withNewUser(function (userId) {
-                eventBus.on("profile:rendered", function () {
-                    equal($("div.profile h1").text(), userDisplayName);
-                    start();
-                });
-
-                eventBus.trigger("profile:requested", userId);
-            }, userDisplayName);
-        });
-
-        module("When a profile:requested event is raised and the fetch fails");
-
-        asyncTest("It should render an error message", 1, function () {
+        asyncTest("It should fetch the current user's profile details and render them", 1, function () {
 
             eventBus.reset();
             app.initialize();
 
-            eventBus.on("profile:fetchError", function () {
-                ok($("div.profile-error").is(":visible"));
+            eventBus.on("myprofile:rendered", function () {
+                ok($("div.myprofile h1")[0]);
                 start();
             });
 
-            eventBus.trigger("profile:requested", "xxxx-fake-id");
+            eventBus.trigger("myprofile:requested");
         });
 
     }($, Backbone, Ohb.Book, Ohb.SearchResult, Ohb.eventBus, Ohb.app, Ohb.Profile));

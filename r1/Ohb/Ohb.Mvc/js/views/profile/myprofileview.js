@@ -4,22 +4,22 @@ $(function () {
 
     var Ohb = window;
 
-    Ohb.ProfileView = (function ($, Backbone, _, Mustache,
+    Ohb.MyProfileView = (function ($, Backbone, _, Mustache,
                                      eventBus, Profile) {
 
-        var log = $.jog("ProfileView");
+        var log = $.jog("MyProfileView");
 
         return Backbone.View.extend({
 
             el: "#content-main",
 
             initialize: function () {
-                eventBus.on("profile:requested", this.onProfileRequested, this);
+                eventBus.on("myprofile:requested", this.onProfileRequested, this);
             },
 
             onProfileRequested: function (id) {
                 log.info("Fetching user from API...");
-                this.model = new Profile({ id: id });
+                this.model = new Profile({ id: "me" });
                 this.model.fetch({
                     success: _.bind(this.render, this),
                     error: _.bind(this.onFetchError, this)
@@ -29,12 +29,12 @@ $(function () {
             render: function () {
                 log.info("Successfully fetched user. Rendering.");
 
-                $.get("/templates/profile/profile.html", "text",
+                $.get("/templates/profile/myprofile.html", "text",
                     _.bind(function (template) {
                         var el = $(Mustache.to_html(template, this.model.toJSON()));
                         $(this.el).html(el);
                         $(this.el).show();
-                        eventBus.trigger("profile:rendered", this.model);
+                        eventBus.trigger("myprofile:rendered", this.model);
                     }, this));
 
                 return this;
@@ -46,7 +46,7 @@ $(function () {
                 $.get("/templates/profile/fetcherror.html", "text",
                     _.bind(function (template) {
                         $(this.el).html(template);
-                        eventBus.trigger("profile:fetchError");
+                        eventBus.trigger("myprofile:fetchError");
                     }, this));
             }
         });

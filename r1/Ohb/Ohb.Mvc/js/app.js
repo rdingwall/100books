@@ -14,7 +14,7 @@
         SearchResultCollectionView,
         SearchResultCollection,
         BookDetailsView,
-        ProfileView
+        MyProfileView
     ) {
 
         var log = $.jog("App");
@@ -49,7 +49,7 @@
                 this.menuBarView = new MenuBarView();
                 this.searchResultCollectionView = new SearchResultCollectionView();
                 this.bookDetailsView = new BookDetailsView();
-                this.profileView = new ProfileView();
+                this.profileView = new MyProfileView();
 
                 this.router = new Router();
             },
@@ -118,6 +118,6 @@
         Ohb.SearchResultCollectionView,
         Ohb.SearchResultCollection,
         Ohb.BookDetailsView,
-        Ohb.ProfileView
+        Ohb.MyProfileView
     ));
 });
