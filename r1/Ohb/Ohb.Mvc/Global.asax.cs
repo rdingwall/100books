@@ -57,7 +57,9 @@ namespace Ohb.Mvc
 
         static void RegisterApiRoutes(RouteCollection routes)
         {
+#if ENABLE_BACKDOOR_API
             RegisterBackdoorApiRoutes(routes);
+#endif // ENABLE_BACKDOOR_API
 
             routes.MapHttpRoute("BookStatusesById",
                                 routeTemplate: "api/v1/books/{volumeIds}/statuses", // URL with parameters
@@ -100,6 +102,7 @@ namespace Ohb.Mvc
                                 defaults: new {id = RouteParameter.Optional});
         }
 
+#if ENABLE_BACKDOOR_API
         static void RegisterBackdoorApiRoutes(RouteCollection routes)
         {
             routes.MapHttpRoute("BackdoorGetAuthCookieApiRoute",
@@ -114,6 +117,7 @@ namespace Ohb.Mvc
                                                   action = "CreateUser"
                                               });
         }
+#endif // ENABLE_BACKDOOR_API
 
         protected void Application_Start()
         {

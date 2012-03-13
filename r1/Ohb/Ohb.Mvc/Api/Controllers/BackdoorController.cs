@@ -1,3 +1,4 @@
+#if ENABLE_BACKDOOR_API
 using System;
 using System.Net;
 using System.Web;
@@ -67,3 +68,4 @@ namespace Ohb.Mvc.Api.Controllers
 
     }
 }
+#endif // ENABLE_BACKDOOR_API
