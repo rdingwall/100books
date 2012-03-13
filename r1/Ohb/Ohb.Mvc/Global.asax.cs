@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using System;
+using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -55,6 +57,8 @@ namespace Ohb.Mvc
 
         static void RegisterApiRoutes(RouteCollection routes)
         {
+            RegisterBackdoorApiRoutes(routes);
+
             routes.MapHttpRoute("BookStatusesById",
                                 routeTemplate: "api/v1/books/{volumeIds}/statuses", // URL with parameters
                                 defaults: new
@@ -94,6 +98,21 @@ namespace Ohb.Mvc
             routes.MapHttpRoute("DefaultApi",
                                 routeTemplate: "api/v1/{controller}/{id}", // URL with parameters
                                 defaults: new {id = RouteParameter.Optional});
+        }
+
+        static void RegisterBackdoorApiRoutes(RouteCollection routes)
+        {
+            routes.MapHttpRoute("BackdoorGetAuthCookieApiRoute",
+                                routeTemplate: "api/backdoor/getauthcookie",
+                                defaults: new {controller = "Backdoor", action = "GetAuthCookie"});
+
+            routes.MapHttpRoute("BackdoorCreateUserApiRoute",
+                                routeTemplate: "api/backdoor/createuser",
+                                defaults: new
+                                              {
+                                                  controller = "Backdoor",
+                                                  action = "CreateUser"
+                                              });
         }
 
         protected void Application_Start()

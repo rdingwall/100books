@@ -15,6 +15,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
     {
         readonly RestClient client;
         readonly RestClient dynamicClient;
+        RestClient backdoorClient;
         public string BaseUrl { get; set; }
         public string AuthCookie { get; set; }
 
@@ -49,6 +50,9 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             // clients
             dynamicClient = new RestClient(BaseUrl);
             dynamicClient.AddHandler("application/json", new DynamicJsonDeserializer());
+
+            backdoorClient = new RestClient("http://localhost/api/backdoor");
+            dynamicClient.AddHandler("application/json", new JsonCamelCaseDeserializer());
         }
 
         static RestResponse Log(RestResponse response)
@@ -209,6 +213,32 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             var request = new RestRequest("profiles/me");
             Authorize(request);
             return Log(client.Execute<ProfileModel>(request));
+        }
+
+        public RestResponse BackdoorGetAuthCookie(string userId)
+        {
+            // Using a separate client so the cookie doesn't affect other tests
+            var tempBackdoorClient = new RestClient(backdoorClient.BaseUrl);
+
+            var request = new RestRequest("getauthcookie");
+            if (!String.IsNullOrWhiteSpace(userId))
+                request.AddParameter("userId", userId);
+
+            return Log(tempBackdoorClient.Execute(request));
+        }
+
+        public RestResponse<BackdoorCreateUserResponse> BackdoorCreateUser(string name, string imageUrl, 
+            bool setAuthCookie = false)
+        {
+            var request = new RestRequest("createuser")
+                              {
+                                  Method = Method.POST
+                              };
+            request.AddParameter("name", name);
+            request.AddParameter("imageUrl", imageUrl);
+            request.AddParameter("setAuthCookie", setAuthCookie);
+
+            return Log(backdoorClient.Execute<BackdoorCreateUserResponse>(request));
         }
     }
 }

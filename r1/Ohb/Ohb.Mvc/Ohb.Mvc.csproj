@@ -166,6 +166,7 @@
     <Compile Include="Api\ActionFilters\AuthCookieApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\RavenDbApiAttribute.cs" />
     <Compile Include="Api\ApiInstaller.cs" />
+    <Compile Include="Api\Models\BackdoorCreateUserResponse.cs" />
     <Compile Include="Api\Controllers\BooksController.cs" />
     <Compile Include="Api\Controllers\BookStatusesController.cs" />
     <Compile Include="Api\Controllers\OhbApiController.cs" />
@@ -173,11 +174,13 @@
     <Compile Include="Api\Controllers\ProfilesController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Api\Controllers\BackdoorController.cs" />
     <Compile Include="Api\JsonCamelCaseFormatter.cs" />
     <Compile Include="Api\Models\BookModel.cs" />
     <Compile Include="Api\Models\ApiModelMapper.cs" />
     <Compile Include="Api\Models\ProfileModel.cs" />
     <Compile Include="AuthCookies\AuthCookieCache.cs" />
+    <Compile Include="Extensions\RandomExtensions.cs" />
     <Compile Include="Startup\RavenDbConventions.cs" />
     <Compile Include="Storage\Books\ConvertGoogleVolumeId.cs" />
     <Compile Include="Storage\PreviousReads\PreviousReadWithBook.cs" />
