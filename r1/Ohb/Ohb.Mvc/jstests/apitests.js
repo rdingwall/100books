@@ -27,7 +27,8 @@ $(function () {
         SearchResult,
         eventBus,
         app,
-        Profile
+        Profile,
+        PreviousReadCollection
     ) {
 
         QUnit.config.testTimeout = 2000;
@@ -221,5 +222,46 @@ $(function () {
             eventBus.trigger("myprofile:requested");
         });
 
-    }($, Backbone, Ohb.Book, Ohb.SearchResult, Ohb.eventBus, Ohb.app, Ohb.Profile));
+        module("When fetching a previous read collection");
+
+        asyncTest("It should fetch the previous reads", 5, function () {
+
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("previousread:added", function () {
+                var results = new PreviousReadCollection();
+
+                results.fetch({
+                    success: function (collection) {
+                        ok(collection.length > 0);
+                        var model = collection.get("4YydO00I9JYC");
+
+                        equal(model.get("title"), "The Google story");
+                        equal(model.get("authors"), "David A. Vise, Mark Malseed");
+                        equal(model.get("publishedYear"), "2005");
+                        equal(model.get("smallThumbnailUrl"), "http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=5&source=gbs_api");
+
+                        start();
+                    },
+                    error: function () {
+                        ok(false);
+                        start();
+                    }
+                });
+            });
+
+            eventBus.trigger("previousread:addRequested", "4YydO00I9JYC");
+        });
+
+    }(
+        $,
+        Backbone,
+        Ohb.Book,
+        Ohb.SearchResult,
+        Ohb.eventBus,
+        Ohb.app,
+        Ohb.Profile,
+        Ohb.PreviousReadCollection
+    ));
 });
