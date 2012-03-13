@@ -30,6 +30,9 @@ namespace Ohb.Mvc.Startup
             if (!FacebookWebContext.Current.IsAuthenticated())
                 return routeData;
 
+            if (routeData == null)
+                return routeData; // ?? not sure how this is possible but whatevs
+
             routeData.Values["Controller"] = "Profile";
 
             return routeData;
