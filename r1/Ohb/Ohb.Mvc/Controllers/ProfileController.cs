@@ -17,7 +17,7 @@ namespace Ohb.Mvc.Controllers
         [FacebookAuthorize(LoginUrl = "/?ReturnUrl=~/Profile")]
         public ActionResult Index()
         {
-            ViewBag.ProfilePictureUrl = User.ProfilePictureUrl;
+            ViewBag.ProfileImageUrl = User.ProfileImageUrl;
             ViewBag.DisplayName = User.DisplayName;
 
             ViewBag.MessagePostSuccess = Request.QueryString.AllKeys.Contains("success") &&

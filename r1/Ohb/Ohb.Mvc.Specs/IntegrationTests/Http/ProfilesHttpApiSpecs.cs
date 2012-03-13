@@ -31,8 +31,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             It should_get_the_users_name =
                 () => response.Data.DisplayName.ShouldStartWith(api.User.DisplayName);
 
-            It should_get_the_users_image_url =
-                () => response.Data.ImageUrl.ShouldEqual(api.User.ProfilePictureUrl);
+            It should_get_the_users_profile_image_url =
+                () => response.Data.ProfileImageUrl.ShouldEqual(api.User.ProfileImageUrl);
 
             It should_get_the_books_publishers =
                 () => response.Data.RecentReads.Single().Id.ShouldEqual("4YydO00I9JYC");
@@ -63,8 +63,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             It should_get_the_users_name =
                 () => response.Data.DisplayName.ShouldStartWith(api.User.DisplayName);
 
-            It should_get_the_users_image_url =
-                () => response.Data.ImageUrl.ShouldEqual(api.User.ProfilePictureUrl);
+            It should_get_the_users_profile_image_url =
+                () => response.Data.ProfileImageUrl.ShouldEqual(api.User.ProfileImageUrl);
 
             It should_get_the_books_publishers =
                 () => response.Data.RecentReads.Single().Id.ShouldEqual("4YydO00I9JYC");

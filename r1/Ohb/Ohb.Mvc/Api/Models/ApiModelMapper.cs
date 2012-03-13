@@ -39,7 +39,7 @@ namespace Ohb.Mvc.Api.Models
             {
                 RecentReads = previousReads.Select(ToPreviousRead).ToList(),
                 Id = user.Id,
-                ImageUrl = user.ProfilePictureUrl,
+                ProfileImageUrl = user.ProfileImageUrl,
                 DisplayName = user.DisplayName
             };
         }

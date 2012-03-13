@@ -10,7 +10,7 @@ namespace Ohb.Mvc.Api.Models
         }
 
         public string Id { get; set; }
-        public string ImageUrl { get; set; }
+        public string ProfileImageUrl { get; set; }
         public string DisplayName { get; set; }
 
         public IList<PreviousReadModel> RecentReads { get; set; }

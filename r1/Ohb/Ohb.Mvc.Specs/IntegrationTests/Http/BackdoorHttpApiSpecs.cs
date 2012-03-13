@@ -17,14 +17,14 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 () =>
                     {
                         displayName = "Test User";
-                        imageUrl = "Test url";
+                        profileImageUrl = "Test url";
                         api = ApiClientFactory.Anonymous();
                     };
 
             Because of =
                 () =>
                     {
-                        response = api.BackdoorCreateUser(displayName, imageUrl, setAuthCookie: true);
+                        response = api.BackdoorCreateUser(displayName, profileImageUrl, setAuthCookie: true);
                         LiveRavenDb.WaitForNonStaleResults<User>();
                         profileResponse = api.GetProfile(response.Data.UserId);
                     };
@@ -35,8 +35,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             It should_set_their_name =
                 () => profileResponse.Data.DisplayName.ShouldEqual(displayName);
 
-            It should_set_their_image_url =
-                () => profileResponse.Data.ImageUrl.ShouldEqual(imageUrl);
+            It should_set_their_profile_image_url =
+                () => profileResponse.Data.ProfileImageUrl.ShouldEqual(profileImageUrl);
 
             It should_set_an_auth_cookie =
                 () => response.Cookies.FirstOrDefault(c => c.Name == OhbCookies.AuthCookie)
@@ -61,7 +61,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             static ApiClient api;
             static RestResponse<ProfileModel> profileResponse;
             static string displayName;
-            static string imageUrl;
+            static string profileImageUrl;
         }
 
         [Subject("api/backdoor/getauthcookie GET")]

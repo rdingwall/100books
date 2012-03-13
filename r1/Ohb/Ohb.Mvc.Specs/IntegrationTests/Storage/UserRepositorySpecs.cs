@@ -18,7 +18,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                        {
                                            FacebookId = 123,
                                            DisplayName = "Test user",
-                                           ProfilePictureUrl = "http://foo/bar"
+                                           ProfileImageUrl = "http://foo/bar"
                                        };
                         RavenDb.SpinUpNewDatabase();
                         repository = new UserRepository();
@@ -63,7 +63,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                         {
                             FacebookId = 123,
                             DisplayName = "First",
-                            ProfilePictureUrl = "http://foo/bar"
+                            ProfileImageUrl = "http://foo/bar"
                         }, session);
                     }
                 };
@@ -77,7 +77,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                                    {
                                                        FacebookId = 123,
                                                        DisplayName = "Second",
-                                                       ProfilePictureUrl = "http://foo/bar"
+                                                       ProfileImageUrl = "http://foo/bar"
                                                    }, session);
                         }
                     });
