@@ -26,7 +26,8 @@ $(function () {
         Book,
         SearchResult,
         eventBus,
-        app
+        app,
+        Profile
     ) {
 
         QUnit.config.testTimeout = 2000;
@@ -155,5 +156,18 @@ $(function () {
             eventBus.trigger("previousread:removeRequested", "4YydO00I9JYC");
         });
 
-    }($, Backbone, Ohb.Book, Ohb.SearchResult, Ohb.eventBus, Ohb.app));
+        module("When getting a profile by ID");
+
+        asyncTest("It should retrieve and populate the profile from the server", function () {
+
+            var model = new Profile({ id: "users-16"});
+
+            model.fetch({ success: function (model) {
+                equal(model.id, "users-16");
+                equal(model.get("name"), "TestUser-634671841115509201");
+                start();
+            }});
+        });
+
+    }($, Backbone, Ohb.Book, Ohb.SearchResult, Ohb.eventBus, Ohb.app, Ohb.Profile));
 });
