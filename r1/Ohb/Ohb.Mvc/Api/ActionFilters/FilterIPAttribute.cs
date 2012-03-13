@@ -7,7 +7,7 @@ using System.Web.Http.Controllers;
 namespace Ohb.Mvc.Api.ActionFilters
 {
     /// <summary>
-    /// Filter by IP address
+    /// Filter by IP address (ASP.NET Web API version)
     /// Originally from http://stackoverflow.com/a/4605086/91551
     /// </summary>
     public class FilterIPAttribute : AuthorizeAttribute
@@ -76,7 +76,7 @@ namespace Ohb.Mvc.Api.ActionFilters
         IPList deniedIPListToCheck = new IPList();
         #endregion
 
-        protected bool AuthorizeCore(HttpContextBase httpContext)
+        private bool AuthorizeCore(HttpContextBase httpContext)
         {
             if (httpContext == null)
                 throw new ArgumentNullException("httpContext");
