@@ -89,7 +89,7 @@ $(function () {
 
         module("When a book:requested event is raised and the fetch fails");
 
-        asyncTest("It should fetch the book details and render them", 1, function () {
+        asyncTest("It should render an error message", 1, function () {
 
             eventBus.reset();
             app.initialize();
@@ -172,33 +172,72 @@ $(function () {
             eventBus.trigger("previousread:removeRequested", "4YydO00I9JYC");
         });
 
-        module("When getting a profile by ID");
-
-        asyncTest("It should retrieve and populate the profile from the server", function () {
+        var withNewUser = function (callback, userDisplayName) {
             $.ajax({
                 type: "POST",
                 url: "http://localhost/api/backdoor/createuser",
                 data: {
-                    displayName: "Test user for profile JS model fetch",
+                    displayName: userDisplayName || "Test user (JS API tests)",
                     profileImageUrl: "test url"
                 },
                 error: function () {
-                    ok(false, "POST failed");
+                    ok(false, "Setup: create user via backdoor failed!");
                     start();
                 },
                 success: function (data) {
-                    var userId = data.userId;
-
-                    var model = new Profile({ id: userId});
-
-                    model.fetch({ success: function (model) {
-                        equal(model.id, userId);
-                        equal(model.get("displayName"), "Test user for profile JS model fetch");
-                        equal(model.get("profileImageUrl"), "test url");
-                        start();
-                    }});
+                    callback(data.userId);
                 }
             });
+        };
+
+        module("When getting a profile by ID");
+
+        asyncTest("It should retrieve and populate the profile from the server", function () {
+            var userDisplayName = "Test user for profile JS model fetch";
+            withNewUser(function (userId) {
+                var model = new Profile({ id: userId});
+
+                model.fetch({ success: function (model) {
+                    equal(model.id, userId);
+                    equal(model.get("displayName"), userDisplayName);
+                    equal(model.get("profileImageUrl"), "test url");
+                    start();
+                }});
+            }, userDisplayName);
+        });
+
+        module("When a profile:requested event is raised");
+
+        asyncTest("It should fetch the profile details and render them", 1, function () {
+
+            eventBus.reset();
+            app.initialize();
+
+            var userDisplayName = "Test for profile view render";
+
+            withNewUser(function (userId) {
+                eventBus.on("profile:rendered", function () {
+                    equal($("div.profile h1").text(), userDisplayName);
+                    start();
+                });
+
+                eventBus.trigger("profile:requested", userId);
+            }, userDisplayName);
+        });
+
+        module("When a profile:requested event is raised and the fetch fails");
+
+        asyncTest("It should render an error message", 1, function () {
+
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("profile:fetchError", function () {
+                ok($("div.profile-error").is(":visible"));
+                start();
+            });
+
+            eventBus.trigger("profile:requested", "xxxx-fake-id");
         });
 
     }($, Backbone, Ohb.Book, Ohb.SearchResult, Ohb.eventBus, Ohb.app, Ohb.Profile));
