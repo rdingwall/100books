@@ -7,7 +7,8 @@ Ohb.Router = (function ($, Backbone, eventBus) {
         routes: {
             "" : "openMyProfile",
             "books/:id": "openBook",
-            "books/:id/:slug": "openBook"
+            "books/:id/:slug": "openBook",
+            "*path": "openMyProfile" // default catch-all route
         },
 
         openBook: function (id) {
