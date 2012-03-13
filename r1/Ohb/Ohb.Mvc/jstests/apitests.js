@@ -36,6 +36,22 @@ $(function () {
 
         log.info("hiya");
 
+        module("(Setup) Requesting auth cookie...");
+
+        asyncTest("It should return a successful HTTP status code", function () {
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/api/backdoor/createuser",
+                data: { setAuthCookie: true },
+                error: function () {
+                    ok(false, "POST failed");
+                    start();
+                },
+                success: start
+            });
+        });
+
         module("When getting a book by ID");
 
         asyncTest("It should retrieve and populate the book from the server", function () {
@@ -159,14 +175,26 @@ $(function () {
         module("When getting a profile by ID");
 
         asyncTest("It should retrieve and populate the profile from the server", function () {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/api/backdoor/createuser",
+                data: { name: "Test user for profile JS model fetch" },
+                error: function () {
+                    ok(false, "POST failed");
+                    start();
+                },
+                success: function (data) {
+                    var userId = data.userId;
 
-            var model = new Profile({ id: "users-16"});
+                    var model = new Profile({ id: userId});
 
-            model.fetch({ success: function (model) {
-                equal(model.id, "users-16");
-                equal(model.get("name"), "TestUser-634671841115509201");
-                start();
-            }});
+                    model.fetch({ success: function (model) {
+                        equal(model.id, userId);
+                        equal(model.get("name"), "Test user for profile JS model fetch");
+                        start();
+                    }});
+                }
+            });
         });
 
     }($, Backbone, Ohb.Book, Ohb.SearchResult, Ohb.eventBus, Ohb.app, Ohb.Profile));

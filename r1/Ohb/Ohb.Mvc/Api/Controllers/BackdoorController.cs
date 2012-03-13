@@ -46,7 +46,7 @@ namespace Ohb.Mvc.Api.Controllers
         }
 
         [HttpPost]
-        public dynamic CreateUser(string name, string imageUrl, bool setAuthCookie)
+        public dynamic CreateUser(string name, string imageUrl, bool? setAuthCookie)
         {
             var user = new User
                             {
@@ -57,7 +57,7 @@ namespace Ohb.Mvc.Api.Controllers
 
             users.AddUser(user, DocumentSession);
 
-            if (setAuthCookie)
+            if (setAuthCookie.GetValueOrDefault())
             {
                 var cookie = authCookieFactory.CreateAuthCookie(user);
 
