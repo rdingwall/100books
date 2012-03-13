@@ -17,19 +17,19 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
 
         static User CreateNewUser()
         {
-            var name = "TestUser-" + DateTime.Now.Ticks;
+            var displayName = "TestUser-" + DateTime.Now.Ticks;
 
             var users = new UserRepository();
             using (var session = LiveRavenDb.OpenSession())
             {
                 users.AddUser(new User
                                   {
-                                      Name = name,
+                                      DisplayName = displayName,
                                       FacebookId = random.NextNonNegativeLong()
                                   }, session);
                 var user = session.Query<User>()
                     .Customize(a => a.WaitForNonStaleResults())
-                    .Single(u => u.Name == name);
+                    .Single(u => u.DisplayName == displayName);
 
                 return user;
             }
@@ -50,7 +50,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             var user = CreateNewUser();
             var cookie = GetAuthCookie(user.Id);
 
-            Console.WriteLine("user id: {0} name: {1}", user.Id, user.Name);
+            Console.WriteLine("user id: {0} display name: {1}", user.Id, user.DisplayName);
             Console.WriteLine("auth cookie: {0} (expires {1})", cookie.Value, cookie.Expires);
 
             return new ApiClient {AuthCookie = cookie.Value, User = user};

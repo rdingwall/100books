@@ -227,14 +227,14 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             return Log(tempBackdoorClient.Execute(request));
         }
 
-        public RestResponse<BackdoorCreateUserResponse> BackdoorCreateUser(string name, string imageUrl, 
+        public RestResponse<BackdoorCreateUserResponse> BackdoorCreateUser(string displayName, string imageUrl, 
             bool setAuthCookie = false)
         {
             var request = new RestRequest("createuser")
                               {
                                   Method = Method.POST
                               };
-            request.AddParameter("name", name);
+            request.AddParameter("displayName", displayName);
             request.AddParameter("imageUrl", imageUrl);
             request.AddParameter("setAuthCookie", setAuthCookie);
 

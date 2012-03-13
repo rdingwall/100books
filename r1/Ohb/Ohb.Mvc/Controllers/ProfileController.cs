@@ -18,7 +18,7 @@ namespace Ohb.Mvc.Controllers
         public ActionResult Index()
         {
             ViewBag.ProfilePictureUrl = User.ProfilePictureUrl;
-            ViewBag.Name = User.Name;
+            ViewBag.DisplayName = User.DisplayName;
 
             ViewBag.MessagePostSuccess = Request.QueryString.AllKeys.Contains("success") &&
                                          Request.QueryString["success"] == "True";

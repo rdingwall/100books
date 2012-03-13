@@ -29,7 +29,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 () => response.Data.Id.ShouldEqual(api.UserId);
 
             It should_get_the_users_name =
-                () => response.Data.Name.ShouldStartWith(api.User.Name);
+                () => response.Data.DisplayName.ShouldStartWith(api.User.DisplayName);
 
             It should_get_the_users_image_url =
                 () => response.Data.ImageUrl.ShouldEqual(api.User.ProfilePictureUrl);
@@ -61,7 +61,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 () => response.Data.Id.ShouldEqual(api.UserId);
 
             It should_get_the_users_name =
-                () => response.Data.Name.ShouldStartWith(api.User.Name);
+                () => response.Data.DisplayName.ShouldStartWith(api.User.DisplayName);
 
             It should_get_the_users_image_url =
                 () => response.Data.ImageUrl.ShouldEqual(api.User.ProfilePictureUrl);

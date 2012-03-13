@@ -178,7 +178,7 @@ $(function () {
             $.ajax({
                 type: "POST",
                 url: "http://localhost/api/backdoor/createuser",
-                data: { name: "Test user for profile JS model fetch" },
+                data: { displayName: "Test user for profile JS model fetch" },
                 error: function () {
                     ok(false, "POST failed");
                     start();
@@ -190,7 +190,7 @@ $(function () {
 
                     model.fetch({ success: function (model) {
                         equal(model.id, userId);
-                        equal(model.get("name"), "Test user for profile JS model fetch");
+                        equal(model.get("displayName"), "Test user for profile JS model fetch");
                         start();
                     }});
                 }

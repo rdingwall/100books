@@ -17,7 +17,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                         original = new User
                                        {
                                            FacebookId = 123,
-                                           Name = "Test user",
+                                           DisplayName = "Test user",
                                            ProfilePictureUrl = "http://foo/bar"
                                        };
                         RavenDb.SpinUpNewDatabase();
@@ -39,7 +39,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                 () => returnedUser.FacebookId.ShouldEqual(original.FacebookId);
 
             It should_store_the_name =
-                () => returnedUser.Name.ShouldEqual(original.Name);
+                () => returnedUser.DisplayName.ShouldEqual(original.DisplayName);
 
             It should_retrieve_the_ravendb_id =
                 () => returnedUser.Id.ShouldNotBeEmpty();
@@ -62,7 +62,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                         repository.AddUser(new User
                         {
                             FacebookId = 123,
-                            Name = "First",
+                            DisplayName = "First",
                             ProfilePictureUrl = "http://foo/bar"
                         }, session);
                     }
@@ -76,7 +76,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                             repository.AddUser(new User
                                                    {
                                                        FacebookId = 123,
-                                                       Name = "Second",
+                                                       DisplayName = "Second",
                                                        ProfilePictureUrl = "http://foo/bar"
                                                    }, session);
                         }
@@ -94,7 +94,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                 .Customize(a => a.WaitForNonStaleResults())
                                 .Where(u => u.FacebookId == 123)
                                 .Single()
-                                .Name.ShouldEqual("First");
+                                .DisplayName.ShouldEqual("First");
                         }
                     };
 

@@ -47,7 +47,7 @@ namespace Ohb.Mvc.Storage.Users
             return new User
             {
                 FacebookId = fbWebContext.UserId,
-                Name = me.name,
+                DisplayName = me.name,
                 ProfilePictureUrl = String.Format("http://graph.facebok.com/{0}/picture", me.id)
             };
         }
