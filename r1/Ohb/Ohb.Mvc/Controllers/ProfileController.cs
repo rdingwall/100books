@@ -1,3 +1,5 @@
+using System;
+using System.Web;
 using System.Web.Mvc;
 using Facebook.Web;
 using Facebook.Web.Mvc;
@@ -30,6 +32,12 @@ namespace Ohb.Mvc.Controllers
         public ActionResult LogOut()
         {
             FacebookWebContext.Current.DeleteAuthCookie();
+
+            HttpContext.Response.SetCookie(
+                new HttpCookie(OhbCookies.AuthCookie)
+                    {
+                        Expires = DateTime.UtcNow.AddMonths(-1)
+                    });
 
             return RedirectToAction("Index", "Home");
         }
