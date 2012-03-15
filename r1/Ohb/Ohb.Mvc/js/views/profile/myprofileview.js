@@ -2,9 +2,7 @@ $(function () {
 
     "use strict";
 
-    var Ohb = window;
-
-    Ohb.MyProfileView = (function ($, Backbone, _, Mustache,
+    Ohb.Views.MyProfileView = (function ($, Backbone, _, Mustache,
                                      eventBus, Profile) {
 
         var log = $.jog("MyProfileView");
@@ -57,6 +55,6 @@ $(function () {
         _,
         Mustache,
         Ohb.eventBus,
-        Ohb.Profile
+        Ohb.Models.Profile
     ));
 });

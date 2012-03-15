@@ -1,6 +1,4 @@
-﻿var Ohb = window;
-
-Ohb.eventBus = (function ($, _, Backbone) {
+﻿Ohb.eventBus = (function ($, _, Backbone) {
     "use strict";
 
     var log = $.jog("EventBus"),

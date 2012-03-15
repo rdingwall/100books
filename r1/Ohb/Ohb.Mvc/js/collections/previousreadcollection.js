@@ -1,6 +1,4 @@
-﻿var Ohb = window;
-
-Ohb.PreviousReadCollection = (function ($, _, Backbone, PreviousRead) {
+﻿Ohb.Collections.PreviousReadCollection = (function ($, _, Backbone, PreviousRead) {
     "use strict";
 
     return Backbone.Collection.extend({
@@ -8,4 +6,4 @@ Ohb.PreviousReadCollection = (function ($, _, Backbone, PreviousRead) {
         url: "/api/v1/previousreads"
     });
 
-}($, _, Backbone, Ohb.SearchResult));
+}($, _, Backbone, Ohb.Models.SearchResult));

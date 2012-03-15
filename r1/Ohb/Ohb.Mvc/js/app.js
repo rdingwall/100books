@@ -2,8 +2,6 @@
 
     "use strict";
 
-    var Ohb = window;
-
     Ohb.app = (function (
         $,
         _,
@@ -114,10 +112,10 @@
         Backbone,
         Ohb.Router,
         Ohb.eventBus,
-        Ohb.MenuBarView,
-        Ohb.SearchResultCollectionView,
-        Ohb.SearchResultCollection,
-        Ohb.BookDetailsView,
-        Ohb.MyProfileView
+        Ohb.Views.MenuBarView,
+        Ohb.Views.SearchResultCollectionView,
+        Ohb.Collections.SearchResultCollection,
+        Ohb.Views.BookDetailsView,
+        Ohb.Views.MyProfileView
     ));
 });

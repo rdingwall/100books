@@ -1,6 +1,4 @@
-var Ohb = window;
-
-Ohb.Book = (function (Backbone, eventBus) {
+Ohb.Models.Book = (function (Backbone, eventBus) {
     "use strict";
 
     return Backbone.Model.extend({

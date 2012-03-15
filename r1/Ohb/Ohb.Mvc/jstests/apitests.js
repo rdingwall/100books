@@ -18,8 +18,6 @@
 
 $(function () {
     "use strict";
-    var Ohb = window;
-
     (function (
         $,
         Backbone,
@@ -257,11 +255,11 @@ $(function () {
     }(
         $,
         Backbone,
-        Ohb.Book,
-        Ohb.SearchResult,
+        Ohb.Models.Book,
+        Ohb.Models.SearchResult,
         Ohb.eventBus,
         Ohb.app,
-        Ohb.Profile,
-        Ohb.PreviousReadCollection
+        Ohb.Models.Profile,
+        Ohb.Collections.PreviousReadCollection
     ));
 });

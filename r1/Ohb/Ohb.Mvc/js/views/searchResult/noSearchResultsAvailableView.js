@@ -1,6 +1,4 @@
-var Ohb = window;
-
-Ohb.NoSearchResultsAvailableView = (function (
+Ohb.Views.NoSearchResultsAvailableView = (function (
     $,
     _,
     Backbone

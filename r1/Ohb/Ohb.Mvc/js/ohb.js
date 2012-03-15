@@ -1,0 +1,5 @@
+Ohb = {
+    Models: {},
+    Collections: {},
+    Views: {}
+};

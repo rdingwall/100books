@@ -1,6 +1,4 @@
-﻿var Ohb = window;
-
-Ohb.SearchResult = (function (Backbone) {
+﻿Ohb.Models.SearchResult = (function (Backbone) {
     "use strict";
 
     var SearchResult = Backbone.Model.extend({

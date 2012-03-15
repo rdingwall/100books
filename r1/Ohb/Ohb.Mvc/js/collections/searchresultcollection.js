@@ -1,6 +1,5 @@
-﻿var Ohb = window;
-
-Ohb.SearchResultCollection = (function ($, _, Backbone, SearchResult) {
+﻿
+Ohb.Collections.SearchResultCollection = (function ($, _, Backbone, SearchResult) {
     "use strict";
 
     var distinct = function (items, keyCallback) {
@@ -36,4 +35,4 @@ Ohb.SearchResultCollection = (function ($, _, Backbone, SearchResult) {
         }
     });
 
-}($, _, Backbone, Ohb.SearchResult));
+}($, _, Backbone, Ohb.Models.SearchResult));

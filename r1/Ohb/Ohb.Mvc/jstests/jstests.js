@@ -19,8 +19,6 @@
 $(function () {
     "use strict";
 
-    var Ohb = window;
-
     (function (
         app,
         router,
@@ -469,12 +467,12 @@ $(function () {
         $,
         _,
         Backbone,
-        Ohb.MenuBarView,
-        Ohb.SearchResultView,
-        Ohb.SearchResult,
-        Ohb.Book,
-        Ohb.SearchResultCollection,
-        Ohb.SearchResultCollectionView,
-        Ohb.BookDetailsView
+        Ohb.Views.MenuBarView,
+        Ohb.Views.SearchResultView,
+        Ohb.Models.SearchResult,
+        Ohb.Models.Book,
+        Ohb.Collections.SearchResultCollection,
+        Ohb.Views.SearchResultCollectionView,
+        Ohb.Views.BookDetailsView
     ));
 });

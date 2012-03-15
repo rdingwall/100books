@@ -1,9 +1,7 @@
 ﻿$(function () {
     "use strict";
 
-    var Ohb = window;
-
-    Ohb.MenuBarView = (function ($, Backbone, eventBus) {
+    Ohb.Views.MenuBarView = (function ($, Backbone, eventBus) {
 
         var log = $.jog("MenuBarView");
 

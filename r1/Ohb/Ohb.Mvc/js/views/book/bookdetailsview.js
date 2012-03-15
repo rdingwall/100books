@@ -2,9 +2,7 @@ $(function () {
 
     "use strict";
 
-    var Ohb = window;
-
-    Ohb.BookDetailsView = (function ($, Backbone, _, Mustache,
+    Ohb.Views.BookDetailsView = (function ($, Backbone, _, Mustache,
                            eventBus, Book) {
 
         var log = $.jog("BookDetailsView");
@@ -95,6 +93,6 @@ $(function () {
         _,
         Mustache,
         Ohb.eventBus,
-        Ohb.Book
+        Ohb.Models.Book
     ));
 });

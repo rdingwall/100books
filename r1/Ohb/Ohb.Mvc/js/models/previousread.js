@@ -1,6 +1,4 @@
-var Ohb = window;
-
-Ohb.PreviousRead = (function (Backbone) {
+Ohb.Models.PreviousRead = (function (Backbone) {
     "use strict";
 
     return Backbone.Model.extend({

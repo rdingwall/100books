@@ -19,8 +19,6 @@
 $(function () {
     "use strict";
 
-    var Ohb = window;
-
     (function (
         $,
         app,
@@ -209,9 +207,9 @@ $(function () {
     }(
         $,
         Ohb.app,
-        Ohb.SearchResult,
+        Ohb.Models.SearchResult,
         Ohb.eventBus,
         Ohb.Router,
-        Ohb.SearchResultCollection
+        Ohb.Collections.SearchResultCollection
     ));
 });

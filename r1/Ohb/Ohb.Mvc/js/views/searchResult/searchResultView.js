@@ -1,6 +1,4 @@
-﻿var Ohb = window;
-
-Ohb.SearchResultView = (function (
+﻿Ohb.Views.SearchResultView = (function (
     Backbone,
     Mustache,
     $,
