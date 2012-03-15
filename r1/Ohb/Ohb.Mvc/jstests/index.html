@@ -18,6 +18,7 @@
 
     <script type="text/javascript" src="/js/ohb.js"></script>
     <script type="text/javascript" src="/js/eventbus.js"></script>
+    <script type="text/javascript" src="/js/mainregion.js"></script>
     <script type="text/javascript" src="/js/models/book.js"></script>
     <script type="text/javascript" src="/js/models/profile.js"></script>
     <script type="text/javascript" src="/js/models/searchresult.js"></script>
@@ -48,13 +49,14 @@
 
         <div id="menubar">
             <input id="menubar-search-input" />
+            <div id="search-loader-spinner" style="display:none">hello</div>
         </div>
 
         <div id="search-failed-modal" style="display:none">
            We're sorry, there was a problem retrieving your search results. Please try again later.
        </div>
 
-        <div id="search-loader-spinner" style="display:none">hello</div>
+
 
         <div id="test-search-results" style="display:none" />
 
@@ -62,7 +64,7 @@
 
         <div id="dummyElement" />
 
-        <div id="content-main" />
+        <div id="main-region" />
 
     </div>
 </body>

@@ -2,59 +2,35 @@ $(function () {
 
     "use strict";
 
+    var template = '<div class="profile" xmlns="http://www.w3.org/1999/html">\
+                <div class="row span12">\
+                <img src="{{ profileImageUrl }}" alt="{{ displayName }}" class="pull-left" />\
+                <h1 class="profile-display-name" style="line-height: 50px; margin-left: 60px;">{{ displayName }}</h1>\
+        </div>\
+    </div>';
+
     Ohb.Views.MyProfileView = (function ($, Backbone, _, Mustache,
-                                     eventBus, Profile) {
+                                     template) {
 
         var log = $.jog("MyProfileView");
 
         return Backbone.View.extend({
-
-            el: "#content-main",
-
-            initialize: function () {
-                eventBus.on("myprofile:requested", this.onProfileRequested, this);
-            },
-
-            onProfileRequested: function (id) {
-                log.info("Fetching user from API...");
-                this.model = new Profile({ id: "me" });
-                this.model.fetch({
-                    success: _.bind(this.render, this),
-                    error: _.bind(this.onFetchError, this)
-                });
-            },
+            className: "my-profile",
 
             render: function () {
                 log.info("Successfully fetched user. Rendering.");
 
-                $.get("/templates/profile/myprofile.html", "text",
-                    _.bind(function (template) {
-                        var el = $(Mustache.to_html(template, this.model.toJSON()));
-                        $(this.el).html(el);
-                        $(this.el).show();
-                        eventBus.trigger("myprofile:rendered", this.model);
-                    }, this));
+                var el = $(Mustache.to_html(template, this.model.toJSON()));
+                $(this.el).html(el);
 
                 return this;
-            },
-
-            onFetchError: function () {
-                log.warning("Error loading user");
-
-                $.get("/templates/profile/fetcherror.html", "text",
-                    _.bind(function (template) {
-                        $(this.el).html(template);
-                        eventBus.trigger("myprofile:fetchError");
-                    }, this));
             }
         });
-
     }(
         $,
         Backbone,
         _,
         Mustache,
-        Ohb.eventBus,
-        Ohb.Models.Profile
+        template
     ));
 });

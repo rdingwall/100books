@@ -13,8 +13,8 @@
             eventBus.trigger("book:requested", id);
         },
 
-        openMyProfile: function (id) {
-            eventBus.trigger("myprofile:requested", id);
+        openMyProfile: function () {
+            eventBus.trigger("myprofile:requested");
         }
     });
 

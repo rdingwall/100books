@@ -1,12 +1,11 @@
 ﻿$(function () {
     "use strict";
 
-    Ohb.Views.MenuBarView = (function ($, Backbone, eventBus) {
+    Ohb.menuBarView = (function ($, Backbone, eventBus) {
 
         var log = $.jog("MenuBarView");
 
-        return Backbone.View.extend({
-            el: $('#menubar'),
+        var MenuBarView = Backbone.View.extend({
 
             events: {
                 "keyup #menubar-search-input": "searchRequested"
@@ -40,6 +39,9 @@
                 $("#search-loader-spinner").hide();
             }
         });
+
+        // Instantiated view
+        return new MenuBarView({ el: $('#menubar') }).render();
 
     }($, Backbone, Ohb.eventBus));
 });

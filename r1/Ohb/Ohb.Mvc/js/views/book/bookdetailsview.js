@@ -2,57 +2,54 @@ $(function () {
 
     "use strict";
 
+    var template = '<div class="book-details" xmlns="http://www.w3.org/1999/html">\
+        <div class="row span12">\
+        <h1 class="book-details-title">{{ title }}</h1>\
+        {{ authors }}{{#publishedYear}}, {{publishedYear}}{{/publishedYear}}\
+        </div>\
+            <div class="row">\
+                <div class="span2">\
+                    <img src="{{ thumbnailUrl }}" title="{{ title }}" alt="{{ title }}" />\
+                </div>\
+                <div class="span8">\
+                    <p>{{{ description }}}</p>\
+                </div>\
+                <div class="span2">\
+                    <a id="book-remove-previousread-button" class="hide status-toggle-button btn btn-success large"><i class="icon-ok icon-white"></i>You have read this book</a>\
+                    <a id="book-add-previousread-button" class="hide status-toggle-button btn large"><i class="icon-remove"></i>You have not read this book</a>\
+                </div>\
+            </div>\
+        </div>';
+
     Ohb.Views.BookDetailsView = (function ($, Backbone, _, Mustache,
-                           eventBus, Book) {
+                           template) {
 
         var log = $.jog("BookDetailsView");
 
         return Backbone.View.extend({
 
-            el: "#content-main",
+            className: "book-details",
 
             events: {
                 "click .status-toggle-button" : "toggleStatus"
             },
 
             initialize: function () {
-                eventBus.on("book:requested", this.onBookRequested, this);
-                this.setModel(this.model);
+                this.model.on("change:hasPreviouslyRead",
+                    this.onModelStatusChanged, this);
             },
 
-            setModel: function (model) {
-                if (this.model) {
-                    // Unbind previous model's events...
-                    this.model.off("change:hasPreviouslyRead",
-                        this.onModelStatusChanged, this);
-                }
-                if (model) {
-                    this.model = model;
-                    this.model.on("change:hasPreviouslyRead",
-                        this.onModelStatusChanged, this);
-                }
-            },
-
-            onBookRequested: function (id) {
-                log.info("Fetching book from API...");
-                this.setModel(new Book({ id: id }));
-                this.model.fetch({
-                    success: _.bind(this.render, this),
-                    error: _.bind(this.onFetchError, this)
-                });
+            close: function () {
+                this.model.off("change:hasPreviouslyRead",
+                    this.onModelStatusChanged, this);
             },
 
             render: function () {
                 log.info("Successfully fetched book. Rendering.");
 
-                $.get("/templates/book/bookdetails.html", "text",
-                    _.bind(function (template) {
-                        var el = $(Mustache.to_html(template, this.model.toJSON()));
-                        this.updateToggleButton(el);
-                        $(this.el).html(el);
-                        $(this.el).show();
-                        eventBus.trigger("book:rendered", this.model);
-                    }, this));
+                var el = $(Mustache.to_html(template, this.model.toJSON()));
+                this.updateToggleButton(el);
+                $(this.el).html(el);
 
                 return this;
             },
@@ -71,16 +68,6 @@ $(function () {
                 }
             },
 
-            onFetchError: function () {
-                log.warning("Error loading book");
-
-                $.get("/templates/book/fetcherror.html", "text",
-                    _.bind(function (template) {
-                        $(this.el).html(template);
-                        eventBus.trigger("book:fetchError");
-                    }, this));
-            },
-
             toggleStatus: function (event) {
                 event.preventDefault();
                 this.model.toggleStatus();
@@ -92,7 +79,6 @@ $(function () {
         Backbone,
         _,
         Mustache,
-        Ohb.eventBus,
-        Ohb.Models.Book
+        template
     ));
 });

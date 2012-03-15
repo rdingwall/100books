@@ -26,13 +26,13 @@ $(function () {
         $,
         _,
         Backbone,
-        MenuBarView,
         SearchResultView,
         SearchResult,
         Book,
         SearchResultCollection,
         SearchResultCollectionView,
-        BookDetailsView
+        BookDetailsView,
+        mainRegion
     ) {
 
         QUnit.config.testTimeout = 2000;
@@ -68,7 +68,7 @@ $(function () {
         test("It should raise the search:requested event", function () {
             eventBus.reset();
 
-            var view = new MenuBarView({ el: $("#qunit-fixture") }), expected = "test search";
+            var expected = "test search";
 
             eventBus.on("search:requested", function (q) {
                 equal(q, expected);
@@ -82,7 +82,6 @@ $(function () {
 
         test("It should not raise search:requested if the search box is empty", function () {
             eventBus.reset();
-            var view = new MenuBarView({ el: $("#qunit-fixture") });
 
             $("#menubar-search-input").val("");
             var e = $.Event("keyup");
@@ -114,8 +113,7 @@ $(function () {
 
         test("It should show the ajax loader gif", 2, function () {
             eventBus.reset();
-            var view = new MenuBarView({ el: $("#qunit-fixture") });
-            view.initialize();
+            Ohb.menuBarView.initialize();
 
             ok(!($("#search-loader-spinner").is(":visible")), "should be hidden to start with");
 
@@ -130,8 +128,7 @@ $(function () {
 
         test("The ajax loader gif should dissappear", 2, function () {
             eventBus.reset();
-            var view = new MenuBarView({ el: $("#qunit-fixture") });
-            view.initialize();
+            Ohb.menuBarView.initialize();
 
             $("#search-loader-spinner").show();
 
@@ -381,17 +378,22 @@ $(function () {
 
         module("When clicking the button to toggle a book's status");
 
-        asyncTest("It should change the book's hasPreviouslyRead attr to true (RUN SEPARATELY)", 1, function () {
-            var model  = new Book({ thumbnailUrl: "/img/book-no-cover.png" });
-            app.bookDetailsView.model = model;
-            app.bookDetailsView.render();
+        test("It should change the book's hasPreviouslyRead attr to true", 1,
+            function () {
+                var model  = new Book({ thumbnailUrl: "/img/book-no-cover.png" });
 
-            setTimeout(function () {
-                $(".status-toggle-button").trigger("click");
-                ok(model.get("hasPreviouslyRead"));
-                start();
-            }, 1000);
-        });
+                var view = new BookDetailsView({
+                    model: model
+                });
+
+                view.render();
+
+                $(view.el).find(".status-toggle-button.btn-success").trigger("click");
+                ok(model.get("hasPreviouslyRead"), "The book should now be previously read");
+
+                view.close();
+                $(view.el).remove();
+            });
 
         module("When toggling an unread book's status");
 
@@ -460,6 +462,43 @@ $(function () {
             ok(!bbb.get("hasPreviouslyRead"));
         });
 
+        module("When changing the content of the main region");
+
+        test("It should call close() on the previous view", 1, function () {
+
+            Ohb.mainRegion.show(new (Backbone.View.extend({
+                close: function () { ok(true); }
+            }))());
+
+            Ohb.mainRegion.close();
+        });
+
+        test("It should clear the previous content", 1, function () {
+            Ohb.mainRegion.show(new (Backbone.View.extend({
+                render: function () {
+                    $(this.el).html("<div id='mainregion-clear-test'>hello</div>");
+                    return this;
+                }
+            }))());
+
+            Ohb.mainRegion.close();
+
+            equal($("#mainregion-clear-test").length, 0);
+        });
+
+        test("It should render the new content", 1, function () {
+            Ohb.mainRegion.show(new (Backbone.View.extend({
+                render: function () {
+                    $(this.el).html("<div id='mainregion-render-test'>hello</div>");
+                    return this;
+                }
+            }))());
+
+            equal($("#mainregion-render-test").text(), "hello");
+
+            Ohb.mainRegion.close();
+        });
+
     }(
         Ohb.app,
         Ohb.Router,
@@ -467,12 +506,12 @@ $(function () {
         $,
         _,
         Backbone,
-        Ohb.Views.MenuBarView,
         Ohb.Views.SearchResultView,
         Ohb.Models.SearchResult,
         Ohb.Models.Book,
         Ohb.Collections.SearchResultCollection,
         Ohb.Views.SearchResultCollectionView,
-        Ohb.Views.BookDetailsView
+        Ohb.Views.BookDetailsView,
+        Ohb.mainRegion
     ));
 });

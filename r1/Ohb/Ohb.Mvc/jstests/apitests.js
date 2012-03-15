@@ -26,7 +26,8 @@ $(function () {
         eventBus,
         app,
         Profile,
-        PreviousReadCollection
+        PreviousReadCollection,
+        mainRegion
     ) {
 
         QUnit.config.testTimeout = 2000;
@@ -77,9 +78,10 @@ $(function () {
 
             eventBus.reset();
             app.initialize();
+            mainRegion.off();
 
-            eventBus.on("book:rendered", function () {
-                equal($("div.book-details h1").text(), "The Google story");
+            mainRegion.on("view:changed", function () {
+                equal($("h1.book-details-title").text(), "The Google story");
                 start();
             });
 
@@ -92,6 +94,7 @@ $(function () {
 
             eventBus.reset();
             app.initialize();
+            mainRegion.off();
 
             eventBus.on("book:fetchError", function () {
                 ok($("div.book-details-error").is(":visible"));
@@ -106,9 +109,10 @@ $(function () {
         asyncTest("It should fetch the book details and render them", 1, function () {
             eventBus.reset();
             app.initialize();
+            mainRegion.off();
 
-            eventBus.on("book:rendered", function () {
-                equal($("div.book-details h1").text(), "The Google story");
+            mainRegion.on("view:changed", function () {
+                equal($("h1.book-details-title").text(), "The Google story");
                 start();
             });
 
@@ -120,6 +124,7 @@ $(function () {
         asyncTest("It should raise a previousread:added event", 1, function () {
             eventBus.reset();
             app.initialize();
+            mainRegion.off();
 
             eventBus.on("previousread:added", function (id) {
                 equal(id, "4YydO00I9JYC");
@@ -132,6 +137,7 @@ $(function () {
         asyncTest("It should mark the book as read via the API", 1, function () {
             eventBus.reset();
             app.initialize();
+            mainRegion.off();
 
             eventBus.on("previousread:added", function () {
                 $.getJSON("/api/v1/books/4YydO00I9JYC", function (data) {
@@ -148,6 +154,7 @@ $(function () {
         asyncTest("It should raise a previousread:removed event", 1, function () {
             eventBus.reset();
             app.initialize();
+            mainRegion.off();
 
             eventBus.on("previousread:removed", function (id) {
                 equal(id, "4YydO00I9JYC");
@@ -160,6 +167,7 @@ $(function () {
         asyncTest("It should mark the book as unread via the API", 1, function () {
             eventBus.reset();
             app.initialize();
+            mainRegion.off();
 
             eventBus.on("previousread:removed", function () {
                 $.getJSON("/api/v1/books/4YydO00I9JYC", function (data) {
@@ -207,18 +215,20 @@ $(function () {
 
         module("When a myprofile:requested event is raised");
 
-        asyncTest("It should fetch the current user's profile details and render them", 1, function () {
+        asyncTest("It should fetch the current user's profile details and render them", 1,
+            function () {
 
-            eventBus.reset();
-            app.initialize();
+                eventBus.reset();
+                app.initialize();
+                mainRegion.off();
 
-            eventBus.on("myprofile:rendered", function () {
-                ok($("div.myprofile h1")[0]);
-                start();
+                mainRegion.on("view:changed", function () {
+                    equal($("h1.profile-display-name").length, 1);
+                    start();
+                });
+
+                eventBus.trigger("myprofile:requested");
             });
-
-            eventBus.trigger("myprofile:requested");
-        });
 
         module("When fetching a previous read collection");
 
@@ -226,6 +236,7 @@ $(function () {
 
             eventBus.reset();
             app.initialize();
+            mainRegion.off();
 
             eventBus.on("previousread:added", function () {
                 var results = new PreviousReadCollection();
@@ -260,6 +271,7 @@ $(function () {
         Ohb.eventBus,
         Ohb.app,
         Ohb.Models.Profile,
-        Ohb.Collections.PreviousReadCollection
+        Ohb.Collections.PreviousReadCollection,
+        Ohb.mainRegion
     ));
 });

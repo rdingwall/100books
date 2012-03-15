@@ -8,11 +8,13 @@
         Backbone,
         Router,
         eventBus,
-        MenuBarView,
         SearchResultCollectionView,
         SearchResultCollection,
         BookDetailsView,
-        MyProfileView
+        MyProfileView,
+        Profile,
+        mainRegion,
+        Book
     ) {
 
         var log = $.jog("App");
@@ -37,6 +39,9 @@
 
             initialize: function () {
                 log.info("initializing router...");
+
+                eventBus.on("myprofile:requested", this.onMyProfileRequested, this);
+                eventBus.on("book:requested", this.onBookRequested, this);
                 eventBus.on("search:requested", this.search, this);
                 eventBus.on("search:failed", this.onSearchFailed, this);
                 eventBus.on("search:resultSelected", this.onSearchResultSelected, this);
@@ -44,12 +49,35 @@
                 eventBus.on("previousread:removeRequested", this.onPreviousReadRemoveRequested, this);
 
                 // initialize singleton views
-                this.menuBarView = new MenuBarView();
                 this.searchResultCollectionView = new SearchResultCollectionView();
-                this.bookDetailsView = new BookDetailsView();
-                this.profileView = new MyProfileView();
 
                 this.router = new Router();
+            },
+
+            onMyProfileRequested: function () {
+                log.info("Fetching user from API...");
+                var model = new Profile({ id: "me" });
+                model.fetch({
+                    success: function (model) {
+                        mainRegion.show(new MyProfileView({ model: model }));
+                    },
+                    error: function () {
+                        mainRegion.showError("Sorry, there was an error retrieving this profile.");
+                    }
+                });
+            },
+
+            onBookRequested: function (id) {
+                log.info("Fetching book from API...");
+                var model = new Book({ id: id });
+                model.fetch({
+                    success: function (model) {
+                        mainRegion.show(new BookDetailsView({ model: model }));
+                    },
+                    error: function () {
+                        mainRegion.showError("Sorry, there was an error retrieving this book.");
+                    }
+                });
             },
 
             search: function (query) {
@@ -112,10 +140,12 @@
         Backbone,
         Ohb.Router,
         Ohb.eventBus,
-        Ohb.Views.MenuBarView,
         Ohb.Views.SearchResultCollectionView,
         Ohb.Collections.SearchResultCollection,
         Ohb.Views.BookDetailsView,
-        Ohb.Views.MyProfileView
+        Ohb.Views.MyProfileView,
+        Ohb.Models.Profile,
+        Ohb.mainRegion,
+        Ohb.Models.Book
     ));
 });
