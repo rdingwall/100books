@@ -96,8 +96,8 @@ $(function () {
             app.initialize();
             mainRegion.off();
 
-            eventBus.on("book:fetchError", function () {
-                ok($("div.book-details-error").is(":visible"));
+            mainRegion.on("view:changed", function () {
+                equal($(".error-message").length, 1);
                 start();
             });
 

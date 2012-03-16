@@ -499,6 +499,17 @@ $(function () {
             Ohb.mainRegion.close();
         });
 
+        module("When showing an error");
+
+        test("It should render the error", 1, function () {
+            var msg = "test error message";
+            Ohb.mainRegion.showError(msg);
+
+            equal($(".error-message p").text(), msg);
+
+            Ohb.mainRegion.close();
+        });
+
     }(
         Ohb.app,
         Ohb.Router,
