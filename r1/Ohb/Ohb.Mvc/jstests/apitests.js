@@ -80,9 +80,11 @@ $(function () {
             app.initialize();
             mainRegion.off();
 
-            mainRegion.on("view:changed", function () {
-                equal($("h1.book-details-title").text(), "The Google story");
-                start();
+            mainRegion.on("view:changed", function (view) {
+                if ($(view.el).hasClass("book-details")) {
+                    equal($("h1.book-details-title").text(), "The Google story");
+                    start();
+                }
             });
 
             eventBus.trigger("book:requested", "4YydO00I9JYC");
@@ -96,9 +98,11 @@ $(function () {
             app.initialize();
             mainRegion.off();
 
-            mainRegion.on("view:changed", function () {
-                equal($(".error-message").length, 1);
-                start();
+            mainRegion.on("view:changed", function (view) {
+                if ($(view.el).hasClass("error-message")) {
+                    equal($(".error-message").length, 1);
+                    start();
+                }
             });
 
             eventBus.trigger("book:requested", "xxxx-fake-id");
@@ -111,9 +115,11 @@ $(function () {
             app.initialize();
             mainRegion.off();
 
-            mainRegion.on("view:changed", function () {
-                equal($("h1.book-details-title").text(), "The Google story");
-                start();
+            mainRegion.on("view:changed", function (view) {
+                if ($(view.el).hasClass("book-details")) {
+                    equal($("h1.book-details-title").text(), "The Google story");
+                    start();
+                }
             });
 
             window.location.hash = "books/4YydO00I9JYC/test-slug";
@@ -220,11 +226,14 @@ $(function () {
 
                 eventBus.reset();
                 app.initialize();
+                mainRegion.close();
                 mainRegion.off();
 
-                mainRegion.on("view:changed", function () {
-                    equal($("h1.profile-display-name").length, 1);
-                    start();
+                mainRegion.on("view:changed", function (view) {
+                    if ($(view.el).hasClass("my-profile")) {
+                        equal($("h1.profile-display-name").length, 1);
+                        start();
+                    }
                 });
 
                 eventBus.trigger("myprofile:requested");

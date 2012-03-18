@@ -4,20 +4,25 @@ Ohb.mainRegion = (function ($, _, Backbone, ErrorMessage,
 
     "use strict";
 
+    var log = $.jog("MainRegion");
+
     return _.extend({
         el: "#main-region",
 
         show: function (view) {
             this.close();
             this.view = view;
+            log.info("Rendering view...");
             $(this.el).append(this.view.render().el);
-            this.trigger("view:changed");
+            this.trigger("view:changed", view);
         },
 
         close: function () {
             if (!this.view) {
                 return;
             }
+
+            log.info("Closing previous view");
 
             if (this.view.close) {
                 this.view.close();
