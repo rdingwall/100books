@@ -2,20 +2,20 @@ Ohb.Models.Book = (function (Backbone, eventBus) {
     "use strict";
 
     return Backbone.Model.extend({
-        id: null,
-        hasPreviouslyRead: false,
-        googleVolumeId: null,
-
         urlRoot: "/api/v1/books",
 
-        publisher: "",
-        title: "",
-        authors: "",
-        publishedYear: "",
-        description: "",
-        pageCount: 0,
-        thumbnailUrl: null,
-        smallThumbnailUrl: null,
+        defaults: {
+            hasPreviouslyRead: false,
+            googleVolumeId: null,
+            publisher: "",
+            title: "",
+            authors: "",
+            publishedYear: "",
+            description: "",
+            pageCount: 0,
+            thumbnailUrl: null,
+            smallThumbnailUrl: null
+        },
 
         initialize: function () {
             eventBus.on("previousread:added", function (id) {
