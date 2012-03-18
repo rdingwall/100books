@@ -6,6 +6,16 @@
 ) {
     "use strict";
 
+    var template = '<div class="row"> \
+        <div class="span2"> \
+            <img src="{{ smallThumbnailUrl }}" alt="{{ title }}" /> \
+            </div> \
+        <div class="span8"> \
+            <h3 class="searchresult-title">{{ title }}</h3> \
+            <p class="searchresult-authors">{{ authors }}</p> \
+        </div> \
+    </div>';
+
     return Backbone.View.extend({
         tagName: "div",
         className: "book-search-result",
@@ -15,12 +25,8 @@
         },
 
         render: function () {
-            $.get("/templates/searchResult/searchResult.html", "text",
-                _.bind(function (template) {
-                    $(this.el).html(Mustache.to_html(template, this.model.toJSON()));
-                    $(this.el).attr("id", "book-search-result-" + this.model.id);
-                }, this));
-
+            $(this.el).html(Mustache.to_html(template, this.model.toJSON()));
+            $(this.el).attr("id", "book-search-result-" + this.model.id);
             return this;
         },
 
