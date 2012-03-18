@@ -38,7 +38,7 @@
         return {
 
             initialize: function () {
-                log.info("initializing router...");
+                log.info("Initializing router...");
 
                 eventBus.on("myprofile:requested", this.onMyProfileRequested, this);
                 eventBus.on("book:requested", this.onBookRequested, this);
@@ -102,12 +102,12 @@
             },
 
             onSearchFailed: function () {
-                log.info('showing search failed modal...');
+                log.info('Showing search failed modal...');
                 $("#search-failed-modal").modal({ keyboard: true, show: true });
             },
 
             onSearchResultSelected: function (searchResult) {
-                log.info("navigating to show book " + searchResult.id);
+                log.info("Navigating to show book " + searchResult.id);
                 this.router.navigate(bookHashFragment(searchResult), { trigger: true });
             },
 

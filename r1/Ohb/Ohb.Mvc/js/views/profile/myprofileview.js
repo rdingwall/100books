@@ -18,7 +18,7 @@ $(function () {
             className: "my-profile",
 
             render: function () {
-                log.info("Successfully fetched user. Rendering.");
+                log.info("Rendering MyProfileView.");
 
                 var el = $(Mustache.to_html(template, this.model.toJSON()));
                 this.$el.html(el);

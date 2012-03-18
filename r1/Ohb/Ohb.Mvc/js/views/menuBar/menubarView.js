@@ -12,7 +12,7 @@
             },
 
             initialize: function () {
-                log.info("initializing menubarview...");
+                log.info("Initializing MenuBarView...");
                 eventBus.on("search:began", this.onSearchBegan);
                 eventBus.on("search:completed", this.onSearchCompleted);
             },

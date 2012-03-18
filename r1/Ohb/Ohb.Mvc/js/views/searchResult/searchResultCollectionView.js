@@ -68,7 +68,7 @@
 
             close: function () {
 
-                log.info("closing search results...");
+                log.info("Closing search results...");
 
                 $("html").off("click", this.close);
                 this.$el.hide();

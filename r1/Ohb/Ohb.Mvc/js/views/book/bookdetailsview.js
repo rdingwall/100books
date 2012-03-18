@@ -45,7 +45,7 @@ $(function () {
             },
 
             render: function () {
-                log.info("Successfully fetched book. Rendering.");
+                log.info("Rendering BookDetailsView.");
 
                 var el = $(Mustache.to_html(template, this.model.toJSON()));
                 this.updateToggleButton(el);
