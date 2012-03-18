@@ -30,7 +30,7 @@
         },
 
         select: function () {
-            eventBus.trigger("search:resultSelected", this.model);
+            this.model.set("selected", true);
         }
     });
 }(Backbone, Mustache, $, Ohb.eventBus));

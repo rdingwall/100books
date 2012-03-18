@@ -1,11 +1,20 @@
-﻿Ohb.Models.SearchResult = (function (Backbone) {
+﻿Ohb.Models.SearchResult = (function (Backbone, eventBus) {
     "use strict";
 
     var SearchResult = Backbone.Model.extend({
         defaults: {
             title: null,
             authors: null,
-            smallThumbnailUrl: null
+            smallThumbnailUrl: null,
+            selected: false
+        },
+
+        initialize: function () {
+            this.on("change:selected", this.notifySelected, this);
+        },
+
+        notifySelected: function () {
+            eventBus.trigger("search:result:selected", this);
         }
     });
 
@@ -36,4 +45,4 @@
 
     return SearchResult;
 
-}(Backbone));
+}(Backbone, Ohb.eventBus));

@@ -263,21 +263,31 @@ $(function () {
 
         module("When clicking on a search result");
 
-        test("It should raise a search:resultSelected event", 1, function () {
+        test("It should mark the result as selected", 1, function () {
+
+            var model = new SearchResult({ title: "foo" });
+            var view = new SearchResultView({ el: "#test-search-result", model: model });
+
+            view.$el.trigger("click");
+
+            ok(model.get("selected"));
+        });
+
+        module("When a search result is marked as selected");
+
+        test("It should raise a search:result:selected event", 1, function () {
             eventBus.reset();
 
-            var el = $("#test-search-result");
             var model = new SearchResult({ title: "foo" });
-            var view = new SearchResultView({ el: el, model: model });
 
-            eventBus.on("search:resultSelected", function (sr) {
+            eventBus.on("search:result:selected", function (sr) {
                 equal(sr, model);
             });
 
-            el.trigger("click");
+            model.set("selected", true);
         });
 
-        module("When a search:resultSelected event is raised");
+        module("When a search:result:selected event is raised");
 
         test("It should navigate to the new route", 1, function () {
             eventBus.reset();
@@ -288,25 +298,9 @@ $(function () {
                 title: "Harry Potter's amazing #(*@(#)(# adventure$ 2008"
             });
 
-            eventBus.trigger("search:resultSelected", model);
+            eventBus.trigger("search:result:selected", model);
 
             equal(window.location.hash, "#books/foo/harry-potters-amazing-adventure-2008");
-        });
-
-        test("It should close the search results", 4, function () {
-            eventBus.reset();
-
-            var view = new SearchResultCollectionView({ el: "#test-search-results" });
-            ok(!view.$el.is(":visible"), "should be hidden to start with");
-            view.render();
-
-            ok(view.$el.is(":visible"), "should become visible");
-
-            eventBus.trigger("search:resultSelected", new SearchResult({}));
-
-            ok(!view.$el.is(":visible"), "should be hidden");
-
-            equal(view.views.length, 0, "should clear the items");
         });
 
         // This one fails when run with the other tests for some reason
@@ -319,9 +313,33 @@ $(function () {
                 equal(id, model.id);
             });
 
-            eventBus.trigger("search:resultSelected", model);
+            eventBus.trigger("search:result:selected", model);
 
             setTimeout(start, 1000);
+        });
+
+        module("When one of the search result models is marked as selected");
+
+        test("It should close the search results", 4, function () {
+            eventBus.reset();
+            var model = new SearchResult({});
+            var collection = new SearchResultCollection();
+            collection.add(model);
+
+            var view = new SearchResultCollectionView({
+                el: "#test-search-results",
+                collection: collection
+            });
+            ok(!view.$el.is(":visible"), "should be hidden to start with");
+            view.render();
+
+            ok(view.$el.is(":visible"), "should become visible");
+
+            model.set("selected", true);
+
+            ok(!view.$el.is(":visible"), "should be hidden");
+
+            equal(view.views.length, 0, "should clear the items");
         });
 
         module("When a Search result has no thumbnail image");

@@ -34,8 +34,8 @@
                     this.collection.each(this.addOne);
                 }
 
+                this.collection.on("change:selected", this.close);
                 eventBus.on("search:began", this.close);
-                eventBus.on("search:resultSelected", this.close);
             },
 
             addOne: function (searchResult) {
@@ -75,6 +75,7 @@
                 $("html").off("click", this.close);
                 $(this.el).hide();
                 $(this.el).empty();
+                this.collection.off();
                 this.collection.reset();
                 this.views = [];
             }

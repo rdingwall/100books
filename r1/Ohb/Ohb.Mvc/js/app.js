@@ -44,7 +44,7 @@
                 eventBus.on("book:requested", this.onBookRequested, this);
                 eventBus.on("search:requested", this.search, this);
                 eventBus.on("search:failed", this.onSearchFailed, this);
-                eventBus.on("search:resultSelected", this.onSearchResultSelected, this);
+                eventBus.on("search:result:selected", this.onSearchResultSelected, this);
                 eventBus.on("previousread:addRequested", this.onPreviousReadAddRequested, this);
                 eventBus.on("previousread:removeRequested", this.onPreviousReadRemoveRequested, this);
 
