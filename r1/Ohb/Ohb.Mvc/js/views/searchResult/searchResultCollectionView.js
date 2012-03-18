@@ -20,7 +20,7 @@
 
                 $("html").on("click", this.close);
 
-                $(this.el).click(function (e) {
+                this.$el.click(function (e) {
                     e.stopPropagation();
                 });
 
@@ -50,20 +50,18 @@
                 this.views.push(view);
 
                 if (this._rendered) {
-                    $(this.el).append(view.render().el);
+                    this.$el.append(view.render().el);
                 }
             },
 
             render: function () {
-                $(this.el).empty();
+                this.$el.empty();
 
-                var that = this;
+                _(this.views).each(_.bind(function (view) {
+                    this.$el.append(view.render().el);
+                }, this));
 
-                _(this.views).each(function (view) {
-                    $(that.el).append(view.render().el);
-                });
-
-                $(this.el).show();
+                this.$el.show();
 
                 return this;
             },
@@ -73,8 +71,8 @@
                 log.info("closing search results...");
 
                 $("html").off("click", this.close);
-                $(this.el).hide();
-                $(this.el).empty();
+                this.$el.hide();
+                this.$el.empty();
                 this.collection.off();
                 this.collection.reset();
                 this.views = [];

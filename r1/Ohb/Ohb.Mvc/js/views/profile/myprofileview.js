@@ -21,7 +21,7 @@ $(function () {
                 log.info("Successfully fetched user. Rendering.");
 
                 var el = $(Mustache.to_html(template, this.model.toJSON()));
-                $(this.el).html(el);
+                this.$el.html(el);
 
                 return this;
             }

@@ -49,22 +49,22 @@ $(function () {
 
                 var el = $(Mustache.to_html(template, this.model.toJSON()));
                 this.updateToggleButton(el);
-                $(this.el).html(el);
+                this.$el.html(el);
 
                 return this;
             },
 
             onModelStatusChanged: function () {
-                this.updateToggleButton($(this.el));
+                this.updateToggleButton(this.$el);
             },
 
             updateToggleButton: function (el) {
                 if (this.model.get("hasPreviouslyRead")) {
-                    $(el).find("#book-add-previousread-button").hide();
-                    $(el).find("#book-remove-previousread-button").css("display", "block");
+                    el.find("#book-add-previousread-button").hide();
+                    el.find("#book-remove-previousread-button").css("display", "block");
                 } else {
-                    $(el).find("#book-remove-previousread-button").hide();
-                    $(el).find("#book-add-previousread-button").css("display", "block");
+                    el.find("#book-remove-previousread-button").hide();
+                    el.find("#book-add-previousread-button").css("display", "block");
                 }
             },
 

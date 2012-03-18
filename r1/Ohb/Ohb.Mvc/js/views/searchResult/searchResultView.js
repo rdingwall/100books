@@ -24,8 +24,8 @@
         },
 
         render: function () {
-            $(this.el).html(Mustache.to_html(template, this.model.toJSON()));
-            $(this.el).attr("id", "book-search-result-" + this.model.id);
+            this.$el.html(Mustache.to_html(template, this.model.toJSON()));
+            this.$el.attr("id", "book-search-result-" + this.model.id);
             return this;
         },
 

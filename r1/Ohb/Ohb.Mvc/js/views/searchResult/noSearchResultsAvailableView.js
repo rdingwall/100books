@@ -11,7 +11,7 @@ Ohb.Views.NoSearchResultsAvailableView = (function (
         className: "searchresult-no-results-available",
 
         render: function () {
-            $(this.el).html(template);
+            this.$el.html(template);
             return this;
         }
     });

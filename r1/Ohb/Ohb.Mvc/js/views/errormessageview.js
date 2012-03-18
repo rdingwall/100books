@@ -9,7 +9,7 @@ Ohb.Views.ErrorMessageView = (function ($, Backbone, Mustache) {
 
         render: function () {
             var el = $(Mustache.to_html(template, this.model.toJSON()));
-            $(this.el).html(el);
+            this.$el.html(el);
 
             return this;
         }

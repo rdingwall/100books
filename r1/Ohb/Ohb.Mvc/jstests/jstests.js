@@ -149,13 +149,13 @@ $(function () {
             var collection = new SearchResultCollection();
             collection.add(new SearchResult({ title: "test book" }));
             collection.add(new SearchResult({ title: "test book 2" }));
-            new SearchResultCollectionView({
+            var view = new SearchResultCollectionView({
                 el: $("#test-search-results"),
                 collection: collection
             }).render();
 
-            ok($("#test-search-results").is(":visible"), "should become visible");
-            equal($("#test-search-results").children().length, 2);
+            ok(view.$el.is(":visible"), "should become visible");
+            equal(view.$el.children().length, 2);
         });
 
         module("When rendering a single search result");
@@ -374,11 +374,11 @@ $(function () {
 
                 view.render();
 
-                $(view.el).find(".status-toggle-button.btn-success").trigger("click");
+                view.$el.find(".status-toggle-button.btn-success").trigger("click");
                 ok(model.get("hasPreviouslyRead"), "The book should now be previously read");
 
                 view.close();
-                $(view.el).remove();
+                view.$el.remove();
             });
 
         module("When toggling an unread book's status");
@@ -462,7 +462,7 @@ $(function () {
         test("It should clear the previous content", 1, function () {
             Ohb.mainRegion.show(new (Backbone.View.extend({
                 render: function () {
-                    $(this.el).html("<div id='mainregion-clear-test'>hello</div>");
+                    this.$el.html("<div id='mainregion-clear-test'>hello</div>");
                     return this;
                 }
             }))());
@@ -475,7 +475,7 @@ $(function () {
         test("It should render the new content", 1, function () {
             Ohb.mainRegion.show(new (Backbone.View.extend({
                 render: function () {
-                    $(this.el).html("<div id='mainregion-render-test'>hello</div>");
+                    this.$el.html("<div id='mainregion-render-test'>hello</div>");
                     return this;
                 }
             }))());
