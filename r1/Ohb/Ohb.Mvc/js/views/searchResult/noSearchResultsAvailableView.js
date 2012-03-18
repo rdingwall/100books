@@ -5,10 +5,9 @@ Ohb.Views.NoSearchResultsAvailableView = (function (
 ) {
     "use strict";
 
-    var template = '<p>No books found, sorry! Try broadening your search.</p>';
+    var template = '<p class="row">No books found, sorry! Try broadening your search.</p>';
 
     return Backbone.View.extend({
-        tagName: "div",
         className: "searchresult-no-results-available",
 
         render: function () {

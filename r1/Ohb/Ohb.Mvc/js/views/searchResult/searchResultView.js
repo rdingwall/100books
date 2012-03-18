@@ -17,7 +17,6 @@
     </div>';
 
     return Backbone.View.extend({
-        tagName: "div",
         className: "book-search-result",
 
         events: {
