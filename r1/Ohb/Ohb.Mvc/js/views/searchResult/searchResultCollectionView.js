@@ -47,18 +47,6 @@
                 }
             },
 
-            removeResult: function (searchResult) {
-                var viewToRemove = _(this.searchResultViews).select(function (cv) {
-                    return cv.model === searchResult;
-                })[0];
-
-                this.searchResultViews = _(this.searchResultViews).without(viewToRemove);
-
-                if (this._rendered) {
-                    $(viewToRemove.el).remove();
-                }
-            },
-
             render: function () {
                 // We keep track of the rendered state of the view
                 this._rendered = true;
