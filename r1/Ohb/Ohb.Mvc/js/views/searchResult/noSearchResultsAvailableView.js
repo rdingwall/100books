@@ -5,16 +5,14 @@ Ohb.Views.NoSearchResultsAvailableView = (function (
 ) {
     "use strict";
 
+    var template = '<p>No books found, sorry! Try broadening your search.</p>';
+
     return Backbone.View.extend({
         tagName: "div",
-        className: "no-search-results-available",
+        className: "searchresult-no-results-available",
 
         render: function () {
-            $.get("/templates/searchResult/noSearchResultsAvailable.html", "text",
-                _.bind(function (template) {
-                    $(this.el).html(template);
-                }, this));
-
+            $(this.el).html(template);
             return this;
         }
     });
