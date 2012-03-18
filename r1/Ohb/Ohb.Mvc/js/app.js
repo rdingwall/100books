@@ -48,9 +48,6 @@
                 eventBus.on("previousread:addRequested", this.onPreviousReadAddRequested, this);
                 eventBus.on("previousread:removeRequested", this.onPreviousReadRemoveRequested, this);
 
-                // initialize singleton views
-                this.searchResultCollectionView = new SearchResultCollectionView();
-
                 this.router = new Router();
             },
 
@@ -88,12 +85,12 @@
                     {
                         data: { q: query },
                         success: function (collection) {
+                            new SearchResultCollectionView({
+                                el: "#search-results",
+                                collection: collection
+                            }).render();
+
                             eventBus.trigger("search:completed");
-                            if (collection.length === 0) {
-                                eventBus.trigger("search:returnedNoResults");
-                            } else {
-                                eventBus.trigger("search:resultsArrived", collection);
-                            }
                         },
                         error: function () {
                             log.severe("Search failed!");

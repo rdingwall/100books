@@ -143,15 +143,16 @@ $(function () {
 
         test("They should be rendered", 3, function () {
             eventBus.reset();
-            var view = new SearchResultCollectionView({ el: $("#test-search-results") });
 
             ok(!($("#test-search-results").is(":visible")), "should be hidden to start with");
 
-            var results = new SearchResultCollection();
-            results.add(new SearchResult({ title: "test book" }));
-            results.add(new SearchResult({ title: "test book 2" }));
-
-            eventBus.trigger("search:resultsArrived", results);
+            var collection = new SearchResultCollection();
+            collection.add(new SearchResult({ title: "test book" }));
+            collection.add(new SearchResult({ title: "test book 2" }));
+            new SearchResultCollectionView({
+                el: $("#test-search-results"),
+                collection: collection
+            }).render();
 
             ok($("#test-search-results").is(":visible"), "should become visible");
             equal($("#test-search-results").children().length, 2);
@@ -161,8 +162,8 @@ $(function () {
 
         asyncTest("It should be rendered", 2, function () {
 
-            var el = $("#test-search-result"), view = new SearchResultView({
-                el: el[0],
+            var view = new SearchResultView({
+                el: "#test-search-result",
                 model: new SearchResult({
                     title: "Harry Potter",
                     authors: "JK Rowling",
@@ -173,8 +174,8 @@ $(function () {
             view.render();
 
             setTimeout(function () {
-                equal(el.find(".searchresult-title").text(), "Harry Potter");
-                equal(el.find("p.searchresult-authors").text(), "JK Rowling");
+                equal(view.$el.find(".searchresult-title").text(), "Harry Potter");
+                equal(view.$el.find("p.searchresult-authors").text(), "JK Rowling");
                 start();
             }, 500);
         });
@@ -182,113 +183,82 @@ $(function () {
         module("When the search result box is open");
 
         test("Clicking anywhere outside should hide it", 4, function () {
-            var el = $("#test-search-results");
-            ok(!(el.is(":visible")), "should be hidden to start with");
 
-            var view = new SearchResultCollectionView({ el: el[0] });
+            var view = new SearchResultCollectionView({
+                el: "#test-search-results"
+            });
+
+            ok(!(view.$el.is(":visible")), "should be hidden to start with");
+
             view.render();
 
-            ok(el.is(":visible"), "should become visible");
+            ok(view.$el.is(":visible"), "should become visible");
 
             $("body").trigger("click");
 
-            ok(!(el.is(":visible")), "should be hidden again");
+            ok(!(view.$el.is(":visible")), "should be hidden again");
 
-            equal(view.searchResultViews.length, 0, "should clear the items");
+            equal(view.views.length, 0, "should clear the items");
         });
 
         test("Clicking inside the search results should not hide the results", 3, function () {
-            var el = $("#test-search-results");
-            ok(!(el.is(":visible")), "should be hidden to start with");
+            var view = new SearchResultCollectionView({
+                el: "#test-search-results"
+            });
 
-            var view = new SearchResultCollectionView({ el: el[0] });
+            ok(!(view.$el.is(":visible")), "should be hidden to start with");
+
             view.render();
 
-            ok(el.is(":visible"), "should become visible");
+            ok(view.$el.is(":visible"), "should become visible");
 
-            $("#test-search-results").trigger("click");
+            view.$el.trigger("click");
 
-            ok(el.is(":visible"), "should stay visible");
+            ok(view.$el.is(":visible"), "should stay visible");
         });
 
         test("Clicking in the menu bar should not hide the results", 3, function () {
-            var el = $("#test-search-results");
-            ok(!(el.is(":visible")), "should be hidden to start with");
+            var view = new SearchResultCollectionView({
+                el: "#test-search-results"
+            });
 
-            var view = new SearchResultCollectionView({ el: el[0] });
+            ok(!view.$el.is(":visible"), "should be hidden to start with");
             view.render();
 
-            ok(el.is(":visible"), "should become visible");
+            ok(view.$el.is(":visible"), "should become visible");
 
             $("#menubar").trigger("click");
 
-            ok(el.is(":visible"), "should stay visible");
+            ok(view.$el.is(":visible"), "should stay visible");
         });
 
-        test("New results should replace old ones", 4, function () {
-            eventBus.reset();
-            var el = $("#test-search-results");
-            el.empty();
-            ok(!(el.is(":visible")), "should be hidden to start with");
+        module("When starting a new search");
 
-            var view = new SearchResultCollectionView({ el: el[0] });
-            view.addResult(new SearchResult({ title: "test book" }));
-            view.addResult(new SearchResult({ title: "test book 2" }));
+        test("The previous search results should be closed", 1, function () {
+            var view = new SearchResultCollectionView({
+                el: "#test-search-results"
+            });
+
             view.render();
 
-            equal($("#test-search-results").children().length, 2, "started with 2 results");
+            eventBus.trigger("search:began");
 
-            var results = new SearchResultCollection();
-            results.add(new SearchResult({ title: "test book" }));
-            results.add(new SearchResult({ title: "test book 2" }));
-            results.add(new SearchResult({ title: "test book 3" }));
-
-            eventBus.trigger("search:resultsArrived", results);
-
-            ok($("#test-search-results").is(":visible"), "should become visible");
-            equal($("#test-search-results").children().length, 3, "should replace existing results");
+            ok(!view.$el.is(":visible"), "should hide");
         });
 
         module("When there are no search results available");
 
-        asyncTest("It should display a no search results message", 3, function () {
-            eventBus.reset();
-            var view = new SearchResultCollectionView({ el: $("#test-search-results") });
+        test("It should display a no search results message", 3, function () {
+            var view = new SearchResultCollectionView({
+                el: "#test-search-results"
+            });
 
-            ok(!($("#test-search-results").is(":visible")), "should be hidden to start with");
+            ok(!view.$el.is(":visible"), "should be hidden to start with");
 
-            eventBus.trigger("search:returnedNoResults");
-
-            setTimeout(function () {
-                ok($("#test-search-results").is(":visible"), "should become visible");
-                ok($(".searchresult-no-results-available").is(":visible"));
-                start();
-            }, 500);
-        });
-
-        asyncTest("It should replace any previous results", 6, function () {
-            log.info("starting the test");
-            eventBus.reset();
-            var el = $("#test-search-results");
-            el.empty();
-            equal(el.children().length, 0, "should be empty to start with");
-            ok(!(el.is(":visible")), "should be hidden to start with");
-
-            var view = new SearchResultCollectionView({ el: el[0] });
-            view.addResult(new SearchResult({ title: "test book" }));
-            view.addResult(new SearchResult({ title: "test book 2" }));
             view.render();
 
-            equal(el.children().length, 2, "started with 2 results");
-
-            eventBus.trigger("search:returnedNoResults");
-
-            setTimeout(function () {
-                ok(el.is(":visible"), "should become visible");
-                ok($(".searchresult-no-results-available").is(":visible"));
-                equal(el.children().length, 1, "should replace existing results");
-                start();
-            }, 500);
+            ok(view.$el.is(":visible"), "should become visible");
+            ok($(".searchresult-no-results-available").is(":visible"));
         });
 
         module("When clicking on a search result");
@@ -326,19 +296,17 @@ $(function () {
         test("It should close the search results", 4, function () {
             eventBus.reset();
 
-            var el = $("#test-search-results");
-            ok(!(el.is(":visible")), "should be hidden to start with");
+            var view = new SearchResultCollectionView({ el: "#test-search-results" });
+            ok(!view.$el.is(":visible"), "should be hidden to start with");
+            view.render();
 
-            var collectionView = new SearchResultCollectionView({ el: el[0] });
-            collectionView.render();
-
-            ok(el.is(":visible"), "should become visible");
+            ok(view.$el.is(":visible"), "should become visible");
 
             eventBus.trigger("search:resultSelected", new SearchResult({}));
 
-            ok(!(el.is(":visible")), "should be hidden");
+            ok(!view.$el.is(":visible"), "should be hidden");
 
-            equal(collectionView.searchResultViews.length, 0, "should clear the items");
+            equal(view.views.length, 0, "should clear the items");
         });
 
         // This one fails when run with the other tests for some reason

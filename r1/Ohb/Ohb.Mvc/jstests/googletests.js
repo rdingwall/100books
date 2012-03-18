@@ -36,7 +36,7 @@ $(function () {
 
         module("When fetching a search result collection");
 
-        asyncTest("It should perform a search and raise a search:resultsArrived event with the results", 4, function () {
+        asyncTest("It should perform a search and returned the results", 4, function () {
 
             var results = new SearchResultCollection();
 
@@ -87,19 +87,16 @@ $(function () {
 
         module("When a searchRequested event is raised");
 
-        asyncTest("It should perform a search and raise a search:resultsArrived event with the results", 2, function () {
+        asyncTest("It should perform a search and render the results", 1, function () {
             eventBus.reset();
             app.initialize();
 
-            var wasRaised = false;
-            eventBus.on("search:resultsArrived", function (results) {
-                wasRaised = true;
-                ok(results);
-                equal(results.length, 10);
+            eventBus.on("search:completed", function () {
+                equal($("#search-results").children().length, 10);
                 start();
             });
 
-            eventBus.on("search:failed", function (results) {
+            eventBus.on("search:failed", function () {
                 ok(false, "search failed!");
                 start();
             });
@@ -124,7 +121,7 @@ $(function () {
             eventBus.reset();
             app.initialize();
 
-            eventBus.on("search:completed", function (q) {
+            eventBus.on("search:completed", function () {
                 ok(true);
                 start();
             });
@@ -138,12 +135,12 @@ $(function () {
             eventBus.reset();
             app.initialize();
 
-            eventBus.on("search:failed", function (results) {
+            eventBus.on("search:failed", function () {
                 ok(true);
                 start();
             });
 
-            eventBus.on("search:resultsArrived", function (results) {
+            eventBus.on("search:resultsArrived", function () {
                 ok(false, "should not have been raised (but it's ok, not sure how to fake a test right now)");
                 start();
             });
@@ -155,12 +152,12 @@ $(function () {
             eventBus.reset();
             app.initialize();
 
-            eventBus.on("search:completed", function (results) {
+            eventBus.on("search:completed", function () {
                 ok(true);
                 start();
             });
 
-            eventBus.on("search:resultsArrived", function (results) {
+            eventBus.on("search:resultsArrived", function () {
                 ok(false, "should not have been raised!");
                 start();
             });
@@ -170,17 +167,17 @@ $(function () {
 
         module("When requesting a search and there was no results");
 
-        asyncTest("It should raise a no results event", 1, function () {
+        asyncTest("It should render the no results available view", 1, function () {
             eventBus.reset();
             app.initialize();
 
-            eventBus.on("search:failed", function (results) {
+            eventBus.on("search:failed", function () {
                 ok(false, "searchFailed was raised");
                 start();
             });
 
-            eventBus.on("search:returnedNoResults", function (results) {
-                ok(true);
+            eventBus.on("search:completed", function () {
+                ok($(".searchresult-no-results-available").is(":visible"));
                 start();
             });
 
@@ -191,12 +188,12 @@ $(function () {
             eventBus.reset();
             app.initialize();
 
-            eventBus.on("search:failed", function (results) {
+            eventBus.on("search:failed", function () {
                 ok(false, "searchFailed was raised");
                 start();
             });
 
-            eventBus.on("search:completed", function (results) {
+            eventBus.on("search:completed", function () {
                 ok(true);
                 start();
             });

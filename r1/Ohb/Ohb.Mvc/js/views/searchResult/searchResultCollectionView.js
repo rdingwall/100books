@@ -4,19 +4,21 @@
 
     Ohb.Views.SearchResultCollectionView = (function ($, Backbone,
               _, eventBus, SearchResultView, SearchResult,
-              NoSearchResultsAvailableView) {
+              NoSearchResultsAvailableView, SearchResultCollection) {
 
         var log = $.jog("SearchResultCollectionView");
 
         // todo: generic version http://liquidmedia.ca/blog/2011/02/backbone-js-part-3/
         return Backbone.View.extend({
 
-            el: $('#search-results'),
+            collection: new SearchResultCollection(),
 
             initialize: function () {
-                this.searchResultViews = [];
+                this.views = [];
 
-                $("html").click("click", $.proxy(this.tryClose, this));
+                _.bindAll(this);
+
+                $("html").on("click", this.close);
 
                 $(this.el).click(function (e) {
                     e.stopPropagation();
@@ -26,12 +28,17 @@
                     e.stopPropagation();
                 });
 
-                eventBus.on("search:resultsArrived", this.onSearchResultsArrived, this);
-                eventBus.on("search:returnedNoResults", this.onSearchReturnedNoResults, this);
-                eventBus.on("search:resultSelected", this.tryClose, this);
+                if (this.collection.length === 0) {
+                    this.addView(new NoSearchResultsAvailableView());
+                } else {
+                    this.collection.each(this.addOne);
+                }
+
+                eventBus.on("search:began", this.close);
+                eventBus.on("search:resultSelected", this.close);
             },
 
-            addResult: function (searchResult) {
+            addOne: function (searchResult) {
                 var view = new SearchResultView({
                     model: searchResult
                 });
@@ -40,7 +47,7 @@
             },
 
             addView: function (view) {
-                this.searchResultViews.push(view);
+                this.views.push(view);
 
                 if (this._rendered) {
                     $(this.el).append(view.render().el);
@@ -48,14 +55,11 @@
             },
 
             render: function () {
-                // We keep track of the rendered state of the view
-                this._rendered = true;
-
                 $(this.el).empty();
 
                 var that = this;
 
-                _(this.searchResultViews).each(function (view) {
+                _(this.views).each(function (view) {
                     $(that.el).append(view.render().el);
                 });
 
@@ -64,41 +68,17 @@
                 return this;
             },
 
-            onSearchResultsArrived: function (results) {
-                log.info("showing search results...");
-                this.clearResults();
-
-                results.each($.proxy(this.addResult, this));
-
-                this.render();
-            },
-
-            onSearchReturnedNoResults: function () {
-                log.info("showing 'no results' msg...");
-                this.clearResults();
-                this.addView(new NoSearchResultsAvailableView());
-                this.render();
-            },
-
-            clearResults: function () {
-                $(this.el).empty();
-                this.searchResultViews.length = 0;
-            },
-
-            tryClose: function () {
-
-                if (!this._rendered) {
-                    return;
-                }
+            close: function () {
 
                 log.info("closing search results...");
 
+                $("html").off("click", this.close);
                 $(this.el).hide();
-                this.clearResults();
-                this._rendered = false;
+                $(this.el).empty();
+                this.collection.reset();
+                this.views = [];
             }
         });
-
     }(
         $,
         Backbone,
@@ -106,6 +86,7 @@
         Ohb.eventBus,
         Ohb.Views.SearchResultView,
         Ohb.Models.SearchResult,
-        Ohb.Views.NoSearchResultsAvailableView
+        Ohb.Views.NoSearchResultsAvailableView,
+        Ohb.Collections.SearchResultCollection
     ));
 });
