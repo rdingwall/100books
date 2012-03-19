@@ -36,7 +36,10 @@ $(function () {
         PreviousRead,
         PreviousReadView,
         PreviousReadCollection,
-        PreviousReadCollectionView
+        PreviousReadCollectionView,
+        Profile,
+        ProfileCardView,
+        CompositeProfileView
     ) {
 
         QUnit.config.testTimeout = 2000;
@@ -549,6 +552,45 @@ $(function () {
                 model2.get("title"));
         });
 
+
+        module("When rendering a profile card view");
+
+        test("It should render the details", 1, function () {
+            var model = new Profile({
+                displayName: "test user"
+            });
+
+            var view = new ProfileCardView({
+                model: model,
+                el: "#test-profile-card"
+            });
+
+            view.render();
+
+            equal(view.$el.find(".profile-card-display-name").text(), model.get("displayName"));
+        });
+
+        module("When rendering a composite profile view");
+
+        test("It should render both the profile card and the previous reads", 2, function () {
+            var model = new Profile({
+                displayName: "test user"
+            });
+
+            var collection = new PreviousReadCollection();
+            collection.add(new PreviousRead({
+                title: "title 1"
+            }));
+
+            var view = new CompositeProfileView({ el: "#test-composite-profile" });
+
+            view.renderProfileCard(model);
+            view.renderPreviousReads(collection);
+
+            equal(view.$el.find(".profile-card-display-name").text(), model.get("displayName"));
+            equal(view.$el.find(".previous-read-title").text(), collection.at(0).get("title"));
+        });
+
     }(
         Ohb.app,
         Ohb.Router,
@@ -566,6 +608,9 @@ $(function () {
         Ohb.Models.PreviousRead,
         Ohb.Views.PreviousReadView,
         Ohb.Collections.PreviousReadCollection,
-        Ohb.Views.PreviousReadCollectionView
+        Ohb.Views.PreviousReadCollectionView,
+        Ohb.Models.Profile,
+        Ohb.Views.ProfileCardView,
+        Ohb.Views.CompositeProfileView
     ));
 });
