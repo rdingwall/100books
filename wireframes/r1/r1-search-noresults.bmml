@@ -46,6 +46,9 @@
         <icon>SpinningIcon%7Cxsmall</icon>
       </controlProperties>
     </control>
+    <control controlID="105" controlTypeID="com.balsamiq.mockups::Image" x="375" y="176" w="46" h="47" measuredW="141" measuredH="144" zOrder="21" locked="false" isInGroup="-1"/>
+    <control controlID="106" controlTypeID="com.balsamiq.mockups::Image" x="375" y="255" w="46" h="47" measuredW="141" measuredH="144" zOrder="22" locked="false" isInGroup="-1"/>
+    <control controlID="107" controlTypeID="com.balsamiq.mockups::Image" x="375" y="326" w="46" h="47" measuredW="141" measuredH="144" zOrder="23" locked="false" isInGroup="-1"/>
     <control controlID="78" controlTypeID="com.balsamiq.mockups::Label" x="498" y="79" w="116" h="27" measuredW="108" measuredH="25" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <text>%5BRichard%20Dingwall%5D</text>
@@ -71,32 +74,32 @@
     </control>
     <control controlID="82" controlTypeID="com.balsamiq.mockups::HRule" x="51" y="105" w="1552" h="-1" measuredW="100" measuredH="5" zOrder="17" locked="false" isInGroup="-1"/>
     <control controlID="84" controlTypeID="com.balsamiq.mockups::Canvas" x="554" y="106" w="484" h="46" measuredW="100" measuredH="70" zOrder="19" locked="false" isInGroup="-1"/>
-    <control controlID="87" controlTypeID="com.balsamiq.mockups::Link" x="381" y="173" w="-1" h="-1" measuredW="250" measuredH="25" zOrder="1" locked="true" isInGroup="-1">
+    <control controlID="87" controlTypeID="com.balsamiq.mockups::Link" x="431" y="173" w="-1" h="-1" measuredW="250" measuredH="25" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <text>THE%20DESIGN%20OF%20EVERYDAY%20THINGS</text>
       </controlProperties>
     </control>
-    <control controlID="88" controlTypeID="com.balsamiq.mockups::Label" x="381" y="205" w="145" h="25" measuredW="156" measuredH="25" zOrder="2" locked="true" isInGroup="-1">
+    <control controlID="88" controlTypeID="com.balsamiq.mockups::Label" x="431" y="205" w="145" h="25" measuredW="156" measuredH="25" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Donald%20A%20Norman%2C%201960</text>
       </controlProperties>
     </control>
-    <control controlID="89" controlTypeID="com.balsamiq.mockups::Link" x="381" y="250" w="-1" h="-1" measuredW="398" measuredH="25" zOrder="3" locked="true" isInGroup="-1">
+    <control controlID="89" controlTypeID="com.balsamiq.mockups::Link" x="431" y="250" w="-1" h="-1" measuredW="398" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <text>DOMAIN%20DRIVEN%20DESIGN%3A%20TACKLING%20COMPLEXITY%20IN%20...</text>
       </controlProperties>
     </control>
-    <control controlID="90" controlTypeID="com.balsamiq.mockups::Label" x="381" y="282" w="106" h="25" measuredW="114" measuredH="25" zOrder="4" locked="true" isInGroup="-1">
+    <control controlID="90" controlTypeID="com.balsamiq.mockups::Label" x="431" y="282" w="106" h="25" measuredW="114" measuredH="25" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Eric%20Evans%2C%202004</text>
       </controlProperties>
     </control>
-    <control controlID="91" controlTypeID="com.balsamiq.mockups::Link" x="375" y="327" w="-1" h="-1" measuredW="398" measuredH="25" zOrder="5" locked="true" isInGroup="-1">
+    <control controlID="91" controlTypeID="com.balsamiq.mockups::Link" x="425" y="327" w="-1" h="-1" measuredW="398" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text>DOMAIN%20DRIVEN%20DESIGN%3A%20TACKLING%20COMPLEXITY%20IN%20...</text>
       </controlProperties>
     </control>
-    <control controlID="92" controlTypeID="com.balsamiq.mockups::Label" x="375" y="359" w="106" h="25" measuredW="114" measuredH="25" zOrder="6" locked="true" isInGroup="-1">
+    <control controlID="92" controlTypeID="com.balsamiq.mockups::Label" x="425" y="359" w="106" h="25" measuredW="114" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Eric%20Evans%2C%202004</text>
       </controlProperties>
