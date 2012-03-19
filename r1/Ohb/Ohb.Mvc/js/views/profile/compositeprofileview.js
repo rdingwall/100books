@@ -35,6 +35,7 @@ $(function () {
                     model: model,
                     el: this.$profileCardEl
                 }).render();
+                this.trigger("profilecard:rendered");
             },
 
             renderPreviousReads: function (collection) {
@@ -43,6 +44,7 @@ $(function () {
                     collection: collection,
                     el: this.$previousReadsEl
                 }).render();
+                this.trigger("previousreads:rendered");
             }
         });
     }(

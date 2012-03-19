@@ -14,7 +14,9 @@
         ProfileCardView,
         Profile,
         mainRegion,
-        Book
+        Book,
+        CompositeProfileView,
+        PreviousReadCollection
     ) {
 
         var log = $.jog("App");
@@ -53,10 +55,25 @@
 
             onMyProfileRequested: function () {
                 log.info("Fetching user from API...");
+
+                var view = new CompositeProfileView();
+                mainRegion.show(view);
+
                 var model = new Profile({ id: "me" });
+
                 model.fetch({
                     success: function (model) {
-                        mainRegion.show(new ProfileCardView({ model: model }));
+                        view.renderProfileCard(model);
+                    },
+                    error: function () {
+                        mainRegion.showError("Sorry, there was an error retrieving this profile.");
+                    }
+                });
+
+                var collection = new PreviousReadCollection();
+                collection.fetch({
+                    success: function (collection) {
+                        view.renderPreviousReads(collection);
                     },
                     error: function () {
                         mainRegion.showError("Sorry, there was an error retrieving this profile.");
@@ -143,6 +160,8 @@
         Ohb.Views.ProfileCardView,
         Ohb.Models.Profile,
         Ohb.mainRegion,
-        Ohb.Models.Book
+        Ohb.Models.Book,
+        Ohb.Views.CompositeProfileView,
+        Ohb.Collections.PreviousReadCollection
     ));
 });
