@@ -10,41 +10,24 @@ $(function () {
         return Backbone.View.extend({
             className: "profile",
 
-            initialize: function () {
-                this.$profileCardEl = $("<div />");
-                this.$previousReadsEl = $("<div />");
+            initialize: function (options) {
+                this.profileModel = options.profileModel;
+                this.previousReadsCollection = options.previousReadsCollection;
             },
 
             render: function () {
-                log.info("Rendering ProfileView.");
+                log.info("Rendering CompositeProfileView.");
 
-                if (this.rendered) {
-                    return;
-                }
-
-                this.rendered = true;
-
-                this.$el.append(this.$profileCardEl);
-                this.$el.append(this.$previousReadsEl);
-                return this;
-            },
-
-            renderProfileCard: function (model) {
-                this.render();
-                new ProfileCardView({
-                    model: model,
-                    el: this.$profileCardEl
-                }).render();
-                this.trigger("profilecard:rendered");
-            },
-
-            renderPreviousReads: function (collection) {
-                this.render();
+                this.$el.append(new ProfileCardView({
+                    model: this.profileModel
+                }).render().el);
+                
                 new PreviousReadCollectionView({
-                    collection: collection,
-                    el: this.$previousReadsEl
+                    collection: this.previousReadsCollection,
+                    el: this.$el.append("<div/>")
                 }).render();
-                this.trigger("previousreads:rendered");
+
+                return this;
             }
         });
     }(
