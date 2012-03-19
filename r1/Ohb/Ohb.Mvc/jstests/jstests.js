@@ -32,7 +32,9 @@ $(function () {
         SearchResultCollection,
         SearchResultCollectionView,
         BookDetailsView,
-        mainRegion
+        mainRegion,
+        PreviousRead,
+        PreviousReadView
     ) {
 
         QUnit.config.testTimeout = 2000;
@@ -496,6 +498,27 @@ $(function () {
             Ohb.mainRegion.close();
         });
 
+        module("When rendering a previous read");
+
+        test("It should render the details", 3, function () {
+            var model = new PreviousRead({
+                title: "test title",
+                authors: "test author",
+                smallThumbnailUrl: "test url"
+            });
+
+            var view = new PreviousReadView({
+                model: model,
+                el: "#test-previous-read"
+            });
+
+            view.render();
+
+            equal(view.$el.find(".previous-read-title").text(), model.get("title"));
+            equal(view.$el.find(".previous-read-authors").text(), model.get("authors"));
+            equal(view.$el.find(".previous-read-thumbnail").attr("src"), model.get("smallThumbnailUrl"));
+        });
+
     }(
         Ohb.app,
         Ohb.Router,
@@ -509,6 +532,8 @@ $(function () {
         Ohb.Collections.SearchResultCollection,
         Ohb.Views.SearchResultCollectionView,
         Ohb.Views.BookDetailsView,
-        Ohb.mainRegion
+        Ohb.mainRegion,
+        Ohb.Models.PreviousRead,
+        Ohb.Views.PreviousReadView
     ));
 });
