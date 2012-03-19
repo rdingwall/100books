@@ -6,4 +6,4 @@
         url: "/api/v1/previousreads"
     });
 
-}($, _, Backbone, Ohb.Models.SearchResult));
+}($, _, Backbone, Ohb.Models.PreviousRead));
