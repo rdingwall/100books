@@ -230,8 +230,8 @@ $(function () {
                 mainRegion.off();
 
                 mainRegion.on("view:changed", function (view) {
-                    if ($(view.el).hasClass("my-profile")) {
-                        equal($("h1.profile-display-name").length, 1);
+                    if ($(view.el).hasClass("profile-card")) {
+                        equal($("h1.profile-card-display-name").length, 1);
                         start();
                     }
                 });

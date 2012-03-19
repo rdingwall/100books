@@ -11,7 +11,7 @@
         SearchResultCollectionView,
         SearchResultCollection,
         BookDetailsView,
-        MyProfileView,
+        ProfileCardView,
         Profile,
         mainRegion,
         Book
@@ -56,7 +56,7 @@
                 var model = new Profile({ id: "me" });
                 model.fetch({
                     success: function (model) {
-                        mainRegion.show(new MyProfileView({ model: model }));
+                        mainRegion.show(new ProfileCardView({ model: model }));
                     },
                     error: function () {
                         mainRegion.showError("Sorry, there was an error retrieving this profile.");
@@ -140,7 +140,7 @@
         Ohb.Views.SearchResultCollectionView,
         Ohb.Collections.SearchResultCollection,
         Ohb.Views.BookDetailsView,
-        Ohb.Views.MyProfileView,
+        Ohb.Views.ProfileCardView,
         Ohb.Models.Profile,
         Ohb.mainRegion,
         Ohb.Models.Book
