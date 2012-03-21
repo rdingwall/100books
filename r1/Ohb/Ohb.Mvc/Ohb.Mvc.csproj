@@ -193,7 +193,6 @@
     <Compile Include="AuthCookies\AuthCookieEncoder.cs" />
     <Compile Include="AuthCookies\AuthCookieFactory.cs" />
     <Compile Include="AuthCookies\AuthCookieSecretKey.cs" />
-    <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\OhbController.cs" />
     <Compile Include="ActionFilters\CurrentUserAttribute.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -275,7 +274,6 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Books\Get.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_LoggedInMenuPartial.cshtml" />
