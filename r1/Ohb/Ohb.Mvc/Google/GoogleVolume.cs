@@ -85,6 +85,12 @@ namespace Ohb.Mvc.Google
 
         [JsonProperty("language")]
         public string Language { get; set; }
+
+        [JsonProperty("previewLink")]
+        public string PreviewLink { get; set; }
+
+        [JsonProperty("infoLink")]
+        public string InfoLink { get; set; }
     }
     
     [JsonObject(MemberSerialization.OptIn)]

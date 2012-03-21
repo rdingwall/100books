@@ -1,3 +1,5 @@
+using System;
+
 namespace Ohb.Mvc.Api.Models
 {
     public class BookModel
@@ -19,5 +21,6 @@ namespace Ohb.Mvc.Api.Models
         public string Isbn10 { get; set; }
         public string Isbn13 { get; set; }
         public string GoogleBookUrl { get; set; }
+        public string GooglePreviewUrl { get; set; }
     }
 }

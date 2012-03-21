@@ -50,10 +50,14 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             It should_return_the_isbn_13 =
                 () => response.Data.Isbn13.ShouldEqual("9780553804577");
 
-            It should_return_the_preview_link =
+            It should_return_the_google_book_link =
                 () =>
                 response.Data.GoogleBookUrl.ShouldEqual(
                     "http://books.google.co.uk/books/about/The_Google_story.html?id=4YydO00I9JYC");
+
+            It should_return_the_google_preview_link =
+                () => response.Data.GooglePreviewUrl.ShouldEqual(
+                    "http://books.google.co.uk/books?id=4YydO00I9JYC&source=gbs_api");
 
             static RestResponse<BookModel> response;
         }

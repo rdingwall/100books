@@ -99,6 +99,12 @@ namespace Ohb.Mvc.Specs.IntegrationTests
                 volume.VolumeInfo.CanonicalVolumeLink.ShouldEqual(
                     "http://books.google.co.uk/books/about/LEGO.html?id=a52a_F-OKUcC");
 
+            // seems to be the same as the google URL?
+            It should_get_the_books_preview_url =
+                () =>
+                volume.VolumeInfo.PreviewLink.ShouldEqual(
+                    "http://books.google.co.uk/books?id=a52a_F-OKUcC&source=gbs_api");
+
             It should_get_the_books_web_reader_url =
                 () =>
                 volume.AccessInfo.WebReaderLink.ShouldEqual(

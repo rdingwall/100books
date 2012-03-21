@@ -58,7 +58,8 @@ namespace Ohb.Mvc.Api.Models
                 SmallThumbnailUrl = book.GoogleVolume.VolumeInfo.ImageLinks.SmallThumbnail,
                 ThumbnailUrl = book.GoogleVolume.VolumeInfo.ImageLinks.Thumbnail,
                 Title = book.GoogleVolume.VolumeInfo.Title,
-                GoogleBookUrl = book.GoogleVolume.VolumeInfo.CanonicalVolumeLink
+                GoogleBookUrl = book.GoogleVolume.VolumeInfo.CanonicalVolumeLink,
+                GooglePreviewUrl = book.GoogleVolume.VolumeInfo.PreviewLink
             };
 
             if (!String.IsNullOrWhiteSpace(book.GoogleVolume.VolumeInfo.PublishedDate))
