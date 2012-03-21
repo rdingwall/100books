@@ -9,6 +9,7 @@ using Castle.Windsor;
 using Ohb.Mvc.ActionFilters;
 using Ohb.Mvc.Api;
 using Ohb.Mvc.Api.ActionFilters;
+using Ohb.Mvc.AuthCookies;
 using Ohb.Mvc.Startup;
 
 namespace Ohb.Mvc
@@ -129,6 +130,7 @@ namespace Ohb.Mvc
             RegisterApiStuff(resolver, container);
 
             DependencyResolver.SetResolver(resolver);
+            OhbUserContext.SetContainer(container);
 
             AreaRegistration.RegisterAllAreas();
 
