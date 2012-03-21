@@ -57,7 +57,8 @@ namespace Ohb.Mvc.Api.Models
                 Publisher = book.GoogleVolume.VolumeInfo.Publisher,
                 SmallThumbnailUrl = book.GoogleVolume.VolumeInfo.ImageLinks.SmallThumbnail,
                 ThumbnailUrl = book.GoogleVolume.VolumeInfo.ImageLinks.Thumbnail,
-                Title = book.GoogleVolume.VolumeInfo.Title
+                Title = book.GoogleVolume.VolumeInfo.Title,
+                GoogleBookUrl = book.GoogleVolume.VolumeInfo.CanonicalVolumeLink
             };
 
             if (!String.IsNullOrWhiteSpace(book.GoogleVolume.VolumeInfo.PublishedDate))
@@ -65,6 +66,22 @@ namespace Ohb.Mvc.Api.Models
 
             if (!String.IsNullOrWhiteSpace(book.GoogleVolume.VolumeInfo.SubTitle))
                 model.Title = String.Concat(model.Title, ": ", book.GoogleVolume.VolumeInfo.SubTitle);
+
+            if (book.GoogleVolume.VolumeInfo.IndustryIdentifiers != null)
+            {
+                model.Isbn10 = book.GoogleVolume.VolumeInfo.IndustryIdentifiers
+                    .Where(i => i.Type == "ISBN_10")
+                    .Select(
+                        i => i.Identifier).FirstOrDefault();
+            }
+
+            if (book.GoogleVolume.VolumeInfo.IndustryIdentifiers != null)
+            {
+                model.Isbn13 = book.GoogleVolume.VolumeInfo.IndustryIdentifiers
+                    .Where(i => i.Type == "ISBN_13")
+                    .Select(
+                        i => i.Identifier).FirstOrDefault();
+            }
 
             // todo: clean this up
             if (String.IsNullOrEmpty(model.ThumbnailUrl))

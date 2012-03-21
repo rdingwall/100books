@@ -6,7 +6,7 @@ using Ohb.Mvc.Storage.PreviousReads;
 using RestSharp;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.Http
-{
+{   
     [Subject("api/v1/books/:id GET")]
     class BooksHttpApiSpecs
     {
@@ -43,6 +43,17 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             
             It should_not_be_previously_read =
                 () => response.Data.HasPreviouslyRead.ShouldBeFalse();
+
+            It should_return_the_isbn_10 =
+                () => response.Data.Isbn10.ShouldEqual("055380457X");
+
+            It should_return_the_isbn_13 =
+                () => response.Data.Isbn13.ShouldEqual("9780553804577");
+
+            It should_return_the_preview_link =
+                () =>
+                response.Data.GoogleBookUrl.ShouldEqual(
+                    "http://books.google.co.uk/books/about/The_Google_story.html?id=4YydO00I9JYC");
 
             static RestResponse<BookModel> response;
         }

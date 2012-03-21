@@ -1,6 +1,3 @@
-using System;
-using Ohb.Mvc.Storage.Books;
-
 namespace Ohb.Mvc.Api.Models
 {
     public class BookModel
@@ -19,7 +16,8 @@ namespace Ohb.Mvc.Api.Models
         public int PageCount { get; set; }
         public string ThumbnailUrl { get; set; }
         public string SmallThumbnailUrl { get; set; }
-
-        
+        public string Isbn10 { get; set; }
+        public string Isbn13 { get; set; }
+        public string GoogleBookUrl { get; set; }
     }
 }
