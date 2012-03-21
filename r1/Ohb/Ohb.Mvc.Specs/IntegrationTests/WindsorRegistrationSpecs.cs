@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using Castle.Windsor;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Controllers;
-using Ohb.Mvc.Areas.Admin.Controllers;
 using Ohb.Mvc.Startup;
 
 namespace Ohb.Mvc.Specs.IntegrationTests
@@ -37,8 +36,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests
                     {
                         controllers = typeof (BooksController).Assembly.GetTypes()
                             .Where(t => typeof (Controller).IsAssignableFrom(t))
-                            .Where(t => !t.IsAbstract)
-                            .Except(new[] {typeof(ElmahController)});
+                            .Where(t => !t.IsAbstract);
                     };
 
             It should_be_able_to_resolve_all_controllers =
