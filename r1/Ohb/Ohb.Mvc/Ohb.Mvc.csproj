@@ -182,9 +182,7 @@
     <Compile Include="Api\Models\ApiModelMapper.cs" />
     <Compile Include="Api\Models\ProfileModel.cs" />
     <Compile Include="AuthCookies\AuthCookieCache.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Extensions\RandomExtensions.cs" />
-    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Startup\RavenDbConventions.cs" />
     <Compile Include="Storage\Books\ConvertGoogleVolumeId.cs" />
     <Compile Include="Storage\PreviousReads\PreviousReadWithBook.cs" />
@@ -271,10 +269,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
-    <Content Include="Views\Account\LogOn.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -294,6 +288,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="js\lib\jquery\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
