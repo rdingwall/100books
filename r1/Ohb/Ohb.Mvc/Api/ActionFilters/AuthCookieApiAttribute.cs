@@ -16,18 +16,14 @@ namespace Ohb.Mvc.Api.ActionFilters
     {}
     
     // handler
-    public class AuthCookieApiAttribute : ActionFilterAttribute, IDisposable
+    public class AuthCookieApiAttribute : ActionFilterAttribute
     {
         readonly IUserRepository users;
-        IAuthCookieEncoder encoder;
 
-        public AuthCookieApiAttribute(IUserRepository users, 
-            IAuthCookieEncoder encoder)
+        public AuthCookieApiAttribute(IUserRepository users)
         {
             if (users == null) throw new ArgumentNullException("users");
-            if (encoder == null) throw new ArgumentNullException("encoder");
             this.users = users;
-            this.encoder = encoder;
         }
 
         public override void OnActionExecuting(HttpActionContext actionContext)
@@ -36,29 +32,16 @@ namespace Ohb.Mvc.Api.ActionFilters
             if (controller == null)
                 return;
 
-            var cookie = HttpContext.Current.Request.Cookies[OhbCookies.AuthCookie];
-
-            if (cookie == null)
+            if (!OhbUserContext.Current.IsAuthenticated)
             {
                 if (RequiresAuthorization(actionContext))
                     throw MissingAuthCookieException();
 
                 return;
             }
-
-            AuthCookieContext context = GetAuthCookieContext(cookie);
-
             // todo: assert api token has not expired
 
-            controller.User = users.GetUser(context.UserId, controller.DocumentSession);
-        }
-
-        AuthCookieContext GetAuthCookieContext(HttpCookie cookie)
-        {
-            AuthCookieContext context;
-            if (!encoder.TryDecode(cookie.Value, out context))
-                throw BadAuthCookieException();
-            return context;
+            controller.User = users.GetUser(OhbUserContext.Current.UserId, controller.DocumentSession);
         }
 
         static Exception MissingAuthCookieException()
@@ -68,45 +51,10 @@ namespace Ohb.Mvc.Api.ActionFilters
                 HttpStatusCode.Unauthorized);
         }
 
-        static Exception BadAuthCookieException()
-        {
-            return new HttpResponseException("Invalid auth cookie.", HttpStatusCode.Unauthorized);
-        }
-
         static bool RequiresAuthorization(HttpActionContext actionContext)
         {
             return actionContext.ActionDescriptor
                 .GetCustomAttributes<RequiresAuthCookieAttribute>().Any();
         }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    if (encoder != null)
-                    {
-                        encoder.Dispose();
-                        encoder = null;
-                    }
-                }
-
-                disposed = true;
-            }
-        }
-
-        ~AuthCookieApiAttribute()
-        {
-            Dispose(false);
-        }
-
-        bool disposed;
     }
 }
