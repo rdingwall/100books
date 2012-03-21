@@ -1,14 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using Newtonsoft.Json;
-using System.Linq;
-using Ohb.Mvc.Models;
-using Ohb.Mvc.Storage.Books;
 
 namespace Ohb.Mvc.Google
 {
@@ -20,32 +13,6 @@ namespace Ohb.Mvc.Google
         {
             if (apiKey == null) throw new ArgumentNullException("apiKey");
             this.apiKey = apiKey;
-        }
-
-        public Task<IEnumerable<BookSearchResult>> Search(string terms)
-        {
-            if (terms == null) throw new ArgumentNullException("terms");
-
-            var queryString = HttpUtility.ParseQueryString("");
-            queryString["key"] = apiKey;
-            queryString["q"] = terms;
-            queryString["printType"] = "books";
-            queryString["maxResults"] = "20";
-            
-            if (HttpContext.Current != null)
-                queryString["userIp"] = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-
-            var builder = new UriBuilder("https://www.googleapis.com/books/v1/volumes")
-                              {
-                                  Query = queryString.ToString()
-                              };
-
-            var request = WebRequest.Create(builder.Uri);
-
-            return Task.Factory.FromAsync(
-                request.BeginGetResponse,
-                r => GetResults(request.EndGetResponse(r)),
-                null);
         }
 
         public GoogleVolume GetVolume(string id)
@@ -74,28 +41,6 @@ namespace Ohb.Mvc.Google
                     throw new InvalidOperationException(String.Format("Expected JSON but got '{0}'.", json));
                 
                 return JsonConvert.DeserializeObject<GoogleVolume>(json);
-            }
-        }
-
-        static IEnumerable<BookSearchResult> GetResults(WebResponse response)
-        {
-            using (response)
-            using (var stream = response.GetResponseStream())
-            using (var reader = new StreamReader(stream))
-            {
-                var result = JsonConvert.DeserializeObject<GoogleVolumesCollection>(reader.ReadToEnd());
-
-                return result.Items
-                    .Select(volume => new BookSearchResult
-                                          {
-                                              Id = volume.Id,
-                                              Title = volume.VolumeInfo.Title,
-                                              Author = String.Join(", ", volume.VolumeInfo.Authors),
-                                              SmallThumbnailUrl = volume.VolumeInfo.ImageLinks.SmallThumbnail
-                                          })
-                    .ToList()
-                    .Where(IgnoreList.IsOkay)
-                    .Distinct(new BookTitleComparer());
             }
         }
     }

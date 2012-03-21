@@ -182,7 +182,9 @@
     <Compile Include="Api\Models\ApiModelMapper.cs" />
     <Compile Include="Api\Models\ProfileModel.cs" />
     <Compile Include="AuthCookies\AuthCookieCache.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Extensions\RandomExtensions.cs" />
+    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Startup\RavenDbConventions.cs" />
     <Compile Include="Storage\Books\ConvertGoogleVolumeId.cs" />
     <Compile Include="Storage\PreviousReads\PreviousReadWithBook.cs" />
@@ -202,16 +204,9 @@
     <Compile Include="ActionFilters\OhbHandleErrorAttribute.cs" />
     <Compile Include="OhbCookies.cs" />
     <Compile Include="Startup\WebInstaller.cs" />
-    <Compile Include="Google\BookTitleComparer.cs" />
     <Compile Include="Google\GoogleBooksClient.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Models\BookSearchResult.cs" />
-    <Compile Include="Controllers\SearchController.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\SearchResultsModel.cs" />
     <Compile Include="ActionFilters\RavenDbAttribute.cs" />
-    <Compile Include="Google\IgnoreList.cs" />
     <Compile Include="Storage\Books\BookRepository.cs" />
     <Compile Include="Storage\PreviousReads\RecentReadsQuery.cs" />
     <Compile Include="Storage\RavenUniqueInserter.cs" />
@@ -224,12 +219,10 @@
     <Compile Include="Startup\WindsorResolver.cs" />
     <Compile Include="Startup\WindsorExtensions.cs" />
     <Compile Include="Startup\WindsorRegistration.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\Books\Book.cs" />
     <Compile Include="Storage\Books\BookImporter.cs" />
@@ -288,7 +281,6 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Books\Get.cshtml" />
   </ItemGroup>
   <ItemGroup>
