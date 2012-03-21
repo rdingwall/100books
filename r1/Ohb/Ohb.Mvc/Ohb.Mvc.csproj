@@ -197,7 +197,6 @@
     <Compile Include="ActionFilters\CurrentUserAttribute.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Google\GoogleVolume.cs" />
-    <Compile Include="Google\IGoogleBooksClient.cs" />
     <Compile Include="ActionFilters\OhbHandleErrorAttribute.cs" />
     <Compile Include="OhbCookies.cs" />
     <Compile Include="Startup\WebInstaller.cs" />

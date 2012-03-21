@@ -5,6 +5,11 @@ using Newtonsoft.Json;
 
 namespace Ohb.Mvc.Google
 {
+    public interface IGoogleBooksClient
+    {
+        GoogleVolume GetVolume(string id);
+    }
+
     public class GoogleBooksClient : IGoogleBooksClient
     {
         readonly string apiKey;
