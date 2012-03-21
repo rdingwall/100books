@@ -33,7 +33,7 @@ namespace Ohb.Mvc.Startup
             if (routeData == null)
                 return routeData; // ?? not sure how this is possible but whatevs
 
-            routeData.Values["Controller"] = "Profile";
+            routeData.Values["Controller"] = "LoggedIn";
 
             return routeData;
         }

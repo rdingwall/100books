@@ -3,12 +3,10 @@ using Facebook.Web;
 
 namespace Ohb.Mvc.Controllers
 {
-    public class HomeController : OhbController
+    public class PublicController : OhbController
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
-
             return View();
         }
 
@@ -31,7 +29,7 @@ namespace Ohb.Mvc.Controllers
                     }
                 }
 
-                return RedirectToAction("Index", "Profile");
+                return RedirectToAction("Index", "LoggedIn");
             }
 
             return View();

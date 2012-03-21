@@ -7,16 +7,16 @@ using System.Linq;
 
 namespace Ohb.Mvc.Controllers
 {
-    public class ProfileController : OhbController
+    public class LoggedInController : OhbController
     {
         public ActionResult Redirect()
         {
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Public");
         }
 
         //
         // GET: /Profile/
-        [FacebookAuthorize(LoginUrl = "/?ReturnUrl=~/Profile")]
+        [FacebookAuthorize(LoginUrl = "/?ReturnUrl=~/Login")]
         public ActionResult Index()
         {
             ViewBag.ProfileImageUrl = User.ProfileImageUrl;
@@ -28,7 +28,7 @@ namespace Ohb.Mvc.Controllers
             return View();
         }
 
-        [FacebookAuthorize(LoginUrl = "/?ReturnUrl=~/Profile")]
+        [FacebookAuthorize(LoginUrl = "/?ReturnUrl=~/Login")]
         public ActionResult LogOut()
         {
             FacebookWebContext.Current.DeleteAuthCookie();
@@ -39,7 +39,7 @@ namespace Ohb.Mvc.Controllers
                         Expires = DateTime.UtcNow.AddMonths(-1)
                     });
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Public");
         }
     }
 }

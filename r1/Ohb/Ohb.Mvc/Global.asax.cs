@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using System.Web;
+﻿using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -45,13 +43,13 @@ namespace Ohb.Mvc
                             "Books/{id}", // URL with parameters
                             new { controller = "Books", action = "Get" });
 
-            routes.MapRoute("Redirect", "Profile",
-                            new { controller = "Profile", action = "Redirect" });
+            routes.MapRoute("Redirect", "FacebookLogin",
+                            new { controller = "LoggedIn", action = "Redirect" });
 
             routes.Add(new LoggedInHomeRoute(
                            "{controller}/{action}/{id}", // URL with parameters
                            new RouteValueDictionary( // Parameter defaults
-                               new { controller = "Home", action = "Index", id = UrlParameter.Optional }),
+                               new { controller = "Public", action = "Index", id = UrlParameter.Optional }),
                            new MvcRouteHandler()));
         }
 
