@@ -1,6 +1,7 @@
 using System.Web;
 using System.Web.Routing;
 using Facebook.Web;
+using Ohb.Mvc.AuthCookies;
 
 namespace Ohb.Mvc.Startup
 {
@@ -27,7 +28,7 @@ namespace Ohb.Mvc.Startup
         {
             var routeData = base.GetRouteData(httpContext);
 
-            if (!FacebookWebContext.Current.IsAuthenticated())
+            if (!OhbUserContext.Current.IsAuthenticated)
                 return routeData;
 
             if (routeData == null)
