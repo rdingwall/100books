@@ -1,73 +1,96 @@
-﻿@{
-    ViewBag.Title = "100 Books";
-}
-
-<div class="hero-unit">
-    <h1>@ViewBag.Title</h1>
-    <p>You know those lists like _X books you must read before you die_? 100 Books helps you keep track what books you've read, what books you want to read next, and what your friends are reading.</p>
-    <p><input type="button" id="fblogin" class="btn-large btn-primary pull-right" value="Login using Facebook" disabled="disabled"/></p>
-</div>
-<div class="row">
-    <div class="span4">
-        <h4>Get inspired</h4>
-        <p>Follow artists, writers and industry leaders to see what they're reading.</p>
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>100 Books</title>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet/less" href="@Url.Content("~/bootstrap/less/bootstrap.less")"  />
+    <link rel="stylesheet/less" href="@Url.Content("~/css/less/ohb.less")"  />
+    <script type="text/javascript" src="/js/lib/less/less-1.3.0.js"></script>
+    <script type="text/javascript" src="/js/lib/modernizr/modernizr.js"></script>
+    <script type="text/javascript" src="/js/lib/jquery/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap-modal.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container" id="menubar">
+                <span class="brand">100 Books</span>
+            </div>
+        </div>
     </div>
-    <div class="span4">
-        <h4>Keep up</h4>
-        <p>Follow your friends and see what they've been reading.</p>
+    <div class="container">
+        <div class="hero-unit">
+            <h1>@ViewBag.Title</h1>
+            <p>You know those lists like _X books you must read before you die_? 100 Books helps you keep track what books you've read, what books you want to read next, and what your friends are reading.</p>
+            <p><input type="button" id="fblogin" class="btn-large btn-primary pull-right" value="Login using Facebook" disabled="disabled" /></p>
+        </div>
+        <div class="row">
+            <div class="span4">
+                <h4>Get inspired</h4>
+                <p>Follow artists, writers and industry leaders to see what they're reading.</p>
+            </div>
+            <div class="span4">
+                <h4>Keep up</h4>
+                <p>Follow your friends and see what they've been reading.</p>
+            </div>
+            <div class="span4">
+                <h4>Not sure what to read next?</h4>
+                <p>Stick to reading lists and people you follow.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span4">
+                <h4>Track what you've read</h4>
+                <p>Show the world how well-read you are with your public profile.</p>
+            </div>
+            <div class="span4">
+                <h4>Master the classics</h4>
+                <p>Where's that quote from? Work your way through the classics with specialised reading lists.</p>
+            </div>
+            <div class="span4">
+                <h4>Expand your repertoire</h4>
+                <p>There's some books everyone should read in a lifetime. Find them with 100 Books.</p>
+            </div>
+        </div>
+        <div id="fb-root">
+        </div>
+        <script>
+            window.fbAsyncInit = function () {
+
+                function facebooklogin() {
+                    FB.init({
+                        appId: '@Facebook.FacebookApplication.Current.AppId',
+                        cookie: true,
+                        xfbml: true,
+                        oauth: true
+                    });
+
+                    FB.login(function (response) {
+                        if (response.authResponse) {
+                            // user authorized
+                            window.location = '/Profile';
+                        } else {
+                            // user cancelled
+                        }
+                    }, { scope: '@ViewBag.ExtendedPermissions' });
+                };
+
+                $(function () {
+                    // make the button is only enabled after the facebook js sdk has been loaded.
+                    $('#fblogin').attr('disabled', false).click(facebooklogin);
+                });
+            };
+            (function () {
+                var e = document.createElement('script'); e.async = true;
+                e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+                document.getElementById('fb-root').appendChild(e);
+            } ());
+        </script>
     </div>
-    <div class="span4">
-        <h4>Not sure what to read next?</h4>
-        <p>Stick to reading lists and people you follow.</p>
-    </div>
-</div>
-<div class="row">
-    <div class="span4">
-        <h4>Track what you've read</h4>
-        <p>Show the world how well-read you are with your public profile.</p>
-    </div>
-    <div class="span4">
-        <h4>Master the classics</h4>
-        <p>Where's that quote from? Work your way through the classics with specialised reading lists.</p>
-    </div>
-    <div class="span4">
-        <h4>Expand your repertoire</h4>
-        <p>There's some books everyone should read in a lifetime. Find them with 100 Books.</p>
-    </div>
-</div>
-
-
-<div id="fb-root"></div>
-<script>
-    window.fbAsyncInit = function () {
-
-        function facebooklogin() {
-            FB.init({
-                appId: '@Facebook.FacebookApplication.Current.AppId',
-                cookie: true,
-                xfbml: true,
-                oauth: true
-            });
-
-            FB.login(function (response) {
-                if (response.authResponse) {
-                    // user authorized
-                    window.location = '/Profile';
-                } else {
-                    // user cancelled
-                }
-            }, { scope: '@ViewBag.ExtendedPermissions' });
-        };
-
-        $(function () {
-            // make the button is only enabled after the facebook js sdk has been loaded.
-            $('#fblogin').attr('disabled', false).click(facebooklogin);
-        });
-    };
-    (function () {
-        var e = document.createElement('script'); e.async = true;
-        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-        document.getElementById('fb-root').appendChild(e);
-    } ());
-</script>
-
+    <!-- /container -->
+</body>
+</html>
