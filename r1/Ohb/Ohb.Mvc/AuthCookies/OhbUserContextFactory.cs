@@ -5,14 +5,14 @@ using System.Web.Http;
 
 namespace Ohb.Mvc.AuthCookies
 {
-    public interface IOhbUserContextFactory
+    public interface IOhbUserContextFactory : IDisposable
     {
         OhbUserContext CreateFromAuthCookie(HttpContextBase httpContext);
     }
 
     public class OhbUserContextFactory : IOhbUserContextFactory
     {
-        readonly IAuthCookieEncoder encoder;
+        IAuthCookieEncoder encoder;
 
         public OhbUserContextFactory(IAuthCookieEncoder encoder)
         {
@@ -50,5 +50,35 @@ namespace Ohb.Mvc.AuthCookies
         {
             return new HttpResponseException("Invalid auth cookie.", HttpStatusCode.Unauthorized);
         }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    if (encoder != null)
+                    {
+                        encoder.Dispose();
+                        encoder = null;
+                    }
+                }
+
+                disposed = true;
+            }
+        }
+
+        ~OhbUserContextFactory()
+        {
+            Dispose(false);
+        }
+
+        bool disposed;
     }
 }

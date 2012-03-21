@@ -22,6 +22,8 @@ namespace Ohb.Mvc.Specs.AuthCookies
                     httpContext.Stub(c => c.Request.Cookies).Return(new HttpCookieCollection());
                 };
 
+            Cleanup after = () => factory.Dispose();
+
             Because of = () => userContext = factory.CreateFromAuthCookie(httpContext);
 
             It should_not_be_logged_in = () => userContext.IsAuthenticated.ShouldBeFalse();
@@ -54,6 +56,8 @@ namespace Ohb.Mvc.Specs.AuthCookies
                                 });
                 };
 
+            Cleanup after = () => factory.Dispose();
+
             Because of = () => userContext = factory.CreateFromAuthCookie(httpContext);
 
             It should_be_logged_in = () => userContext.IsAuthenticated.ShouldBeTrue();
@@ -85,6 +89,8 @@ namespace Ohb.Mvc.Specs.AuthCookies
                                     new HttpCookie(OhbCookies.AuthCookie, cookieBase64)
                                 });
                 };
+
+            Cleanup after = () => factory.Dispose();
 
             Because of = () => exception = Catch.Exception(() => factory.CreateFromAuthCookie(httpContext));
 
