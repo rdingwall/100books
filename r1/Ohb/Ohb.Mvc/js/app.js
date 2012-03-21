@@ -43,7 +43,7 @@
             initialize: function () {
                 log.info("Initializing router...");
 
-                eventBus.on("myprofile:requested", this.foo, this);
+                eventBus.on("myprofile:requested", this.onMyProfileRequested, this);
                 eventBus.on("book:requested", this.onBookRequested, this);
                 eventBus.on("search:requested", this.search, this);
                 eventBus.on("search:failed", this.onSearchFailed, this);
@@ -54,7 +54,7 @@
                 this.router = new Router();
             },
 
-            foo: function () {
+            onMyProfileRequested: function () {
                 log.info("Fetching combined profile from API...");
                 $.ajax({
                     url: "/api/v1/profiles/me",
@@ -68,7 +68,7 @@
 
                         var view = new CompositeProfileView({
                             profileModel: model,
-                            previousReadsCollection: collection
+                            previousReadCollection: collection
                         });
                         mainRegion.show(view);
                     },

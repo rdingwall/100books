@@ -12,7 +12,7 @@ $(function () {
 
             initialize: function (options) {
                 this.profileModel = options.profileModel;
-                this.previousReadsCollection = options.previousReadsCollection;
+                this.previousReadCollection = options.previousReadCollection;
             },
 
             render: function () {
@@ -21,9 +21,9 @@ $(function () {
                 this.$el.append(new ProfileCardView({
                     model: this.profileModel
                 }).render().el);
-                
+
                 new PreviousReadCollectionView({
-                    collection: this.previousReadsCollection,
+                    collection: this.previousReadCollection,
                     el: this.$el.append("<div/>")
                 }).render();
 

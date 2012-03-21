@@ -230,7 +230,7 @@ $(function () {
                 mainRegion.off();
 
                 mainRegion.on("view:changed", function (view) {
-                    if ($(view.el).hasClass("profile-card")) {
+                    if ($(view.el).hasClass("profile")) {
                         equal($("h1.profile-card-display-name").length, 1);
                         start();
                     }

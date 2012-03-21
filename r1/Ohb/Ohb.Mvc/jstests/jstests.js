@@ -582,10 +582,13 @@ $(function () {
                 title: "title 1"
             }));
 
-            var view = new CompositeProfileView({ el: "#test-composite-profile" });
+            var view = new CompositeProfileView({
+                el: "#test-composite-profile",
+                previousReadCollection: collection,
+                profileModel: model
+            });
 
-            view.renderProfileCard(model);
-            view.renderPreviousReads(collection);
+            view.render();
 
             equal(view.$el.find(".profile-card-display-name").text(), model.get("displayName"));
             equal(view.$el.find(".previous-read-title").text(), collection.at(0).get("title"));
