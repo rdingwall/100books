@@ -20,10 +20,24 @@ Ohb.Views.PreviousReadView = (function (
     return Backbone.View.extend({
         className: "previous-read",
 
+        events: {
+            "click .btn-remove-previousread" : "remove"
+        },
+
         render: function () {
             this.$el.html(Mustache.to_html(template, this.model.toJSON()));
             this.$el.attr("id", "previous-read-" + this.model.id);
             return this;
+        },
+
+        remove: function () {
+            this.model.remove();
+        },
+
+        close: function () {
+            this.$el.slideUp("slow", _.bind(function () {
+                this.$el.remove();
+            }, this));
         }
     });
 }(Backbone, Mustache));
