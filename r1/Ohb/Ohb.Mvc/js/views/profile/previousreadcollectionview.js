@@ -7,7 +7,11 @@
         var log = $.jog("PreviousReadCollectionView");
 
         return Backbone.Marionette.CollectionView.extend({
-            itemView: PreviousReadView
+            itemView: PreviousReadView,
+
+            close: function () {
+                this.collection.unbindEvents();
+            }
         });
     }(
         $,

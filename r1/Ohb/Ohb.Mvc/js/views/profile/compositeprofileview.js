@@ -18,16 +18,24 @@ $(function () {
             render: function () {
                 log.info("Rendering CompositeProfileView.");
 
-                this.$el.append(new ProfileCardView({
+                this.profileCardView = new ProfileCardView({
                     model: this.profileModel
-                }).render().el);
+                });
 
-                new PreviousReadCollectionView({
+                this.$el.append(this.profileCardView.render().el);
+
+                this.collectionView = new PreviousReadCollectionView({
                     collection: this.previousReadCollection,
                     el: this.$el.append("<div/>")
-                }).render();
+                });
+
+                this.collectionView.render();
 
                 return this;
+            },
+
+            close: function () {
+                this.collectionView.close();
             }
         });
     }(

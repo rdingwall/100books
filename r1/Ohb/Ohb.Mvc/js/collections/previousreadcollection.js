@@ -6,13 +6,16 @@
         url: "/api/v1/previousreads",
 
         initialize: function () {
-            // todo: fix memory leak (unsubscribe this handler)
             eventBus.on("previousread:removed", this.onPreviousReadRemoved, this);
         },
 
         onPreviousReadRemoved: function (id) {
             var model = this.get(id);
             this.remove(model);
+        },
+
+        unbindEvents: function () {
+            eventBus.off("previousread:removed", this.onPreviousReadRemoved, this);
         }
     });
 
