@@ -1,36 +1,6 @@
 <mockup version="1.0" skin="sketch" measuredW="1613" measuredH="739">
   <controls>
-    <control controlID="96" controlTypeID="com.balsamiq.mockups::PointyButton" x="1153" y="186" w="70" h="-1" measuredW="75" measuredH="27" zOrder="10" locked="false" isInGroup="-1">
-      <controlProperties>
-        <state>up</state>
-        <size>8</size>
-        <color>40463</color>
-        <icon>CheckMarkIcon%7Cxsmall</icon>
-        <text>READ%20IT</text>
-        <direction>center</direction>
-      </controlProperties>
-    </control>
-    <control controlID="97" controlTypeID="com.balsamiq.mockups::PointyButton" x="1153" y="248" w="70" h="-1" measuredW="75" measuredH="27" zOrder="11" locked="false" isInGroup="-1">
-      <controlProperties>
-        <state>up</state>
-        <color>40463</color>
-        <size>8</size>
-        <icon>CheckMarkIcon%7Cxsmall</icon>
-        <direction>center</direction>
-        <text>READ%20IT</text>
-      </controlProperties>
-    </control>
-    <control controlID="98" controlTypeID="com.balsamiq.mockups::PointyButton" x="1153" y="310" w="70" h="-1" measuredW="75" measuredH="27" zOrder="12" locked="false" isInGroup="-1">
-      <controlProperties>
-        <state>up</state>
-        <color>40463</color>
-        <size>8</size>
-        <icon>CheckMarkIcon%7Cxsmall</icon>
-        <direction>center</direction>
-        <text>READ%20IT</text>
-      </controlProperties>
-    </control>
-    <control controlID="100" controlTypeID="com.balsamiq.mockups::Label" x="645" y="116" w="-1" h="-1" measuredW="302" measuredH="25" zOrder="20" locked="false" isInGroup="-1">
+    <control controlID="100" controlTypeID="com.balsamiq.mockups::Label" x="645" y="116" w="-1" h="-1" measuredW="302" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
         <text>No%20results%20found.%20Try%20broadening%20your%20search.</text>
         <color>6710886</color>
@@ -41,39 +11,69 @@
         <text>Search%20results%20-%20100%20Books%0Ahttp%3A//100books.ws/search%3Fq%3Dharry+potter</text>
       </controlProperties>
     </control>
-    <control controlID="104" controlTypeID="com.balsamiq.mockups::Icon" x="1041" y="84" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="104" controlTypeID="com.balsamiq.mockups::Icon" x="1041" y="84" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>SpinningIcon%7Cxsmall</icon>
       </controlProperties>
     </control>
-    <control controlID="105" controlTypeID="com.balsamiq.mockups::Image" x="375" y="176" w="46" h="47" measuredW="141" measuredH="144" zOrder="21" locked="false" isInGroup="-1"/>
-    <control controlID="106" controlTypeID="com.balsamiq.mockups::Image" x="375" y="255" w="46" h="47" measuredW="141" measuredH="144" zOrder="22" locked="false" isInGroup="-1"/>
-    <control controlID="107" controlTypeID="com.balsamiq.mockups::Image" x="375" y="326" w="46" h="47" measuredW="141" measuredH="144" zOrder="23" locked="false" isInGroup="-1"/>
-    <control controlID="78" controlTypeID="com.balsamiq.mockups::Label" x="498" y="79" w="116" h="27" measuredW="108" measuredH="25" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="105" controlTypeID="com.balsamiq.mockups::Image" x="375" y="176" w="46" h="47" measuredW="141" measuredH="144" zOrder="18" locked="false" isInGroup="-1"/>
+    <control controlID="106" controlTypeID="com.balsamiq.mockups::Image" x="375" y="255" w="46" h="47" measuredW="141" measuredH="144" zOrder="19" locked="false" isInGroup="-1"/>
+    <control controlID="107" controlTypeID="com.balsamiq.mockups::Image" x="375" y="326" w="46" h="47" measuredW="141" measuredH="144" zOrder="20" locked="false" isInGroup="-1"/>
+    <control controlID="108" controlTypeID="com.balsamiq.mockups::PointyButton" x="1138" y="178" w="85" h="-1" measuredW="84" measuredH="28" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>up</state>
+        <size>13</size>
+        <color>15790322</color>
+        <icon>XIcon%7Cxsmall</icon>
+        <text>Remove</text>
+        <direction>center</direction>
+      </controlProperties>
+    </control>
+    <control controlID="109" controlTypeID="com.balsamiq.mockups::PointyButton" x="1138" y="240" w="85" h="-1" measuredW="84" measuredH="28" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>up</state>
+        <size>13</size>
+        <color>15790322</color>
+        <icon>XIcon%7Cxsmall</icon>
+        <text>Remove</text>
+        <direction>center</direction>
+      </controlProperties>
+    </control>
+    <control controlID="78" controlTypeID="com.balsamiq.mockups::Label" x="498" y="79" w="116" h="27" measuredW="108" measuredH="25" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <text>%5BRichard%20Dingwall%5D</text>
         <align>left</align>
       </controlProperties>
     </control>
-    <control controlID="79" controlTypeID="com.balsamiq.mockups::Title" x="371" y="75" w="112" h="-1" measuredW="104" measuredH="34" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="79" controlTypeID="com.balsamiq.mockups::Title" x="371" y="75" w="112" h="-1" measuredW="104" measuredH="34" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text>100%20books</text>
         <size>20</size>
       </controlProperties>
     </control>
-    <control controlID="80" controlTypeID="com.balsamiq.mockups::SearchBox" x="614" y="81" w="426" h="-1" measuredW="135" measuredH="25" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="80" controlTypeID="com.balsamiq.mockups::SearchBox" x="614" y="81" w="426" h="-1" measuredW="135" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Harry%20Potter</text>
       </controlProperties>
     </control>
-    <control controlID="81" controlTypeID="com.balsamiq.mockups::Label" x="1169" y="79" w="63" h="27" measuredW="61" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="81" controlTypeID="com.balsamiq.mockups::Label" x="1169" y="79" w="63" h="27" measuredW="61" measuredH="25" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <text>%5BSign%20out%5D%20</text>
         <align>left</align>
       </controlProperties>
     </control>
-    <control controlID="82" controlTypeID="com.balsamiq.mockups::HRule" x="51" y="105" w="1552" h="-1" measuredW="100" measuredH="5" zOrder="17" locked="false" isInGroup="-1"/>
-    <control controlID="84" controlTypeID="com.balsamiq.mockups::Canvas" x="554" y="106" w="484" h="46" measuredW="100" measuredH="70" zOrder="19" locked="false" isInGroup="-1"/>
+    <control controlID="82" controlTypeID="com.balsamiq.mockups::HRule" x="51" y="105" w="1552" h="-1" measuredW="100" measuredH="5" zOrder="14" locked="false" isInGroup="-1"/>
+    <control controlID="84" controlTypeID="com.balsamiq.mockups::Canvas" x="554" y="106" w="484" h="46" measuredW="100" measuredH="70" zOrder="16" locked="false" isInGroup="-1"/>
+    <control controlID="110" controlTypeID="com.balsamiq.mockups::PointyButton" x="1138" y="317" w="85" h="-1" measuredW="84" measuredH="28" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>up</state>
+        <size>13</size>
+        <color>15790322</color>
+        <icon>XIcon%7Cxsmall</icon>
+        <text>Remove</text>
+        <direction>center</direction>
+      </controlProperties>
+    </control>
     <control controlID="87" controlTypeID="com.balsamiq.mockups::Link" x="431" y="173" w="-1" h="-1" measuredW="250" measuredH="25" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <text>THE%20DESIGN%20OF%20EVERYDAY%20THINGS</text>
