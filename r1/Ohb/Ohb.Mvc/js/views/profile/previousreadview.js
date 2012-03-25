@@ -12,6 +12,9 @@ Ohb.Views.PreviousReadView = (function (
             <h3 class="previous-read-title">{{ title }}</h3> \
             <p class="previous-read-authors">{{ authors }}</p> \
         </div> \
+        <div class="span2"> \
+            <button class="btn btn-inverse btn-remove-previousread">Remove</button>\
+        </div>\
     </div>';
 
     return Backbone.View.extend({

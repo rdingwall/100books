@@ -594,6 +594,32 @@ $(function () {
             equal(view.$el.find(".previous-read-title").text(), collection.at(0).get("title"));
         });
 
+        module("When requesting PreviousRead be removed");
+
+        test("It should raise a previousread:removeRequested event", 1, function () {
+            eventBus.reset();
+            var model = new PreviousRead({ id: "aaa" });
+
+            eventBus.on("previousread:removeRequested", function (id) {
+                equal(id, model.id);
+            });
+
+            model.remove();
+        });
+
+        module("When a previousread:removed event is raised");
+
+        test("The matching previousread should remove itself from it's parent collection", 1, function () {
+            eventBus.reset();
+
+            var collection = new PreviousReadCollection();
+            collection.add(new PreviousRead({ id: "aaa" }));
+
+            eventBus.trigger("previousread:removed", "aaa");
+
+            equal(collection.length, 0);
+        });
+
     }(
         Ohb.app,
         Ohb.Router,
