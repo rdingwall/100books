@@ -1,7 +1,7 @@
-Ohb.Models.Book = (function (Backbone, eventBus) {
+Ohb.Models.Book = (function (Backbone, _, ReadableMixin) {
     "use strict";
 
-    return Backbone.Model.extend({
+    var properties = {
         urlRoot: "/api/v1/books",
 
         defaults: {
@@ -18,28 +18,7 @@ Ohb.Models.Book = (function (Backbone, eventBus) {
         },
 
         initialize: function () {
-            eventBus.on("previousread:added", function (id) {
-                if (this.id === id) {
-                    this.set("hasPreviouslyRead", true);
-                }
-            }, this);
-
-            eventBus.on("previousread:removed", function (id) {
-                if (this.id === id) {
-                    this.set("hasPreviouslyRead", false);
-                }
-            }, this);
-        },
-
-        toggleStatus: function () {
-            var previouslyRead = this.get("hasPreviouslyRead");
-            this.set({ hasPreviouslyRead: !previouslyRead });
-
-            var event = previouslyRead ?
-                    "previousread:removeRequested" :
-                    "previousread:addRequested";
-
-            eventBus.trigger(event, this.id);
+            this.bindReadableEvents();
         },
 
         getSearchResultThumbnail: function () {
@@ -51,6 +30,10 @@ Ohb.Models.Book = (function (Backbone, eventBus) {
             return this.get("thumbnailUrl")
                 || "img/book-no-cover.png";
         }
-    });
+    };
 
-}(Backbone, Ohb.eventBus));
+    _.extend(properties, ReadableMixin);
+
+    return Backbone.Model.extend(properties);
+
+}(Backbone, _, Ohb.Models.ReadableMixin));
