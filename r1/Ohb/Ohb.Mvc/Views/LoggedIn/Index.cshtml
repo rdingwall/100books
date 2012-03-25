@@ -22,7 +22,6 @@
 
     <script type="text/javascript" src="/js/ohb.js"></script>
     <script type="text/javascript" src="/js/eventbus.js"></script>
-    <script type="text/javascript" src="/js/models/readablemixin.js"></script>
     <script type="text/javascript" src="/js/models/book.js"></script>
     <script type="text/javascript" src="/js/models/errormessage.js"></script>
     <script type="text/javascript" src="/js/models/profile.js"></script>
@@ -53,12 +52,12 @@
                 <ul class="nav">
                     <li><a href="#">@ViewBag.DisplayName</a></li>
                 </ul>
-
+    
                 <form class="navbar-search" onsubmit="return false">
                     <input class="search-query span3" id="menubar-search-input" type="text" placeholder="Search to add books" />
                     <img id="search-loader-spinner" class="hide" src="@Url.Content("~/img/menubar/ajax-loader.gif")" />
                 </form>
-
+    
                 <ul class="nav pull-right">
                     <li>@Html.ActionLink("Sign Out", "LogOut", "LoggedIn")</li>
                 </ul>
