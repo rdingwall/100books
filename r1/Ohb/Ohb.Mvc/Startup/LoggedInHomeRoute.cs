@@ -28,7 +28,7 @@ namespace Ohb.Mvc.Startup
         {
             var routeData = base.GetRouteData(httpContext);
 
-            if (!OhbUserContext.Current.IsAuthenticated)
+            if (!FacebookWebContext.Current.IsAuthenticated())
                 return routeData;
 
             if (routeData == null)
