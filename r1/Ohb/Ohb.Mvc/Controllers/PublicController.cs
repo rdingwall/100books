@@ -3,7 +3,7 @@ using Facebook.Web;
 
 namespace Ohb.Mvc.Controllers
 {
-    public class PublicController : OhbController
+    public class PublicController : Controller
     {
         public ActionResult Index()
         {
