@@ -15,8 +15,8 @@ $(function () {
                     <p>{{{ description }}}</p>\
                 </div>\
                 <div class="span2">\
-                    <a id="book-remove-previousread-button" class="hide status-toggle-button btn btn-success large"><i class="icon-ok icon-white"></i>You have read this book</a>\
-                    <a id="book-add-previousread-button" class="hide status-toggle-button btn large"><i class="icon-remove"></i>You have not read this book</a>\
+                    <a id="book-remove-previousread-button" class="hide status-toggle-button btn btn-success large"><i class="icon-ok icon-white"></i> You have read this book</a>\
+                    <a id="book-add-previousread-button" class="hide status-toggle-button btn large">You have not read this book</a>\
                 </div>\
             </div>\
         </div>';

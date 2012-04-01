@@ -1,4 +1,6 @@
-﻿#search-results {
+﻿@import "/bootstrap/less/bootstrap.less";
+
+#search-results {
     border: solid 1px black;
     position: absolute;
     top: 35px;
@@ -10,4 +12,23 @@
 
 .book-search-result:hover {
     background-color: #cccccc;
+}
+
+// Override for bootstrap navbar which now has rounded corners unless you want
+// it fixed
+.ohb-navbar-top .navbar-inner {
+    padding-left: 0;
+    padding-right: 0;
+    webkit-border-radius: 0;
+    moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.ohb-navbar-top {
+    right: 0;
+    left: 0;
+}
+
+.ohb-navbar-top .container {
+  #grid > .core > .span(@gridColumns);
 }

@@ -684,6 +684,22 @@ $(function () {
             $($(".btn-remove-previousread")[0]).trigger("click");
         });
 
+        module("When a search:result:selected event is raised");
+
+        test("It should navigate to the new route", 1, function () {
+            eventBus.reset();
+            app.initialize();
+
+            var model = new SearchResult({
+                id: "foo",
+                title: "Harry Potter's amazing #(*@(#)(# adventure$ 2008"
+            });
+
+            eventBus.trigger("search:result:selected", model);
+
+            equal(window.location.hash, "#books/foo/harry-potters-amazing-adventure-2008");
+        });
+
     }(
         Ohb.app,
         Ohb.Router,
