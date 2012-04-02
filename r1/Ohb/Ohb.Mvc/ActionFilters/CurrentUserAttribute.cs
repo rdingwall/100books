@@ -1,5 +1,6 @@
 using System;
 using System.Web.Mvc;
+using Ohb.Mvc.AuthCookies;
 using Ohb.Mvc.Controllers;
 using Ohb.Mvc.Storage.Users;
 
@@ -7,12 +8,12 @@ namespace Ohb.Mvc.ActionFilters
 {
     public class CurrentUserAttribute : ActionFilterAttribute
     {
-        readonly IUserFactory userFactory;
+        readonly IUserRepository users;
 
-        public CurrentUserAttribute(IUserFactory userFactory)
+        public CurrentUserAttribute(IUserRepository users)
         {
-            if (userFactory == null) throw new ArgumentNullException("userFactory");
-            this.userFactory = userFactory;
+            if (users == null) throw new ArgumentNullException("users");
+            this.users = users;
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -21,7 +22,10 @@ namespace Ohb.Mvc.ActionFilters
             if (controller == null)
                 return;
 
-            controller.User = userFactory.GetOrCreateUser(controller.DocumentSession);
+            if (!OhbUserContext.Current.IsAuthenticated)
+                return;
+
+            controller.User = users.GetUser(OhbUserContext.Current.UserId, controller.DocumentSession);
         }
     }
 }

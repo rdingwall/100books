@@ -2,7 +2,6 @@ using System.Web.Mvc;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Ohb.Mvc.Controllers;
 
 namespace Ohb.Mvc.Startup
 {
@@ -11,7 +10,7 @@ namespace Ohb.Mvc.Startup
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.FromThisAssembly().BasedOn<OhbController>()
+                AllTypes.FromThisAssembly().BasedOn<Controller>()
                 .Configure(c => c.LifeStyle.Transient));
 
             container.Register(

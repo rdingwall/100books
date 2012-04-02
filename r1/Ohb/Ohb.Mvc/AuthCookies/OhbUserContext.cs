@@ -12,7 +12,7 @@ namespace Ohb.Mvc.AuthCookies
         public static void SetContainer(IWindsorContainer container)
         {
             if (container == null) throw new ArgumentNullException("container");
-
+            
             factory = container.Resolve<IOhbUserContextFactory>();
         }
 

@@ -16,7 +16,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                     {
                         original = new User
                                        {
-                                           FacebookId = 123,
+                                           FacebookId = "Test facebook ID",
                                            DisplayName = "Test user",
                                            ProfileImageUrl = "http://foo/bar"
                                        };
@@ -29,7 +29,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                                  using (var session = RavenDb.OpenSession())
                                  {
                                      repository.AddUser(original, session);
-                                     returnedUser = repository.GetFacebookUser(123, session);
+                                     returnedUser = repository.GetFacebookUser("Test facebook ID", session);
                                  }
                              };
 
@@ -61,7 +61,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                     {
                         repository.AddUser(new User
                         {
-                            FacebookId = 123,
+                            FacebookId = "123",
                             DisplayName = "First",
                             ProfileImageUrl = "http://foo/bar"
                         }, session);
@@ -75,7 +75,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                         {
                             repository.AddUser(new User
                                                    {
-                                                       FacebookId = 123,
+                                                       FacebookId = "123",
                                                        DisplayName = "Second",
                                                        ProfileImageUrl = "http://foo/bar"
                                                    }, session);
@@ -92,7 +92,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                         {
                             session.Query<User>()
                                 .Customize(a => a.WaitForNonStaleResults())
-                                .Where(u => u.FacebookId == 123)
+                                .Where(u => u.FacebookId == "123")
                                 .Single()
                                 .DisplayName.ShouldEqual("First");
                         }

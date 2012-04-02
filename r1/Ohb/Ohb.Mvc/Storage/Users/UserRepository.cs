@@ -5,14 +5,14 @@ namespace Ohb.Mvc.Storage.Users
 {
     public interface IUserRepository
     {
-        User GetFacebookUser(long facebookId, IDocumentSession session);
+        User GetFacebookUser(string facebookId, IDocumentSession session);
         void AddUser(User user, IDocumentSession session);
         User GetUser(string userId, IDocumentSession session);
     }
 
     public class UserRepository : IUserRepository
     {
-        public User GetFacebookUser(long facebookId, IDocumentSession session)
+        public User GetFacebookUser(string facebookId, IDocumentSession session)
         {
             if (session == null) throw new ArgumentNullException("session");
 

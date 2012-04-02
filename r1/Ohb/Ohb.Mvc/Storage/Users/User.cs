@@ -5,6 +5,6 @@
         public string Id { get; set; }
         public string ProfileImageUrl { get; set; }
         public string DisplayName { get; set; }
-        public long FacebookId { get; set; }
+        public string FacebookId { get; set; }
     }
 }

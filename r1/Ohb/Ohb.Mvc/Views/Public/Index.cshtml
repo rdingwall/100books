@@ -58,13 +58,16 @@
         </div>
         <div id="fb-root">
         </div>
+        <form class="hidden" id="ohb-facebook-login-form" method="post" action="/FacebookLogin">
+            <input type="hidden" name="accessToken" id="facebook-access-token-input" />
+        </form>
         <script>
             window.fbAsyncInit = function () {
 
-                function facebooklogin() {
+                function facebookLogin() {
                     FB.init({
-                        appId: '@Facebook.FacebookApplication.Current.AppId',
-                        cookie: true,
+                        appId: "179387635483776",
+                        cookie: false,
                         xfbml: true,
                         oauth: true
                     });
@@ -72,22 +75,23 @@
                     FB.login(function (response) {
                         if (response.authResponse) {
                             // user authorized
-                            window.location = '/FacebookLogin';
+                            $("#facebook-access-token-input").val(response.authResponse.accessToken);
+                            $("#ohb-facebook-login-form").submit();
                         } else {
                             // user cancelled
                         }
-                    }, { scope: '@ViewBag.ExtendedPermissions' });
+                    }, { scope: "@ViewBag.ExtendedPermissions" });
                 };
 
                 $(function () {
                     // make the button is only enabled after the facebook js sdk has been loaded.
-                    $('#fblogin').attr('disabled', false).click(facebooklogin);
+                    $("#fblogin").attr("disabled", false).click(facebookLogin);
                 });
             };
             (function () {
-                var e = document.createElement('script'); e.async = true;
-                e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-                document.getElementById('fb-root').appendChild(e);
+                var e = document.createElement("script"); e.async = true;
+                e.src = document.location.protocol + "//connect.facebook.net/en_US/all.js";
+                document.getElementById("fb-root").appendChild(e);
             } ());
         </script>
     </div>

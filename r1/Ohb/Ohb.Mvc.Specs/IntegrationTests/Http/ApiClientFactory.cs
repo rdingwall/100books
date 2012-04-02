@@ -25,7 +25,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
                 users.AddUser(new User
                                   {
                                       DisplayName = displayName,
-                                      FacebookId = random.NextNonNegativeLong()
+                                      FacebookId = random.NextNonNegativeLong().ToString()
                                   }, session);
                 var user = session.Query<User>()
                     .Customize(a => a.WaitForNonStaleResults())

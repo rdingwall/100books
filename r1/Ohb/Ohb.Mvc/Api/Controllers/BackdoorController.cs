@@ -48,10 +48,12 @@ namespace Ohb.Mvc.Api.Controllers
         [HttpPost]
         public dynamic CreateUser(string displayName, string profileImageUrl, bool? setAuthCookie)
         {
+            var userId = "TestUser-" + DateTime.Now.Ticks;
+
             var user = new User
                             {
-                                FacebookId = random.NextNonNegativeLong(),
-                                DisplayName = displayName ?? "TestUser-" + DateTime.Now.Ticks,
+                                FacebookId = userId,
+                                DisplayName = displayName ?? userId,
                                 ProfileImageUrl = profileImageUrl
                             };
 

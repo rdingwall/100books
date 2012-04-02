@@ -1,12 +1,12 @@
 using System;
-using Facebook.Web;
+using Facebook;
 using Raven.Client;
 
 namespace Ohb.Mvc.Storage.Users
 {
     public interface IUserFactory
     {
-        User GetOrCreateUser(IDocumentSession session);
+        User GetOrCreateFacebookUser(IDocumentSession session, FacebookClient facebook);
     }
 
     public class UserFactory : IUserFactory
@@ -19,36 +19,30 @@ namespace Ohb.Mvc.Storage.Users
             this.users = users;
         }
 
-        public User GetOrCreateUser(IDocumentSession session)
+        public User GetOrCreateFacebookUser(IDocumentSession session, FacebookClient facebook)
         {
             if (session == null) throw new ArgumentNullException("session");
+            if (facebook == null) throw new ArgumentNullException("facebook");
 
-            var fbWebContext = FacebookWebContext.Current;
+            dynamic fbUser = facebook.Get("me", new { fields = "name,id" });
 
-            if (!fbWebContext.IsAuthenticated())
-                return null;
-
-            var user = users.GetFacebookUser(fbWebContext.UserId, session);
+            var user = users.GetFacebookUser(fbUser.id, session);
             if (user == null)
             {
-                user = CreateUser(fbWebContext);
+                user = CreateUser(fbUser);
                 users.AddUser(user, session);
             }
 
             return user;
         }
 
-        private static User CreateUser(FacebookWebContext fbWebContext)
+        private static User CreateUser(dynamic fbUser)
         {
-            var fb = new FacebookWebClient();
-
-            dynamic me = fb.Get("me");
-
             return new User
             {
-                FacebookId = fbWebContext.UserId,
-                DisplayName = me.name,
-                ProfileImageUrl = String.Format("http://graph.facebok.com/{0}/picture", me.id)
+                FacebookId = fbUser.id,
+                DisplayName = fbUser.name,
+                ProfileImageUrl = String.Format("http://graph.facebok.com/{0}/picture", fbUser.id)
             };
         }
     }

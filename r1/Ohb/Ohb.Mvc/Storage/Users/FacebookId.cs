@@ -5,9 +5,9 @@ namespace Ohb.Mvc.Storage.Users
         public string Id { get; set; }
         public string UserId { get; set; }
 
-        public static string MakeKey(long facebookId)
+        public static string MakeKey(string facebookId)
         {
-            return string.Concat("FacebookIds-", facebookId.ToString());
+            return string.Concat("FacebookIds-", facebookId);
         }
     }
 }
