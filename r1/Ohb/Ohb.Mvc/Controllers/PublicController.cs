@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Net.Sockets;
 using System.Web;
 using System.Web.Mvc;
 using Facebook;
@@ -42,13 +43,26 @@ namespace Ohb.Mvc.Controllers
         public ActionResult FacebookLogin(string accessToken)
         {
             if (string.IsNullOrEmpty(accessToken))
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Missing parameter 'accessToken'.");
+                return new HttpBadRequestResult("Missing parameter 'accessToken'.");
 
-            // What happens if invalid accessToken? Or cannot access Facebook?
-            var facebook = new FacebookClient(accessToken);
             User user;
-            using (var session = documentStore.OpenSession())
-                user = userFactory.GetOrCreateFacebookUser(session, facebook);
+            try
+            {
+                using (var session = documentStore.OpenSession())
+                    user = userFactory.GetOrCreateFacebookUser(session, accessToken);
+            }
+            catch (FacebookOAuthException e)
+            {
+                return new HttpUnauthorizedResult(e.Message);
+            }
+            catch (WebExceptionWrapper)
+            {
+                return new HttpServiceUnavailableResult("Sorry, we could not authenticate you against Facebook at this time.");
+            }
+            catch (SocketException)
+            {
+                return new HttpServiceUnavailableResult("Sorry, we could not authenticate you against Facebook at this time.");
+            }
 
             var cookie = cookieFactory.CreateAuthCookie(user);
             Response.AppendCookie(cookie);

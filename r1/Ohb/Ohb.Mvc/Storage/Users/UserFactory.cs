@@ -6,7 +6,7 @@ namespace Ohb.Mvc.Storage.Users
 {
     public interface IUserFactory
     {
-        User GetOrCreateFacebookUser(IDocumentSession session, FacebookClient facebook);
+        User GetOrCreateFacebookUser(IDocumentSession session, string accessToken);
     }
 
     public class UserFactory : IUserFactory
@@ -19,12 +19,14 @@ namespace Ohb.Mvc.Storage.Users
             this.users = users;
         }
 
-        public User GetOrCreateFacebookUser(IDocumentSession session, FacebookClient facebook)
+        public User GetOrCreateFacebookUser(IDocumentSession session, string accessToken)
         {
             if (session == null) throw new ArgumentNullException("session");
-            if (facebook == null) throw new ArgumentNullException("facebook");
+            if (String.IsNullOrWhiteSpace(accessToken))
+                throw new ArgumentException("Null or empty parameter.", "accessToken");
 
-            dynamic fbUser = facebook.Get("me", new { fields = "name,id" });
+            var fbClient = new FacebookClient(accessToken);
+            dynamic fbUser = fbClient.Get("me", new { fields = "name,id" });
 
             var user = users.GetFacebookUser(fbUser.id, session);
             if (user == null)
