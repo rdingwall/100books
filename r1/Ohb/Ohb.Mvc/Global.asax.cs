@@ -44,8 +44,8 @@ namespace Ohb.Mvc
                             "Books/{id}", // URL with parameters
                             new { controller = "Books", action = "Get" });
 
-            routes.MapRoute("Redirect", "FacebookLogin",
-                            new { controller = "Public", action = "FacebookLogin" });
+            routes.MapRoute("Redirect", "FbLogin",
+                            new { controller = "Public", action = "FbLogin" });
 
             routes.Add(new LoggedInHomeRoute(
                            "{controller}/{action}/{id}", // URL with parameters

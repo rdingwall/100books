@@ -40,7 +40,7 @@ namespace Ohb.Mvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult FacebookLogin(string accessToken)
+        public ActionResult FbLogin(string accessToken)
         {
             if (string.IsNullOrEmpty(accessToken))
                 return new HttpBadRequestResult("Missing parameter 'accessToken'.");

@@ -4,37 +4,40 @@ using RestSharp;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.HttpMvc
 {
-    [Subject("/FacebookLogin POST")]
+    [Subject("/fblogin POST")]
     public class PublicControllerHttpSpecs
     {
-        public class When_there_is_no_access_token
+        public abstract class scenario
+        {
+            Because of =
+                () => response = client.Execute(request);
+
+            static protected RestResponse response;
+            static protected RestClient client;
+            static protected RestRequest request;
+        }
+
+        public class When_there_is_no_access_token : scenario
         {
             Establish context = () =>
                                     {
                                         client = new RestClient("http://localhost");
-                                        request = new RestRequest("/FacebookLogin")
+                                        request = new RestRequest("/fblogin")
                                                       {
                                                           Method = Method.POST
                                                       };
                                     };
 
-            Because of =
-                () => response = client.Execute(request);
-
             It should_return_http_400_bad_request =
                 () => response.StatusCode.ShouldEqual(HttpStatusCode.BadRequest);
-
-            static RestResponse response;
-            static RestClient client;
-            static RestRequest request;
         }
 
-        public class When_it_is_an_invalid_access_token
+        public class When_it_is_an_invalid_access_token : scenario
         {
             Establish context = () =>
             {
                 client = new RestClient("http://localhost");
-                request = new RestRequest("/FacebookLogin")
+                request = new RestRequest("/fblogin")
                 {
                     Method = Method.POST
                 };
@@ -46,15 +49,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpMvc
                                            });
             };
 
-            Because of =
-                () => response = client.Execute(request);
-
             It should_return_http_401_unauthorized =
                 () => response.StatusCode.ShouldEqual(HttpStatusCode.Unauthorized);
-
-            static RestResponse response;
-            static RestClient client;
-            static RestRequest request;
         }
     }
 }
