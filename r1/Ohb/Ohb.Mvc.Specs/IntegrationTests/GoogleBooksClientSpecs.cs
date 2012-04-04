@@ -20,7 +20,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests
                 () => volume.Id.ShouldEqual("a52a_F-OKUcC");
 
             It should_get_the_books_title = 
-                () => volume.VolumeInfo.Title.ShouldEqual("LEGO");
+                () => volume.VolumeInfo.Title.ShouldEqual("Lego");
 
             It should_get_the_books_subtitle =
                 () => volume.VolumeInfo.SubTitle.ShouldEqual("A Love Story");
@@ -29,7 +29,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests
                 () => volume.VolumeInfo.Authors.ShouldContainOnly("Jonathan Bender");
 
             It should_get_the_books_publishers =
-                () => volume.VolumeInfo.Publisher.ShouldEqual("John Wiley and Sons");
+                () => volume.VolumeInfo.Publisher.ShouldEqual("John Wiley & Sons");
 
             It should_get_the_books_published_date = 
                 () => volume.VolumeInfo.PublishedDate.ShouldEqual("2010-05-03");
@@ -68,7 +68,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests
             It should_get_the_books_canonical_url =
                 () =>
                 volume.VolumeInfo.CanonicalVolumeLink.ShouldEqual(
-                    "http://books.google.co.uk/books/about/LEGO.html?id=a52a_F-OKUcC");
+                    "http://books.google.co.uk/books/about/Lego.html?id=a52a_F-OKUcC");
 
             // seems to be the same as the google URL?
             It should_get_the_books_preview_url =

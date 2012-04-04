@@ -4,7 +4,7 @@ namespace Ohb.Mvc.Storage.Books
 {
     public class Book
     {
-        public string GoogleVolumeIdBase64 { get; set; }
+        public string GoogleVolumeIdBase32 { get; set; }
         public string GoogleVolumeId { get; set; }
         public GoogleVolume GoogleVolume { get; set; }
         public string Id { get; set; }

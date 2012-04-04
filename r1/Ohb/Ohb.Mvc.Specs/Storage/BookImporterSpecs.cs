@@ -38,7 +38,7 @@ namespace Ohb.Mvc.Specs.Storage
                             new Book
                                 {
                                     GoogleVolumeId = "4YydO00I9JYC",
-                                    GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String("4YydO00I9JYC"),
+                                    GoogleVolumeIdBase32 = ConvertGoogleVolumeId.ToBase32String("4YydO00I9JYC"),
                                     GoogleVolume =
                                         new GoogleVolume { VolumeInfo = { Title = "Dummy" }, Id = "4YydO00I9JYC"}
                                 };

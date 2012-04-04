@@ -70,7 +70,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
                 () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
 
             It should_concatenate_the_titles =
-                () => response.Data.Title.ShouldEqual("LEGO: A Love Story");
+                () => response.Data.Title.ShouldEqual("Lego: A Love Story");
 
             static RestResponse<BookModel> response;
         }

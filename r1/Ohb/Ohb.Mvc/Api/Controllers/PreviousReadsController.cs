@@ -53,7 +53,7 @@ namespace Ohb.Mvc.Api.Controllers
                         UserId = User.Id,
                         BookId = book.Id,
                         GoogleVolumeId = book.GoogleVolumeId,
-                        GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String(volumeId),
+                        GoogleVolumeIdBase32 = ConvertGoogleVolumeId.ToBase32String(volumeId),
                         MarkedByUserAt = DateTime.UtcNow
                     };
 

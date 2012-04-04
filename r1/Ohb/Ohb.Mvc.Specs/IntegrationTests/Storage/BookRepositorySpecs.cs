@@ -19,12 +19,12 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                     var book = new Book
                     {
                         GoogleVolumeId = "4YydO00I9JYC",
-                        GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String("4YydO00I9JYC"),
+                        GoogleVolumeIdBase32 = ConvertGoogleVolumeId.ToBase32String("4YydO00I9JYC"),
                         GoogleVolume =
                             new GoogleVolume { VolumeInfo = { Title = "First" }, Id = "4YydO00I9JYC"}
                     };
 
-                    new RavenUniqueInserter().StoreUnique(session, book, b => b.GoogleVolumeIdBase64);
+                    new RavenUniqueInserter().StoreUnique(session, book, b => b.GoogleVolumeIdBase32);
 
                     session.SaveChanges();
 
@@ -43,7 +43,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                         repository.Add(new Book
                         {
                             GoogleVolumeId = "4YydO00I9JYC",
-                            GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String("4YydO00I9JYC"),
+                            GoogleVolumeIdBase32 = ConvertGoogleVolumeId.ToBase32String("4YydO00I9JYC"),
                             GoogleVolume =
                                 new GoogleVolume { VolumeInfo = { Title = "Second" }, Id = "4YydO00I9JYC"}
                         }, session);
@@ -77,7 +77,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                             new Book
                                 {
                                     GoogleVolumeId = "abc",
-                                    GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String("abc"),
+                                    GoogleVolumeIdBase32 = ConvertGoogleVolumeId.ToBase32String("abc"),
                                     GoogleVolume =
                                         new GoogleVolume { VolumeInfo = { Title = "The Google story" }, Id = "abc"}
                                 }, session);
@@ -101,7 +101,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                     {
                         var book = session.Query<Book>()
                             .Customize(a => a.WaitForNonStaleResults())
-                            .FirstOrDefault(b => b.GoogleVolumeIdBase64 == ConvertGoogleVolumeId.ToBase64String("abc"));
+                            .FirstOrDefault(b => b.GoogleVolumeIdBase32 == ConvertGoogleVolumeId.ToBase32String("abc"));
 
                         book.ShouldNotBeNull();
                         book.GoogleVolume.VolumeInfo.Title.ShouldEqual("The Google story");
@@ -124,16 +124,16 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Storage
                             book1 = new Book
                                         {
                                             GoogleVolumeId = "aaa",
-                                            GoogleVolumeIdBase64 =
-                                                ConvertGoogleVolumeId.ToBase64String("aaa"),
+                                            GoogleVolumeIdBase32 =
+                                                ConvertGoogleVolumeId.ToBase32String("aaa"),
                                             GoogleVolume = new GoogleVolume { VolumeInfo ={ Title = "Book1"}}
                                         };
 
                             book2 = new Book
                                         {
                                             GoogleVolumeId = "aAa",
-                                            GoogleVolumeIdBase64 =
-                                                ConvertGoogleVolumeId.ToBase64String("aAa"),
+                                            GoogleVolumeIdBase32 =
+                                                ConvertGoogleVolumeId.ToBase32String("aAa"),
                                             GoogleVolume = new GoogleVolume {VolumeInfo = {Title = "Book2"}}
                                         };
 

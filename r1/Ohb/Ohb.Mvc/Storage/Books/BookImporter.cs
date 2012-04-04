@@ -42,7 +42,7 @@ namespace Ohb.Mvc.Storage.Books
             var book = new Book
             {
                 GoogleVolumeId = googleVolumeId,
-                GoogleVolumeIdBase64 = ConvertGoogleVolumeId.ToBase64String(googleVolumeId),
+                GoogleVolumeIdBase32 = ConvertGoogleVolumeId.ToBase32String(googleVolumeId),
                 GoogleVolume = volume
             };
 
