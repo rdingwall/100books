@@ -15,7 +15,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 
         public T Deserialize<T>(RestResponse response) where T : new()
         {
-            return JsonConvert.DeserializeObject<object>(
+            return JsonConvert.DeserializeObject<dynamic>(
                 response.Content,
                 new JsonSerializerSettings
                     {
