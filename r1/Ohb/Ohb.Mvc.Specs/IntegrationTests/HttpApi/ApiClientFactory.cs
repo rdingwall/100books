@@ -4,7 +4,7 @@ using Ohb.Mvc.AuthCookies;
 using Ohb.Mvc.Storage.Users;
 using System.Linq;
 
-namespace Ohb.Mvc.Specs.IntegrationTests.Http
+namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 {
     public class ApiClientFactory
     {

@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using RestSharp;
+using RestSharp.Deserializers;
 
 // ReSharper disable CheckNamespace
-namespace RestSharp.Deserializers
+namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 // ReSharper restore CheckNamespace
 {
     public class JsonCamelCaseDeserializer : IDeserializer

@@ -119,22 +119,22 @@
     <Compile Include="AuthCookies\AuthCookieEncoderSpecs.cs" />
     <Compile Include="AuthCookies\AuthCookieFactorySpecs.cs" />
     <Compile Include="AuthCookies\OhbUserContextFactorySpecs.cs" />
-    <Compile Include="IntegrationTests\Http\BackdoorHttpApiSpecs.cs" />
-    <Compile Include="IntegrationTests\Http\JsonCamelCaseDeserializer.cs" />
-    <Compile Include="IntegrationTests\Http\ProfilesHttpApiSpecs.cs">
+    <Compile Include="IntegrationTests\HttpApi\BackdoorHttpApiSpecs.cs" />
+    <Compile Include="IntegrationTests\HttpApi\JsonCamelCaseDeserializer.cs" />
+    <Compile Include="IntegrationTests\HttpApi\ProfilesHttpApiSpecs.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IntegrationTests\LiveRavenDb.cs" />
-    <Compile Include="IntegrationTests\Http\ApiClientFactory.cs" />
-    <Compile Include="IntegrationTests\Http\BookStatusesHttpApiSpecs.cs" />
-    <Compile Include="IntegrationTests\Http\ApiClient.cs" />
-    <Compile Include="IntegrationTests\Http\JsonFormatter.cs" />
+    <Compile Include="IntegrationTests\HttpApi\ApiClientFactory.cs" />
+    <Compile Include="IntegrationTests\HttpApi\BookStatusesHttpApiSpecs.cs" />
+    <Compile Include="IntegrationTests\HttpApi\ApiClient.cs" />
+    <Compile Include="IntegrationTests\HttpApi\JsonFormatter.cs" />
     <Compile Include="IntegrationTests\Storage\BookRepositorySpecs.cs" />
     <Compile Include="StubDocumentStore.cs" />
     <Compile Include="IntegrationTests\GoogleBooksClientSpecs.cs" />
-    <Compile Include="IntegrationTests\Http\BooksHttpApiSpecs.cs" />
-    <Compile Include="IntegrationTests\Http\PreviousReadsHttpApiSpecs.cs" />
-    <Compile Include="IntegrationTests\Http\DynamicJsonDeserializer.cs" />
+    <Compile Include="IntegrationTests\HttpApi\BooksHttpApiSpecs.cs" />
+    <Compile Include="IntegrationTests\HttpApi\PreviousReadsHttpApiSpecs.cs" />
+    <Compile Include="IntegrationTests\HttpApi\DynamicJsonDeserializer.cs" />
     <Compile Include="Storage\BookImporterSpecs.cs" />
     <Compile Include="IntegrationTests\RavenDb.cs" />
     <Compile Include="IntegrationTests\Storage\UserRepositorySpecs.cs" />

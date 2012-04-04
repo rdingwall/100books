@@ -5,7 +5,7 @@ using Ohb.Mvc.Storage.Books;
 using Ohb.Mvc.Storage.PreviousReads;
 using RestSharp;
 
-namespace Ohb.Mvc.Specs.IntegrationTests.Http
+namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 {   
     [Subject("api/v1/books/:id GET")]
     class BooksHttpApiSpecs

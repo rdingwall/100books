@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ohb.Mvc.Specs.IntegrationTests.Http
+namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 {
     // from http://stackoverflow.com/a/4580660/91551 <3
     public class JsonFormatter

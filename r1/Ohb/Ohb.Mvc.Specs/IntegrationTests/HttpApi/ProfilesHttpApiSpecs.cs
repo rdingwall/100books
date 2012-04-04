@@ -4,7 +4,7 @@ using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
 using RestSharp;
 
-namespace Ohb.Mvc.Specs.IntegrationTests.Http
+namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 {
     [Subject("api/v1/profiles/:id GET")]
     class ProfilesHttpApiSpecs

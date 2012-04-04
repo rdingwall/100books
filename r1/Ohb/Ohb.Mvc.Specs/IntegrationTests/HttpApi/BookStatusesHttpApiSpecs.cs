@@ -6,7 +6,7 @@ using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Storage.PreviousReads;
 using RestSharp;
 
-namespace Ohb.Mvc.Specs.IntegrationTests.Http
+namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 {
     public class BookStatusesHttpApiSpecs
     {

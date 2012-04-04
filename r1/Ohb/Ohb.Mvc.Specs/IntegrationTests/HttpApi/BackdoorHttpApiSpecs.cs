@@ -6,7 +6,7 @@ using Ohb.Mvc.AuthCookies;
 using Ohb.Mvc.Storage.Users;
 using RestSharp;
 
-namespace Ohb.Mvc.Specs.IntegrationTests.Http
+namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 {
     public class BackdoorHttpApiSpecs
     {

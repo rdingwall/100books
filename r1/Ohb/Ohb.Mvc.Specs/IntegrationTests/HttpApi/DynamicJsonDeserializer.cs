@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using RestSharp;
+using RestSharp.Deserializers;
 
 // ReSharper disable CheckNamespace
-namespace RestSharp.Deserializers
+namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 // ReSharper restore CheckNamespace
 {
     public class DynamicJsonDeserializer : IDeserializer
@@ -13,7 +15,7 @@ namespace RestSharp.Deserializers
 
         public T Deserialize<T>(RestResponse response) where T : new()
         {
-            return JsonConvert.DeserializeObject<dynamic>(
+            return JsonConvert.DeserializeObject<object>(
                 response.Content,
                 new JsonSerializerSettings
                     {

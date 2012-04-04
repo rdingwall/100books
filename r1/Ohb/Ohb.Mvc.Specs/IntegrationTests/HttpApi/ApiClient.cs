@@ -7,9 +7,8 @@ using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.AuthCookies;
 using Ohb.Mvc.Storage.Users;
 using RestSharp;
-using RestSharp.Deserializers;
 
-namespace Ohb.Mvc.Specs.IntegrationTests.Http
+namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 {
     public class ApiClient
     {
@@ -101,16 +100,16 @@ namespace Ohb.Mvc.Specs.IntegrationTests.Http
             return response;
         }
 
-        public RestResponse<dynamic> Get(string path)
+        public RestResponse<object> Get(string path)
         {
             var request = new RestRequest(path);
-            return Log(dynamicClient.Execute<dynamic>(request));
+            return Log(dynamicClient.Execute<object>(request));
         }
 
-        public RestResponse<dynamic> Post(string path)
+        public RestResponse<object> Post(string path)
         {
             var request = new RestRequest(path) {Method = Method.POST};
-            return Log(dynamicClient.Execute<dynamic>(request));
+            return Log(dynamicClient.Execute<object>(request));
         }
 
         public void AssertReturns(Method method, string path, HttpStatusCode expectedStatusCode)
