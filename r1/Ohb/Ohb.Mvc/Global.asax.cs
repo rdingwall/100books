@@ -28,6 +28,7 @@ namespace Ohb.Mvc
             filters.Add(container.Resolve<RavenDbAttribute>());
             filters.Add(container.Resolve<CurrentUserAttribute>());
             filters.Add(container.Resolve<AuthCookieAttribute>());
+            filters.Add(new HandleErrorAttribute());
         }
 
         public void RegisterRoutes(RouteCollection routes)

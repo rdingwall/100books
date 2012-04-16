@@ -39,6 +39,11 @@ namespace Ohb.Mvc.Controllers
             return View();
         }
 
+        public ActionResult Error()
+        {
+            throw new Exception("This is a test exception designed for testing the error page.");
+        }
+
         [HttpPost]
         public ActionResult FbLogin(string accessToken)
         {
