@@ -293,7 +293,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Public\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -44,8 +44,11 @@ namespace Ohb.Mvc
             routes.MapRoute("Redirect", "FbLogin",
                             new { controller = "Public", action = "FbLogin" });
 
+            routes.MapRoute("ForceError", "Error",
+                           new { controller = "Public", action = "Error" });
+
             routes.Add(new LoggedInHomeRoute(
-                           "{controller}/{action}/{id}", // URL with parameters
+                           "{*catchall}",
                            new RouteValueDictionary( // Parameter defaults
                                new { controller = "Public", action = "Index", id = UrlParameter.Optional }),
                            new MvcRouteHandler()));
