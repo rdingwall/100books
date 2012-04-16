@@ -10,16 +10,20 @@
         <div class="span2"> \
             <img src="{{ smallThumbnailUrl }}" alt="{{ title }}" /> \
             </div> \
-        <div class="span8"> \
+        <div class="span7"> \
             <h3 class="searchresult-title">{{ title }}</h3> \
             <p class="searchresult-authors">{{ authors }}</p> \
         </div> \
+        <div class="span1">\
+            <a id="toggle-previousread-button" class="status-toggle-button btn large"><i class="icon-ok"></i> </a>\
+        </div>\
     </div>';
 
     return Backbone.View.extend({
         className: "book-search-result",
 
         events: {
+            "click .toggle-previousread-button": "toggle",
             "click": "select"
         },
 
@@ -31,6 +35,10 @@
 
         select: function () {
             this.model.set("selected", true);
+        },
+
+        toggle: function () {
+            this.model.
         }
     });
 }(Backbone, Mustache, $, Ohb.eventBus));
