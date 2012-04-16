@@ -34,10 +34,6 @@ namespace Ohb.Mvc
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("Search",
-                            "Search/{query}", // URL with parameters
-                            new { controller = "Search", action = "Search" });
-
             RegisterApiRoutes(routes);
 
             routes.MapRoute("Books",
