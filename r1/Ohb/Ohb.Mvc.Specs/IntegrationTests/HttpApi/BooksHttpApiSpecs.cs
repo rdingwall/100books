@@ -7,9 +7,10 @@ using RestSharp;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 {
-    [Subject("api/v1/books/:id GET"), Tags("Integration")]
+    [Subject("api/v1/books/:id GET")]
     class BooksHttpApiSpecs
     {
+        [Tags("Integration")]
         public class when_looking_up_a_book_by_id
         {
             Because of = () => response = ApiClientFactory.NewUser().GetBook("4YydO00I9JYC");
@@ -62,6 +63,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             static RestResponse<BookModel> response;
         }
 
+        [Tags("Integration")]
         public class when_looking_up_a_book_with_a_subtitle
         {
             Because of = () => response = ApiClientFactory.Anonymous().GetBook("a52a_F-OKUcC");
@@ -74,6 +76,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 
             static RestResponse<BookModel> response;
         }
+
+        [Tags("Integration")]
         public class when_looking_up_a_book_with_no_covers
         {
             Because of = () => response = ApiClientFactory.Anonymous().GetBook("DAAAAAAACAAJ");
@@ -90,36 +94,42 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             static RestResponse<BookModel> response;
         }
 
+        [Tags("Integration")]
         public class when_no_book_id_is_provided
         {
             It should_return_http_400_bad_request =
                 () => new ApiClient().AssertReturns(Method.GET, "books/", HttpStatusCode.BadRequest);
         }
 
+        [Tags("Integration")]
         public class when_no_matching_book_is_found
         {
             It should_return_http_404_not_found =
                 () => new ApiClient().AssertReturns(Method.GET, "books/xxxxxxxxxxxxx", HttpStatusCode.NotFound);
         }
 
+        [Tags("Integration")]
         public class when_an_http_post_is_sent
         {
             It should_return_http_405_method_not_allowed =
                 () => new ApiClient().AssertMethodNotAllowed(Method.POST, "books/4YydO00I9JYC");
         }
 
+        [Tags("Integration")]
         public class when_an_http_put_is_sent
         {
             It should_return_http_405_method_not_allowed =
                 () => new ApiClient().AssertMethodNotAllowed(Method.PUT, "books/4YydO00I9JYC");
         }
 
+        [Tags("Integration")]
         public class when_an_http_delete_is_sent
         {
             It should_return_http_405_method_not_allowed =
                 () => new ApiClient().AssertMethodNotAllowed(Method.DELETE, "books/4YydO00I9JYC");
         }
 
+        [Tags("Integration")]
         public class when_getting_a_book_that_was_marked_as_previously_read
         {
             Establish context = () =>
