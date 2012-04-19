@@ -61,7 +61,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
                     () => results.Data.FirstOrDefault().Id.ShouldEqual("4YydO00I9JYC");
 
                 It should_contain_the_full_book_details_in_the_previous_reads_list =
-                    () => results.Data.FirstOrDefault().Title.ShouldEqual("The Google story");
+                    () => results.Data.FirstOrDefault().Title.ShouldEqual("The Google Story");
 
                 [Ignore("Off by 1 hour for some reason? I can't figure this out... something to do with JSON deserialization maybe?")]
                 It should_contain_the_marked_read_at_timestamp =
