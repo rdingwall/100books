@@ -25,7 +25,7 @@ $(function () {
         SearchResult,
         eventBus,
         router,
-        SearchResultCollection
+        GoogleSearchResultCollection
     ) {
 
         var log = $.jog("GoogleTests");
@@ -38,7 +38,7 @@ $(function () {
 
         asyncTest("It should perform a search and returned the results", 4, function () {
 
-            var results = new SearchResultCollection();
+            var results = new GoogleSearchResultCollection();
 
             results.fetch({ data: { q: "harry potter" }, success: function (collection) {
                 equal(collection.length, 10);
@@ -54,7 +54,7 @@ $(function () {
         // for 'girl tattoo'.
         asyncTest("It should ignore duplicate results", 1, function () {
 
-            var results = new SearchResultCollection();
+            var results = new GoogleSearchResultCollection();
 
             results.fetch({ data: { q: "girl tattoo" }, success: function (collection) {
                 equal(collection.where({ id: "z9ej-ZLbAHAC" }).length, 1);
@@ -105,6 +105,6 @@ $(function () {
         Ohb.Models.SearchResult,
         Ohb.eventBus,
         Ohb.Router,
-        Ohb.Collections.SearchResultCollection
+        Ohb.Collections.GoogleSearchResultCollection
     ));
 });

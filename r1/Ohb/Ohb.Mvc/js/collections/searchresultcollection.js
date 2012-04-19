@@ -1,24 +1,27 @@
-﻿Ohb.Collections.SearchResultCollection = (function ($, _, Backbone, SearchResult) {
+// Accepts an GoogleSearchResultCollection and enriches its SearchResult
+// models with a hasRead property from the local API.
+Ohb.Collections.SearchResultCollection = (function ($, _, Backbone, SearchResult) {
     "use strict";
 
     return Backbone.Collection.extend({
         model: SearchResult,
 
+        initialize: function (googleResultsCollection) {
+            this.googleResultsCollection = googleResultsCollection;
+        },
+
         url: function () {
-            // plus q=search+term
-            return "https://www.googleapis.com/books/v1/volumes?projection=lite&callback=?";
+            var ids = _.map(this.googleResultsCollection.models, function (result) { return result.id; });
+            return "/api/v1/books/" + ids.join() + "/statuses";
         },
 
         parse: function (response) {
-            if (!response.items) {
-                return;
-            }
+            _.each(response, function (item) {
+                var result = this.googleResultsCollection.get(item.googleVolumeId);
+                result.set("hasRead", item.hasRead);
+            }, this);
 
-            var uniqueItems = _.uniq(response.items, false, function (result) {
-                return result.id;
-            });
-
-            return _.map(uniqueItems, SearchResult.fromGoogle);
+            return this.googleResultsCollection.models;
         }
     });
 
