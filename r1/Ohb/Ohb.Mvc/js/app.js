@@ -20,7 +20,9 @@
         PreviousRead,
         SearchCommand,
         ViewProfileCommand,
-        ViewBookCommand
+        ViewBookCommand,
+        AddPreviousReadCommand,
+        RemovePreviousReadCommand
     ) {
 
         var log = $.jog("App");
@@ -53,8 +55,8 @@
                 eventBus.on("search:requested", new SearchCommand().execute, this);
                 eventBus.on("search:failed", this.onSearchFailed, this);
                 eventBus.on("search:result:selected", this.onSearchResultSelected, this);
-                eventBus.on("previousread:addRequested", this.onPreviousReadAddRequested, this);
-                eventBus.on("previousread:removeRequested", this.onPreviousReadRemoveRequested, this);
+                eventBus.on("previousread:addRequested", new AddPreviousReadCommand().execute, this);
+                eventBus.on("previousread:removeRequested", new RemovePreviousReadCommand().execute, this);
             },
 
             onSearchFailed: function () {
@@ -65,26 +67,6 @@
             onSearchResultSelected: function (searchResult) {
                 log.info("Navigating to show book " + searchResult.id);
                 this.router.navigate(bookHashFragment(searchResult), { trigger: true });
-            },
-
-            onPreviousReadAddRequested : function (id) {
-                $.ajax({
-                    url: "/api/v1/previousreads/" + id,
-                    type: 'PUT',
-                    success: function () {
-                        eventBus.trigger("previousread:added", id);
-                    }
-                });
-            },
-
-            onPreviousReadRemoveRequested : function (id) {
-                $.ajax({
-                    url: "/api/v1/previousreads/" + id,
-                    type: 'DELETE',
-                    success: function () {
-                        eventBus.trigger("previousread:removed", id);
-                    }
-                });
             }
         };
     }(
@@ -105,6 +87,8 @@
         Ohb.Models.PreviousRead,
         Ohb.Commands.SearchCommand,
         Ohb.Commands.ViewProfileCommand,
-        Ohb.Commands.ViewBookCommand
+        Ohb.Commands.ViewBookCommand,
+        Ohb.Commands.AddPreviousReadCommand,
+        Ohb.Commands.RemovePreviousReadCommand
     ));
 });
