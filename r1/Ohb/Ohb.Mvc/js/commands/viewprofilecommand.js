@@ -10,7 +10,7 @@ $(function () {
         CompositeProfileView
     ) {
 
-        var log = $.jog("SearchCommand");
+        var log = $.jog("ViewProfileCommand");
 
         var command = function () {};
 

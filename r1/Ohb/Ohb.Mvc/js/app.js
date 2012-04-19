@@ -19,7 +19,8 @@
         PreviousReadCollection,
         PreviousRead,
         SearchCommand,
-        ViewProfileCommand
+        ViewProfileCommand,
+        ViewBookCommand
     ) {
 
         var log = $.jog("App");
@@ -48,25 +49,12 @@
                 this.router = new Router();
 
                 eventBus.on("myprofile:requested", new ViewProfileCommand().execute, this);
-                eventBus.on("book:requested", this.onBookRequested, this);
+                eventBus.on("book:requested", new ViewBookCommand().execute, this);
                 eventBus.on("search:requested", new SearchCommand().execute, this);
                 eventBus.on("search:failed", this.onSearchFailed, this);
                 eventBus.on("search:result:selected", this.onSearchResultSelected, this);
                 eventBus.on("previousread:addRequested", this.onPreviousReadAddRequested, this);
                 eventBus.on("previousread:removeRequested", this.onPreviousReadRemoveRequested, this);
-            },
-
-            onBookRequested: function (id) {
-                log.info("Fetching book from API...");
-                var model = new Book({ id: id });
-                model.fetch({
-                    success: function (model) {
-                        mainRegion.show(new BookDetailsView({ model: model }));
-                    },
-                    error: function () {
-                        mainRegion.showError("Sorry, there was an error retrieving this book.");
-                    }
-                });
             },
 
             onSearchFailed: function () {
@@ -116,6 +104,7 @@
         Ohb.Collections.PreviousReadCollection,
         Ohb.Models.PreviousRead,
         Ohb.Commands.SearchCommand,
-        Ohb.Commands.ViewProfileCommand
+        Ohb.Commands.ViewProfileCommand,
+        Ohb.Commands.ViewBookCommand
     ));
 });
