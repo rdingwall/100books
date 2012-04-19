@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <Target Name="Build">
-    <MSBuild Projects="..\Ohb.Mvc\Ohb.Mvc.csproj" Targets="RestorePackages" />
     <MSBuild Projects="..\Ohb.sln" Targets="Rebuild" Properties="Configuration=Release" />
   </Target>
   
