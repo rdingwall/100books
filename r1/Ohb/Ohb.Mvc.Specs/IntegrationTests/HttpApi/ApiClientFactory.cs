@@ -17,7 +17,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 
         static User CreateNewUser()
         {
-            var displayName = "TestUser-" + DateTime.Now.Ticks;
+            var displayName = "TestUser-" + DateTime.UtcNow.Ticks;
 
             var users = new UserRepository();
             using (var session = LiveRavenDb.OpenSession())

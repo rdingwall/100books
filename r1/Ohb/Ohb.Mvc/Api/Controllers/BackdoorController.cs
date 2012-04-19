@@ -48,7 +48,7 @@ namespace Ohb.Mvc.Api.Controllers
         [HttpPost]
         public dynamic CreateUser(string displayName, string profileImageUrl, bool? setAuthCookie)
         {
-            var userId = "TestUser-" + DateTime.Now.Ticks;
+            var userId = "TestUser-" + DateTime.UtcNow.Ticks;
 
             var user = new User
                             {

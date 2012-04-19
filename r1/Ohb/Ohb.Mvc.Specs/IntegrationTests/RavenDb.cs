@@ -67,7 +67,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests
             // name, current logged in user etc.
             return String.Format("{0}-{1}",
                                  Assembly.GetExecutingAssembly().GetName().Name,
-                                 DateTime.Now.Ticks);
+                                 DateTime.UtcNow.Ticks);
         }
 
         private static IDocumentStore CreateStore()

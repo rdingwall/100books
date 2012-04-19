@@ -18,7 +18,7 @@ namespace Ohb.Mvc.Specs.AuthCookies
 
                         cookieContext = new AuthCookieContext
                                      {
-                                         ExpirationTime = DateTime.Now.AddMilliseconds(100).AddDays(2),
+                                         ExpirationTime = DateTime.UtcNow.AddMilliseconds(100).AddDays(2),
                                          UserId = "users-1"
                                      };
                     };
@@ -57,7 +57,7 @@ namespace Ohb.Mvc.Specs.AuthCookies
 
                     cookieContext = new AuthCookieContext
                     {
-                        ExpirationTime = DateTime.Now.AddMilliseconds(100).AddDays(2),
+                        ExpirationTime = DateTime.UtcNow.AddMilliseconds(100).AddDays(2),
                         UserId = "users-1"
                     };
                 };

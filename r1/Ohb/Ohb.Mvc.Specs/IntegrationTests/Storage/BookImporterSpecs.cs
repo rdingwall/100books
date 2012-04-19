@@ -61,7 +61,7 @@ namespace Ohb.Mvc.Specs.Storage
                 () => book = importer.GetBook(session, "4YydO00I9JYC");
 
             It should_return_the_book_from_google = 
-                () => book.GoogleVolume.VolumeInfo.Title.ShouldEqual("The Google story");
+                () => book.GoogleVolume.VolumeInfo.Title.ShouldEqual("The Google Story");
 
             It should_add_the_book_to_ravendb =
                 () => books.AssertWasCalled(b => b.Add(book, session));
