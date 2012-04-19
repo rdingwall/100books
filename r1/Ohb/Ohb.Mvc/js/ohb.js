@@ -1,5 +1,6 @@
 Ohb = {
     Models: {},
     Collections: {},
-    Views: {}
+    Views: {},
+    Commands: {}
 };

@@ -17,7 +17,8 @@
         Book,
         CompositeProfileView,
         PreviousReadCollection,
-        PreviousRead
+        PreviousRead,
+        SearchCommand
     ) {
 
         var log = $.jog("App");
@@ -43,15 +44,15 @@
             initialize: function () {
                 log.info("Initializing router...");
 
+                this.router = new Router();
+
                 eventBus.on("myprofile:requested", this.onMyProfileRequested, this);
                 eventBus.on("book:requested", this.onBookRequested, this);
-                eventBus.on("search:requested", this.search, this);
+                eventBus.on("search:requested", new SearchCommand().execute, this);
                 eventBus.on("search:failed", this.onSearchFailed, this);
                 eventBus.on("search:result:selected", this.onSearchResultSelected, this);
                 eventBus.on("previousread:addRequested", this.onPreviousReadAddRequested, this);
                 eventBus.on("previousread:removeRequested", this.onPreviousReadRemoveRequested, this);
-
-                this.router = new Router();
             },
 
             onMyProfileRequested: function () {
@@ -92,27 +93,7 @@
             },
 
             search: function (query) {
-                log.info("Searching for " + query + "...");
-                eventBus.trigger("search:began", query);
 
-                new SearchResultCollection().fetch(
-                    {
-                        data: { q: query },
-                        success: function (collection) {
-                            new SearchResultCollectionView({
-                                el: "#search-results",
-                                collection: collection
-                            }).render();
-
-                            eventBus.trigger("search:completed");
-                        },
-                        error: function () {
-                            log.severe("Search failed!");
-                            eventBus.trigger("search:completed");
-                            eventBus.trigger("search:failed");
-                        }
-                    }
-                );
             },
 
             onSearchFailed: function () {
@@ -160,6 +141,7 @@
         Ohb.Models.Book,
         Ohb.Views.CompositeProfileView,
         Ohb.Collections.PreviousReadCollection,
-        Ohb.Models.PreviousRead
+        Ohb.Models.PreviousRead,
+        Ohb.Commands.SearchCommand
     ));
 });
