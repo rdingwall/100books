@@ -3,10 +3,10 @@ using Machine.Specifications;
 using Ohb.Mvc.Google;
 
 namespace Ohb.Mvc.Specs.IntegrationTests
-{
-    [Subject(typeof(GoogleBooksClient)), Tags("Integration")]
+{   
     public class GoogleBooksClientSpecs
     {
+        [Subject(typeof(GoogleBooksClient)), Tags("Integration")]
         public class when_looking_up_a_book_by_id
         {
             Establish context =

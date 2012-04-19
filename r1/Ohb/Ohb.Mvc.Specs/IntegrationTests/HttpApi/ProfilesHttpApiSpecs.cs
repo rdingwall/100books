@@ -6,9 +6,10 @@ using RestSharp;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 {
-    [Subject("api/v1/profiles/:id GET"), Tags("Integration")]
+    [Subject("api/v1/profiles/:id GET")]
     class ProfilesHttpApiSpecs
     {
+        [Tags("Integration")]
         public class when_looking_up_a_profile_by_id
         {
             Establish context = () =>
@@ -41,6 +42,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             static ApiClient api;
         }
 
+        [Tags("Integration")]
         public class when_looking_up_the_current_users_id
         {
             Establish context = () =>
@@ -73,24 +75,28 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             static ApiClient api;
         }
 
+        [Tags("Integration")]
         public class when_no_book_id_is_provided
         {
             It should_return_http_400_bad_request =
                 () => new ApiClient().AssertReturns(Method.GET, "profiles/", HttpStatusCode.BadRequest);
         }
 
+        [Tags("Integration")]
         public class when_requesting_the_current_users_id_but_no_auth_cookie_provided
         {
             It should_return_http_401_unauthorized =
                 () => new ApiClient().AssertReturns(Method.GET, "profiles/me", HttpStatusCode.Unauthorized);
         }
 
+        [Tags("Integration")]
         public class when_no_matching_user_is_found
         {
             It should_return_http_404_not_found =
                 () => new ApiClient().AssertReturns(Method.GET, "profiles/xxxxxxxxxxxxx", HttpStatusCode.NotFound);
         }
 
+        [Tags("Integration")]
         public class when_sending_the_wrong_http_method
         {
             Establish context = () => userId = ApiClientFactory.NewUser().UserId;

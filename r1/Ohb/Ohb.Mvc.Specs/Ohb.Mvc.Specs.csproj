@@ -136,7 +136,7 @@
     <Compile Include="IntegrationTests\HttpApi\BooksHttpApiSpecs.cs" />
     <Compile Include="IntegrationTests\HttpApi\PreviousReadsHttpApiSpecs.cs" />
     <Compile Include="IntegrationTests\HttpApi\DynamicJsonDeserializer.cs" />
-    <Compile Include="Storage\BookImporterSpecs.cs" />
+    <Compile Include="IntegrationTests\Storage\BookImporterSpecs.cs" />
     <Compile Include="IntegrationTests\RavenDb.cs" />
     <Compile Include="IntegrationTests\Storage\UserRepositorySpecs.cs" />
     <Compile Include="IntegrationTests\WindsorRegistrationSpecs.cs" />

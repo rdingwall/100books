@@ -29,6 +29,7 @@ namespace Ohb.Mvc.Specs.Storage
             protected static IDocumentSession session;
         }
 
+        [Tags("Integration")]
         public class when_a_book_has_already_been_imported_into_ravendb : scenario
         {
             Establish context =
@@ -53,6 +54,7 @@ namespace Ohb.Mvc.Specs.Storage
                 () => book.GoogleVolume.VolumeInfo.Title.ShouldEqual("Dummy");
         }
 
+        [Tags("Integration")]
         public class when_the_book_wasnt_found_in_ravendb : scenario
         {
             Because of =
@@ -65,6 +67,7 @@ namespace Ohb.Mvc.Specs.Storage
                 () => books.AssertWasCalled(b => b.Add(book, session));
         }
 
+        [Tags("Integration")]
         public class when_importing_a_non_existing_book : scenario
         {
             Because of =
