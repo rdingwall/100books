@@ -6,8 +6,8 @@ using Ohb.Mvc.Storage.PreviousReads;
 using RestSharp;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
-{   
-    [Subject("api/v1/books/:id GET")]
+{
+    [Subject("api/v1/books/:id GET"), Tags("Integration")]
     class BooksHttpApiSpecs
     {
         public class when_looking_up_a_book_by_id

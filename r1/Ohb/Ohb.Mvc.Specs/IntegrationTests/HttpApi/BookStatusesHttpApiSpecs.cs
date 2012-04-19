@@ -12,7 +12,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
     {
         public class when_retrieving_book_statuses
         {
-            [Subject("api/v1/books/:ids/statuses GET")]
+            [Subject("api/v1/books/:ids/statuses GET"), Tags("Integration")]
             public class when_it_is_a_valid_request
             {
                 Establish context =
@@ -55,7 +55,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
                 static ApiClient api;
             }
 
-            [Subject("api/v1/books/:ids/statuses POST")]
+            [Subject("api/v1/books/:ids/statuses POST"), Tags("Integration")]
             public class when_it_is_the_wrong_http_method
             {
                 It should_return_http_405_method_not_allowed =
@@ -63,7 +63,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
                               .AssertMethodNotAllowed(Method.POST, "books/0W0DRgAACAAJ,2GZlm91NNEgC/statuses");
             }
 
-            [Subject("api/v1/books/:ids/statuses GET")]
+            [Subject("api/v1/books/:ids/statuses GET"), Tags("Integration")]
             public class when_there_was_no_auth_token
             {
                 Because of =
@@ -75,7 +75,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
                 static RestResponse<List<BookStatus>> response;
             }
 
-            [Subject("api/v1/books/:ids/statuses GET")]
+            [Subject("api/v1/books/:ids/statuses GET"), Tags("Integration")]
             public class when_requesting_the_same_book_id_multiple_times
             {
                 Because of =

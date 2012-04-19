@@ -11,7 +11,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 {
     class PreviousReadsHttpApiSpecs
     {
-        [Subject("api/v1/previousreads GET")]
+        [Subject("api/v1/previousreads GET"), Tags("Integration")]
         public class when_retrieving_previous_reads
         {
             public class when_there_was_no_auth_cookie
@@ -26,10 +26,10 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             }
         }
 
-        [Subject("api/v1/previousreads/:id PUT")]
+        [Subject("api/v1/previousreads/:id PUT"), Tags("Integration")]
         public class when_marking_a_book_as_previously_read
         {
-            [Subject("api/v1/previousreads/:id PUT")]
+            [Subject("api/v1/previousreads/:id PUT"), Tags("Integration")]
             public class when_it_is_a_valid_request
             {
                 Because of = () =>
@@ -72,7 +72,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
                 static ApiClient api;
             }
 
-            [Subject("api/v1/previousreads/:id PUT")]
+            [Subject("api/v1/previousreads/:id PUT"), Tags("Integration")]
             public class when_there_was_no_auth_cookie
             {
                 Because of = 
@@ -84,7 +84,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
                 static RestResponse response;
             }
 
-            [Subject("api/v1/previousreads/:id PUT")]
+            [Subject("api/v1/previousreads/:id PUT"), Tags("Integration")]
             public class when_no_book_id_is_provided
             {
                 Because of =
@@ -96,7 +96,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
                 static RestResponse response;
             }
 
-            [Subject("api/v1/previousreads/:id PUT")]
+            [Subject("api/v1/previousreads/:id PUT"), Tags("Integration")]
             public class when_no_matching_book_is_found
             {
                 Because of = 
@@ -108,14 +108,14 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
                 static RestResponse response;
             }
 
-            [Subject("api/v1/previousreads/:id PUT")]
+            [Subject("api/v1/previousreads/:id PUT"), Tags("Integration")]
             public class when_an_http_post_is_sent
             {
                 It should_return_http_405_method_not_allowed =
                     () => ApiClientFactory.NewUser().AssertMethodNotAllowed(Method.POST, "previousreads");
             }
 
-            [Subject("api/v1/previousreads/:id PUT")]
+            [Subject("api/v1/previousreads/:id PUT"), Tags("Integration")]
             public class when_marking_duplicate_books_as_previously_read
             {
                 Because of = () =>
@@ -131,7 +131,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
                 static RestResponse response;
             }
 
-            [Subject("api/v1/previousreads PUT")]
+            [Subject("api/v1/previousreads PUT"), Tags("Integration")]
             public class when_querying_previously_read_books
             {
                 Establish context = () =>
@@ -158,10 +158,10 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             }
         }
 
-        [Subject("api/v1/previousreads/:id DELETE")]
+        [Subject("api/v1/previousreads/:id DELETE"), Tags("Integration")]
         public class when_removing_a_previous_read
         {
-            [Subject("api/v1/previousreads/:id DELETE")]
+            [Subject("api/v1/previousreads/:id DELETE"), Tags("Integration")]
             public class when_it_is_a_valid_request
             {
                 Establish context = () =>
@@ -192,7 +192,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             }
         }
 
-        [Subject("api/v1/previousreads/:id DELETE")]
+        [Subject("api/v1/previousreads/:id DELETE"), Tags("Integration")]
         public class when_no_book_id_is_provided
         {
             Because of =
@@ -204,7 +204,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             static RestResponse response;
         }
 
-        [Subject("api/v1/previousreads/:id DELETE")]
+        [Subject("api/v1/previousreads/:id DELETE"), Tags("Integration")]
         public class when_removing_a_book_that_wasnt_previously_read
         {
             Because of =

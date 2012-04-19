@@ -10,7 +10,7 @@ using Ohb.Mvc.Startup;
 
 namespace Ohb.Mvc.Specs.IntegrationTests
 {
-    [Subject(typeof(WindsorRegistration))]
+    [Subject(typeof(WindsorRegistration)), Tags("Integration")]
     public class WindsorRegistrationSpecs
     {
         public abstract class scenario

@@ -4,7 +4,7 @@ using RestSharp;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.HttpMvc
 {
-    [Subject("/fblogin POST")]
+    [Subject("/fblogin POST"), Tags("Integration")]
     public class PublicControllerHttpSpecs
     {
         public abstract class scenario

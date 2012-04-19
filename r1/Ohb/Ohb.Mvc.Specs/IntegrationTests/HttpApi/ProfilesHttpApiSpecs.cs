@@ -6,7 +6,7 @@ using RestSharp;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 {
-    [Subject("api/v1/profiles/:id GET")]
+    [Subject("api/v1/profiles/:id GET"), Tags("Integration")]
     class ProfilesHttpApiSpecs
     {
         public class when_looking_up_a_profile_by_id

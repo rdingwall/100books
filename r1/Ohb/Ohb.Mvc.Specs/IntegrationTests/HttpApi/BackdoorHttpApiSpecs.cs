@@ -10,7 +10,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 {
     public class BackdoorHttpApiSpecs
     {
-        [Subject("api/backdoor/createuser POST")]
+        [Subject("api/backdoor/createuser POST"), Tags("Integration")]
         public class when_creating_a_user
         {
             Establish context =
@@ -64,7 +64,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             static string profileImageUrl;
         }
 
-        [Subject("api/backdoor/getauthcookie GET")]
+        [Subject("api/backdoor/getauthcookie GET"), Tags("Integration")]
         public class when_getting_an_auth_cookie_for_a_particular_user
         {
             Establish context = () =>
