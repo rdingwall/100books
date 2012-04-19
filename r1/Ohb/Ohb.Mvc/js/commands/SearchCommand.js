@@ -10,9 +10,9 @@ $(function () {
 
         var log = $.jog("SearchCommand");
 
-        var searchCommand = function () {};
+        var command = function () {};
 
-        searchCommand.prototype.execute = function (query) {
+        command.prototype.execute = function (query) {
             log.info("Searching for " + query + "...");
             eventBus.trigger("search:began", query);
 
@@ -36,7 +36,7 @@ $(function () {
             );
         };
 
-        return searchCommand;
+        return command;
     }(
         $,
         Ohb.eventBus,

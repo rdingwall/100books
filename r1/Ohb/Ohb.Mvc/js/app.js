@@ -18,7 +18,8 @@
         CompositeProfileView,
         PreviousReadCollection,
         PreviousRead,
-        SearchCommand
+        SearchCommand,
+        ViewProfileCommand
     ) {
 
         var log = $.jog("App");
@@ -46,37 +47,13 @@
 
                 this.router = new Router();
 
-                eventBus.on("myprofile:requested", this.onMyProfileRequested, this);
+                eventBus.on("myprofile:requested", new ViewProfileCommand().execute, this);
                 eventBus.on("book:requested", this.onBookRequested, this);
                 eventBus.on("search:requested", new SearchCommand().execute, this);
                 eventBus.on("search:failed", this.onSearchFailed, this);
                 eventBus.on("search:result:selected", this.onSearchResultSelected, this);
                 eventBus.on("previousread:addRequested", this.onPreviousReadAddRequested, this);
                 eventBus.on("previousread:removeRequested", this.onPreviousReadRemoveRequested, this);
-            },
-
-            onMyProfileRequested: function () {
-                log.info("Fetching combined profile from API...");
-                $.ajax({
-                    url: "/api/v1/profiles/me",
-                    dataType: 'json',
-                    success: function (data) {
-                        var model = new Profile(data);
-                        var previousReads = _.map(data.recentReads, function (item) {
-                            return new PreviousRead(item);
-                        });
-                        var collection = new PreviousReadCollection(previousReads);
-
-                        var view = new CompositeProfileView({
-                            profileModel: model,
-                            previousReadCollection: collection
-                        });
-                        mainRegion.show(view);
-                    },
-                    error: function () {
-                        mainRegion.showError("Sorry, there was an error retrieving this profile.");
-                    }
-                });
             },
 
             onBookRequested: function (id) {
@@ -90,10 +67,6 @@
                         mainRegion.showError("Sorry, there was an error retrieving this book.");
                     }
                 });
-            },
-
-            search: function (query) {
-
             },
 
             onSearchFailed: function () {
@@ -142,6 +115,7 @@
         Ohb.Views.CompositeProfileView,
         Ohb.Collections.PreviousReadCollection,
         Ohb.Models.PreviousRead,
-        Ohb.Commands.SearchCommand
+        Ohb.Commands.SearchCommand,
+        Ohb.Commands.ViewProfileCommand
     ));
 });
