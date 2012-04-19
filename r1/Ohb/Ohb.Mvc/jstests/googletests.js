@@ -50,6 +50,18 @@ $(function () {
             }});
         });
 
+        // Google returns 2 the same book twice (different etags) when searching
+        // for 'girl tattoo'.
+        asyncTest("It should ignore duplicate results", 1, function () {
+
+            var results = new SearchResultCollection();
+
+            results.fetch({ data: { q: "girl tattoo" }, success: function (collection) {
+                equal(collection.where({ id: "z9ej-ZLbAHAC" }).length, 1);
+                start();
+            }});
+        });
+
         module("When mapping google book search results");
 
         var assertBookMapping = function (googleBookId, title, authors, smallThumbnailUrl) {

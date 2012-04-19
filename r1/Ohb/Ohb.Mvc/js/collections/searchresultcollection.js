@@ -1,21 +1,5 @@
-﻿
-Ohb.Collections.SearchResultCollection = (function ($, _, Backbone, SearchResult) {
+﻿Ohb.Collections.SearchResultCollection = (function ($, _, Backbone, SearchResult) {
     "use strict";
-
-    var distinct = function (items, keyCallback) {
-        var keys = [],
-            results = [];
-
-        $.each(items, function (i, item) {
-            var key = keyCallback(item);
-            if ($.inArray(key, keys) === -1) {
-                results.push(item);
-                keys.push(key);
-            }
-        });
-
-        return results;
-    };
 
     return Backbone.Collection.extend({
         model: SearchResult,
@@ -29,7 +13,9 @@ Ohb.Collections.SearchResultCollection = (function ($, _, Backbone, SearchResult
                 return;
             }
 
-            var uniqueItems = distinct(response.items, function (result) { return result.id; });
+            var uniqueItems = _.uniq(response.items, false, function (result) {
+                return result.id;
+            });
 
             return _.map(uniqueItems, SearchResult.fromGoogle);
         }
