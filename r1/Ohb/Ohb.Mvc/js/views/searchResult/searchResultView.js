@@ -23,7 +23,6 @@
         className: "book-search-result",
 
         events: {
-            "click .toggle-previousread-button": "toggle",
             "click": "select"
         },
 
@@ -35,10 +34,6 @@
 
         select: function () {
             this.model.set("selected", true);
-        },
-
-        toggle: function () {
-            this.model.
         }
     });
 }(Backbone, Mustache, $, Ohb.eventBus));
