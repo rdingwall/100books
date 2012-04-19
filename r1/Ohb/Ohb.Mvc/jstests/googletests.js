@@ -81,11 +81,11 @@ $(function () {
         };
 
         asyncTest("It should include the book's subtitle", 3, function () {
-            assertBookMapping("abYKXvCwEToC", "Harry Potter: the story of a global business phenomenon", "Susan Gunelius", "http://bks6.books.google.co.uk/books?id=abYKXvCwEToC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api");
+            assertBookMapping("abYKXvCwEToC", "Harry Potter: The Story of a Global Business Phenomenon", "Susan Gunelius", "http://bks6.books.google.co.uk/books?id=abYKXvCwEToC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api");
         });
 
         asyncTest("It should list multiple authors", 3, function () {
-            assertBookMapping("GGpXN9SMELMC", "Head First design patterns", "Eric Freeman, Elisabeth Freeman, Kathy Sierra, Bert Bates", "http://bks9.books.google.co.uk/books?id=GGpXN9SMELMC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api");
+            assertBookMapping("GGpXN9SMELMC", "Head First Design Patterns", "Eric Freeman, Elisabeth Freeman, Kathy Sierra, Bert Bates", "http://bks9.books.google.co.uk/books?id=GGpXN9SMELMC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api");
         });
 
         asyncTest("It should handle books without thumbnails", 3, function () {
