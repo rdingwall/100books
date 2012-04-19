@@ -272,6 +272,123 @@ $(function () {
             eventBus.trigger("previousread:addRequested", "4YydO00I9JYC");
         });
 
+
+        module("When a searchRequested event is raised");
+
+        asyncTest("It should perform a search and render the results", 1, function () {
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("search:completed", function () {
+                equal($("#search-results").children().length, 10);
+                start();
+            });
+
+            eventBus.on("search:failed", function () {
+                ok(false, "search failed!");
+                start();
+            });
+
+            eventBus.trigger("search:requested", "harry potter");
+        });
+
+        asyncTest("It should raise a search:began event", 2, function () {
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("search:began", function (q) {
+                ok(true);
+                equal(q, "harry potter");
+                start();
+            });
+
+            eventBus.trigger("search:requested", "harry potter");
+        });
+
+        asyncTest("It should raise a search:completed event", 1, function () {
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("search:completed", function () {
+                ok(true);
+                start();
+            });
+
+            eventBus.trigger("search:requested", "harry potter");
+        });
+
+        module("When the book search fails");
+
+        asyncTest("It should raise a search:failed event", 1, function () {
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("search:failed", function () {
+                ok(true);
+                start();
+            });
+
+            eventBus.on("search:resultsArrived", function () {
+                ok(false, "should not have been raised (but it's ok, not sure how to fake a test right now)");
+                start();
+            });
+
+            eventBus.trigger("search:requested", "3894h9f893jhf934jf92ht8");
+        });
+
+        asyncTest("It should raise a search:completed event", 1, function () {
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("search:completed", function () {
+                ok(true);
+                start();
+            });
+
+            eventBus.on("search:resultsArrived", function () {
+                ok(false, "should not have been raised!");
+                start();
+            });
+
+            eventBus.trigger("search:requested", "3894h9f893jhf934jf92ht8");
+        });
+
+        module("When requesting a search and there was no results");
+
+        asyncTest("It should render the no results available view", 1, function () {
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("search:failed", function () {
+                ok(false, "searchFailed was raised");
+                start();
+            });
+
+            eventBus.on("search:completed", function () {
+                ok($(".searchresult-no-results-available").is(":visible"));
+                start();
+            });
+
+            eventBus.trigger("search:requested", "3894h9f893jhf934jf92ht8");
+        });
+
+        asyncTest("It should raise a search:completed event", 1, function () {
+            eventBus.reset();
+            app.initialize();
+
+            eventBus.on("search:failed", function () {
+                ok(false, "searchFailed was raised");
+                start();
+            });
+
+            eventBus.on("search:completed", function () {
+                ok(true);
+                start();
+            });
+
+            eventBus.trigger("search:requested", "3894h9f893jhf934jf92ht8");
+        });
+
     }(
         $,
         Backbone,

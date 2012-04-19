@@ -15,6 +15,7 @@
             <p class="searchresult-authors">{{ authors }}</p> \
         </div> \
         <div class="span1">\
+        {{ hasRead }}\
             <a id="toggle-previousread-button" class="status-toggle-button btn large"><i class="icon-ok"></i> </a>\
         </div>\
     </div>';

@@ -5,6 +5,7 @@
         model: SearchResult,
 
         url: function () {
+            // plus q=search+term
             return "https://www.googleapis.com/books/v1/volumes?projection=lite&callback=?";
         },
 

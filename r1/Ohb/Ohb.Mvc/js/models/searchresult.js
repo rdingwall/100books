@@ -6,7 +6,8 @@
             title: null,
             authors: null,
             smallThumbnailUrl: null,
-            selected: false
+            selected: false,
+            hasRead: false
         },
 
         initialize: function () {
