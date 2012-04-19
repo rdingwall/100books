@@ -4,20 +4,8 @@
 
     Ohb.app = (function (
         $,
-        _,
-        Backbone,
         Router,
         eventBus,
-        SearchResultCollectionView,
-        SearchResultCollection,
-        BookDetailsView,
-        ProfileCardView,
-        Profile,
-        mainRegion,
-        Book,
-        CompositeProfileView,
-        PreviousReadCollection,
-        PreviousRead,
         SearchCommand,
         ViewProfileCommand,
         ViewBookCommand,
@@ -46,17 +34,17 @@
         return {
 
             initialize: function () {
-                log.info("Initializing router...");
+                log.info("Initializing app...");
 
                 this.router = new Router();
 
-                eventBus.on("myprofile:requested", new ViewProfileCommand().execute, this);
-                eventBus.on("book:requested", new ViewBookCommand().execute, this);
-                eventBus.on("search:requested", new SearchCommand().execute, this);
+                eventBus.on("myprofile:requested", new ViewProfileCommand().execute);
+                eventBus.on("book:requested", new ViewBookCommand().execute);
+                eventBus.on("search:requested", new SearchCommand().execute);
                 eventBus.on("search:failed", this.onSearchFailed, this);
                 eventBus.on("search:result:selected", this.onSearchResultSelected, this);
-                eventBus.on("previousread:addRequested", new AddPreviousReadCommand().execute, this);
-                eventBus.on("previousread:removeRequested", new RemovePreviousReadCommand().execute, this);
+                eventBus.on("previousread:addRequested", new AddPreviousReadCommand().execute);
+                eventBus.on("previousread:removeRequested", new RemovePreviousReadCommand().execute);
             },
 
             onSearchFailed: function () {
@@ -71,20 +59,8 @@
         };
     }(
         $,
-        _,
-        Backbone,
         Ohb.Router,
         Ohb.eventBus,
-        Ohb.Views.SearchResultCollectionView,
-        Ohb.Collections.SearchResultCollection,
-        Ohb.Views.BookDetailsView,
-        Ohb.Views.ProfileCardView,
-        Ohb.Models.Profile,
-        Ohb.mainRegion,
-        Ohb.Models.Book,
-        Ohb.Views.CompositeProfileView,
-        Ohb.Collections.PreviousReadCollection,
-        Ohb.Models.PreviousRead,
         Ohb.Commands.SearchCommand,
         Ohb.Commands.ViewProfileCommand,
         Ohb.Commands.ViewBookCommand,
