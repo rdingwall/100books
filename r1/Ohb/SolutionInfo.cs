@@ -3,7 +3,7 @@ using System.Reflection;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyConfiguration("unknown commit (local build)")]
 [assembly: AssemblyCompany("100 Books")]
 [assembly: AssemblyProduct("100 Books")]
 [assembly: AssemblyCopyright("Copyright © Richard Dingwall / 100 Books, 2012")]
