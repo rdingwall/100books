@@ -200,6 +200,9 @@
     <Compile Include="AuthCookies\OhbUserContextFactory.cs" />
     <Compile Include="HttpBadRequestResult.cs" />
     <Compile Include="HttpServiceUnavailableResult.cs" />
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="Startup\RavenDbConventions.cs" />
     <Compile Include="Storage\Base32.cs" />
     <Compile Include="Storage\Books\ConvertGoogleVolumeId.cs" />

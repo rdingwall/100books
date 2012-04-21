@@ -157,6 +157,9 @@
     <Compile Include="IntegrationTests\Storage\UserRepositorySpecs.cs" />
     <Compile Include="IntegrationTests\WindsorRegistrationSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
