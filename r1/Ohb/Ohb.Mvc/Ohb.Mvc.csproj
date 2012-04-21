@@ -198,6 +198,7 @@
     <Compile Include="Extensions\RandomExtensions.cs" />
     <Compile Include="AuthCookies\OhbUserContext.cs" />
     <Compile Include="AuthCookies\OhbUserContextFactory.cs" />
+    <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="HttpBadRequestResult.cs" />
     <Compile Include="HttpServiceUnavailableResult.cs" />
     <Compile Include="..\SolutionInfo.cs">
