@@ -17,7 +17,6 @@ namespace Ohb.Mvc.Api.Controllers
     {
         readonly IUserRepository users;
         readonly IAuthCookieFactory authCookieFactory;
-        static readonly Random random = new Random();
 
         public BackdoorController(IUserRepository users, 
             IAuthCookieFactory authCookieFactory)
