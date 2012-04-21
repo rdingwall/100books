@@ -31,8 +31,12 @@
   </Target>
 
   <!-- Deploy website for tests -->
-  <Target Name="TeamCityDeploy" DependsOnTargets="GenerateAssemblyInfo">
-    <MSBuild Projects="..\Ohb.sln" Targets="Rebuild" Properties="Configuration=TeamCityDeploy;RestorePackages=false;" />
+  <Target Name="TeamCityDeploy">
+    <Message Text="Copying files from $(teamcity_agent_work_dir)\r1\Ohb\Ohb.Mvc" />
+    <ItemGroup>
+      <WebFiles Include="$(teamcity_agent_work_dir)\r1\Ohb\Ohb.Mvc\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(WebFiles)" DestinationFolder="c:\inetpub\ohb-teamcity\%(RecursiveDir)"></Copy>
   </Target>
 
 </Project>
