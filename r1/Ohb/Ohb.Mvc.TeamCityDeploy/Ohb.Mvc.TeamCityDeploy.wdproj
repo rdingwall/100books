@@ -22,6 +22,7 @@
     <EnableUpdateable>true</EnableUpdateable>
     <UseMerge>true</UseMerge>
     <SingleAssemblyName>Ohb.Mvc.TeamCityDeploy</SingleAssemblyName>
+    <OutputPath>..\..\..\..\..\inetpub\ohb-teamcity</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -29,6 +30,7 @@
     <EnableUpdateable>true</EnableUpdateable>
     <UseMerge>true</UseMerge>
     <SingleAssemblyName>Ohb.Mvc.TeamCityDeploy</SingleAssemblyName>
+    <OutputPath>..\..\..\..\..\inetpub\ohb-teamcity</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TeamCityDeploy|AnyCPU'">
     <EnableUpdateable>true</EnableUpdateable>
@@ -36,6 +38,7 @@
     <UseWebConfigReplacement>false</UseWebConfigReplacement>
     <SingleAssemblyName>Ohb.Mvc.TeamCityDeploy</SingleAssemblyName>
     <OutDir>C:\inetpub\ohb-teamcity</OutDir>
+    <OutputPath>..\..\..\..\..\inetpub\ohb-teamcity</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ohb.Mvc\Ohb.Mvc.csproj">
