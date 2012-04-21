@@ -5,9 +5,9 @@
     <!-- Use these if TeamCity vars aren't set -->
     <build_vcs_number Condition ="$(build_vcs_number) == ''">xxx</build_vcs_number>
     <build_number Condition="$(build_number) == ''">0.0.0.0</build_number>
-    <agent_work_dir Condition="$(agent_work_dir) == ''">C:\dev\100books</agent_work_dir>
+    <teamcity_build_workingdir Condition="$(teamcity_build_workingdir) == ''">C:\dev\100books</teamcity_build_workingdir>
 
-    <MSBuildCommunityTasksPath>$(agent_work_dir)\r1\Ohb\packages\MSBuildTasks.1.3.0.528\lib\net20</MSBuildCommunityTasksPath>
+    <MSBuildCommunityTasksPath>$(teamcity_build_workingdir)\r1\Ohb\packages\MSBuildTasks.1.3.0.528\lib\net20</MSBuildCommunityTasksPath>
   </PropertyGroup>
 
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
@@ -32,9 +32,9 @@
 
   <!-- Deploy website for tests -->
   <Target Name="TeamCityDeploy">
-    <Message Text="Copying files from $(agent_work_dir)\r1\Ohb\Ohb.Mvc" />
+    <Message Text="Copying files from $(teamcity_build_workingdir)\r1\Ohb\Ohb.Mvc" />
     <ItemGroup>
-      <WebFiles Include="$(agent_work_dir)\r1\Ohb\Ohb.Mvc\**\*.*" />
+      <WebFiles Include="$(teamcity_build_workingdir)\r1\Ohb\Ohb.Mvc\**\*.*" />
     </ItemGroup>
     <Copy SourceFiles="@(WebFiles)" DestinationFolder="c:\inetpub\ohb-teamcity\%(RecursiveDir)"></Copy>
   </Target>
