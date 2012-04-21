@@ -5,9 +5,9 @@
     <!-- Use these if TeamCity vars aren't set -->
     <build_vcs_number Condition ="$(build_vcs_number) == ''">xxx</build_vcs_number>
     <build_number Condition="$(build_number) == ''">0.0.0.0</build_number>
-    <teamcity_agent_work_dir Condition="$(teamcity_agent_work_dir) == ''">C:\dev\100books\r1\Ohb</teamcity_agent_work_dir>
+    <teamcity_agent_work_dir Condition="$(teamcity_agent_work_dir) == ''">C:\dev\100books</teamcity_agent_work_dir>
 
-    <MSBuildCommunityTasksPath>$(teamcity_agent_work_dir)\packages\MSBuildTasks.1.3.0.528\lib\net20</MSBuildCommunityTasksPath>
+    <MSBuildCommunityTasksPath>$(teamcity_agent_work_dir)\r1\Ohb\packages\MSBuildTasks.1.3.0.528\lib\net20</MSBuildCommunityTasksPath>
   </PropertyGroup>
 
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
