@@ -9,6 +9,7 @@
 
     <MSBuildCommunityTasksPath>$(teamcity_build_workingdir)\packages\MSBuildTasks.1.3.0.528\lib\net20</MSBuildCommunityTasksPath>
     <GitCommitShortHash>$(build_vcs_number.Substring(0, 7))</GitCommitShortHash>
+    <IntegrationTestUrl>http://localhost:88</IntegrationTestUrl>
   </PropertyGroup>
 
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
@@ -38,6 +39,14 @@
       <WebFiles Include="$(teamcity_build_workingdir)\Ohb.Mvc\**\*.*" />
     </ItemGroup>
     <Copy SourceFiles="@(WebFiles)" DestinationFolder="c:\inetpub\ohb-teamcity\%(RecursiveDir)"></Copy>
+  </Target>
+
+  <Target Name="ChangeIntegrationTestsUrl">
+    <!-- Integration tests to run against TeamCityDeploy site -->
+    <XmlUpdate XmlFileName="..\Ohb.Mvc.Specs\bin\Debug\Ohb.Mvc.Specs.dll.config"
+          Xpath="//appSettings/add[@key='IntegrationTestUrl']/@value"
+          Value="$(IntegrationTestUrl)"
+          ContinueOnError="false"/>
   </Target>
 
 </Project>

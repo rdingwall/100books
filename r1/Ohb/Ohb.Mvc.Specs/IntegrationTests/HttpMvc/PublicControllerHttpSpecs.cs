@@ -1,3 +1,4 @@
+using System.Configuration;
 using System.Net;
 using Machine.Specifications;
 using RestSharp;
@@ -21,7 +22,8 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpMvc
         {
             Establish context = () =>
                                     {
-                                        client = new RestClient("http://localhost");
+                                        var url = ConfigurationManager.AppSettings.IntegrationTestUrl();
+                                        client = new RestClient(url);
                                         request = new RestRequest("/fblogin")
                                                       {
                                                           Method = Method.POST

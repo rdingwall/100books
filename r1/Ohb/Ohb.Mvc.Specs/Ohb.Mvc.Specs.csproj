@@ -147,6 +147,7 @@
     <Compile Include="IntegrationTests\HttpApi\ApiClient.cs" />
     <Compile Include="IntegrationTests\HttpApi\JsonFormatter.cs" />
     <Compile Include="IntegrationTests\Storage\BookRepositorySpecs.cs" />
+    <Compile Include="NameValueCollectionExtensions.cs" />
     <Compile Include="StubDocumentStore.cs" />
     <Compile Include="IntegrationTests\GoogleBooksClientSpecs.cs" />
     <Compile Include="IntegrationTests\HttpApi\BooksHttpApiSpecs.cs" />

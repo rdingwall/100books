@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net;
 using System.Text;
 using Machine.Specifications;
@@ -14,7 +15,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
     {
         readonly RestClient client;
         readonly RestClient dynamicClient;
-        RestClient backdoorClient;
+        readonly RestClient backdoorClient;
         public string BaseUrl { get; set; }
         public string AuthCookie { get; set; }
 
@@ -40,7 +41,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 
         public ApiClient()
         {
-            BaseUrl = "http://localhost/api/v1";
+            BaseUrl = ConfigurationManager.AppSettings.IntegrationTestUrl() + "/api/v1/";
 
             client = new RestClient(BaseUrl);
             client.AddHandler("application/json", new JsonCamelCaseDeserializer());
@@ -50,12 +51,13 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             dynamicClient = new RestClient(BaseUrl);
             dynamicClient.AddHandler("application/json", new DynamicJsonDeserializer());
 
-            backdoorClient = new RestClient("http://localhost/api/backdoor");
+            backdoorClient = new RestClient(ConfigurationManager.AppSettings.IntegrationTestUrl() + "/api/backdoor");
             dynamicClient.AddHandler("application/json", new JsonCamelCaseDeserializer());
         }
 
         static RestResponse Log(RestResponse response)
         {
+            if (response == null) throw new ArgumentNullException("response");
             DoLog(response);
             return response;
         }
@@ -87,7 +89,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             Console.WriteLine("Response body:");
 
             var raw = Encoding.UTF8.GetString(response.RawBytes ?? new byte[0]);
-            if (response.ContentType.Contains("application/json"))
+            if (!String.IsNullOrWhiteSpace(response.ContentType) && response.ContentType.Contains("application/json"))
                 raw = new JsonFormatter().PrettyPrint(raw);
             Console.WriteLine(raw);
 
