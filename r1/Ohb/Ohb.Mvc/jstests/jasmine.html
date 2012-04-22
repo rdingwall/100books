@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" href="/js/lib/jasmine/jasmine.css" type="text/css" />
     <script type="text/javascript" src="/js/lib/jasmine/jasmine.js"></script>
+    <script type="text/javascript" src="/js/lib/jasmine/jasmine.teamcity_reporter.js"></script>
     <script type="text/javascript" src="/js/lib/jasmine/jasmine-html.js"></script>
 
     <script type="text/javascript" src="/js/ohb.js"></script>
@@ -58,6 +59,7 @@
             var htmlReporter = new jasmine.HtmlReporter();
 
             jasmineEnv.addReporter(htmlReporter);
+            jasmineEnv.addReporter  (new jasmine.TeamcityReporter());
 
             jasmineEnv.specFilter = function(spec) {
                 return htmlReporter.specFilter(spec);

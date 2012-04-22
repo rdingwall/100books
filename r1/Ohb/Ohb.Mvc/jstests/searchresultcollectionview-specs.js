@@ -1,6 +1,7 @@
 /*global window: false, document: false, $: false, log: false, bleep: false,
  it: false,
  beforeEach: false,
+ afterEach: false,
  describe: false,
  expect: false
  */
@@ -30,6 +31,10 @@ $(function () {
                 });
 
                 $("#fixture").html($("#searchresultcollectionview-dom").text());
+            });
+
+            afterEach(function () {
+                $("#fixture").empty();
             });
 
             describe("When the search result box is open", function () {

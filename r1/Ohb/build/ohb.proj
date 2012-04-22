@@ -10,6 +10,7 @@
     <MSBuildCommunityTasksPath>$(teamcity_build_workingdir)\packages\MSBuildTasks.1.3.0.528\lib\net20</MSBuildCommunityTasksPath>
     <GitCommitShortHash>$(build_vcs_number.Substring(0, 7))</GitCommitShortHash>
     <IntegrationTestUrl>http://localhost:88</IntegrationTestUrl>
+    <PhantomJsExe>C:\phantomjs-1.5.0-win32-static\phantomjs.exe</PhantomJsExe>
   </PropertyGroup>
 
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
@@ -47,6 +48,10 @@
           Xpath="//appSettings/add[@key='IntegrationTestUrl']/@value"
           Value="$(IntegrationTestUrl)"
           ContinueOnError="false"/>
+  </Target>
+
+  <Target Name="RunPhantomTests">
+    <Exec Command="$(PhantomJsExe) build\phantomjs-tests.js" />
   </Target>
 
 </Project>
