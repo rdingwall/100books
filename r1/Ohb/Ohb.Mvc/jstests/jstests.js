@@ -56,46 +56,9 @@ $(function () {
 
 
 
-        module("When rendering a profile card view");
 
-        test("It should render the details", 1, function () {
-            var model = new Profile({
-                displayName: "test user"
-            });
 
-            var view = new ProfileCardView({
-                model: model,
-                el: "#test-profile-card"
-            });
 
-            view.render();
-
-            equal(view.$el.find(".profile-card-display-name").text(), model.get("displayName"));
-        });
-
-        module("When rendering a composite profile view");
-
-        test("It should render both the profile card and the previous reads", 2, function () {
-            var model = new Profile({
-                displayName: "test user"
-            });
-
-            var collection = new PreviousReadCollection();
-            collection.add(new PreviousRead({
-                title: "title 1"
-            }));
-
-            var view = new CompositeProfileView({
-                el: "#test-composite-profile",
-                previousReadCollection: collection,
-                profileModel: model
-            });
-
-            view.render();
-
-            equal(view.$el.find(".profile-card-display-name").text(), model.get("displayName"));
-            equal(view.$el.find(".previous-read-title").text(), collection.at(0).get("title"));
-        });
 
         module("When requesting PreviousRead be removed");
 
