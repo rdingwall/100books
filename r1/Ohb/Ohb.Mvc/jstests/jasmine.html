@@ -64,6 +64,7 @@
     <script type="text/javascript" src="/jstests/models/searchresult-specs.js"></script>
     <script type="text/javascript" src="/jstests/models/previousread-specs.js"></script>
     <script type="text/javascript" src="/jstests/collections/previousreadcollection-specs.js"></script>
+    <script type="text/javascript" src="/jstests/collections/googlesearchresultcollection-specs.js"></script>
 
 
     <script type="text/javascript">
@@ -90,6 +91,9 @@
                     },
                     toBeEmpty: function () {
                         return this.actual.length === 0;
+                    },
+                    toStartWith: function (expected) {
+                        return this.actual.indexOf(expected) === 0;
                     }
                 });
 
