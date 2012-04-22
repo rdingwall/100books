@@ -56,54 +56,6 @@ $(function () {
 
 
 
-
-
-        module("When a search:result:selected event is raised");
-
-        test("It should navigate to the new route", 1, function () {
-            eventBus.reset();
-            app.initialize();
-
-            var model = new SearchResult({
-                id: "foo",
-                title: "Harry Potter's amazing #(*@(#)(# adventure$ 2008"
-            });
-
-            eventBus.trigger("search:result:selected", model);
-
-            equal(window.location.hash, "#books/foo/harry-potters-amazing-adventure-2008");
-        });
-
-        // This one fails when run with the other tests for some reason
-        asyncTest("It should raise a book:requested event (RUN SEPARATELY)", 1, function () {
-            eventBus.reset();
-            app.initialize();
-            var model = new SearchResult({ id: "foo" });
-
-            eventBus.on("book:requested", function (id) {
-                equal(id, model.id);
-            });
-
-            eventBus.trigger("search:result:selected", model);
-
-            setTimeout(start, 1000);
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         module("When rendering a profile card view");
 
         test("It should render the details", 1, function () {
