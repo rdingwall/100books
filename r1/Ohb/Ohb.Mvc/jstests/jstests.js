@@ -134,72 +134,7 @@ $(function () {
                 view.$el.remove();
             });
 
-        module("When toggling an unread book's status");
 
-        test("It should change the book's hasPreviouslyRead", 2, function () {
-            eventBus.reset();
-            var model = new Book({ thumbnailUrl: "test" });
-            model.toggleStatus();
-            ok(model.get("hasPreviouslyRead"), "set to true");
-            model.toggleStatus();
-            ok(!model.get("hasPreviouslyRead"), "set to false");
-        });
-
-        asyncTest("It should raise a previousread:addRequested event", 1, function () {
-            eventBus.reset();
-            var model = new Book({ id: "test" });
-
-            eventBus.on("previousread:addRequested", function (id) {
-                equal(id, model.id);
-                start();
-            });
-
-            model.toggleStatus();
-        });
-
-        module("When toggling a previously-read book's status");
-
-        asyncTest("It should raise a previousread:removeRequested event", 1, function () {
-            eventBus.reset();
-            var model = new Book({ id: "test", hasPreviouslyRead: true });
-
-            eventBus.on("previousread:removeRequested", function (id) {
-                equal(id, model.id);
-                start();
-            });
-
-            model.toggleStatus();
-        });
-
-        module("When a previousread:added event is raised");
-
-        test("It should set the matching book's hasPreviouslyRead to true", 2, function () {
-            eventBus.reset();
-            var aaa = new Book({ thumbnailUrl: "test", id : "aaa" });
-            var bbb = new Book({ thumbnailUrl: "test", id : "bbb" });
-
-            eventBus.trigger("previousread:added", "bbb");
-
-            ok(!aaa.get("hasPreviouslyRead"));
-            ok(bbb.get("hasPreviouslyRead"));
-        });
-
-        module("When a previousread:removed event is raised");
-
-        test("It should set the matching book's hasPreviouslyRead to false", 2, function () {
-            eventBus.reset();
-            var aaa = new Book({ thumbnailUrl: "test", id : "aaa" });
-            var bbb = new Book({
-                thumbnailUrl: "test",
-                id : "bbb",
-                hasPreviouslyRead: true
-            });
-
-            eventBus.trigger("previousread:removed", "bbb");
-
-            ok(!aaa.get("hasPreviouslyRead"));
-            ok(!bbb.get("hasPreviouslyRead"));
-        });
 
 
 
