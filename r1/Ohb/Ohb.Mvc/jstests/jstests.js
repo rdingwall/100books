@@ -64,38 +64,6 @@ $(function () {
 
 
 
-        asyncTest("It should remove the view", 2, function () {
-            eventBus.reset();
-
-            var model1 = new PreviousRead({
-                title: "title 1",
-                id: "1"
-            });
-            var model2 = new PreviousRead({
-                title: "title 2",
-                id: "2"
-            });
-
-            var collection = new PreviousReadCollection();
-            collection.reset([ model1, model2 ]);
-
-            var view = new PreviousReadCollectionView({
-                el: "#test-previous-reads",
-                collection: collection
-            });
-
-            view.render();
-
-            equal(view.$el.find("#previous-read-1").find(".previous-read-title").text(),
-                model1.get("title"));
-
-            eventBus.trigger("previousread:removed", model1.id);
-
-            setTimeout(function () {
-                equal(view.$el.find("#previous-read-1").length, 0);
-                start();
-            }, 1000);
-        });
 
         module("When clicking the 'remove' button in the previous reads list");
 
