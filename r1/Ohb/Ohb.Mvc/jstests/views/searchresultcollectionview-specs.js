@@ -128,6 +128,31 @@ $(function () {
                     expect(view.$el.children().length).toEqual(2);
                 });
             });
+
+            describe("When one of the search result models is marked as selected", function () {
+
+                it("It should close the search results", function () {
+                    var model = new SearchResult({});
+                    var collection = new SearchResultCollection();
+                    collection.add(model);
+
+                    var view = new SearchResultCollectionView({
+                        el: "#test-search-results",
+                        collection: collection
+                    });
+                    expect(view.$el).toBeHidden();
+                    view.render();
+
+                    expect(view.$el).toBeVisible();
+
+                    model.set("selected", true);
+
+                    expect(view.$el).toBeHidden();
+
+                    expect(view.views).toBeEmpty();
+                });
+
+            });
         });
 
     }(

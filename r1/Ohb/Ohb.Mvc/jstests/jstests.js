@@ -89,50 +89,11 @@ $(function () {
             setTimeout(start, 1000);
         });
 
-        module("When one of the search result models is marked as selected");
-
-        test("It should close the search results", 4, function () {
-            eventBus.reset();
-            var model = new SearchResult({});
-            var collection = new SearchResultCollection();
-            collection.add(model);
-
-            var view = new SearchResultCollectionView({
-                el: "#test-search-results",
-                collection: collection
-            });
-            ok(!view.$el.is(":visible"), "should be hidden to start with");
-            view.render();
-
-            ok(view.$el.is(":visible"), "should become visible");
-
-            model.set("selected", true);
-
-            ok(!view.$el.is(":visible"), "should be hidden");
-
-            equal(view.views.length, 0, "should clear the items");
-        });
 
 
 
-        module("When clicking the button to toggle a book's status");
 
-        test("It should change the book's hasPreviouslyRead attr to true", 1,
-            function () {
-                var model  = new Book({ thumbnailUrl: "/img/book-no-cover.png" });
 
-                var view = new BookDetailsView({
-                    model: model
-                });
-
-                view.render();
-
-                view.$el.find(".status-toggle-button.btn-success").trigger("click");
-                ok(model.get("hasPreviouslyRead"), "The book should now be previously read");
-
-                view.close();
-                view.$el.remove();
-            });
 
 
 
