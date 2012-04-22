@@ -8,6 +8,7 @@
     <teamcity_build_workingdir Condition="$(teamcity_build_workingdir) == ''">C:\dev\100books\r1\Ohb</teamcity_build_workingdir>
 
     <MSBuildCommunityTasksPath>$(teamcity_build_workingdir)\packages\MSBuildTasks.1.3.0.528\lib\net20</MSBuildCommunityTasksPath>
+    <GitCommitShortHash>$(build_vcs_number.Substring(0, 7))</GitCommitShortHash>
   </PropertyGroup>
 
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
@@ -17,14 +18,14 @@
   </Target>
 
   <Target Name="GenerateAssemblyInfo">
-    <Message Text="Using AssemblyConfiguration = $(build_vcs_number)" />
+    <Message Text="Using AssemblyConfiguration = $(GitCommitShortHash)" />
     <Message Text="Using AssemblyVersion = $(build_number)" />
     <!-- Using AssemblyConfiguration as git commit hash -->
     <AssemblyInfo CodeLanguage="CS"
       OutputFile="..\SolutionInfo.cs"
       AssemblyCompany="100 Books"
       AssemblyProduct="100 Books"
-      AssemblyConfiguration="$(build_vcs_number)"
+      AssemblyConfiguration="$(GitCommitShortHash)"
       AssemblyCopyright="Copyright © Richard Dingwall / 100 Books 2012"
       AssemblyVersion="$(build_number)"
       AssemblyFileVersion="$(build_number)" />
