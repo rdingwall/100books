@@ -113,25 +113,7 @@ $(function () {
             equal(view.views.length, 0, "should clear the items");
         });
 
-        module("When a Search result has no thumbnail image");
 
-        test("It should use the default placeholder thumbnail image", 1, function () {
-            var model = { volumeInfo: { } };
-            var searchResult = SearchResult.fromGoogle(model);
-            equal(searchResult.get("smallThumbnailUrl"), "img/search-result-no-cover.png");
-        });
-
-        module("When a Book model has thumbnails");
-
-        test("It should use the real thumbnail image in search results", 1, function () {
-            var model = new Book({ smallThumbnailUrl: "test" });
-            equal(model.getSearchResultThumbnail(), "test");
-        });
-
-        test("It should use the real thumbnail image on the book page", 1, function () {
-            var model = new Book({ thumbnailUrl: "test" });
-            equal(model.getBookThumbnail(), "test");
-        });
 
         module("When clicking the button to toggle a book's status");
 
