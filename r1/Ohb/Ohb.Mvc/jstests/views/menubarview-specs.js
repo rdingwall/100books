@@ -15,6 +15,11 @@ $(function () {
     ) {
         describe("MenuBarView", function () {
 
+            beforeEach(function () {
+                Ohb.menuBarView.initialize();
+                $("#fixture").html($("#menubarview-tests").text());
+            });
+
             describe("Pressing enter in the search box", function () {
                 it("should raise the search:requested event", function () {
                     var expected = "test search";
@@ -44,6 +49,31 @@ $(function () {
                 });
             });
 
+            describe("Firing a search:began event", function () {
+                it("should show the ajax loader gif", function () {
+                    Ohb.menuBarView.initialize();
+
+                    expect("#search-loader-spinner").toBeHidden();
+
+                    eventBus.trigger("search:began");
+
+                    expect("#search-loader-spinner").toBeVisible();
+
+                    $("#search-loader-spinner").hide();
+                });
+            });
+
+            describe("Firing a search:completed event", function () {
+                it("should hide the ajax loader gif", function () {
+                    $("#search-loader-spinner").show();
+
+                    expect("#search-loader-spinner").toBeVisible();
+
+                    eventBus.trigger("search:completed");
+
+                    expect("#search-loader-spinner").toBeHidden();
+                });
+            });
         });
     }(
         $,

@@ -51,6 +51,7 @@
 
     <script type="text/javascript" src="/jstests/dependency-specs.js"></script>
     <script type="text/javascript" src="/jstests/mainregion-specs.js"></script>
+    <script type="text/javascript" src="/jstests/app-specs.js"></script>
     <script type="text/javascript" src="/jstests/views/searchresultcollectionview-specs.js"></script>
     <script type="text/javascript" src="/jstests/views/menubarview-specs.js"></script>
 
@@ -110,6 +111,19 @@
 
     <script id="mainregion-tests" type="text/html">
         <div id="main-region" />
+    </script>
+
+    <script id="menubarview-tests" type="text/html">
+        <div id="menubar">
+            <input id="menubar-search-input" />
+            <div id="search-loader-spinner" style="display:none">hello</div>
+        </div>
+    </script>
+
+    <script id="app-tests" type="text/html">
+        <div id="search-failed-modal" style="display:none">
+            We're sorry, there was a problem retrieving your search results. Please try again later.
+        </div>
     </script>
 
 </head>

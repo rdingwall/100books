@@ -50,50 +50,9 @@ $(function () {
 
 
 
-        module("When a search fails");
 
-        test("It should render the error modal", 2, function () {
-            eventBus.reset();
-            app.initialize();
 
-            ok(!($("#search-failed-modal").is(":visible")), "should be hidden to start with");
 
-            eventBus.trigger("search:failed");
-
-            ok($("#search-failed-modal").is(":visible"));
-
-            $("#search-failed-modal").hide();
-        });
-
-        module("When a search begins");
-
-        test("It should show the ajax loader gif", 2, function () {
-            eventBus.reset();
-            Ohb.menuBarView.initialize();
-
-            ok(!($("#search-loader-spinner").is(":visible")), "should be hidden to start with");
-
-            eventBus.trigger("search:began");
-
-            ok($("#search-loader-spinner").is(":visible"));
-
-            $("#search-loader-spinner").hide();
-        });
-
-        module("When a search completes");
-
-        test("The ajax loader gif should dissappear", 2, function () {
-            eventBus.reset();
-            Ohb.menuBarView.initialize();
-
-            $("#search-loader-spinner").show();
-
-            ok(($("#search-loader-spinner").is(":visible")), "should be visible to start with");
-
-            eventBus.trigger("search:completed");
-
-            ok(!($("#search-loader-spinner").is(":visible")));
-        });
 
         module("When search results become available");
 
