@@ -41,7 +41,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 
         public ApiClient()
         {
-            BaseUrl = ConfigurationManager.AppSettings.IntegrationTestUrl() + "/api/v1/";
+            BaseUrl = ConfigurationManager.AppSettings.TestUrl() + "/api/v1/";
 
             client = new RestClient(BaseUrl);
             client.AddHandler("application/json", new JsonCamelCaseDeserializer());
@@ -51,7 +51,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             dynamicClient = new RestClient(BaseUrl);
             dynamicClient.AddHandler("application/json", new DynamicJsonDeserializer());
 
-            backdoorClient = new RestClient(ConfigurationManager.AppSettings.IntegrationTestUrl() + "/api/backdoor");
+            backdoorClient = new RestClient(ConfigurationManager.AppSettings.TestUrl() + "/api/backdoor");
             dynamicClient.AddHandler("application/json", new JsonCamelCaseDeserializer());
         }
 

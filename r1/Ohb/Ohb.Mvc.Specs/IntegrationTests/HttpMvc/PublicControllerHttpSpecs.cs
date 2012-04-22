@@ -22,7 +22,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpMvc
         {
             Establish context = () =>
                                     {
-                                        var url = ConfigurationManager.AppSettings.IntegrationTestUrl();
+                                        var url = ConfigurationManager.AppSettings.TestUrl();
                                         client = new RestClient(url);
                                         request = new RestRequest("/fblogin")
                                                       {

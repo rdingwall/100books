@@ -6,11 +6,11 @@ namespace System.Configuration
 {
     public static class NameValueCollectionExtensions
     {
-        public static string IntegrationTestUrl(this NameValueCollection items)
+        public static string TestUrl(this NameValueCollection items)
         {
-            var url = items["IntegrationTestUrl"];
+            var url = items["TestUrl"];
             if (String.IsNullOrWhiteSpace(url))
-                throw new ConfigurationErrorsException("The required 'IntegrationTestUrl' AppSetting was null or empty.");
+                throw new ConfigurationErrorsException("The required 'TestUrl' AppSetting was null or empty.");
 
             return url;
         }
