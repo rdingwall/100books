@@ -127,7 +127,7 @@ $(function () {
                     expect(view.$el).toBeVisible();
                     expect(view.$el.children().length).toEqual(2);
                 });
-            })
+            });
         });
 
     }(

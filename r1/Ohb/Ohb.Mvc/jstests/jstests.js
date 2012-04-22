@@ -56,53 +56,7 @@ $(function () {
 
 
 
-        module("When rendering a single search result");
 
-        asyncTest("It should be rendered", 2, function () {
-
-            var view = new SearchResultView({
-                el: "#test-search-result",
-                model: new SearchResult({
-                    title: "Harry Potter",
-                    authors: "JK Rowling",
-                    smallThumbnailUrl: "http://2.gravatar.com/avatar/87acbe2fc2f40edf8fa5a816515bff9f",
-                    id: "42"
-                })
-            });
-            view.render();
-
-            setTimeout(function () {
-                equal(view.$el.find(".searchresult-title").text(), "Harry Potter");
-                equal(view.$el.find("p.searchresult-authors").text(), "JK Rowling");
-                start();
-            }, 500);
-        });
-
-        module("When clicking on a search result");
-
-        test("It should mark the result as selected", 1, function () {
-
-            var model = new SearchResult({ title: "foo" });
-            var view = new SearchResultView({ el: "#test-search-result", model: model });
-
-            view.$el.trigger("click");
-
-            ok(model.get("selected"));
-        });
-
-        module("When a search result is marked as selected");
-
-        test("It should raise a search:result:selected event", 1, function () {
-            eventBus.reset();
-
-            var model = new SearchResult({ title: "foo" });
-
-            eventBus.on("search:result:selected", function (sr) {
-                equal(sr, model);
-            });
-
-            model.set("selected", true);
-        });
 
         module("When a search:result:selected event is raised");
 
