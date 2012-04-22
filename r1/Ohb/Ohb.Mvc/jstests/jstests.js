@@ -187,87 +187,6 @@ $(function () {
             }, 500);
         });
 
-        module("When the search result box is open");
-
-        test("Clicking anywhere outside should hide it", 4, function () {
-
-            var view = new SearchResultCollectionView({
-                el: "#test-search-results"
-            });
-
-            ok(!(view.$el.is(":visible")), "should be hidden to start with");
-
-            view.render();
-
-            ok(view.$el.is(":visible"), "should become visible");
-
-            $("body").trigger("click");
-
-            ok(!(view.$el.is(":visible")), "should be hidden again");
-
-            equal(view.views.length, 0, "should clear the items");
-        });
-
-        test("Clicking inside the search results should not hide the results", 3, function () {
-            var view = new SearchResultCollectionView({
-                el: "#test-search-results"
-            });
-
-            ok(!(view.$el.is(":visible")), "should be hidden to start with");
-
-            view.render();
-
-            ok(view.$el.is(":visible"), "should become visible");
-
-            view.$el.trigger("click");
-
-            ok(view.$el.is(":visible"), "should stay visible");
-        });
-
-        test("Clicking in the menu bar should not hide the results", 3, function () {
-            var view = new SearchResultCollectionView({
-                el: "#test-search-results"
-            });
-
-            ok(!view.$el.is(":visible"), "should be hidden to start with");
-            view.render();
-
-            ok(view.$el.is(":visible"), "should become visible");
-
-            $("#menubar").trigger("click");
-
-            ok(view.$el.is(":visible"), "should stay visible");
-        });
-
-        module("When starting a new search");
-
-        test("The previous search results should be closed", 1, function () {
-            var view = new SearchResultCollectionView({
-                el: "#test-search-results"
-            });
-
-            view.render();
-
-            eventBus.trigger("search:began");
-
-            ok(!view.$el.is(":visible"), "should hide");
-        });
-
-        module("When there are no search results available");
-
-        test("It should display a no search results message", 3, function () {
-            var view = new SearchResultCollectionView({
-                el: "#test-search-results"
-            });
-
-            ok(!view.$el.is(":visible"), "should be hidden to start with");
-
-            view.render();
-
-            ok(view.$el.is(":visible"), "should become visible");
-            ok($(".searchresult-no-results-available").is(":visible"));
-        });
-
         module("When clicking on a search result");
 
         test("It should mark the result as selected", 1, function () {
@@ -455,53 +374,7 @@ $(function () {
             ok(!bbb.get("hasPreviouslyRead"));
         });
 
-        module("When changing the content of the main region");
 
-        test("It should call close() on the previous view", 1, function () {
-
-            Ohb.mainRegion.show(new (Backbone.View.extend({
-                close: function () { ok(true); }
-            }))());
-
-            Ohb.mainRegion.close();
-        });
-
-        test("It should clear the previous content", 1, function () {
-            Ohb.mainRegion.show(new (Backbone.View.extend({
-                render: function () {
-                    this.$el.html("<div id='mainregion-clear-test'>hello</div>");
-                    return this;
-                }
-            }))());
-
-            Ohb.mainRegion.close();
-
-            equal($("#mainregion-clear-test").length, 0);
-        });
-
-        test("It should render the new content", 1, function () {
-            Ohb.mainRegion.show(new (Backbone.View.extend({
-                render: function () {
-                    this.$el.html("<div id='mainregion-render-test'>hello</div>");
-                    return this;
-                }
-            }))());
-
-            equal($("#mainregion-render-test").text(), "hello");
-
-            Ohb.mainRegion.close();
-        });
-
-        module("When showing an error");
-
-        test("It should render the error", 1, function () {
-            var msg = "test error message";
-            Ohb.mainRegion.showError(msg);
-
-            equal($(".error-message p").text(), msg);
-
-            Ohb.mainRegion.close();
-        });
 
         module("When rendering a previous read");
 

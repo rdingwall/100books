@@ -18,23 +18,7 @@ $(function () {
         describe("SearchResultCollectionView", function () {
 
             beforeEach(function () {
-                this.addMatchers({
-                    toBeVisible: function () {
-                        return $(this.actual).is(":visible");
-                    },
-                    toBeHidden: function () {
-                        return !$(this.actual).is(":visible");
-                    },
-                    toBeEmpty: function () {
-                        return this.actual.length === 0;
-                    }
-                });
-
-                $("#fixture").html($("#searchresultcollectionview-dom").text());
-            });
-
-            afterEach(function () {
-                $("#fixture").empty();
+                $("#fixture").html($("#searchresultcollectionview-tests").text());
             });
 
             describe("When the search result box is open", function () {

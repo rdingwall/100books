@@ -50,6 +50,7 @@
 
 
     <script type="text/javascript" src="/jstests/searchresultcollectionview-specs.js"></script>
+    <script type="text/javascript" src="/jstests/mainregion-specs.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -65,12 +66,32 @@
                 return htmlReporter.specFilter(spec);
             };
 
+            jasmineEnv.beforeEach(function () {
+                this.addMatchers({
+                    toBeVisible: function () {
+                        return $(this.actual).is(":visible");
+                    },
+                    toBeHidden: function () {
+                        return !$(this.actual).is(":visible");
+                    },
+                    toBeEmpty: function () {
+                        return this.actual.length === 0;
+                    }
+                });
+
+                $("#fixture").html($("#searchresultcollectionview-dom").text());
+            });
+
+            jasmineEnv.afterEach(function () {
+                $("#fixture").empty();
+            });
+
             jasmineEnv.execute();
         });
 
     </script>
 
-    <script id="searchresultcollectionview-dom" type="text/html">
+    <script id="searchresultcollectionview-tests" type="text/html">
         <div id="menubar">
             <input id="menubar-search-input" />
             <div id="search-loader-spinner" style="display:none">hello</div>
@@ -81,6 +102,10 @@
             </div>
 
         <div id="test-search-results" style="display:none" />
+    </script>
+
+    <script id="mainregion-tests" type="text/html">
+        <div id="main-region" />
     </script>
 
 </head>
