@@ -50,8 +50,10 @@
 
 
     <script type="text/javascript" src="/jstests/dependency-specs.js"></script>
-    <script type="text/javascript" src="/jstests/searchresultcollectionview-specs.js"></script>
     <script type="text/javascript" src="/jstests/mainregion-specs.js"></script>
+    <script type="text/javascript" src="/jstests/searchresultcollectionview-specs.js"></script>
+    <script type="text/javascript" src="/jstests/menubarview-specs.js"></script>
+
 
     <script type="text/javascript">
         $(function () {
@@ -81,6 +83,7 @@
                 });
 
                 $("#fixture").html($("#searchresultcollectionview-dom").text());
+                Ohb.eventBus.reset();
             });
 
             jasmineEnv.afterEach(function () {

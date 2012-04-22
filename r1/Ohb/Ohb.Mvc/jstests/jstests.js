@@ -48,36 +48,7 @@ $(function () {
 
         log.info("document loaded, running tests");
 
-        module("When pressing enter in the search box");
 
-        test("It should raise the search:requested event", function () {
-            eventBus.reset();
-
-            var expected = "test search";
-
-            eventBus.on("search:requested", function (q) {
-                equal(q, expected);
-            });
-
-            $("#menubar-search-input").val(expected);
-            var e = $.Event("keyup");
-            e.which = 13;
-            $("#menubar-search-input").trigger(e);
-        });
-
-        test("It should not raise search:requested if the search box is empty", function () {
-            eventBus.reset();
-
-            $("#menubar-search-input").val("");
-            var e = $.Event("keyup");
-            e.which = 13;
-
-            eventBus.on("search:requested", function (q) {
-                ok(false, "should not have been raised!");
-            });
-
-            $("#menubar-search-input").trigger(e);
-        });
 
         module("When a search fails");
 
