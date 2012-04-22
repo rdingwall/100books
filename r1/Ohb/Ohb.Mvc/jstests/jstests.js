@@ -48,28 +48,6 @@ $(function () {
 
         log.info("document loaded, running tests");
 
-        module("When registering modules");
-
-        test("It should inject the event bus", function () {
-            ok(eventBus);
-        });
-
-        test("The event bus should be extended with Backbone events", function () {
-            ok(eventBus.bind);
-        });
-
-        test("It should inject jQuery", function () {
-            ok($);
-        });
-
-        test("It should inject underscore", function () {
-            ok(_);
-        });
-
-        test("It should inject backbone", function () {
-            ok(Backbone);
-        });
-
         module("When pressing enter in the search box");
 
         test("It should raise the search:requested event", function () {
