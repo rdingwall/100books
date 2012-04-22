@@ -50,8 +50,8 @@
           ContinueOnError="false"/>
   </Target>
 
-  <Target Name="RunPhantomTests">
-    <Exec Command="$(PhantomJsExe) build\phantomjs-tests.js" />
+  <Target Name="  ">
+    <Exec Command="$(PhantomJsExe) $(teamcity_build_workingdir)\r1\Ohb\build\phantomjs-tests.js" />
   </Target>
 
 </Project>
