@@ -16,6 +16,6 @@ page.open(url, function (status) {
         window.setTimeout(function () {
             page.render("output.png");
             phantom.exit();
-        }, 200);
+        }, 5000);
     }
 });
