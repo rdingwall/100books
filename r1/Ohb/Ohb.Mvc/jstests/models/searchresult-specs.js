@@ -23,8 +23,7 @@ $(function () {
                 });
             });
 
-
-            describe("Mapping google book search results", function () {
+            describe("Fetching search results from Google Books API", function () {
 
                 var assertBookMapping = function (callback, googleBookId, title, authors, smallThumbnailUrl) {
                     $.getJSON("https://www.googleapis.com/books/v1/volumes/" + googleBookId + "?&key=AIzaSyAwesvnG7yP5wCqiNv21l8g7mo-ehkcVJs&callback=?",
