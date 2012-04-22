@@ -87,6 +87,36 @@ $(function () {
                 });
             });
 
+
+            describe("Clicking the 'remove' button in the previous reads list", function () {
+                it("should raise a previousreads:removeRequested event", function () {
+                    var model1 = new PreviousRead({
+                        title: "title 1",
+                        id: "1"
+                    });
+                    var model2 = new PreviousRead({
+                        title: "title 2",
+                        id: "2"
+                    });
+
+                    var collection = new PreviousReadCollection();
+                    collection.reset([ model1, model2 ]);
+
+                    var view = new PreviousReadCollectionView({
+                        el: "#test-previous-reads",
+                        collection: collection
+                    });
+
+                    view.render();
+
+                    eventBus.on("previousread:removeRequested", function (id) {
+                        expect(id).toEqual(model1.id);
+                    });
+
+                    $($(".btn-remove-previousread")[0]).trigger("click");
+                });
+            });
+
         });
 
     }(
