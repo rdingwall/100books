@@ -54,24 +54,7 @@ $(function () {
 
 
 
-        module("When search results become available");
 
-        test("They should be rendered", 3, function () {
-            eventBus.reset();
-
-            ok(!($("#test-search-results").is(":visible")), "should be hidden to start with");
-
-            var collection = new SearchResultCollection();
-            collection.add(new SearchResult({ title: "test book" }));
-            collection.add(new SearchResult({ title: "test book 2" }));
-            var view = new SearchResultCollectionView({
-                el: $("#test-search-results"),
-                collection: collection
-            }).render();
-
-            ok(view.$el.is(":visible"), "should become visible");
-            equal(view.$el.children().length, 2);
-        });
 
         module("When rendering a single search result");
 

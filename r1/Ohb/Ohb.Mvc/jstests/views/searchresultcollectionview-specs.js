@@ -12,7 +12,9 @@ $(function () {
     (function (
         $,
         SearchResultCollectionView,
-        eventBus
+        eventBus,
+        SearchResultCollection,
+        SearchResult
     ) {
 
         describe("SearchResultCollectionView", function () {
@@ -108,11 +110,31 @@ $(function () {
                     expect(".searchresult-no-results-available").toBeVisible();
                 });
             });
+
+            describe("When rendering a collection of search results", function () {
+                it("each result should be rendered", function () {
+
+                    expect("#test-search-results").toBeHidden();
+
+                    var collection = new SearchResultCollection();
+                    collection.add(new SearchResult({ title: "test book" }));
+                    collection.add(new SearchResult({ title: "test book 2" }));
+                    var view = new SearchResultCollectionView({
+                        el: $("#test-search-results"),
+                        collection: collection
+                    }).render();
+
+                    expect(view.$el).toBeVisible();
+                    expect(view.$el.children().length).toEqual(2);
+                });
+            })
         });
 
     }(
         $,
         Ohb.Views.SearchResultCollectionView,
-        Ohb.eventBus
+        Ohb.eventBus,
+        Ohb.Collections.SearchResultCollection,
+        Ohb.Models.SearchResult
     ));
 });
