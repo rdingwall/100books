@@ -13,6 +13,8 @@ phantom.viewportSize = {width: 800, height: 600};
 
 for (var url in urls) {
 
+    console.log("Opening " + url);
+
     var page = new WebPage();
     //This is required because PhantomJS sandboxes the website and it does not show up the console messages form that page by default
     page.onConsoleMessage = function (msg) { console.log(msg); };
