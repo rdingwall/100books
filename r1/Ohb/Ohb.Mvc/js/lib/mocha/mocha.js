@@ -2705,6 +2705,7 @@
             });
 
             runner.on('fail', function(test, err) {
+                //if ('hook' == test.type || err.uncaught) runner.emit('test end', test);
                 console.log("##teamcity[testFailed name='%s' message='%s']", escape(test.fullTitle()), escape(err.message));
             });
 
@@ -2726,6 +2727,7 @@
          */
 
         function escape(str) {
+            if (str === undefined) { return ""; }
             return str.replace(/'/g, "|'");
         }
     }); // module: reporters/teamcity.js
@@ -2986,15 +2988,6 @@
                 try {
                     this.fn.call(ctx, function(err){
                         if (err instanceof Error) return done(err);
-                        // https://github.com/visionmedia/mocha/pull/278
-                        if (typeof(err) === 'function') { // verify fn was provided to done
-                            try {
-                                err();
-                                return done(); // if no exceptions, success
-                            } catch (x) {
-                                return done(x); // else call done with the exception
-                            }
-                        }
                         if (null != err) return done(new Error('done() invoked with non-Error: ' + err));
                         done();
                     });

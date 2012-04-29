@@ -35,10 +35,8 @@ $(function () {
                     displayName: userDisplayName || "Test user (JS API tests)",
                     profileImageUrl: "test url"
                 },
-                error: function () {
-                    done(function () {
-                        should.fail("Setup: create user via backdoor failed!");
-                    });
+                error: function (err) {
+                    done(err);
                 },
                 success: function (data) {
                     callback(data.userId);
@@ -55,7 +53,8 @@ $(function () {
                         url: "/api/backdoor/createuser",
                         data: { setAuthCookie: true },
                         error: function (err) {
-                            done(err);
+                            should.fail(err);
+                            done();
                         },
                         success: function () {
                             done();
@@ -71,9 +70,8 @@ $(function () {
 
                     mainRegion.on("view:changed", function (view) {
                         if ($(view.el).hasClass("book-details")) {
-                            done(function () {
-                                $("h1.book-details-title").should.have.text("The Google Story");
-                            });
+                            $("h1.book-details-title").should.have.text("The Google Story");
+                            done();
                         }
                     });
 
@@ -88,9 +86,8 @@ $(function () {
 
                     mainRegion.on("view:changed", function (view) {
                         if ($(view.el).hasClass("error-message")) {
-                            done(function () {
-                                $(".error-message").should.have.length(1);
-                            });
+                            $(".error-message").should.have.length(1);
+                            done();
                         }
                     });
 
@@ -106,9 +103,8 @@ $(function () {
 
                     mainRegion.on("view:changed", function (view) {
                         if ($(view.el).hasClass("book-details")) {
-                            done(function () {
-                                $("h1.book-details-title").should.have.text("The Google story");
-                            });
+                            $("h1.book-details-title").should.have.text("The Google story");
+                            done();
                         }
                     });
 
@@ -123,9 +119,8 @@ $(function () {
                     mainRegion.off();
 
                     eventBus.on("previousread:added", function (id) {
-                        done(function () {
-                            id.should.equal("4YydO00I9JYC");
-                        });
+                        id.should.equal("4YydO00I9JYC");
+                        done();
                     });
 
                     eventBus.trigger("previousread:addRequested", "4YydO00I9JYC");
@@ -138,9 +133,8 @@ $(function () {
 
                     eventBus.on("previousread:added", function () {
                         $.getJSON("/api/v1/books/4YydO00I9JYC", function (data) {
-                            done(function () {
-                                data.hasPreviouslyRead.should.be.true();
-                            });
+                            data.hasPreviouslyRead.should.be.true();
+                            done();
                         });
                     });
 
@@ -159,9 +153,8 @@ $(function () {
                 mainRegion.off();
 
                 eventBus.on("previousread:removed", function (id) {
-                    done(function () {
-                        id.should.equal("4YydO00I9JYC");
-                    });
+                    id.should.equal("4YydO00I9JYC");
+                    done();
                 });
 
                 eventBus.trigger("previousread:removeRequested", "4YydO00I9JYC");
@@ -174,9 +167,8 @@ $(function () {
 
                 eventBus.on("previousread:removed", function () {
                     $.getJSON("/api/v1/books/4YydO00I9JYC", function (data) {
-                        done(function () {
-                            data.hasPreviouslyRead.should.be.false();
-                        });
+                        data.hasPreviouslyRead.should.be.false();
+                        done();
                     });
                 });
 
@@ -191,11 +183,10 @@ $(function () {
                         var model = new Profile({ id: userId});
 
                         model.fetch({ success: function (model) {
-                            done(function () {
-                                model.id.should.equal(userId);
-                                model.get("displayName").should.equal(userDisplayName);
-                                model.get("profileImageUrl").should.equal("test url");
-                            });
+                            model.id.should.equal(userId);
+                            model.get("displayName").should.equal(userDisplayName);
+                            model.get("profileImageUrl").should.equal("test url");
+                            done();
                         }});
                     }, done, userDisplayName);
                 });
@@ -214,9 +205,8 @@ $(function () {
 
                         mainRegion.on("view:changed", function (view) {
                             if ($(view.el).hasClass("profile")) {
-                                done(function () {
-                                    $("h1.profile-card-display-name").should.have.length(1);
-                                });
+                                $("h1.profile-card-display-name").should.have.length(1);
+                                done();
                             }
                         });
 
@@ -238,20 +228,18 @@ $(function () {
 
                         results.fetch({
                             success: function (collection) {
-                                done(function () {
+                                collection.length.should.be.above(0);
+                                var model = collection.get("4YydO00I9JYC");
 
-                                    collection.length.should.be.above(0);
-                                    var model = collection.get("4YydO00I9JYC");
+                                model.get("title").should.equal("The Google Story");
+                                model.get("authors").should.equal("David A. Vise, Mark Malseed");
+                                model.get("publishedYear").should.equal("2005");
+                                model.get("smallThumbnailUrl").should.contain("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=5&source=gbs_api");
 
-                                    model.get("title").should.equal("The Google Story");
-                                    model.get("authors").should.equal("David A. Vise, Mark Malseed");
-                                    model.get("publishedYear").should.equal("2005");
-                                    model.get("smallThumbnailUrl").should.contain("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=5&source=gbs_api");
-
-                                });
+                                done();
                             },
-                            error: function () {
-                                done(should.fail);
+                            error: function (err) {
+                                done(err);
                             }
                         });
                     });
@@ -269,13 +257,13 @@ $(function () {
                     app.initialize();
 
                     eventBus.on("search:completed", function () {
-                        done(function () {
-                            $("#search-results").children().should.have.length(10);
-                        });
+                        $("#search-results").children().should.have.length(10);
+                        done();
                     });
 
                     eventBus.on("search:failed", function () {
-                        done(should.fail);
+                        should.fail();
+                        done();
                     });
 
                     eventBus.trigger("search:requested", "harry potter");
@@ -286,9 +274,8 @@ $(function () {
                     app.initialize();
 
                     eventBus.on("search:began", function (q) {
-                        done(function () {
-                            q.should.equal("harry potter");
-                        });
+                        q.should.equal("harry potter");
+                        done();
                     });
 
                     eventBus.trigger("search:requested", "harry potter");
@@ -317,9 +304,8 @@ $(function () {
                     });
 
                     eventBus.on("search:resultsArrived", function () {
-                        done(function () {
-                            should.fail("should not have been raised (but it's ok, not sure how to fake a test right now)");
-                        });
+                        should.fail("should not have been raised (but it's ok, not sure how to fake a test right now)");
+                        done();
                     });
 
                     eventBus.trigger("search:requested", "3894h9f893jhf934jf92ht8");
@@ -334,9 +320,8 @@ $(function () {
                     });
 
                     eventBus.on("search:resultsArrived", function () {
-                        done(function () {
-                            should.fail("should not have been raised!");
-                        });
+                        should.fail("should not have been raised!");
+                        done();
                     });
 
                     eventBus.trigger("search:requested", "3894h9f893jhf934jf92ht8");
@@ -356,9 +341,8 @@ $(function () {
                     });
 
                     eventBus.on("search:completed", function () {
-                        done(function () {
-                            $(".searchresult-no-results-available").should.be.visible();
-                        });
+                        $(".searchresult-no-results-available").should.be.visible();
+                        done();
                     });
 
                     eventBus.trigger("search:requested", "3894h9f893jhf934jf92ht8");
@@ -369,9 +353,8 @@ $(function () {
                     app.initialize();
 
                     eventBus.on("search:failed", function () {
-                        done(function () {
-                            should.fail("searchFailed was raised");
-                        });
+                        should.fail("searchFailed was raised");
+                        done();
                     });
 
                     eventBus.on("search:completed", function () {
