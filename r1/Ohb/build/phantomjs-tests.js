@@ -1,20 +1,23 @@
 // from http://blog.danmerino.com/continuos-integration-ci-for-javascript-jasmine-and-teamcity/
 console.log('Loading a web page');
-var page = new WebPage();
+
 //This was tricky, this is the way to open LOCAL files
 
 
-var urls = [ 
+var urls = [
     "http://localhost:88/jstests/jasmine.html",
     "http://localhost:88/jstests/mocha-loggedin.html"
-    ];
+];
 
 phantom.viewportSize = {width: 800, height: 600};
-//This is required because PhantomJS sandboxes the website and it does not show up the console messages form that page by default
-page.onConsoleMessage = function (msg) { console.log(msg); };
-//Open the website
 
-for (url in urls) {
+for (var url in urls) {
+
+    var page = new WebPage();
+    //This is required because PhantomJS sandboxes the website and it does not show up the console messages form that page by default
+    page.onConsoleMessage = function (msg) { console.log(msg); };
+    //Open the website
+
     page.open(url, function (status) {
         //Page is loaded!
         if (status !== 'success') {
