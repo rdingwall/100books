@@ -11,7 +11,9 @@ var urls = [
 
 phantom.viewportSize = {width: 800, height: 600};
 
-for (var url in urls) {
+for (var i in urls) {
+
+    var url = urls[i];
 
     console.log("Opening " + url);
 
