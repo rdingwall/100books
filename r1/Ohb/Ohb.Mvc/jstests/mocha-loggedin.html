@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>OHB API Jasmine Tests (Logged In)</title>
+
+    <script type="text/javascript" src="../js/lib/modernizr/modernizr.js"></script>
+    <script type="text/javascript" src="/js/lib/jquery/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="/js/lib/jquery/jog.js"></script>
+    <script type="text/javascript" src="/js/lib/underscore/underscore.js"></script>
+    <script type="text/javascript" src="/js/lib/mustache/mustache.js"></script>
+    <script type="text/javascript" src="/js/lib/backbone/backbone.js"></script>
+    <script type="text/javascript" src="/js/lib/backbone/backbone.marionette.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap-modal.js"></script>
+
+    <link rel="stylesheet" href="/js/lib/mocha/mocha.css" type="text/css" />
+    <script type="text/javascript" src="/js/lib/mocha/mocha.js"></script>
+    <script type="text/javascript" src="/js/lib/mocha/chai.js"></script>
+    <script type="text/javascript" src="/js/lib/mocha/chai-jquery.js"></script>
+
+    <script type="text/javascript" src="/js/ohb.js"></script>
+    <script type="text/javascript" src="/js/eventbus.js"></script>
+    <script type="text/javascript" src="/js/models/book.js"></script>
+    <script type="text/javascript" src="/js/models/profile.js"></script>
+    <script type="text/javascript" src="/js/models/errormessage.js"></script>
+    <script type="text/javascript" src="/js/models/searchresult.js"></script>
+    <script type="text/javascript" src="/js/models/previousread.js"></script>
+    <script type="text/javascript" src="/js/collections/searchresultcollection.js"></script>
+    <script type="text/javascript" src="/js/collections/googlesearchresultcollection.js"></script>
+    <script type="text/javascript" src="/js/collections/previousreadcollection.js"></script>
+    <script type="text/javascript" src="/js/views/menuBar/menubarView.js"></script>
+    <script type="text/javascript" src="/js/views/searchResult/searchResultView.js"></script>
+    <script type="text/javascript" src="/js/views/searchResult/noSearchResultsAvailableView.js"></script>
+    <script type="text/javascript" src="/js/views/searchResult/searchResultCollectionView.js"></script>
+    <script type="text/javascript" src="/js/views/book/bookdetailsview.js"></script>
+    <script type="text/javascript" src="/js/views/profile/profilecardview.js"></script>
+    <script type="text/javascript" src="/js/views/profile/previousreadview.js"></script>
+    <script type="text/javascript" src="/js/views/profile/previousreadcollectionview.js"></script>
+    <script type="text/javascript" src="/js/views/profile/compositeprofileview.js"></script>
+    <script type="text/javascript" src="/js/views/errormessageview.js"></script>
+    <script type="text/javascript" src="/js/commands/searchcommand.js"></script>
+    <script type="text/javascript" src="/js/commands/viewprofilecommand.js"></script>
+    <script type="text/javascript" src="/js/commands/viewbookcommand.js"></script>
+    <script type="text/javascript" src="/js/commands/addpreviousreadcommand.js"></script>
+    <script type="text/javascript" src="/js/commands/removepreviousreadcommand.js"></script>
+    <script type="text/javascript" src="/js/router.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/mainregion.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+
+    <script type="text/javascript" src="/jstests/loggedin-specs.js"></script>
+</head>
+    <script lang="text/javascript">
+
+        mocha.setup({
+            ui: 'bdd',
+            reporter: function(runner) {
+                new mocha.reporters.HTML(runner);
+                new mocha.reporters.Teamcity(runner);
+            },
+            ignoreLeaks: true,
+            timeout: 5000 // ms
+        });
+
+        //mocha.setup("bdd");
+        $(function(){
+            mocha.run();
+        })
+    </script>
+<body>
+<div id="mocha"></div>
+<div id="fixture" style="position: absolute; left: -10000px;">
+    <div id="main-region" class="hidden" />
+    <div id="search-results" class="hidden" />
+</div>
+</body>
+</html>
