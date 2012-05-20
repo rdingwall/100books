@@ -79,8 +79,12 @@
     <Reference Include="CommonServiceLocator.WindsorAdapter">
       <HintPath>..\packages\CommonServiceLocator.WindsorAdapter.1.0\lib\NET35\CommonServiceLocator.WindsorAdapter.dll</HintPath>
     </Reference>
-    <Reference Include="Elmah">
-      <HintPath>..\packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Contrib.Mvc">
+      <HintPath>..\packages\Elmah.Contrib.Mvc.1.0\lib\net40\Elmah.Contrib.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
@@ -183,7 +187,7 @@
     <Compile Include="Api\ActionFilters\FilterIPAttribute.cs" />
     <Compile Include="Api\ActionFilters\GoogleAnalyticsTrackerApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\IPList.cs" />
-    <Compile Include="Api\ActionFilters\OhbErrorHandlerApiAttribute.cs" />
+    <Compile Include="Api\ActionFilters\ElmahApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\AuthCookieApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\RavenDbApiAttribute.cs" />
     <Compile Include="Api\ApiInstaller.cs" />
@@ -226,7 +230,6 @@
     <Compile Include="ActionFilters\CurrentUserAttribute.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Google\GoogleVolume.cs" />
-    <Compile Include="ActionFilters\OhbHandleErrorAttribute.cs" />
     <Compile Include="OhbCookies.cs" />
     <Compile Include="Startup\WebInstaller.cs" />
     <Compile Include="Google\GoogleBooksClient.cs" />

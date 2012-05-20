@@ -5,7 +5,7 @@ using Elmah;
 
 namespace Ohb.Mvc.Api.ActionFilters
 {
-    public class OhbErrorHandlerApiAttribute : ExceptionFilterAttribute
+    public class ElmahApiAttribute : ExceptionFilterAttribute
     {
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {

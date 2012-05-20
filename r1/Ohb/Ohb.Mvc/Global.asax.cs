@@ -7,6 +7,7 @@ using Bootstrap.AutoMapper;
 using Bootstrap.Windsor;
 using Castle.Windsor;
 using CommonServiceLocator.WindsorAdapter;
+using Elmah.Contrib.Mvc;
 using Microsoft.Practices.ServiceLocation;
 using Ohb.Mvc.ActionFilters;
 using Ohb.Mvc.Api;
@@ -26,7 +27,7 @@ namespace Ohb.Mvc
         public static void RegisterGlobalFilters(GlobalFilterCollection filters, 
             IWindsorContainer container)
         {
-            filters.Add(container.Resolve<OhbHandleErrorAttribute>());
+            filters.Add(container.Resolve<ElmahHandleErrorAttribute>());
             filters.Add(container.Resolve<RavenDbAttribute>());
             filters.Add(container.Resolve<CurrentUserAttribute>());
             filters.Add(container.Resolve<AuthCookieAttribute>());
@@ -151,7 +152,7 @@ namespace Ohb.Mvc
 
             config.Filters.Add(container.Resolve<RavenDbApiAttribute>());
             config.Filters.Add(container.Resolve<AuthCookieApiAttribute>());
-            config.Filters.Add(container.Resolve<OhbErrorHandlerApiAttribute>());
+            config.Filters.Add(container.Resolve<ElmahApiAttribute>());
             config.Filters.Add(container.Resolve<GoogleAnalyticsTrackerApiAttribute>());
         }
 
