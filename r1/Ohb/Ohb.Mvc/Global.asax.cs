@@ -8,6 +8,7 @@ using Bootstrap.Windsor;
 using Castle.Windsor;
 using CommonServiceLocator.WindsorAdapter;
 using Elmah.Contrib.Mvc;
+using Elmah.Contrib.WebApi;
 using Microsoft.Practices.ServiceLocation;
 using Ohb.Mvc.ActionFilters;
 using Ohb.Mvc.Api;
@@ -152,7 +153,7 @@ namespace Ohb.Mvc
 
             config.Filters.Add(container.Resolve<RavenDbApiAttribute>());
             config.Filters.Add(container.Resolve<AuthCookieApiAttribute>());
-            config.Filters.Add(container.Resolve<ElmahApiAttribute>());
+            config.Filters.Add(container.Resolve<ElmahHandleErrorApiAttribute>());
             config.Filters.Add(container.Resolve<GoogleAnalyticsTrackerApiAttribute>());
         }
 
