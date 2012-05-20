@@ -6,6 +6,8 @@ using Bootstrap;
 using Bootstrap.AutoMapper;
 using Bootstrap.Windsor;
 using Castle.Windsor;
+using CommonServiceLocator.WindsorAdapter;
+using Microsoft.Practices.ServiceLocation;
 using Ohb.Mvc.ActionFilters;
 using Ohb.Mvc.Api;
 using Ohb.Mvc.Api.ActionFilters;
@@ -124,7 +126,7 @@ namespace Ohb.Mvc
             
             container = (IWindsorContainer)Bootstrapper.Container;
 
-            var resolver = new WindsorResolver(container);
+            var resolver = new WindsorServiceLocator(container);
 
             // Web API
             RegisterApiStuff(resolver, container);
@@ -138,7 +140,7 @@ namespace Ohb.Mvc
             RegisterRoutes(RouteTable.Routes);
         }
 
-        static void RegisterApiStuff(WindsorResolver resolver, IWindsorContainer container)
+        static void RegisterApiStuff(IServiceLocator resolver, IWindsorContainer container)
         {
             var config = GlobalConfiguration.Configuration;
             config.ServiceResolver.SetResolver(resolver);
