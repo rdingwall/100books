@@ -18,6 +18,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpMvc
             static protected RestRequest request;
         }
 
+        [Subject("/fblogin POST"), Tags("Integration")]
         public class When_there_is_no_access_token : scenario
         {
             Establish context = () =>
@@ -34,6 +35,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpMvc
                 () => response.StatusCode.ShouldEqual(HttpStatusCode.BadRequest);
         }
 
+        [Subject("/fblogin POST"), Tags("Integration")]
         public class When_it_is_an_invalid_access_token : scenario
         {
             Establish context = () =>

@@ -14,15 +14,17 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
         [Subject("api/v1/previousreads GET"), Tags("Integration")]
         public class when_retrieving_previous_reads
         {
+            [Subject("api/v1/previousreads GET"), Tags("Integration")]
             public class when_there_was_no_auth_cookie
             {
                 It should_return_http_401_unauthorized =
                     () => new ApiClient().AssertUnauthorized("previousreads");
             }
 
+            [Subject("api/v1/previousreads GET"), Tags("Integration")]
             public class when_there_was_an_expired_auth_cookie
             {
-                // ..?
+                It should_do_something; // haven't decided what to do here yet
             }
         }
 
