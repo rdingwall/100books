@@ -203,11 +203,11 @@
     <Compile Include="Api\Models\ApiModelMapper.cs" />
     <Compile Include="Api\Models\ProfileModel.cs" />
     <Compile Include="AuthCookies\AuthCookieCache.cs" />
-    <Compile Include="AuthCookies\CurrentUserContextProvider.cs" />
+    <Compile Include="AuthCookies\CurrentUserInfoProvider.cs" />
     <Compile Include="Controllers\LoggedInController.cs" />
     <Compile Include="Extensions\RandomExtensions.cs" />
-    <Compile Include="AuthCookies\OhbUserContext.cs" />
-    <Compile Include="AuthCookies\OhbUserContextFactory.cs" />
+    <Compile Include="AuthCookies\CurrentUserInfo.cs" />
+    <Compile Include="AuthCookies\CurrentUserInfoFactory.cs" />
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="HttpBadRequestResult.cs" />
     <Compile Include="HttpServiceUnavailableResult.cs" />

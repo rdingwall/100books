@@ -134,7 +134,7 @@
     <Compile Include="AuthCookies\AuthCookieCacheSpecs.cs" />
     <Compile Include="AuthCookies\AuthCookieEncoderSpecs.cs" />
     <Compile Include="AuthCookies\AuthCookieFactorySpecs.cs" />
-    <Compile Include="AuthCookies\CurrentUserContextProviderSpecs.cs" />
+    <Compile Include="AuthCookies\CurrentUserInfoProviderSpecs.cs" />
     <Compile Include="AuthCookies\OhbUserContextFactorySpecs.cs" />
     <Compile Include="IntegrationTests\HttpApi\BackdoorHttpApiSpecs.cs" />
     <Compile Include="IntegrationTests\HttpApi\JsonCamelCaseDeserializer.cs" />

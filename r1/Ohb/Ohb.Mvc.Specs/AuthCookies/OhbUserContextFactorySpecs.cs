@@ -8,7 +8,7 @@ using Rhino.Mocks;
 
 namespace Ohb.Mvc.Specs.AuthCookies
 {
-    [Subject(typeof(OhbUserContextFactory))]
+    [Subject(typeof(CurrentUserInfoFactory))]
     public class OhbUserContextFactorySpecs
     {
         public class when_there_is_no_auth_cookie_present
@@ -17,19 +17,19 @@ namespace Ohb.Mvc.Specs.AuthCookies
                 () =>
                 {
                     var encoder = MockRepository.GenerateMock<IAuthCookieEncoder>();
-                    factory = new OhbUserContextFactory(encoder);
+                    factory = new CurrentUserInfoFactory(encoder);
                     httpContext = MockRepository.GenerateStub<HttpContextBase>();
                     httpContext.Stub(c => c.Request.Cookies).Return(new HttpCookieCollection());
                 };
 
             Cleanup after = () => factory.Dispose();
 
-            Because of = () => userContext = factory.CreateFromAuthCookie(httpContext);
+            Because of = () => userInfo = factory.CreateFromAuthCookie(httpContext);
 
-            It should_not_be_logged_in = () => userContext.IsAuthenticated.ShouldBeFalse();
+            It should_not_be_logged_in = () => userInfo.IsAuthenticated.ShouldBeFalse();
 
-            static OhbUserContext userContext;
-            static IOhbUserContextFactory factory;
+            static CurrentUserInfo userInfo;
+            static ICurrentUserInfoFactory factory;
             static HttpContextBase httpContext;
         }
 
@@ -46,7 +46,7 @@ namespace Ohb.Mvc.Specs.AuthCookies
                         .Stub(e => e.TryDecode(cookieBase64, out dummy)).Return(true)
                         .OutRef(new AuthCookieContext { UserId = userId});
 
-                    factory = new OhbUserContextFactory(encoder);
+                    factory = new CurrentUserInfoFactory(encoder);
                     httpContext = MockRepository.GenerateStub<HttpContextBase>();
 
                     httpContext.Stub(c => c.Request.Cookies).Return(
@@ -58,13 +58,13 @@ namespace Ohb.Mvc.Specs.AuthCookies
 
             Cleanup after = () => factory.Dispose();
 
-            Because of = () => userContext = factory.CreateFromAuthCookie(httpContext);
+            Because of = () => userInfo = factory.CreateFromAuthCookie(httpContext);
 
-            It should_be_logged_in = () => userContext.IsAuthenticated.ShouldBeTrue();
-            It should_return_the_user_id = () => userContext.UserId.ShouldEqual(userId);
+            It should_be_logged_in = () => userInfo.IsAuthenticated.ShouldBeTrue();
+            It should_return_the_user_id = () => userInfo.UserId.ShouldEqual(userId);
 
-            static OhbUserContext userContext;
-            static IOhbUserContextFactory factory;
+            static CurrentUserInfo userInfo;
+            static ICurrentUserInfoFactory factory;
             static HttpContextBase httpContext;
             static string userId;
         }
@@ -80,7 +80,7 @@ namespace Ohb.Mvc.Specs.AuthCookies
                     encoder
                         .Stub(e => e.TryDecode(cookieBase64, out dummy)).Return(false);
 
-                    factory = new OhbUserContextFactory(encoder);
+                    factory = new CurrentUserInfoFactory(encoder);
                     httpContext = MockRepository.GenerateStub<HttpContextBase>();
 
                     httpContext.Stub(c => c.Request.Cookies).Return(
@@ -100,8 +100,8 @@ namespace Ohb.Mvc.Specs.AuthCookies
             It should_have_a_401_unauthorized_status_code =
                 () => ((HttpResponseException) exception).Response.StatusCode.ShouldEqual(HttpStatusCode.Unauthorized);
 
-            static OhbUserContext userContext;
-            static IOhbUserContextFactory factory;
+            static CurrentUserInfo userInfo;
+            static ICurrentUserInfoFactory factory;
             static HttpContextBase httpContext;
             static string userId;
             static Exception exception;

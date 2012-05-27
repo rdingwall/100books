@@ -9,14 +9,14 @@ namespace Ohb.Mvc.ActionFilters
     public class CurrentUserAttribute : ActionFilterAttribute
     {
         readonly IUserRepository users;
-        readonly ICurrentUserContextProvider provider;
+        readonly ICurrentUserInfoProvider currentUserProvider;
 
-        public CurrentUserAttribute(IUserRepository users, ICurrentUserContextProvider provider)
+        public CurrentUserAttribute(IUserRepository users, ICurrentUserInfoProvider currentUserProvider)
         {
             if (users == null) throw new ArgumentNullException("users");
-            if (provider == null) throw new ArgumentNullException("provider");
+            if (currentUserProvider == null) throw new ArgumentNullException("currentUserProvider");
             this.users = users;
-            this.provider = provider;
+            this.currentUserProvider = currentUserProvider;
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -25,12 +25,12 @@ namespace Ohb.Mvc.ActionFilters
             if (controller == null)
                 return;
 
-            var context = provider.GetCurrentUser();
+            var currentUserInfo = currentUserProvider.GetCurrentUserInfo();
 
-            if (!context.IsAuthenticated)
+            if (!currentUserInfo.IsAuthenticated)
                 return;
 
-            controller.User = users.GetUser(context.UserId, controller.DocumentSession);
+            controller.User = users.GetUser(currentUserInfo.UserId, controller.DocumentSession);
         }
     }
 }

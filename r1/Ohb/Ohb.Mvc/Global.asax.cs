@@ -56,7 +56,7 @@ namespace Ohb.Mvc
                            new RouteValueDictionary( // Parameter defaults
                                new {controller = "Public", action = "Index", id = UrlParameter.Optional}),
                            new MvcRouteHandler(),
-                           container.Resolve<ICurrentUserContextProvider>()));
+                           container.Resolve<ICurrentUserInfoProvider>()));
         }
 
         static void RegisterApiRoutes(RouteCollection routes)

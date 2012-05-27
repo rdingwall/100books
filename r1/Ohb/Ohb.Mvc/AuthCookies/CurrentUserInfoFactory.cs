@@ -5,33 +5,33 @@ using System.Web.Http;
 
 namespace Ohb.Mvc.AuthCookies
 {
-    public interface IOhbUserContextFactory : IDisposable
+    public interface ICurrentUserInfoFactory : IDisposable
     {
-        OhbUserContext CreateFromAuthCookie(HttpContextBase httpContext);
+        CurrentUserInfo CreateFromAuthCookie(HttpContextBase httpContext);
     }
 
-    public class OhbUserContextFactory : IOhbUserContextFactory
+    public class CurrentUserInfoFactory : ICurrentUserInfoFactory
     {
         IAuthCookieEncoder encoder;
 
-        public OhbUserContextFactory(IAuthCookieEncoder encoder)
+        public CurrentUserInfoFactory(IAuthCookieEncoder encoder)
         {
             if (encoder == null) throw new ArgumentNullException("encoder");
             this.encoder = encoder;
         }
 
-        public OhbUserContext CreateFromAuthCookie(HttpContextBase httpContext)
+        public CurrentUserInfo CreateFromAuthCookie(HttpContextBase httpContext)
         {
             if (httpContext == null) throw new ArgumentNullException("httpContext");
 
             var cookie = httpContext.Request.Cookies[OhbCookies.AuthCookie];
 
             if (cookie == null)
-                return new OhbUserContext {IsAuthenticated = false};
+                return new CurrentUserInfo { IsAuthenticated = false };
 
             var cookieContext = GetAuthCookieContext(cookie);
 
-            return new OhbUserContext
+            return new CurrentUserInfo
                        {
                            IsAuthenticated = true,
                            UserId = cookieContext.UserId,
@@ -74,7 +74,7 @@ namespace Ohb.Mvc.AuthCookies
             }
         }
 
-        ~OhbUserContextFactory()
+        ~CurrentUserInfoFactory()
         {
             Dispose(false);
         }

@@ -18,14 +18,14 @@ namespace Ohb.Mvc.Api.ActionFilters
     public class AuthCookieApiAttribute : ActionFilterAttribute
     {
         readonly IUserRepository users;
-        readonly ICurrentUserContextProvider provider;
+        readonly ICurrentUserInfoProvider currentUserProvider;
 
-        public AuthCookieApiAttribute(IUserRepository users, ICurrentUserContextProvider provider)
+        public AuthCookieApiAttribute(IUserRepository users, ICurrentUserInfoProvider currentUserProvider)
         {
             if (users == null) throw new ArgumentNullException("users");
-            if (provider == null) throw new ArgumentNullException("provider");
+            if (currentUserProvider == null) throw new ArgumentNullException("currentUserProvider");
             this.users = users;
-            this.provider = provider;
+            this.currentUserProvider = currentUserProvider;
         }
 
         public override void OnActionExecuting(HttpActionContext actionContext)
@@ -34,9 +34,9 @@ namespace Ohb.Mvc.Api.ActionFilters
             if (controller == null)
                 return;
 
-            var context = provider.GetCurrentUser();
+            var currentUserInfo = currentUserProvider.GetCurrentUserInfo();
 
-            if (!context.IsAuthenticated)
+            if (!currentUserInfo.IsAuthenticated)
             {
                 if (RequiresAuthorization(actionContext))
                     throw MissingAuthCookieException();
@@ -45,7 +45,7 @@ namespace Ohb.Mvc.Api.ActionFilters
             }
             // todo: assert api token has not expired
 
-            controller.User = users.GetUser(context.UserId, controller.DocumentSession);
+            controller.User = users.GetUser(currentUserInfo.UserId, controller.DocumentSession);
         }
 
         static Exception MissingAuthCookieException()

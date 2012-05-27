@@ -1,6 +1,6 @@
 namespace Ohb.Mvc.AuthCookies
 {
-    public class OhbUserContext
+    public class CurrentUserInfo
     {
         public string UserId { get; set; }
         public bool IsAuthenticated { get; set; }
