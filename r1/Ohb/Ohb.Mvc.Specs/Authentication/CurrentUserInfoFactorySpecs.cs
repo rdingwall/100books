@@ -9,7 +9,7 @@ using Rhino.Mocks;
 namespace Ohb.Mvc.Specs.Authentication
 {
     [Subject(typeof(CurrentUserInfoFactory))]
-    public class OhbUserContextFactorySpecs
+    public class CurrentUserInfoFactorySpecs
     {
         public class when_there_is_no_auth_cookie_present
         {
