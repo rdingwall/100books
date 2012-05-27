@@ -41,15 +41,18 @@ namespace Ohb.Mvc
 
             RegisterApiRoutes(routes);
 
-            routes.MapRoute("Books",
+            routes.MapRoute("BooksRoute",
                             "Books/{id}", // URL with parameters
                             new { controller = "Books", action = "Get" });
 
-            routes.MapRoute("Redirect", "FbLogin",
+            routes.MapRoute("RedirectRoute", "FbLogin",
                             new { controller = "Public", action = "FbLogin" });
 
-            routes.MapRoute("ForceError", "Error",
+            routes.MapRoute("ForceErrorRoute", "Error",
                            new { controller = "Public", action = "Error" });
+
+            routes.MapRoute("LogOutRoute", "LogOut",
+                           new { controller = "LoggedIn", action = "LogOut" });
 
             routes.Add(new LoggedInHomeRoute(
                            "{*catchall}",
