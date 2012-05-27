@@ -96,7 +96,7 @@ namespace Ohb.Mvc.Api.ActionFilters
 
                 return finallyAllowed;
             }
-            catch (Exception e)
+            catch
             {
                 // Log the exception, probably something wrong with the configuration
             }

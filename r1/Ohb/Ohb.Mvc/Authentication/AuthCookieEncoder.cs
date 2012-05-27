@@ -84,7 +84,7 @@ namespace Ohb.Mvc.Authentication
                 output = context;
                 return true;
             }
-            catch (FormatException e)
+            catch (FormatException)
             {
                 //Console.WriteLine(e.ToString());
                 return false;
