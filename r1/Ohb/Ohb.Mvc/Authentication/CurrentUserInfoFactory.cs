@@ -35,6 +35,7 @@ namespace Ohb.Mvc.Authentication
                        {
                            IsAuthenticated = true,
                            UserId = cookieContext.UserId,
+                           AuthCookie = cookieContext // null if not logged in
                        };
         }
 

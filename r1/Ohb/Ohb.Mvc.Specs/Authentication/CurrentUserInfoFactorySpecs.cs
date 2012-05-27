@@ -27,6 +27,7 @@ namespace Ohb.Mvc.Specs.Authentication
             Because of = () => userInfo = factory.CreateFromAuthCookie(httpContext);
 
             It should_not_be_logged_in = () => userInfo.IsAuthenticated.ShouldBeFalse();
+            It should_not_return_any_auth_cookie = () => userInfo.AuthCookie.ShouldBeNull();
 
             static CurrentUserInfo userInfo;
             static ICurrentUserInfoFactory factory;
@@ -42,9 +43,10 @@ namespace Ohb.Mvc.Specs.Authentication
                     var encoder = MockRepository.GenerateMock<IAuthCookieEncoder>();
                     AuthCookieContext dummy;
                     userId = "test user id";
+                    expectedAuthCookieContext = new AuthCookieContext { UserId = userId};
                     encoder
                         .Stub(e => e.TryDecode(cookieBase64, out dummy)).Return(true)
-                        .OutRef(new AuthCookieContext { UserId = userId});
+                        .OutRef(expectedAuthCookieContext);
 
                     factory = new CurrentUserInfoFactory(encoder);
                     httpContext = MockRepository.GenerateStub<HttpContextBase>();
@@ -62,11 +64,14 @@ namespace Ohb.Mvc.Specs.Authentication
 
             It should_be_logged_in = () => userInfo.IsAuthenticated.ShouldBeTrue();
             It should_return_the_user_id = () => userInfo.UserId.ShouldEqual(userId);
+            It should_return_the_auth_cookie_context =
+                () => userInfo.AuthCookie.ShouldBeTheSameAs(expectedAuthCookieContext);
 
             static CurrentUserInfo userInfo;
             static ICurrentUserInfoFactory factory;
             static HttpContextBase httpContext;
             static string userId;
+            static AuthCookieContext expectedAuthCookieContext;
         }
 
         public class when_there_is_a_bad_auth_cookie

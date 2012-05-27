@@ -4,5 +4,6 @@ namespace Ohb.Mvc.Authentication
     {
         public string UserId { get; set; }
         public bool IsAuthenticated { get; set; }
+        public AuthCookieContext AuthCookie { get; set; }
     }
 }
