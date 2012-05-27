@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
@@ -19,11 +18,14 @@ namespace Ohb.Mvc.Api.ActionFilters
     public class AuthCookieApiAttribute : ActionFilterAttribute
     {
         readonly IUserRepository users;
+        readonly ICurrentUserContextProvider provider;
 
-        public AuthCookieApiAttribute(IUserRepository users)
+        public AuthCookieApiAttribute(IUserRepository users, ICurrentUserContextProvider provider)
         {
             if (users == null) throw new ArgumentNullException("users");
+            if (provider == null) throw new ArgumentNullException("provider");
             this.users = users;
+            this.provider = provider;
         }
 
         public override void OnActionExecuting(HttpActionContext actionContext)
@@ -32,7 +34,9 @@ namespace Ohb.Mvc.Api.ActionFilters
             if (controller == null)
                 return;
 
-            if (!OhbUserContext.Current.IsAuthenticated)
+            var context = provider.GetCurrentUser();
+
+            if (!context.IsAuthenticated)
             {
                 if (RequiresAuthorization(actionContext))
                     throw MissingAuthCookieException();
@@ -41,7 +45,7 @@ namespace Ohb.Mvc.Api.ActionFilters
             }
             // todo: assert api token has not expired
 
-            controller.User = users.GetUser(OhbUserContext.Current.UserId, controller.DocumentSession);
+            controller.User = users.GetUser(context.UserId, controller.DocumentSession);
         }
 
         static Exception MissingAuthCookieException()

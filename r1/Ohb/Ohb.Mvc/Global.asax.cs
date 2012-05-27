@@ -54,8 +54,9 @@ namespace Ohb.Mvc
             routes.Add(new LoggedInHomeRoute(
                            "{*catchall}",
                            new RouteValueDictionary( // Parameter defaults
-                               new { controller = "Public", action = "Index", id = UrlParameter.Optional }),
-                           new MvcRouteHandler()));
+                               new {controller = "Public", action = "Index", id = UrlParameter.Optional}),
+                           new MvcRouteHandler(),
+                           container.Resolve<ICurrentUserContextProvider>()));
         }
 
         static void RegisterApiRoutes(RouteCollection routes)
@@ -134,7 +135,6 @@ namespace Ohb.Mvc
             RegisterApiStuff(resolver, container);
 
             DependencyResolver.SetResolver(resolver);
-            OhbUserContext.SetContainer(container);
 
             AreaRegistration.RegisterAllAreas();
 

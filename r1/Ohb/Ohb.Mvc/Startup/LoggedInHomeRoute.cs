@@ -1,3 +1,4 @@
+using System;
 using System.Web;
 using System.Web.Routing;
 using Ohb.Mvc.AuthCookies;
@@ -6,28 +7,39 @@ namespace Ohb.Mvc.Startup
 {
     public class LoggedInHomeRoute : Route
     {
-        public LoggedInHomeRoute(string url, IRouteHandler routeHandler)
+        readonly ICurrentUserContextProvider provider;
+
+        public LoggedInHomeRoute(string url, IRouteHandler routeHandler, ICurrentUserContextProvider provider)
             : base(url, routeHandler)
         {
+            if (provider == null) throw new ArgumentNullException("provider");
+            this.provider = provider;
         }
 
-        public LoggedInHomeRoute(string url, RouteValueDictionary defaults, RouteValueDictionary constraints, RouteValueDictionary dataTokens, IRouteHandler routeHandler) : base(url, defaults, constraints, dataTokens, routeHandler)
+        public LoggedInHomeRoute(string url, RouteValueDictionary defaults, RouteValueDictionary constraints, RouteValueDictionary dataTokens, IRouteHandler routeHandler, ICurrentUserContextProvider provider) : base(url, defaults, constraints, dataTokens, routeHandler)
         {
+            if (provider == null) throw new ArgumentNullException("provider");
+            this.provider = provider;
         }
 
-        public LoggedInHomeRoute(string url, RouteValueDictionary defaults, RouteValueDictionary constraints, IRouteHandler routeHandler) : base(url, defaults, constraints, routeHandler)
+        public LoggedInHomeRoute(string url, RouteValueDictionary defaults, RouteValueDictionary constraints, IRouteHandler routeHandler, ICurrentUserContextProvider provider) : base(url, defaults, constraints, routeHandler)
         {
+            if (provider == null) throw new ArgumentNullException("provider");
+            this.provider = provider;
         }
 
-        public LoggedInHomeRoute(string url, RouteValueDictionary defaults, IRouteHandler routeHandler) : base(url, defaults, routeHandler)
+        public LoggedInHomeRoute(string url, RouteValueDictionary defaults, IRouteHandler routeHandler, ICurrentUserContextProvider provider) : base(url, defaults, routeHandler)
         {
+            if (provider == null) throw new ArgumentNullException("provider");
+            this.provider = provider;
         }
 
         public override RouteData GetRouteData(HttpContextBase httpContext)
         {
             var routeData = base.GetRouteData(httpContext);
 
-            if (!OhbUserContext.Current.IsAuthenticated)
+            var context = provider.GetCurrentUser();
+            if (!context.IsAuthenticated)
                 return routeData;
 
             if (routeData == null)

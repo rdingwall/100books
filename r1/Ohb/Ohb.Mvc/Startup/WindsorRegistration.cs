@@ -31,6 +31,7 @@ namespace Ohb.Mvc.Startup
                 Component.For<IAuthCookieEncoder>().ImplementedBy<AuthCookieCache>()
                     .ServiceOverrides(new {encoder = "AuthCookieEncoder"}),
                 Component.For<IOhbUserContextFactory>().ImplementedBy<OhbUserContextFactory>(),
+                Component.For<ICurrentUserContextProvider>().ImplementedBy<CurrentUserContextProvider>(),
                 Component.For<IAuthCookieFactory>().ImplementedBy<AuthCookieFactory>(),
                 Component.For<IGoogleBooksClient>().ImplementedBy<GoogleBooksClient>()
                     .DependsOn(new
