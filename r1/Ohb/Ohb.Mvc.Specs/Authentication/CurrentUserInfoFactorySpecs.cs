@@ -34,6 +34,45 @@ namespace Ohb.Mvc.Specs.Authentication
             static HttpContextBase httpContext;
         }
 
+        public class when_the_auth_cookie_has_expired
+        {
+            Establish context =
+                () =>
+                {
+                    var encoder = MockRepository.GenerateMock<IAuthCookieEncoder>();
+                    factory = new CurrentUserInfoFactory(encoder);
+                    httpContext = MockRepository.GenerateStub<HttpContextBase>();
+
+                    var cookieContext =
+                        new AuthCookieContext
+                            {
+                                ExpirationTime = DateTime.UtcNow.AddDays(-1)
+                            };
+
+                    AuthCookieContext dummy;
+                    encoder
+                        .Stub(e => e.TryDecode("test", out dummy)).Return(true)
+                        .OutRef(cookieContext);
+
+                    httpContext.Stub(c => c.Request.Cookies).Return(
+                        new HttpCookieCollection
+                            {
+                                new HttpCookie(OhbCookies.AuthCookie, "test")
+                            });
+                };
+
+            Cleanup after = () => factory.Dispose();
+
+            Because of = () => userInfo = factory.CreateFromAuthCookie(httpContext);
+
+            It should_not_be_logged_in = () => userInfo.IsAuthenticated.ShouldBeFalse();
+            It should_not_return_any_auth_cookie = () => userInfo.AuthCookie.ShouldBeNull();
+
+            static CurrentUserInfo userInfo;
+            static ICurrentUserInfoFactory factory;
+            static HttpContextBase httpContext;
+        }
+
         public class when_there_is_an_auth_cookie
         {
             Establish context =

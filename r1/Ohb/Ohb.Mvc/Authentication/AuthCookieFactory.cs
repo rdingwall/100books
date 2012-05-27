@@ -34,7 +34,7 @@ namespace Ohb.Mvc.Authentication
 
             return new HttpCookie(OhbCookies.AuthCookie, cookieValue)
                        {
-                           Expires = context.ExpirationTime,
+                           Expires = context.ExpirationTime
                        };
         }
     }

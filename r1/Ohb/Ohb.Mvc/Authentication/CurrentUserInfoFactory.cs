@@ -13,6 +13,8 @@ namespace Ohb.Mvc.Authentication
     public class CurrentUserInfoFactory : ICurrentUserInfoFactory
     {
         IAuthCookieEncoder encoder;
+        static readonly CurrentUserInfo unknownUser = 
+            new CurrentUserInfo { IsAuthenticated = false };
 
         public CurrentUserInfoFactory(IAuthCookieEncoder encoder)
         {
@@ -27,9 +29,12 @@ namespace Ohb.Mvc.Authentication
             var cookie = httpContext.Request.Cookies[OhbCookies.AuthCookie];
 
             if (cookie == null)
-                return new CurrentUserInfo { IsAuthenticated = false };
+                return unknownUser;
 
             var cookieContext = GetAuthCookieContext(cookie);
+
+            if (cookieContext.IsExpired())
+                return unknownUser;
 
             return new CurrentUserInfo
                        {
