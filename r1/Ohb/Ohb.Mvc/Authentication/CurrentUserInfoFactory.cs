@@ -3,7 +3,7 @@ using System.Net;
 using System.Web;
 using System.Web.Http;
 
-namespace Ohb.Mvc.AuthCookies
+namespace Ohb.Mvc.Authentication
 {
     public interface ICurrentUserInfoFactory : IDisposable
     {

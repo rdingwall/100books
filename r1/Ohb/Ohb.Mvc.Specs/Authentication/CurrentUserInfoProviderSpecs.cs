@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Web;
 using Machine.Specifications;
-using Ohb.Mvc.AuthCookies;
+using Ohb.Mvc.Authentication;
 using Rhino.Mocks;
 using System.Collections;
 
-namespace Ohb.Mvc.Specs.AuthCookies
+namespace Ohb.Mvc.Specs.Authentication
 {
     public class CurrentUserInfoProviderSpecs
     {

@@ -3,10 +3,10 @@ using System.Net;
 using System.Web;
 using System.Web.Http;
 using Machine.Specifications;
-using Ohb.Mvc.AuthCookies;
+using Ohb.Mvc.Authentication;
 using Rhino.Mocks;
 
-namespace Ohb.Mvc.Specs.AuthCookies
+namespace Ohb.Mvc.Specs.Authentication
 {
     [Subject(typeof(CurrentUserInfoFactory))]
     public class OhbUserContextFactorySpecs

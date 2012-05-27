@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Net;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
-using Ohb.Mvc.AuthCookies;
+using Ohb.Mvc.Authentication;
 using Ohb.Mvc.Storage.Users;
 using RestSharp;
 

@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Caching;
 
-namespace Ohb.Mvc.AuthCookies
+namespace Ohb.Mvc.Authentication
 {
     public class AuthCookieCache : IAuthCookieEncoder
     {

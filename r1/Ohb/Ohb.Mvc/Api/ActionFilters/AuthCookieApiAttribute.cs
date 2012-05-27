@@ -5,7 +5,7 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Ohb.Mvc.Api.Controllers;
-using Ohb.Mvc.AuthCookies;
+using Ohb.Mvc.Authentication;
 using Ohb.Mvc.Storage.Users;
 
 namespace Ohb.Mvc.Api.ActionFilters

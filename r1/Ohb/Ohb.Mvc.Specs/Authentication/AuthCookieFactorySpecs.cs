@@ -1,11 +1,11 @@
 using System;
 using System.Web;
 using Machine.Specifications;
-using Ohb.Mvc.AuthCookies;
+using Ohb.Mvc.Authentication;
 using Ohb.Mvc.Storage.Users;
 using Rhino.Mocks;
 
-namespace Ohb.Mvc.Specs.AuthCookies
+namespace Ohb.Mvc.Specs.Authentication
 {
     public class AuthCookieFactorySpecs
     {

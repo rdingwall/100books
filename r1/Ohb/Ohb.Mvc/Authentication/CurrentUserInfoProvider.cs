@@ -1,7 +1,7 @@
 using System;
 using System.Web;
 
-namespace Ohb.Mvc.AuthCookies
+namespace Ohb.Mvc.Authentication
 {
     public interface ICurrentUserInfoProvider
     {

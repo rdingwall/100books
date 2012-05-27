@@ -131,11 +131,11 @@
   <ItemGroup>
     <Compile Include="Api\Controllers\BooksApiControllerSpecs.cs" />
     <Compile Include="Api\Controllers\TestHelper.cs" />
-    <Compile Include="AuthCookies\AuthCookieCacheSpecs.cs" />
-    <Compile Include="AuthCookies\AuthCookieEncoderSpecs.cs" />
-    <Compile Include="AuthCookies\AuthCookieFactorySpecs.cs" />
-    <Compile Include="AuthCookies\CurrentUserInfoProviderSpecs.cs" />
-    <Compile Include="AuthCookies\OhbUserContextFactorySpecs.cs" />
+    <Compile Include="Authentication\AuthCookieCacheSpecs.cs" />
+    <Compile Include="Authentication\AuthCookieEncoderSpecs.cs" />
+    <Compile Include="Authentication\AuthCookieFactorySpecs.cs" />
+    <Compile Include="Authentication\CurrentUserInfoProviderSpecs.cs" />
+    <Compile Include="Authentication\OhbUserContextFactorySpecs.cs" />
     <Compile Include="IntegrationTests\HttpApi\BackdoorHttpApiSpecs.cs" />
     <Compile Include="IntegrationTests\HttpApi\JsonCamelCaseDeserializer.cs" />
     <Compile Include="IntegrationTests\HttpApi\ProfilesHttpApiSpecs.cs">

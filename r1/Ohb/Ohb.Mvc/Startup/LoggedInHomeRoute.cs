@@ -1,7 +1,7 @@
 using System;
 using System.Web;
 using System.Web.Routing;
-using Ohb.Mvc.AuthCookies;
+using Ohb.Mvc.Authentication;
 
 namespace Ohb.Mvc.Startup
 {

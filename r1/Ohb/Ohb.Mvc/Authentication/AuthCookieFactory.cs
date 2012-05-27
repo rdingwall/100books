@@ -2,7 +2,7 @@ using System;
 using System.Web;
 using Ohb.Mvc.Storage.Users;
 
-namespace Ohb.Mvc.AuthCookies
+namespace Ohb.Mvc.Authentication
 {
     public interface IAuthCookieFactory
     {

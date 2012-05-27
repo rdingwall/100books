@@ -1,4 +1,4 @@
-namespace Ohb.Mvc.AuthCookies
+namespace Ohb.Mvc.Authentication
 {
     public class CurrentUserInfo
     {

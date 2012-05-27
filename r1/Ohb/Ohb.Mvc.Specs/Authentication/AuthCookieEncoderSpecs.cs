@@ -1,8 +1,8 @@
 using System;
 using Machine.Specifications;
-using Ohb.Mvc.AuthCookies;
+using Ohb.Mvc.Authentication;
 
-namespace Ohb.Mvc.Specs.AuthCookies
+namespace Ohb.Mvc.Specs.Authentication
 {
     public class AuthCookieEncoderSpecs
     {

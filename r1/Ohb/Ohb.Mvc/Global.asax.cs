@@ -13,7 +13,7 @@ using Microsoft.Practices.ServiceLocation;
 using Ohb.Mvc.ActionFilters;
 using Ohb.Mvc.Api;
 using Ohb.Mvc.Api.ActionFilters;
-using Ohb.Mvc.AuthCookies;
+using Ohb.Mvc.Authentication;
 using Ohb.Mvc.Startup;
 
 namespace Ohb.Mvc

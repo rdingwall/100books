@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using System.Web;
 using System.Web.Mvc;
 using Facebook;
-using Ohb.Mvc.AuthCookies;
+using Ohb.Mvc.Authentication;
 using Ohb.Mvc.Storage.Users;
 using Raven.Client;
 

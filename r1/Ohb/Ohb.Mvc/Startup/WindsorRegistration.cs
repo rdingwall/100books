@@ -3,7 +3,7 @@ using Bootstrap.Windsor;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Ohb.Mvc.Api;
-using Ohb.Mvc.AuthCookies;
+using Ohb.Mvc.Authentication;
 using Ohb.Mvc.Google;
 using Ohb.Mvc.Storage;
 using Ohb.Mvc.Storage.Books;

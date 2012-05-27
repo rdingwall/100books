@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace Ohb.Mvc.AuthCookies
+namespace Ohb.Mvc.Authentication
 {
     public interface IAuthCookieEncoder : IDisposable
     {

@@ -1,6 +1,6 @@
 using System;
 using System.Web;
-using Ohb.Mvc.AuthCookies;
+using Ohb.Mvc.Authentication;
 using Ohb.Mvc.Storage.Users;
 using System.Linq;
 
