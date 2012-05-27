@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
-using System.Text;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.AuthCookies;
@@ -55,70 +54,23 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             dynamicClient.AddHandler("application/json", new JsonCamelCaseDeserializer());
         }
 
-        static RestResponse Log(RestResponse response)
-        {
-            if (response == null) throw new ArgumentNullException("response");
-            DoLog(response);
-            return response;
-        }
-
-        static void DoLog(RestResponseBase response)
-        {
-            Console.WriteLine("{0} {1} {2} {3}",
-                              (int) response.StatusCode,
-                              response.StatusCode,
-                              response.Request == null ? "??" : response.Request.Method.ToString(),
-                              response.ResponseUri);
-
-            if (response.ErrorException != null)
-            {
-                Console.WriteLine();
-                Console.WriteLine("Response error:");
-                Console.WriteLine(response.ErrorException.ToString());
-            }
-
-
-            Console.WriteLine();
-            Console.WriteLine("Response headers:");
-
-
-            foreach (var header in response.Headers)
-                Console.WriteLine("   {0} = {1}", header.Name, header.Value);
-
-            Console.WriteLine();
-            Console.WriteLine("Response body:");
-
-            var raw = Encoding.UTF8.GetString(response.RawBytes ?? new byte[0]);
-            if (!String.IsNullOrWhiteSpace(response.ContentType) && response.ContentType.Contains("application/json"))
-                raw = new JsonFormatter().PrettyPrint(raw);
-            Console.WriteLine(raw);
-
-            Console.WriteLine(new string('-', 80));
-        }
-
-        static RestResponse<T> Log<T>(RestResponse<T> response)
-        {
-            DoLog(response);
-            return response;
-        }
-
         public RestResponse<object> Get(string path)
         {
             var request = new RestRequest(path);
-            return Log(dynamicClient.Execute<object>(request));
+            return dynamicClient.Execute<object>(request).WriteToConsole();
         }
 
         public RestResponse<object> Post(string path)
         {
             var request = new RestRequest(path) {Method = Method.POST};
-            return Log(dynamicClient.Execute<object>(request));
+            return dynamicClient.Execute<object>(request).WriteToConsole();
         }
 
         public void AssertReturns(Method method, string path, HttpStatusCode expectedStatusCode)
         {
             var request = new RestRequest(path) { Method = method };
             var response = client.Execute(request);
-            Log(response);
+            response.WriteToConsole();
             response.StatusCode.ShouldEqual(expectedStatusCode);
         }
 
@@ -126,7 +78,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
         {
             var request = new RestRequest(path) { Method = method };
             var response = client.Execute(request);
-            Log(response);
+            response.WriteToConsole();
             response.StatusCode.ShouldEqual(HttpStatusCode.MethodNotAllowed);
         }
 
@@ -139,7 +91,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
         {
             var request = new RestRequest(path) { Method = method };
             var response = client.Execute(request);
-            Log(response);
+            response.WriteToConsole();
             response.StatusCode.ShouldEqual(HttpStatusCode.Unauthorized);
         }
 
@@ -147,7 +99,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
         {
             var request = new RestRequest(String.Format("books/{0}", googleVolumeId));
             Authorize(request);
-            return Log(client.Execute<BookModel>(request));
+            return client.Execute<BookModel>(request).WriteToConsole();
         }
 
         public RestResponse MarkBookAsRead(string googleVolumeId)
@@ -164,7 +116,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 
             Authorize(request);
 
-            return Log(client.Execute(request));
+            return client.Execute(request).WriteToConsole();
         }
 
         void Authorize(IRestRequest request)
@@ -179,7 +131,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
         {
             var request = new RestRequest("previousreads");
             Authorize(request);
-            return Log(client.Execute<List<PreviousReadModel>>(request));
+            return client.Execute<List<PreviousReadModel>>(request).WriteToConsole();
         }
 
         public RestResponse<List<BookStatus>> GetBookStatuses(params string[] bookIds)
@@ -187,7 +139,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             var ids = String.Join(",", bookIds);
             var request = new RestRequest(String.Format("books/{0}/statuses", ids));
             Authorize(request);
-            return Log(client.Execute<List<BookStatus>>(request));
+            return client.Execute<List<BookStatus>>(request).WriteToConsole();
         }
 
         public RestResponse RemovePreviousRead(string volumeId)
@@ -200,20 +152,20 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
 
             Authorize(request);
 
-            return Log(client.Execute(request));
+            return client.Execute(request).WriteToConsole();
         }
 
         public RestResponse<ProfileModel> GetProfile(string userId)
         {
             var request = new RestRequest("profiles/" + userId);
-            return Log(client.Execute<ProfileModel>(request));
+            return client.Execute<ProfileModel>(request).WriteToConsole();
         }
 
         public RestResponse<ProfileModel> GetMyProfile()
         {
             var request = new RestRequest("profiles/me");
             Authorize(request);
-            return Log(client.Execute<ProfileModel>(request));
+            return client.Execute<ProfileModel>(request).WriteToConsole();
         }
 
         public RestResponse BackdoorGetAuthCookie(string userId)
@@ -225,7 +177,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             if (!String.IsNullOrWhiteSpace(userId))
                 request.AddParameter("userId", userId);
 
-            return Log(tempBackdoorClient.Execute(request));
+            return tempBackdoorClient.Execute(request).WriteToConsole();
         }
 
         public RestResponse<BackdoorCreateUserResponse> BackdoorCreateUser(string displayName, string profileImageUrl, 
@@ -239,7 +191,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             request.AddParameter("profileImageUrl", profileImageUrl);
             request.AddParameter("setAuthCookie", setAuthCookie);
 
-            return Log(backdoorClient.Execute<BackdoorCreateUserResponse>(request));
+            return backdoorClient.Execute<BackdoorCreateUserResponse>(request).WriteToConsole();
         }
     }
 }

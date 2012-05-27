@@ -1,6 +1,7 @@
 using System.Configuration;
 using System.Net;
 using Machine.Specifications;
+using Ohb.Mvc.Specs.IntegrationTests.HttpApi;
 using RestSharp;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.HttpMvc
@@ -11,7 +12,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpMvc
         public abstract class scenario
         {
             Because of =
-                () => response = client.Execute(request);
+                () => response = client.Execute(request).WriteToConsole();
 
             static protected RestResponse response;
             static protected RestClient client;

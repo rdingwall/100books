@@ -140,6 +140,7 @@
     <Compile Include="IntegrationTests\HttpApi\ProfilesHttpApiSpecs.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IntegrationTests\HttpApi\RestClientExtensions.cs" />
     <Compile Include="IntegrationTests\HttpMvc\PublicControllerHttpSpecs.cs" />
     <Compile Include="IntegrationTests\LiveRavenDb.cs" />
     <Compile Include="IntegrationTests\HttpApi\ApiClientFactory.cs" />
