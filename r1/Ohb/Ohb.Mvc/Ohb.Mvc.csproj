@@ -76,9 +76,6 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\packages\Castle.Windsor.2.5.4\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="CommonServiceLocator.WindsorAdapter">
-      <HintPath>..\packages\CommonServiceLocator.WindsorAdapter.1.0\lib\NET35\CommonServiceLocator.WindsorAdapter.dll</HintPath>
-    </Reference>
     <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Elmah.Contrib.WebApi.1.0.0.0\lib\net40\Elmah.dll</HintPath>
     </Reference>
@@ -214,6 +211,7 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="Startup\MvcWindsorServiceLocator.cs" />
     <Compile Include="Startup\RavenDbConventions.cs" />
     <Compile Include="Storage\Base32.cs" />
     <Compile Include="Storage\Books\ConvertGoogleVolumeId.cs" />

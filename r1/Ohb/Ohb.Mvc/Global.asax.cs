@@ -6,7 +6,6 @@ using Bootstrap;
 using Bootstrap.AutoMapper;
 using Bootstrap.Windsor;
 using Castle.Windsor;
-using CommonServiceLocator.WindsorAdapter;
 using Elmah.Contrib.Mvc;
 using Elmah.Contrib.WebApi;
 using Microsoft.Practices.ServiceLocation;
@@ -132,7 +131,7 @@ namespace Ohb.Mvc
             
             container = (IWindsorContainer)Bootstrapper.Container;
 
-            var resolver = new WindsorServiceLocator(container);
+            var resolver = new MvcWindsorServiceLocator(container);
 
             // Web API
             RegisterApiStuff(resolver, container);
