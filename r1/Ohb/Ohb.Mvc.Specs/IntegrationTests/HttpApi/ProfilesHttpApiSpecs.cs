@@ -2,6 +2,7 @@
 using System.Net;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
+using Ohb.Mvc.Storage.PreviousReads;
 using RestSharp;
 
 namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
@@ -16,6 +17,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
                                     {
                                         api = ApiClientFactory.NewUser();
                                         api.MarkBookAsRead("4YydO00I9JYC");
+                                        LiveRavenDb.WaitForNonStaleResults<PreviousRead>();
                                     };
 
             Because of = () => response = api.GetProfile(api.UserId);
@@ -49,6 +51,7 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             {
                 api = ApiClientFactory.NewUser();
                 api.MarkBookAsRead("4YydO00I9JYC");
+                LiveRavenDb.WaitForNonStaleResults<PreviousRead>();
             };
 
             Because of = () => response = api.GetMyProfile();
