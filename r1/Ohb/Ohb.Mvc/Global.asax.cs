@@ -28,7 +28,7 @@ namespace Ohb.Mvc
         public static void RegisterGlobalFilters(GlobalFilterCollection filters, 
             IWindsorContainer container)
         {
-            filters.Add(container.Resolve<ElmahHandleErrorAttribute>());
+            filters.Add(new ElmahHandleErrorAttribute());
             filters.Add(container.Resolve<RavenDbAttribute>());
             filters.Add(container.Resolve<CurrentUserAttribute>());
             filters.Add(container.Resolve<AuthCookieAttribute>());
@@ -153,7 +153,7 @@ namespace Ohb.Mvc
 
             config.Filters.Add(container.Resolve<RavenDbApiAttribute>());
             config.Filters.Add(container.Resolve<AuthCookieApiAttribute>());
-            config.Filters.Add(container.Resolve<ElmahHandleErrorApiAttribute>());
+            config.Filters.Add(new ElmahHandleErrorApiAttribute());
             config.Filters.Add(container.Resolve<GoogleAnalyticsTrackerApiAttribute>());
         }
 
