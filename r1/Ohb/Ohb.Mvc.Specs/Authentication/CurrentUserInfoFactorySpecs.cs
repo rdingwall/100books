@@ -82,7 +82,11 @@ namespace Ohb.Mvc.Specs.Authentication
                     var encoder = MockRepository.GenerateMock<IAuthCookieEncoder>();
                     AuthCookieContext dummy;
                     userId = "test user id";
-                    expectedAuthCookieContext = new AuthCookieContext { UserId = userId};
+                    expectedAuthCookieContext = new AuthCookieContext
+                                                    {
+                                                        UserId = userId, 
+                                                        ExpirationTime = DateTime.UtcNow.AddDays(2)
+                                                    };
                     encoder
                         .Stub(e => e.TryDecode(cookieBase64, out dummy)).Return(true)
                         .OutRef(expectedAuthCookieContext);
