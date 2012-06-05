@@ -115,6 +115,12 @@
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="Nustache.Core">
+      <HintPath>..\packages\Nustache.1.12.4.29\lib\net20\Nustache.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Nustache.Mvc3">
+      <HintPath>..\packages\Nustache.Mvc3.1.12.4.29\lib\net40\Nustache.Mvc3.dll</HintPath>
+    </Reference>
     <Reference Include="Raven.Abstractions">
       <HintPath>..\packages\RavenDB.1.0.656-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
     </Reference>
