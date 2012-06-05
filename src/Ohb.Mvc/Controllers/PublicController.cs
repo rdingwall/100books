@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using Facebook;
 using Ohb.Mvc.Authentication;
+using Ohb.Mvc.Models;
 using Ohb.Mvc.Storage.Users;
 using Raven.Client;
 
@@ -37,6 +40,20 @@ namespace Ohb.Mvc.Controllers
         public ActionResult About()
         {
             return View();
+        }
+
+        public ActionResult Version()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var model = new AppVersionModel
+                            {
+                                OhbAppVersion = assembly.GetName().Version.ToString(),
+                                OhbGitCommit = assembly
+                                    .GetCustomAttributes(typeof (AssemblyConfigurationAttribute), true)
+                                    .Cast<AssemblyConfigurationAttribute>().Single().Configuration
+                            };
+
+            return View(model);
         }
 
         public ActionResult Error()

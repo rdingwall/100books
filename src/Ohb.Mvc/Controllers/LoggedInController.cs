@@ -1,6 +1,7 @@
 using System;
 using System.Web;
 using System.Web.Mvc;
+using Ohb.Mvc.Models;
 
 namespace Ohb.Mvc.Controllers
 {
@@ -8,10 +9,13 @@ namespace Ohb.Mvc.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.ProfileImageUrl = User.ProfileImageUrl;
-            ViewBag.DisplayName = User.DisplayName;
+            var model = new UserModel
+                            {
+                                ProfileImageUrl = User.ProfileImageUrl,
+                                DisplayName = User.DisplayName
+                            };
 
-            return View();
+            return View(model);
         }
 
         public ActionResult LogOut()

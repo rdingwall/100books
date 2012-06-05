@@ -9,6 +9,7 @@ using Castle.Windsor;
 using Elmah.Contrib.Mvc;
 using Elmah.Contrib.WebApi;
 using Microsoft.Practices.ServiceLocation;
+using Nustache.Mvc;
 using Ohb.Mvc.ActionFilters;
 using Ohb.Mvc.Api;
 using Ohb.Mvc.Api.ActionFilters;
@@ -49,6 +50,9 @@ namespace Ohb.Mvc
 
             routes.MapRoute("ForceErrorRoute", "Error",
                            new { controller = "Public", action = "Error" });
+
+            routes.MapRoute("VersionRoute", "Version",
+                           new { controller = "Public", action = "Version" });
 
             routes.MapRoute("LogOutRoute", "LogOut",
                            new { controller = "LoggedIn", action = "LogOut" });
@@ -139,7 +143,8 @@ namespace Ohb.Mvc
             DependencyResolver.SetResolver(resolver);
 
             AreaRegistration.RegisterAllAreas();
-
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new NustacheViewEngine());
             RegisterGlobalFilters(GlobalFilters.Filters, container);
             RegisterRoutes(RouteTable.Routes);
         }
