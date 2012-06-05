@@ -1,7 +1,6 @@
 using System;
 using System.Web;
 using System.Web.Mvc;
-using System.Linq;
 
 namespace Ohb.Mvc.Controllers
 {
@@ -11,9 +10,6 @@ namespace Ohb.Mvc.Controllers
         {
             ViewBag.ProfileImageUrl = User.ProfileImageUrl;
             ViewBag.DisplayName = User.DisplayName;
-
-            ViewBag.MessagePostSuccess = Request.QueryString.AllKeys.Contains("success") &&
-                                         Request.QueryString["success"] == "True";
 
             return View();
         }
