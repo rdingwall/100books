@@ -14,11 +14,16 @@
             <h3 class="searchresult-title">{{ title }}</h3> \
             <p class="searchresult-authors">{{ authors }}</p> \
         </div> \
-        <div class="span1">\
-        {{ hasRead }}\
-            <a id="toggle-previousread-button" class="status-toggle-button btn large"><i class="icon-ok"></i> </a>\
-        </div>\
+        <div class="span1 button-container" />\
     </div>';
+
+    var readButtonTemplate = '<a id="toggle-previousread-button" class="status-toggle-button btn large btn-success">\
+            <i class="icon-ok icon-white"></i>\
+        </a>';
+
+    var unreadButtonTemplate = '<a id="toggle-previousread-button" class="status-toggle-button btn large">\
+            <i class="icon-ok"></i>\
+        </a>';
 
     return Backbone.View.extend({
         className: "book-search-result",
@@ -28,7 +33,9 @@
         },
 
         render: function () {
-            this.$el.html(Mustache.to_html(template, this.model.toJSON()));
+            var view = this.model.toJSON();
+            view.buttonClass = view.hasRead ? "btn-success" : "";
+            this.$el.html(Mustache.to_html(template, view));
             this.$el.attr("id", "book-search-result-" + this.model.id);
             return this;
         },
