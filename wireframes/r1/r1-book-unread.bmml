@@ -40,29 +40,19 @@
         <text>Eric%20Evans%2C%202004</text>
       </controlProperties>
     </control>
-    <control controlID="78" controlTypeID="com.balsamiq.mockups::Icon" x="1092" y="256" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="11" locked="false" isInGroup="-1">
-      <controlProperties>
-        <icon>CheckMarkIcon%7Csmall</icon>
-      </controlProperties>
-    </control>
     <control controlID="71" controlTypeID="com.balsamiq.mockups::Label" x="488" y="85" w="64" h="27" measuredW="47" measuredH="25" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <text>%5BProfile%5D</text>
         <align>left</align>
       </controlProperties>
     </control>
-    <control controlID="79" controlTypeID="com.balsamiq.mockups::Paragraph" x="1128" y="250" w="100" h="53" measuredW="200" measuredH="140" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="83" controlTypeID="com.balsamiq.mockups::PointyButton" x="1052" y="252" w="191" h="-1" measuredW="196" measuredH="28" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>You%20have%20read%20this%20book</text>
-        <align>left</align>
+        <text>You%20have%20not%20read%20this%20book</text>
+        <direction>center</direction>
       </controlProperties>
     </control>
-    <control controlID="80" controlTypeID="com.balsamiq.mockups::Link" x="1144" y="295" w="-1" h="-1" measuredW="49" measuredH="25" zOrder="13" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Remove</text>
-      </controlProperties>
-    </control>
-    <control controlID="60" controlTypeID="com.balsamiq.mockups::Paragraph" x="635" y="235" w="442" h="126" measuredW="200" measuredH="140" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="60" controlTypeID="com.balsamiq.mockups::Paragraph" x="635" y="235" w="402" h="126" measuredW="200" measuredH="140" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <text>lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipisicing%20elit%2C%20sed%20do%20eiusmod%20tempor%20incididunt%20ut%20labore%20et%20dolore%20magna%20aliqua.%20Ut%20enim%20ad%20minim%20veniam%2C%20quis%20nostrud%20exercitation%20ullamco%20laboris%20nisi%20ut%20aliquip%20ex%20ea%20commodo%20consequat.</text>
       </controlProperties>

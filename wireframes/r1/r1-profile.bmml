@@ -60,45 +60,15 @@
         <text>Books%20you%27ve%20read</text>
       </controlProperties>
     </control>
-    <control controlID="82" controlTypeID="com.balsamiq.mockups::PointyButton" x="1155" y="194" w="70" h="-1" measuredW="75" measuredH="27" zOrder="15" locked="false" isInGroup="-1">
-      <controlProperties>
-        <state>up</state>
-        <size>8</size>
-        <color>40463</color>
-        <icon>CheckMarkIcon%7Cxsmall</icon>
-        <text>READ%20IT</text>
-        <direction>center</direction>
-      </controlProperties>
-    </control>
-    <control controlID="83" controlTypeID="com.balsamiq.mockups::PointyButton" x="1155" y="256" w="70" h="-1" measuredW="75" measuredH="27" zOrder="16" locked="false" isInGroup="-1">
-      <controlProperties>
-        <state>up</state>
-        <color>40463</color>
-        <size>8</size>
-        <icon>CheckMarkIcon%7Cxsmall</icon>
-        <direction>center</direction>
-        <text>READ%20IT</text>
-      </controlProperties>
-    </control>
-    <control controlID="84" controlTypeID="com.balsamiq.mockups::PointyButton" x="1155" y="318" w="70" h="-1" measuredW="75" measuredH="27" zOrder="17" locked="false" isInGroup="-1">
-      <controlProperties>
-        <state>up</state>
-        <color>40463</color>
-        <size>8</size>
-        <icon>CheckMarkIcon%7Cxsmall</icon>
-        <direction>center</direction>
-        <text>READ%20IT</text>
-      </controlProperties>
-    </control>
     <control controlID="78" controlTypeID="com.balsamiq.mockups::Label" x="1159" y="83" w="63" h="27" measuredW="61" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text>%5BSign%20out%5D%20</text>
         <align>left</align>
       </controlProperties>
     </control>
-    <control controlID="87" controlTypeID="com.balsamiq.mockups::Image" x="388" y="185" w="46" h="47" measuredW="141" measuredH="144" zOrder="18" locked="false" isInGroup="-1"/>
-    <control controlID="88" controlTypeID="com.balsamiq.mockups::Image" x="388" y="264" w="46" h="47" measuredW="141" measuredH="144" zOrder="19" locked="false" isInGroup="-1"/>
-    <control controlID="89" controlTypeID="com.balsamiq.mockups::Image" x="388" y="335" w="46" h="47" measuredW="141" measuredH="144" zOrder="20" locked="false" isInGroup="-1"/>
+    <control controlID="87" controlTypeID="com.balsamiq.mockups::Image" x="388" y="185" w="46" h="47" measuredW="141" measuredH="144" zOrder="15" locked="false" isInGroup="-1"/>
+    <control controlID="88" controlTypeID="com.balsamiq.mockups::Image" x="388" y="264" w="46" h="47" measuredW="141" measuredH="144" zOrder="16" locked="false" isInGroup="-1"/>
+    <control controlID="89" controlTypeID="com.balsamiq.mockups::Image" x="388" y="335" w="46" h="47" measuredW="141" measuredH="144" zOrder="17" locked="false" isInGroup="-1"/>
     <control controlID="28" controlTypeID="com.balsamiq.mockups::Link" x="441" y="335" w="-1" h="-1" measuredW="398" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text>DOMAIN%20DRIVEN%20DESIGN%3A%20TACKLING%20COMPLEXITY%20IN%20...</text>
