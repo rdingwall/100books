@@ -14,7 +14,7 @@ $(function () {
         $,
         PreviousRead,
         eventBus
-        ) {
+    ) {
 
         describe("PreviousRead", function () {
 

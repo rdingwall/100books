@@ -108,13 +108,13 @@ $(function () {
                             expect(model.get("pageCount")).toEqual(333);
                             expect(model.get("thumbnailUrl")).toStartWith("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=1");
                             expect(model.get("smallThumbnailUrl")).toStartWith("http://bks2.books.google.co.uk/books?id=4YydO00I9JYC&printsec=frontcover&img=1&zoom=5");
+                            expect(model.get("viewUrl")).toEqual("#books/4YydO00I9JYC/the-google-story");
                             callback();
                         }});
                     });
                 });
 
             });
-
         });
     }(
         Ohb.Models.Book,

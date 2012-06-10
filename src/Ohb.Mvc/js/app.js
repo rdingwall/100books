@@ -54,7 +54,7 @@
 
             onSearchResultSelected: function (searchResult) {
                 log.info("Navigating to show book " + searchResult.id);
-                this.router.navigate(bookHashFragment(searchResult), { trigger: true });
+                this.router.navigate(searchResult.get("viewUrl"), { trigger: true });
             }
         };
     }(

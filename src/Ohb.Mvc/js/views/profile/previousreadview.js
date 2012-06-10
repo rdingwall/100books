@@ -9,7 +9,7 @@ Ohb.Views.PreviousReadView = (function (
             <img class="previous-read-thumbnail" src="{{ smallThumbnailUrl }}" alt="{{ title }}" /> \
         </div> \
         <div class="span8"> \
-            <h3 class="previous-read-title"><a href="#books/{{ id }}">{{ title }}</a></h3> \
+            <h3 class="previous-read-title"><a href="{{ viewUrl }}">{{ title }}</a></h3> \
             <p class="previous-read-authors">{{ authors }}</p> \
         </div> \
         <div class="span2"> \

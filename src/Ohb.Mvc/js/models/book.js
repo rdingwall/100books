@@ -1,7 +1,7 @@
-Ohb.Models.Book = (function (Backbone, eventBus) {
+Ohb.Models.Book = (function (Backbone, eventBus, urlHelper) {
     "use strict";
 
-    return Backbone.Model.extend({
+    var Book =  Backbone.Model.extend({
         urlRoot: "/api/v1/books",
 
         defaults: {
@@ -14,10 +14,18 @@ Ohb.Models.Book = (function (Backbone, eventBus) {
             description: "",
             pageCount: 0,
             thumbnailUrl: null,
-            smallThumbnailUrl: null
+            smallThumbnailUrl: null,
+            viewUrl: ""
+        },
+
+        parse: function (response) {
+            response.viewUrl = urlHelper.bookUrl(response.id, response.title);
+            return response;
         },
 
         initialize: function () {
+            this.set("viewUrl", urlHelper.bookUrl(this.id, this.get("title"))); // for tests
+
             eventBus.on("previousread:added", function (id) {
                 if (this.id === id) {
                     this.set("hasPreviouslyRead", true);
@@ -53,4 +61,6 @@ Ohb.Models.Book = (function (Backbone, eventBus) {
         }
     });
 
-}(Backbone, Ohb.eventBus));
+    return Book;
+
+}(Backbone, Ohb.eventBus, Ohb.urlHelper));

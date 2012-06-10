@@ -1,4 +1,4 @@
-Ohb.Models.PreviousRead = (function (Backbone, eventBus) {
+Ohb.Models.PreviousRead = (function (Backbone, eventBus, urlHelper) {
     "use strict";
 
     return Backbone.Model.extend({
@@ -10,7 +10,17 @@ Ohb.Models.PreviousRead = (function (Backbone, eventBus) {
             title: "",
             authors: "",
             publishedYear: "",
-            smallThumbnailUrl: null
+            smallThumbnailUrl: null,
+            viewUrl: null
+        },
+
+        initialize: function () {
+            this.set("viewUrl", urlHelper.bookUrl(this.id, this.get("title"))); // for tests
+        },
+
+        parse: function (response) {
+            response.viewUrl = urlHelper.bookUrl(response.id, response.title);
+            return response;
         },
 
         remove: function () {
@@ -18,4 +28,4 @@ Ohb.Models.PreviousRead = (function (Backbone, eventBus) {
         }
     });
 
-}(Backbone, Ohb.eventBus));
+}(Backbone, Ohb.eventBus, Ohb.urlHelper));
