@@ -24,7 +24,7 @@ Ohb.Models.Book = (function (eventBus, urlHelper, Readable) {
 
         initialize: function () {
             this.set("viewUrl", urlHelper.bookUrl(this.id, this.get("title"))); // for tests
-            this.initializeReadable();
+            Readable.prototype.initialize.apply(this);
         },
 
         getSearchResultThumbnail: function () {
@@ -40,4 +40,4 @@ Ohb.Models.Book = (function (eventBus, urlHelper, Readable) {
 
     return Book;
 
-}(Ohb.eventBus, Ohb.urlHelper, Ohb.Readable));
+}(Ohb.eventBus, Ohb.urlHelper, Ohb.Models.Readable));

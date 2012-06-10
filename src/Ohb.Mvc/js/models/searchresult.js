@@ -12,7 +12,7 @@
 
         initialize: function () {
             this.set("viewUrl", urlHelper.bookUrl(this.id, this.get("title")));
-            this.initializeReadable();
+            Readable.prototype.initialize.apply(this);
         }
     });
 
@@ -43,4 +43,4 @@
 
     return SearchResult;
 
-}(Ohb.eventBus, Ohb.urlHelper, Ohb.Readable));
+}(Ohb.eventBus, Ohb.urlHelper, Ohb.Models.Readable));

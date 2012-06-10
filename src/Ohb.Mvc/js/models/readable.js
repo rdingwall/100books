@@ -1,4 +1,4 @@
-Ohb.Readable = (function (Backbone, urlHelper, eventBus) {
+Ohb.Models.Readable = (function (Backbone, urlHelper, eventBus) {
     "use strict";
 
     return Backbone.Model.extend({
@@ -6,7 +6,7 @@ Ohb.Readable = (function (Backbone, urlHelper, eventBus) {
             hasPreviouslyRead: false,
         },
 
-        initializeReadable : function () {
+        initialize : function () {
             eventBus.on("previousread:added", function (id) {
                 if (this.id === id) {
                     this.set("hasPreviouslyRead", true);
