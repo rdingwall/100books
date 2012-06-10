@@ -41,6 +41,25 @@ $(function () {
                     expect(view.$el.find(".searchresult-title a").attr("href")).toEqual(view.model.get("viewUrl"));
                 });
             });
+
+            describe("Clicking the button to mark a SearchResult as read", function () {
+                it("should change the SearchResult's hasPreviouslyRead attr to true", function () {
+                    var model  = new SearchResult();
+
+                    var view = new SearchResultView({
+                        el: "#test-search-result",
+                        model: model
+                    });
+
+                    view.render();
+
+                    view.$el.find("a.status-toggle-button").trigger("click");
+                    expect(model.get("hasPreviouslyRead")).toBeTruthy();
+
+                    view.close();
+                    view.$el.remove();
+                });
+            });
         });
     }(
         $,

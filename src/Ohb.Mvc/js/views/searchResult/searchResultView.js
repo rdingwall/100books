@@ -1,8 +1,8 @@
 ﻿$(function () {
     "use strict";
     Ohb.Views.SearchResultView = (function (
-        Backbone,
-        Mustache
+        Mustache,
+        ReadableView
     ) {
 
         var template = '<div class="row"> \
@@ -22,21 +22,11 @@
 
         var readTemplate = '<i class="icon-ok"></i>';
 
-        return Backbone.View.extend({
+        return ReadableView.extend({
             className: "book-search-result",
 
             events: {
                 "click a.status-toggle-button": "toggleStatus"
-            },
-
-            initialize: function () {
-                this.model.on("change:hasPreviouslyRead",
-                    this.onModelStatusChanged, this);
-            },
-
-            close: function () {
-                this.model.off("change:hasPreviouslyRead",
-                    this.onModelStatusChanged, this);
             },
 
             render: function () {
@@ -45,22 +35,16 @@
                 return this;
             },
 
-            onModelStatusChanged: function () {
-                this.updateToggleButton(this.$el);
-            },
-
             updateToggleButton: function () {
                 if (this.model.get("hasPreviouslyRead")) {
                     this.$el.find(".button-container").html(readTemplate);
                 } else {
                     this.$el.find(".button-container").html(unreadButtonTemplate);
                 }
-            },
-
-            toggleStatus: function (event) {
-                event.preventDefault();
-                this.model.toggleStatus();
             }
         });
-    }(Backbone, Mustache));
+    }(
+        Mustache,
+        Ohb.Views.ReadableView
+    ));
 });

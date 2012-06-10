@@ -21,27 +21,17 @@ $(function () {
             </div>\
         </div>';
 
-    Ohb.Views.BookDetailsView = (function ($, Backbone, _, Mustache,
-                           template) {
+    Ohb.Views.BookDetailsView = (function ($, _, Mustache,
+                           template, ReadableView) {
 
         var log = $.jog("BookDetailsView");
 
-        return Backbone.View.extend({
+        return ReadableView.extend({
 
             className: "book-details",
 
             events: {
                 "click .status-toggle-button" : "toggleStatus"
-            },
-
-            initialize: function () {
-                this.model.on("change:hasPreviouslyRead",
-                    this.onModelStatusChanged, this);
-            },
-
-            close: function () {
-                this.model.off("change:hasPreviouslyRead",
-                    this.onModelStatusChanged, this);
             },
 
             render: function () {
@@ -54,10 +44,6 @@ $(function () {
                 return this;
             },
 
-            onModelStatusChanged: function () {
-                this.updateToggleButton(this.$el);
-            },
-
             updateToggleButton: function (el) {
                 if (this.model.get("hasPreviouslyRead")) {
                     el.find("#book-add-previousread-button").hide();
@@ -66,19 +52,13 @@ $(function () {
                     el.find("#book-remove-previousread-button").hide();
                     el.find("#book-add-previousread-button").css("display", "block");
                 }
-            },
-
-            toggleStatus: function (event) {
-                event.preventDefault();
-                this.model.toggleStatus();
             }
         });
-
     }(
         $,
-        Backbone,
         _,
         Mustache,
-        template
+        template,
+        Ohb.Views.ReadableView
     ));
 });
