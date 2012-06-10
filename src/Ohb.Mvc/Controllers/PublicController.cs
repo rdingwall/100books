@@ -44,16 +44,7 @@ namespace Ohb.Mvc.Controllers
 
         public ActionResult Version()
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            var model = new AppVersionModel
-                            {
-                                OhbAppVersion = assembly.GetName().Version.ToString(),
-                                OhbGitCommit = assembly
-                                    .GetCustomAttributes(typeof (AssemblyConfigurationAttribute), true)
-                                    .Cast<AssemblyConfigurationAttribute>().Single().Configuration
-                            };
-
-            return View(model);
+            return View(AppVersionModel.Current);
         }
 
         public ActionResult Error()

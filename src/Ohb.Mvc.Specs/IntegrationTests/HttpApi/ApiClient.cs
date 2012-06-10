@@ -5,6 +5,7 @@ using System.Net;
 using Machine.Specifications;
 using Ohb.Mvc.Api.Models;
 using Ohb.Mvc.Authentication;
+using Ohb.Mvc.Models;
 using Ohb.Mvc.Storage.Users;
 using RestSharp;
 
@@ -192,6 +193,12 @@ namespace Ohb.Mvc.Specs.IntegrationTests.HttpApi
             request.AddParameter("setAuthCookie", setAuthCookie);
 
             return backdoorClient.Execute<BackdoorCreateUserResponse>(request).WriteToConsole();
+        }
+
+        public RestResponse<AppVersionModel> GetVersion()
+        {
+            var request = new RestRequest("version");
+            return client.Execute<AppVersionModel>(request).WriteToConsole();
         }
     }
 }

@@ -192,6 +192,7 @@
     <Compile Include="Api\ActionFilters\AuthCookieApiAttribute.cs" />
     <Compile Include="Api\ActionFilters\RavenDbApiAttribute.cs" />
     <Compile Include="Api\ApiInstaller.cs" />
+    <Compile Include="Api\Controllers\VersionController.cs" />
     <Compile Include="Api\Models\BackdoorCreateUserResponse.cs" />
     <Compile Include="Api\Controllers\BooksController.cs" />
     <Compile Include="Api\Controllers\BookStatusesController.cs" />
