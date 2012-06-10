@@ -15,7 +15,7 @@ $(function () {
         eventBus,
         SearchResultCollection,
         SearchResult
-        ) {
+    ) {
 
         describe("SearchResultView", function () {
 
@@ -38,33 +38,7 @@ $(function () {
 
                     expect(view.$el.find(".searchresult-title").text()).toEqual("Harry Potter");
                     expect(view.$el.find("p.searchresult-authors").text()).toEqual("JK Rowling");
-                });
-            });
-
-
-
-            describe("Clicking on a search result", function () {
-                it("should mark the result as selected", function () {
-
-                    var model = new SearchResult({ title: "foo" });
-                    var view = new SearchResultView({ el: "#test-search-result", model: model });
-
-                    view.$el.trigger("click");
-
-                    expect(model.get("selected")).toBeTruthy();
-                });
-            });
-
-            describe("Marking a search result as selected", function () {
-                it("should raise a search:result:selected event", function () {
-
-                    var model = new SearchResult({ title: "foo" });
-
-                    eventBus.on("search:result:selected", function (sr) {
-                        expect(sr).toEqual(model);
-                    });
-
-                    model.set("selected", true);
+                    expect(view.$el.find(".searchresult-title a").attr("href")).toEqual(view.model.get("viewUrl"));
                 });
             });
         });

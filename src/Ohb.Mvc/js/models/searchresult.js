@@ -6,18 +6,12 @@
             title: null,
             authors: null,
             smallThumbnailUrl: null,
-            selected: false,
             hasRead: false,
             viewUrl: null
         },
 
         initialize: function () {
             this.set("viewUrl", urlHelper.bookUrl(this.id, this.get("title")));
-            this.on("change:selected", this.notifySelected, this);
-        },
-
-        notifySelected: function () {
-            eventBus.trigger("search:result:selected", this);
         }
     });
 

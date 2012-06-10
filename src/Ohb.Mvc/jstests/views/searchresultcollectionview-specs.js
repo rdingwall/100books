@@ -96,6 +96,20 @@ $(function () {
                 });
             });
 
+            describe("When changing the mainRegion view", function () {
+                it("the previous search results should be closed", function () {
+                    var view = new SearchResultCollectionView({
+                        el: "#test-search-results"
+                    });
+
+                    view.render();
+
+                    eventBus.trigger("mainRegion:view:changed");
+
+                    expect(view.$el).toBeHidden();
+                });
+            });
+
             describe("When there are no search results available", function () {
                 it("a 'no search results' message should be displayed", function () {
                     var view = new SearchResultCollectionView({
@@ -127,31 +141,6 @@ $(function () {
                     expect(view.$el).toBeVisible();
                     expect(view.$el.children().length).toEqual(2);
                 });
-            });
-
-            describe("When one of the search result models is marked as selected", function () {
-
-                it("It should close the search results", function () {
-                    var model = new SearchResult({});
-                    var collection = new SearchResultCollection();
-                    collection.add(model);
-
-                    var view = new SearchResultCollectionView({
-                        el: "#test-search-results",
-                        collection: collection
-                    });
-                    expect(view.$el).toBeHidden();
-                    view.render();
-
-                    expect(view.$el).toBeVisible();
-
-                    model.set("selected", true);
-
-                    expect(view.$el).toBeHidden();
-
-                    expect(view.views).toBeEmpty();
-                });
-
             });
         });
 

@@ -1,7 +1,7 @@
-﻿Ohb.Router = (function ($, Backbone, eventBus) {
+﻿Ohb.router = (function ($, Backbone, eventBus) {
     "use strict";
 
-    return Backbone.Router.extend({
+    var Router = Backbone.Router.extend({
         routes: {
             "" : "openMyProfile",
             "books/:id": "openBook",
@@ -17,5 +17,7 @@
             eventBus.trigger("myprofile:requested");
         }
     });
+
+    return new Router();
 
 }($, Backbone, Ohb.eventBus));

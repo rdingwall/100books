@@ -1,12 +1,12 @@
 // A simple region manager for controlling the 'main region'
 Ohb.mainRegion = (function ($, _, Backbone, ErrorMessage,
-                            ErrorMessageView) {
+                            ErrorMessageView, eventBus) {
 
     "use strict";
 
     var log = $.jog("MainRegion");
 
-    return _.extend({
+    return {
         el: "#main-region",
 
         show: function (view) {
@@ -14,7 +14,7 @@ Ohb.mainRegion = (function ($, _, Backbone, ErrorMessage,
             this.view = view;
             log.info("Rendering view...");
             $(this.el).append(this.view.render().el);
-            this.trigger("view:changed", view);
+            eventBus.trigger("mainRegion:view:changed", view);
         },
 
         close: function () {
@@ -35,5 +35,12 @@ Ohb.mainRegion = (function ($, _, Backbone, ErrorMessage,
             var model = new ErrorMessage({ message: message });
             this.show(new ErrorMessageView({ model: model }));
         }
-    }, Backbone.Events);
-}($, _, Backbone, Ohb.Models.ErrorMessage, Ohb.Views.ErrorMessageView));
+    };
+}(
+    $,
+    _,
+    Backbone,
+    Ohb.Models.ErrorMessage,
+    Ohb.Views.ErrorMessageView,
+    Ohb.eventBus
+));

@@ -34,7 +34,7 @@
                     this.collection.each(this.addOne);
                 }
 
-                this.collection.on("change:selected", this.close);
+                eventBus.on("mainRegion:view:changed", this.close);
                 eventBus.on("search:began", this.close);
             },
 

@@ -66,9 +66,9 @@ $(function () {
             describe("Firing a book:requested event", function () {
                 it("should fetch the book details and render them", function (done) {
                     app.initialize();
-                    mainRegion.off();
+                    eventBus.off();
 
-                    mainRegion.on("view:changed", function (view) {
+                    eventBus.on("mainRegion:view:changed", function (view) {
                         if ($(view.el).hasClass("book-details")) {
                             $("h1.book-details-title").should.have.text("The Google Story");
                             done();
@@ -82,9 +82,9 @@ $(function () {
             describe("Firing a book:requested event (that fails)", function (done) {
                 it("should render an error message", function (done) {
                     app.initialize();
-                    mainRegion.off();
+                    eventBus.off();
 
-                    mainRegion.on("view:changed", function (view) {
+                    eventBus.on("mainRegion:view:changed", function (view) {
                         if ($(view.el).hasClass("error-message")) {
                             $(".error-message").should.have.length(1);
                             done();
@@ -99,9 +99,9 @@ $(function () {
             describe("Navigating to the book hash", function () {
                 it("should fetch the book details and render them", function (done) {
                     app.initialize();
-                    mainRegion.off();
+                    eventBus.off();
 
-                    mainRegion.on("view:changed", function (view) {
+                    eventBus.on("mainRegion:view:changed", function (view) {
                         if ($(view.el).hasClass("book-details")) {
                             $("h1.book-details-title").should.have.text("The Google story");
                             done();
@@ -116,7 +116,6 @@ $(function () {
                 it("should raise a previousread:added event", function (done) {
                     eventBus.reset();
                     app.initialize();
-                    mainRegion.off();
 
                     eventBus.on("previousread:added", function (id) {
                         id.should.equal("4YydO00I9JYC");
@@ -129,7 +128,6 @@ $(function () {
                 it("should mark the book as read via the API", function (done) {
                     eventBus.reset();
                     app.initialize();
-                    mainRegion.off();
 
                     eventBus.on("previousread:added", function () {
                         $.getJSON("/api/v1/books/4YydO00I9JYC", function (data) {
@@ -150,7 +148,6 @@ $(function () {
             it("should raise a previousread:removed event", function (done) {
                 eventBus.reset();
                 app.initialize();
-                mainRegion.off();
 
                 eventBus.on("previousread:removed", function (id) {
                     id.should.equal("4YydO00I9JYC");
@@ -163,7 +160,6 @@ $(function () {
             it("should mark the book as unread via the API", function (done) {
                 eventBus.reset();
                 app.initialize();
-                mainRegion.off();
 
                 eventBus.on("previousread:removed", function () {
                     $.getJSON("/api/v1/books/4YydO00I9JYC", function (data) {
@@ -201,9 +197,8 @@ $(function () {
                         eventBus.reset();
                         app.initialize();
                         mainRegion.close();
-                        mainRegion.off();
 
-                        mainRegion.on("view:changed", function (view) {
+                        eventBus.on("mainRegion:view:changed", function (view) {
                             if ($(view.el).hasClass("profile")) {
                                 $("h1.profile-card-display-name").should.have.length(1);
                                 done();
@@ -221,7 +216,6 @@ $(function () {
 
                     eventBus.reset();
                     app.initialize();
-                    mainRegion.off();
 
                     eventBus.on("previousread:added", function () {
                         var results = new PreviousReadCollection();

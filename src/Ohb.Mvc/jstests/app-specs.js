@@ -37,40 +37,6 @@ $(function () {
                     $("#search-failed-modal").hide();
                 });
             });
-
-
-            describe("Firing a search:result:selected event", function () {
-                it("should navigate to the new route", function () {
-                    app.initialize();
-
-                    var model = new SearchResult({
-                        id: "foo",
-                        title: "Harry Potter's amazing #(*@(#)(# adventure$ 2008"
-                    });
-
-                    eventBus.trigger("search:result:selected", model);
-
-                    expect(window.location.hash).toEqual("#books/foo/harry-potters-amazing-adventure-2008");
-                });
-
-                // This one fails when run with the other tests for some reason
-                it("should raise a book:requested event", function () {
-                    runsAsync(function (callback) {
-                        app.initialize();
-                        var model = new SearchResult({ id: "foo" });
-
-                        eventBus.on("book:requested", function (id) {
-                            expect(id).toEqual(model.id);
-                            callback();
-                        });
-
-                        eventBus.trigger("search:result:selected", model);
-                    });
-                });
-
-            });
-
-
         });
     }(
         $,
