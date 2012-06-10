@@ -16,22 +16,23 @@
         <div class="span1 button-container" />\
     </div>';
 
-        var readButtonTemplate = '<a id="toggle-previousread-button" class="status-toggle-button btn large btn-success">\
-            <i class="icon-ok icon-white"></i>\
+        var unreadButtonTemplate = '<a id="toggle-previousread-button" class="status-toggle-button btn large">\
+            <i class="icon-plus"></i>\
         </a>';
 
-        var unreadButtonTemplate = '<a id="toggle-previousread-button" class="status-toggle-button btn large">\
-            <i class="icon-ok"></i>\
-        </a>';
+        var readTemplate = '<i class="icon-ok"></i>';
 
         return Backbone.View.extend({
             className: "book-search-result",
 
             render: function () {
-                var view = this.model.toJSON();
-                view.buttonClass = view.hasRead ? "btn-success" : "";
-                this.$el.html(Mustache.to_html(template, view));
-                this.$el.attr("id", "book-search-result-" + this.model.id);
+                this.$el.html(Mustache.to_html(template, this.model.toJSON()));
+                if (this.model.get("hasRead")) {
+                    this.$el.find(".button-container").html(readTemplate);
+                } else {
+                    this.$el.find(".button-container").html(unreadButtonTemplate);
+                }
+
                 return this;
             }
         });
