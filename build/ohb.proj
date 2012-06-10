@@ -27,7 +27,7 @@
       OutputFile="..\SolutionInfo.cs"
       AssemblyCompany="100 Books"
       AssemblyProduct="100 Books"
-      AssemblyConfiguration="$(GitCommitShortHash)"
+      AssemblyInformationalVersion="$(GitCommitShortHash)"
       AssemblyCopyright="Copyright © Richard Dingwall / 100 Books 2012"
       AssemblyVersion="$(build_number)"
       AssemblyFileVersion="$(build_number)" />

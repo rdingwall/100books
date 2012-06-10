@@ -12,8 +12,8 @@ namespace Ohb.Mvc.Models
                           {
                               AppVersion = assembly.GetName().Version.ToString(),
                               GitCommit = assembly
-                                  .GetCustomAttributes(typeof(AssemblyConfigurationAttribute), true)
-                                  .Cast<AssemblyConfigurationAttribute>().Single().Configuration
+                                  .GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), true)
+                                  .Cast<AssemblyInformationalVersionAttribute>().Single().InformationalVersion
                           };
         }
 

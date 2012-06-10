@@ -8,15 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
 using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("100 Books")]
 [assembly: AssemblyProduct("100 Books")]
-[assembly: AssemblyConfiguration("HEAD")]
+[assembly: AssemblyInformationalVersionAttribute("HEAD")]
 [assembly: AssemblyCopyright("Copyright © Richard Dingwall / 100 Books 2012")]
 [assembly: AssemblyVersion("0.0.0.0")]
 [assembly: AssemblyFileVersion("0.0.0.0")]
