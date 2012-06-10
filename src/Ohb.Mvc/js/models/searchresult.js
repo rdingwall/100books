@@ -1,17 +1,18 @@
-﻿Ohb.Models.SearchResult = (function (Backbone, eventBus, urlHelper) {
+﻿Ohb.Models.SearchResult = (function (eventBus, urlHelper, Readable) {
     "use strict";
 
-    var SearchResult = Backbone.Model.extend({
+    var SearchResult = Readable.extend({
         defaults: {
             title: null,
             authors: null,
             smallThumbnailUrl: null,
-            hasRead: false,
+            hasPreviouslyRead: false,
             viewUrl: null
         },
 
         initialize: function () {
             this.set("viewUrl", urlHelper.bookUrl(this.id, this.get("title")));
+            this.initializeReadable();
         }
     });
 
@@ -42,4 +43,4 @@
 
     return SearchResult;
 
-}(Backbone, Ohb.eventBus, Ohb.urlHelper));
+}(Ohb.eventBus, Ohb.urlHelper, Ohb.Readable));

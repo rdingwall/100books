@@ -1,11 +1,10 @@
-Ohb.Models.Book = (function (Backbone, eventBus, urlHelper) {
+Ohb.Models.Book = (function (eventBus, urlHelper, Readable) {
     "use strict";
 
-    var Book =  Backbone.Model.extend({
+    var Book =  Readable.extend({
         urlRoot: "/api/v1/books",
 
         defaults: {
-            hasPreviouslyRead: false,
             googleVolumeId: null,
             publisher: "",
             title: "",
@@ -25,29 +24,7 @@ Ohb.Models.Book = (function (Backbone, eventBus, urlHelper) {
 
         initialize: function () {
             this.set("viewUrl", urlHelper.bookUrl(this.id, this.get("title"))); // for tests
-
-            eventBus.on("previousread:added", function (id) {
-                if (this.id === id) {
-                    this.set("hasPreviouslyRead", true);
-                }
-            }, this);
-
-            eventBus.on("previousread:removed", function (id) {
-                if (this.id === id) {
-                    this.set("hasPreviouslyRead", false);
-                }
-            }, this);
-        },
-
-        toggleStatus: function () {
-            var previouslyRead = this.get("hasPreviouslyRead");
-            this.set({ hasPreviouslyRead: !previouslyRead });
-
-            var event = previouslyRead ?
-                    "previousread:removeRequested" :
-                    "previousread:addRequested";
-
-            eventBus.trigger(event, this.id);
+            this.initializeReadable();
         },
 
         getSearchResultThumbnail: function () {
@@ -63,4 +40,4 @@ Ohb.Models.Book = (function (Backbone, eventBus, urlHelper) {
 
     return Book;
 
-}(Backbone, Ohb.eventBus, Ohb.urlHelper));
+}(Ohb.eventBus, Ohb.urlHelper, Ohb.Readable));

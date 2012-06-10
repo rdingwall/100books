@@ -16,7 +16,7 @@
         <div class="span1 button-container" />\
     </div>';
 
-        var unreadButtonTemplate = '<a id="toggle-previousread-button" class="status-toggle-button btn large">\
+        var unreadButtonTemplate = '<a class="status-toggle-button btn large">\
             <i class="icon-plus"></i>\
         </a>';
 
@@ -25,15 +25,41 @@
         return Backbone.View.extend({
             className: "book-search-result",
 
+            events: {
+                "click a.status-toggle-button": "toggleStatus"
+            },
+
+            initialize: function () {
+                this.model.on("change:hasPreviouslyRead",
+                    this.onModelStatusChanged, this);
+            },
+
+            close: function () {
+                this.model.off("change:hasPreviouslyRead",
+                    this.onModelStatusChanged, this);
+            },
+
             render: function () {
                 this.$el.html(Mustache.to_html(template, this.model.toJSON()));
-                if (this.model.get("hasRead")) {
+                this.updateToggleButton();
+                return this;
+            },
+
+            onModelStatusChanged: function () {
+                this.updateToggleButton(this.$el);
+            },
+
+            updateToggleButton: function () {
+                if (this.model.get("hasPreviouslyRead")) {
                     this.$el.find(".button-container").html(readTemplate);
                 } else {
                     this.$el.find(".button-container").html(unreadButtonTemplate);
                 }
+            },
 
-                return this;
+            toggleStatus: function (event) {
+                event.preventDefault();
+                this.model.toggleStatus();
             }
         });
     }(Backbone, Mustache));

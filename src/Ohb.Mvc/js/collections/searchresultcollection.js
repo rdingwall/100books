@@ -18,7 +18,7 @@ Ohb.Collections.SearchResultCollection = (function ($, _, Backbone, SearchResult
         parse: function (response) {
             _.each(response, function (item) {
                 var result = this.googleResultsCollection.get(item.googleVolumeId);
-                result.set("hasRead", item.hasRead);
+                result.set("hasPreviouslyRead", item.hasRead);
             }, this);
 
             return this.googleResultsCollection.models;

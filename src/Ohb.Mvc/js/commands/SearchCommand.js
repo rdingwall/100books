@@ -38,7 +38,7 @@ $(function () {
 
             log.info("Got google search results. Looking up local API for corresponding statuses...");
 
-            // Step 2: enrich SearchResult models with local hasRead property.
+            // Step 2: enrich SearchResult models with local hasPreviouslyRead property.
             new SearchResultCollection(collection).fetch({
                 success: renderResults,
                 error: error
