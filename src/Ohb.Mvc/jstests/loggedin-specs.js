@@ -25,6 +25,7 @@ $(function () {
     ) {
 
         var should = chai.should();
+        var assert = chai.assert;
         var expect = chai.expect;
 
         var withNewUser = function (callback, done, userDisplayName) {
@@ -53,7 +54,7 @@ $(function () {
                         url: "/api/backdoor/createuser",
                         data: { setAuthCookie: true },
                         error: function (err) {
-                            should.fail(err);
+                            assert.fail(err);
                             done();
                         },
                         success: function () {
@@ -256,7 +257,7 @@ $(function () {
                     });
 
                     eventBus.on("search:failed", function () {
-                        should.fail();
+                        assert.fail();
                         done();
                     });
 
@@ -298,7 +299,7 @@ $(function () {
                     });
 
                     eventBus.on("search:resultsArrived", function () {
-                        should.fail("should not have been raised (but it's ok, not sure how to fake a test right now)");
+                        assert.fail("should not have been raised (but it's ok, not sure how to fake a test right now)");
                         done();
                     });
 
@@ -314,7 +315,7 @@ $(function () {
                     });
 
                     eventBus.on("search:resultsArrived", function () {
-                        should.fail("should not have been raised!");
+                        assert.fail("should not have been raised!");
                         done();
                     });
 
@@ -330,7 +331,7 @@ $(function () {
                     app.initialize();
 
                     eventBus.on("search:failed", function () {
-                        should.fail("searchFailed was raised");
+                        assert.fail("searchFailed was raised");
                         done();
                     });
 
@@ -347,7 +348,7 @@ $(function () {
                     app.initialize();
 
                     eventBus.on("search:failed", function () {
-                        should.fail("searchFailed was raised");
+                        assert.fail("searchFailed was raised");
                         done();
                     });
 
