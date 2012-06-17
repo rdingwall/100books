@@ -51,7 +51,8 @@
   </Target>
 
   <Target Name="RunPhantomJsTests">
-    <Exec Command="$(PhantomJsExe) $(teamcity_build_workingdir)\build\phantomjs-tests.js" />
+    <Exec Command="$(PhantomJsExe) $(teamcity_build_workingdir)\build\phantomjs-tests.js http://localhost:88/jstests/mocha-loggedin.html" />
+    <Exec Command="$(PhantomJsExe) $(teamcity_build_workingdir)\build\phantomjs-tests.js http://localhost:88/jstests/jasmine.html" />
   </Target>
 
 </Project>
