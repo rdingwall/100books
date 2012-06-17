@@ -31,7 +31,7 @@
             //Using a delay to make sure the JavaScript is executed in the browser
             window.setTimeout(function () {
                 phantom.exit();
-            }, 60 * 1000);
+            }, 120 * 1000);
         }
     });
 
