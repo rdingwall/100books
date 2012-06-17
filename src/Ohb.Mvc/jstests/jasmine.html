@@ -79,7 +79,13 @@
 
             var htmlReporter = new jasmine.HtmlReporter();
 
+            var OnCompleteReporter = _.extend(function () {}, jasmine.Reporter);
+            OnCompleteReporter.prototype.reportRunnerResults = function () {
+                console.log("ohb-jasmine-all-finished");
+            };
+
             jasmineEnv.addReporter(htmlReporter);
+            jasmineEnv.addReporter(new OnCompleteReporter());
             jasmineEnv.addReporter  (new jasmine.TeamcityReporter());
 
             jasmineEnv.specFilter = function(spec) {
@@ -108,10 +114,6 @@
 
             jasmineEnv.afterEach(function () {
                 $("#fixture").empty();
-            });
-
-            jasmineEnv.afterAll(function () {
-                console.log("ohb-jasmine-all-finished");
             });
 
             jasmineEnv.execute();

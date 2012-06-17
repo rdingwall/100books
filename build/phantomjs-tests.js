@@ -15,8 +15,9 @@
 
         if (msg) {
             if (msg.indexOf("##teamcity[testSuiteFinished name='mocha.suite'") !== -1 ||
-            msg.indexOf("ohb-jasmine-all-finished") !== -1) {
-            phantom.exit();
+                    msg.indexOf("ohb-jasmine-all-finished") !== -1) {
+                phantom.exit();
+            }
         }
     };
 
