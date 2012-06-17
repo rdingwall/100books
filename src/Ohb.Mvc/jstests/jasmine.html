@@ -110,6 +110,10 @@
                 $("#fixture").empty();
             });
 
+            jasmineEnv.afterAll(function () {
+                console.log("ohb-jasmine-all-finished");
+            });
+
             jasmineEnv.execute();
         });
 

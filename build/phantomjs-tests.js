@@ -10,7 +10,15 @@
 
     var page = new WebPage();
     //This is required because PhantomJS sandboxes the website and it does not show up the console messages form that page by default
-    page.onConsoleMessage = function (msg) { console.log(msg); };
+    page.onConsoleMessage = function (msg) {
+        console.log(msg);
+
+        if (msg) {
+            if (msg.indexOf("##teamcity[testSuiteFinished name='mocha.suite'") !== -1 ||
+            msg.indexOf("ohb-jasmine-all-finished") !== -1) {
+            phantom.exit();
+        }
+    };
 
     //Open the website
     page.open(url, function (status) {
@@ -22,7 +30,7 @@
             //Using a delay to make sure the JavaScript is executed in the browser
             window.setTimeout(function () {
                 phantom.exit();
-            }, 10 * 1000);
+            }, 60 * 1000);
         }
     });
 
